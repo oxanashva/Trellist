@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router'
+import { Routes, Route, Navigate, useLocation } from 'react-router'
 import { AppHeader } from './cmps/AppHeader'
 import { UserMsg } from './cmps/UserMsg'
 import { HomePage } from './pages/HomePage'
@@ -23,7 +23,8 @@ export function RootCmp() {
 
       <main>
         <Routes>
-          <Route path="" element={<HomePage />} />
+          <Route path="" element={<Navigate to="/home" replace />} />
+          <Route path="home" element={<HomePage />} />
           <Route path="board" element={<BoardIndex />} />
           <Route path="board/:boardId" element={<BoardDetails />} />
           <Route path="board/:boardId/card/:cardId" element={<CardDetails />} />

@@ -1,10 +1,9 @@
 .app-header {
     display: flex;
     align-items: center;
-    min-height: 48px;
-    max-height: 48px;;
+    height: 48px;
     padding: 0.5rem;
-    border-bottom: 1px solid rgb(23 43 77 / 16%);
+    border-bottom: 1px solid rgba(23, 43, 77, 0.16);
     
     & nav {
         display: flex;
@@ -28,6 +27,36 @@
             }
         }
 
+        .auth-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            & > a {
+                align-items: center;
+                display: flex;
+                font-size: 1.2rem;
+                height: 48px;
+                padding: 0 1.5rem;
+                text-decoration: none;
+            }
+
+
+            & .login-link {
+                background-color: transparent;
+                color: var(--text);
+            }
+
+            & .signup-link {
+                color: #fff;
+                background-color: var(--button-primary);
+
+                &:hover {
+                    background-color: var(--button-primary-hovered);
+                }
+            }
+        }
+
         .actions {
             display: flex;
             flex: 1 0 auto;
@@ -39,29 +68,6 @@
             display: flex;
             align-items: center;
             gap: 0.25rem;
-        }
-    }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-        margin-inline-start: auto;
-
-        color: var(--clr1);
-
-        .score {
-            padding: 8px;
-            background-color: var(--clr2);
-            border-radius: 50%;
-            margin: 10px;
-
-            color: var(--gray1);
-        }
-
-        & img {
-            width: 24px;
-            aspect-ratio: 1;
-            border-radius: 50%;
         }
     }
 
