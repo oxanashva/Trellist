@@ -1,14 +1,20 @@
 :root {
-  --button-primary: #1868DB;
+  --primary: #1868DB;
+  --secondary: #172B4D;
+
+  /* 'Create' button in Workspace */
+  --button-primary: var(--primary);
+  --button-primary-text: #FFFFFF;
   --button-primary-hovered: #1558bc;
   --button-primary-pressed: #123263;
 
+  /* Icon buttons */
   --dynamic-button: transparent;
   --dynamic-button-hovered: rgba(0, 0, 0, 0.16);
   --dynamic-button-pressed: rgba(0, 0, 0, 0.16);
   --dynamic-button-text: var(--dynamic-text);
 
-  /* 'Create' button */
+  /* 'Create' button in Board */
   --dynamic-button-primary: rgba(0, 0, 0, 0.16);
   --dynamic-button-primary-hovered: rgba(0, 0, 0, 0.32);
   --dynamic-button-primary-pressed: rgba(0, 0, 0, 0.32);
@@ -21,13 +27,14 @@
   --dynamic-button-highlighted-text: #FFFFFF;
   
   --text: #292a2e;
-  --dynamic--text: #172B4D;
+  --dynamic-text: var(--secondary);
   --text-selected: #0c66e4;
-  --link: #1868DB;
+  --link: var(--primary);
   --link-visited: #803FA5;
   --background-selected: #E9F2FE;
   --background-neutral: #0515240F;
   --background-neutral-hovered: #0B120E24;
+  --dynamic-background: #b7bba9;
 
   /* 'Vote' */
   --text-accent-blue: #1558BC;

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router'
+import { Routes, Route, useLocation } from 'react-router'
 import { AppHeader } from './cmps/AppHeader'
 import { UserMsg } from './cmps/UserMsg'
 import { HomePage } from './pages/HomePage'
@@ -11,8 +11,13 @@ import { AppFooter } from './cmps/AppFooter'
 import { Icon } from './pages/Icon'
 
 export function RootCmp() {
+  const { pathname } = useLocation()
+
+  const isBoardPage = pathname.includes('/board')
+  const mainContainerStyle = `main-container ${isBoardPage ? 'board-container' : ''}`
+
   return (
-    <div className="main-container">
+    <div className={mainContainerStyle}>
       <AppHeader />
       <UserMsg />
 

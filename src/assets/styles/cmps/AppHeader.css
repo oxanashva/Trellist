@@ -1,34 +1,44 @@
 .app-header {
     display: flex;
-    min-height: 3.5rem;
-
-    background-color: var(--clr4);
-    padding: .8rem 1rem;
+    align-items: center;
+    min-height: 48px;
+    max-height: 48px;;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgb(23 43 77 / 16%);
     
     & nav {
         display: flex;
         width: 100%;
         align-items: center;
-        gap: 1em;
+        justify-content: space-between;
+        gap: 0.5rem;
         
-        font-size: .8em;
-
-        .active {
-            color: var(--clr1);
-        }
-
         .logo {
-            font-size: 1.4em;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 1.42857em;
+            font-weight: 700;
             margin-inline-end: 2em;
+            color: var(--primary);
+            line-height: 1;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
-        .login-link {
-            margin-inline-start: auto;
+        .actions {
+            display: flex;
+            flex: 1 0 auto;
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
 
-        & button {
-            margin-inline-end: 0;
+        .btn-group {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
     }
 
@@ -49,9 +59,26 @@
         }
 
         & img {
-            width: 2em;
+            width: 24px;
             aspect-ratio: 1;
             border-radius: 50%;
+        }
+    }
+
+    &.board-header {
+        background-color: var(--dynamic-background);
+
+        .logo {
+            color: var(--secondary);
+        }
+        
+        .btn-primary {
+            background-color: var(--dynamic-button-primary);
+            color: var(--dynamic-button-primary-text);
+
+            &:hover {
+                background-color: var(--dynamic-button-primary-hovered);
+            }
         }
     }
 }
