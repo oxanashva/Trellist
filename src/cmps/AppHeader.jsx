@@ -27,7 +27,7 @@ export function AppHeader() {
 	const isHomePage = pathname.includes('/home')
 	const isWorkspacePage = pathname.includes('/workspace')
 	const isBoardPage = pathname.includes('/board')
-	const headerStyle = `app-header full ${isBoardPage ? 'board-header' : ''}`
+	const headerStyle = `app-header full ${isBoardPage ? 'board-header' : isHomePage ? 'home-header' : ''}`
 
 	return (
 		<header className={headerStyle}>

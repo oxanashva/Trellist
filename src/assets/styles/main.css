@@ -9,17 +9,13 @@
 
 @import "RootCmp";
 
-/* @import "cmps/AboutUs";
-@import "cmps/HomePage";
-@import "cmps/UserDetails";
-@import "cmps/LoginSignup";
-@import "cmps/Chat"; */
+@import "pages/HomePage";
+@import "pages/LoginSignup";
 
 @import "cmps/AppHeader";
-/* @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 
-@import "cmps/car/BoardIndex";
+/* @import "cmps/car/BoardIndex";
 @import "cmps/car/BoardList";
 @import "cmps/car/BoardPreview";
 @import "cmps/car/BoardFilter"; */

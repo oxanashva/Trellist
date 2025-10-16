@@ -1,5 +1,10 @@
 .main-container {
     height: 100vh;
+
+    &.home-container {
+        background-color: rgb(244, 245, 247);
+        color: rgb(9, 30, 66);
+    }
     
     &.board-container {
         background: url('../images/bg-img/bg-img-1.jpeg');
