@@ -11,13 +11,13 @@ import { BoardList } from '../cmps/board/BoardList'
 import { BoardFilter } from '../cmps/board/BoardFilter'
 
 export function BoardIndex() {
+    const [isEditing, setIsEditing] = useState(false);
+    // const [filterBy, setFilterBy] = useState(boardService.getDefaultFilter())
+    // const cars = useSelector(storeState => storeState.carModule.cars)
 
-    const [filterBy, setFilterBy] = useState(boardService.getDefaultFilter())
-    const cars = useSelector(storeState => storeState.carModule.cars)
-
-    useEffect(() => {
-        loadCars(filterBy)
-    }, [filterBy])
+    // useEffect(() => {
+    //     loadCars(filterBy)
+    // }, [filterBy])
 
     async function onRemoveCar(carId) {
         try {
@@ -52,9 +52,36 @@ export function BoardIndex() {
         }
     }
 
+    function handleTitleClick() {
+        setIsEditing(true)
+    }
+
+    function handleInputBlur() {
+        setIsEditing(false)
+    };
+
+    const h1ClassName = `board-title ${isEditing ? 'hidden' : ''}`
+    const inputClassName = `board-title ${isEditing ? '' : 'hidden'}`
+
     return (
-        <section className="car-index">
+        <section className="board-index full">
             <header>
+                <div>
+                    <h1
+                        className={h1ClassName}
+                        onClick={handleTitleClick}
+                    >
+                        Trellist Agile Sprint Board
+                    </h1>
+                    <input
+                        className={inputClassName}
+                        type="text"
+                        value="Trellist Agile Sprint Board"
+                        onBlur={handleInputBlur}
+                    />
+                </div>
+            </header>
+            {/* <header>
                 <h2>Cars</h2>
                 {userService.getLoggedinUser() && <button onClick={onAddCar}>Add a Car</button>}
             </header>
@@ -62,7 +89,7 @@ export function BoardIndex() {
             <BoardList
                 cars={cars}
                 onRemoveCar={onRemoveCar}
-                onUpdateCar={onUpdateCar} />
+                onUpdateCar={onUpdateCar} /> */}
         </section>
     )
 }

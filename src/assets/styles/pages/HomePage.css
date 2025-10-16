@@ -17,10 +17,17 @@
             font-size: 1.2em;
         }
 
-        & button {
+        & a {
+            display: flex;
+            align-items: center;
+            height: 46px;
+            border-radius: 5px;
             font-size: 1rem;
-            margin: 3rem 0;
-            padding: 1.4rem;
+            margin: 1.4rem 0;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }
