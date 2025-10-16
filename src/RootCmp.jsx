@@ -7,17 +7,23 @@ import { BoardDetails } from './pages/BoardDetails'
 import './assets/styles/main.css'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup'
 import { CardDetails } from './pages/CardDetails'
-import { AppFooter } from './cmps/AppFooter'
 import { Icon } from './pages/Icon'
 
 export function RootCmp() {
   const { pathname } = useLocation()
 
-  const isBoardPage = pathname.includes('/board')
-  const mainContainerStyle = `main-container ${isBoardPage ? 'board-container' : ''}`
+  const getSpecificContainerClass = () => {
+    if (pathname.includes('/board')) return 'board-container'
+    if (pathname.includes('/workspace')) return 'workspace-container'
+    if (pathname.includes('/home')) return 'home-container'
+
+    return '';
+  }
+
+  const containerClasses = `main-container ${getSpecificContainerClass()}`;
 
   return (
-    <div className={mainContainerStyle}>
+    <div className={containerClasses}>
       <AppHeader />
       <UserMsg />
 
@@ -37,7 +43,6 @@ export function RootCmp() {
           <Route path="icon" element={<Icon />} />
         </Routes>
       </main>
-      <AppFooter />
     </div>
   )
 }
