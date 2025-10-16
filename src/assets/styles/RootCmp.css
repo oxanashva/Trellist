@@ -1,3 +1,13 @@
+.main-container {
+    height: 100vh;
+    
+    &.board-container {
+        background: url('../images/bg-img/bg-img-1.jpeg');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}
+
 .main-container > main {
     min-height: calc(100vh - 9rem);
 }

@@ -1,57 +1,90 @@
 .app-header {
     display: flex;
-    min-height: 3.5rem;
-
-    background-color: var(--clr4);
-    padding: .8rem 1rem;
+    align-items: center;
+    height: 48px;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(23, 43, 77, 0.16);
     
     & nav {
         display: flex;
         width: 100%;
         align-items: center;
-        gap: 1em;
+        justify-content: space-between;
+        gap: 0.5rem;
         
-        font-size: .8em;
-
-        .active {
-            color: var(--clr1);
-        }
-
         .logo {
-            font-size: 1.4em;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 1.42857em;
+            font-weight: 700;
             margin-inline-end: 2em;
+            color: var(--primary);
+            line-height: 1;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
-        .login-link {
-            margin-inline-start: auto;
+        .auth-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            & > a {
+                align-items: center;
+                display: flex;
+                font-size: 1.2rem;
+                height: 48px;
+                padding: 0 1.5rem;
+                text-decoration: none;
+            }
+
+
+            & .login-link {
+                background-color: transparent;
+                color: var(--text);
+            }
+
+            & .signup-link {
+                color: #fff;
+                background-color: var(--button-primary);
+
+                &:hover {
+                    background-color: var(--button-primary-hovered);
+                }
+            }
         }
 
-        & button {
-            margin-inline-end: 0;
+        .actions {
+            display: flex;
+            flex: 1 0 auto;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
         }
     }
 
-    .user-info {
-        display: flex;
-        align-items: center;
-        margin-inline-start: auto;
+    &.board-header {
+        background-color: var(--dynamic-background);
 
-        color: var(--clr1);
-
-        .score {
-            padding: 8px;
-            background-color: var(--clr2);
-            border-radius: 50%;
-            margin: 10px;
-
-            color: var(--gray1);
+        .logo {
+            color: var(--secondary);
         }
+        
+        .btn-primary {
+            background-color: var(--dynamic-button-primary);
+            color: var(--dynamic-button-primary-text);
 
-        & img {
-            width: 2em;
-            aspect-ratio: 1;
-            border-radius: 50%;
+            &:hover {
+                background-color: var(--dynamic-button-primary-hovered);
+            }
         }
     }
 }
