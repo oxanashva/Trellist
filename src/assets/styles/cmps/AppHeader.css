@@ -86,14 +86,5 @@
         .logo {
             color: var(--secondary);
         }
-        
-        .btn-primary {
-            background-color: var(--dynamic-button-primary);
-            color: var(--dynamic-button-primary-text);
-
-            &:hover {
-                background-color: var(--dynamic-button-primary-hovered);
-            }
-        }
     }
 }

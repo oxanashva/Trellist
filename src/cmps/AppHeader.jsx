@@ -3,11 +3,11 @@ import { useNavigate, useLocation } from 'react-router'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
-import MegaphoneIcon from '../assets/images/icons/megaphone.svg?react';
-import BellIcon from '../assets/images/icons/bell.svg?react';
-import HelpIcon from '../assets/images/icons/help.svg?react';
-import TrelloIcon from '../assets/images/icons/trello.svg?react';
-import osAvatarImg from '../assets/images/avatars/OS-avatar.png';
+import MegaphoneIcon from '../assets/images/icons/megaphone.svg?react'
+import BellIcon from '../assets/images/icons/bell.svg?react'
+import HelpIcon from '../assets/images/icons/help.svg?react'
+import TrelloIcon from '../assets/images/icons/trello.svg?react'
+import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 
 export function AppHeader() {
 	// const user = useSelector(storeState => storeState.userModule.user)
@@ -52,7 +52,7 @@ export function AppHeader() {
 					<>
 						<div className="actions">
 							<input type="text" placeholder="Search" />
-							<button className="btn-primary">Create</button>
+							<button className="btn-secondary">Create</button>
 						</div>
 
 						<div className="btn-group">

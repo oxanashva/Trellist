@@ -10,6 +10,13 @@ import { userService } from '../services/user'
 import { BoardList } from '../cmps/board/BoardList'
 import { BoardFilter } from '../cmps/board/BoardFilter'
 
+import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
+import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
+import Filter from '../assets/images/icons/filter.svg?react'
+import Star from '../assets/images/icons/star.svg?react'
+import UserPlus from '../assets/images/icons/user-plus.svg?react'
+import More from '../assets/images/icons/more.svg?react'
+
 export function BoardIndex() {
     const inputRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false);
@@ -87,6 +94,30 @@ export function BoardIndex() {
                         value="Trellist Agile Sprint Board"
                         onBlur={handleInputBlur}
                     />
+                </div>
+                <div className="btn-group">
+                    <div className="avatar-btn-group">
+                        {/* TODO: Render avatars based on board data */}
+                        <button className="icon-btn avatar-btn" title="Oxana Shvartsman (oxanashvartsman)" >
+                            <img src={osAvatarImg} alt="Oxana Shvartsman" width={16} height={16} />
+                        </button>
+                        <button className="icon-btn avatar-btn" title="Anna Coss (annacoss" >
+                            <img src={acAvatarImg} alt="Anna Coss" />
+                        </button>
+                    </div>
+                    <button className="icon-btn action-icon-btn">
+                        <Filter width={16} height={16} fill="currentColor" />
+                    </button>
+                    <button className="icon-btn action-icon-btn">
+                        <Star width={16} height={16} fill="currentColor" />
+                    </button>
+                    <button className="btn-highlighted">
+                        <UserPlus width={16} height={16} fill="currentColor" />
+                        <span>Share</span>
+                    </button>
+                    <button className="icon-btn action-icon-btn">
+                        <More width={16} height={16} fill="currentColor" />
+                    </button>
                 </div>
             </header>
             {/* <header>
