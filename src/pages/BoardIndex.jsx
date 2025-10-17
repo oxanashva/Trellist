@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
 import { loadCars, addCar, updateCar, removeCar, addCarMsg } from '../store/actions/board.actions'
@@ -11,9 +11,16 @@ import { BoardList } from '../cmps/board/BoardList'
 import { BoardFilter } from '../cmps/board/BoardFilter'
 
 export function BoardIndex() {
+    const inputRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false);
     // const [filterBy, setFilterBy] = useState(boardService.getDefaultFilter())
     // const cars = useSelector(storeState => storeState.carModule.cars)
+
+    useEffect(() => {
+        if (isEditing) {
+            inputRef.current?.focus()
+        }
+    }, [isEditing])
 
     // useEffect(() => {
     //     loadCars(filterBy)
@@ -57,8 +64,8 @@ export function BoardIndex() {
     }
 
     function handleInputBlur() {
-        setIsEditing(false)
-    };
+        setIsEditing(false);
+    }
 
     const h1ClassName = `board-title ${isEditing ? 'hidden' : ''}`
     const inputClassName = `board-title ${isEditing ? '' : 'hidden'}`
@@ -74,6 +81,7 @@ export function BoardIndex() {
                         Trellist Agile Sprint Board
                     </h1>
                     <input
+                        ref={inputRef}
                         className={inputClassName}
                         type="text"
                         value="Trellist Agile Sprint Board"
