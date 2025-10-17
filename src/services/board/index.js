@@ -3,7 +3,7 @@ const { DEV, VITE_LOCAL } = import.meta.env
 import { getRandomIntInclusive, makeId } from '../util.service'
 
 import { boardService as local } from './board.service.local'
-import { boardService as remote } from './board.service.remote'
+// import { boardService as remote } from './board.service.remote'
 
 function getEmptyCar() {
     return {
@@ -23,7 +23,9 @@ function getDefaultFilter() {
     }
 }
 
-const service = (VITE_LOCAL === 'true') ? local : remote
+// const service = (VITE_LOCAL === 'true') ? local : remote
+const service = local
+
 export const boardService = { getEmptyCar, getDefaultFilter, ...service }
 
 // Easy access to this service from the dev tools console
