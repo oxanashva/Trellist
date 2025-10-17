@@ -1,5 +1,5 @@
 export const board = {
-    "id": "68e8092c100aad2a6c23f961",
+    "_id": "68e8092c100aad2a6c23f961",
     "name": "Trellist Agile Sprint Board",
     "desc": "Move fast without losing sight by adopting an agile workflow that gives your team perspective during any project management situation.\n\n- Keep all code, specs, and plans easily accessible in one location for more organized product development.\n- Collaborate seamlessly with engineers, product and scrum masters.\n- Manage and prioritize the product backlog with stakeholders and product managers.\n- Easily share what’s shipped and what’s up next with stakeholders.\n\nCheck out our full Trello Engineering playbook [here](https://trello.com/teams/engineering).",
     "closed": false,

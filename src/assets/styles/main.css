@@ -15,7 +15,8 @@
 @import "cmps/AppHeader";
 @import "cmps/UserMsg";
 
-@import "pages/board/BoardIndex";
+/* @import "pages/board/BoardIndex"; */
+@import "pages/board/BoardDetails";
 /* @import "cmps/board/BoardList";
 @import "cmps/board/BoardPreview";
 @import "cmps/board/BoardFilter"; */

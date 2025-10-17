@@ -2,15 +2,16 @@
 import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
+import { board } from './board-data'
 
-const STORAGE_KEY = 'car'
+const STORAGE_KEY = 'board'
 
 export const boardService = {
     query,
     getById,
     save,
     remove,
-    addCarMsg
+    addBoardMsg
 }
 window.bs = boardService
 
@@ -69,7 +70,7 @@ async function save(car) {
     return savedCar
 }
 
-async function addCarMsg(carId, txt) {
+async function addBoardMsg(carId, txt) {
     // Later, this is all done by the backend
     const car = await getById(carId)
 
@@ -83,3 +84,10 @@ async function addCarMsg(carId, txt) {
 
     return msg
 }
+
+function _createBoard() {
+    const boards = [board]
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(boards))
+}
+
+_createBoard()
