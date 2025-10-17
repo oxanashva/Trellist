@@ -1,0 +1,11 @@
+.list-preview {
+    /* 1. Reset list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+    /* 2. Set vertical stacking (important for cards) */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Spacing between cards */
+}

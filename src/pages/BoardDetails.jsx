@@ -1,14 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
+import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
 import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../store/actions/board.actions'
-
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { boardService } from '../services/board/'
-import { userService } from '../services/user'
-
-import { BoardList } from '../cmps/board/BoardList'
-import { BoardFilter } from '../cmps/board/BoardFilter'
 
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
@@ -16,17 +10,17 @@ import Filter from '../assets/images/icons/filter.svg?react'
 import Star from '../assets/images/icons/star.svg?react'
 import UserPlus from '../assets/images/icons/user-plus.svg?react'
 import More from '../assets/images/icons/more.svg?react'
-import { useParams } from 'react-router'
+
+import { ListList } from '../cmps/list/ListList'
 
 export function BoardDetails() {
     const inputRef = useRef(null)
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(false)
     // const [filterBy, setFilterBy] = useState(boardService.getDefaultFilter())
     // const cars = useSelector(storeState => storeState.carModule.cars)
 
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
-    console.log('board :', board);
 
     useEffect(() => {
         loadBoard(boardId)
@@ -130,15 +124,8 @@ export function BoardDetails() {
                     </button>
                 </div>
             </header>
-            {/* <header>
-                <h2>Cars</h2>
-                {userService.getLoggedinUser() && <button onClick={onAddCar}>Add a Car</button>}
-            </header>
-            <BoardFilter filterBy={filterBy} setFilterBy={setFilterBy} />
-            <BoardList
-                cars={cars}
-                onRemoveCar={onRemoveCar}
-                onUpdateCar={onUpdateCar} /> */}
+
+            {board && <ListList lists={board.lists} cards={board.cards} />}
         </section>
     )
 }

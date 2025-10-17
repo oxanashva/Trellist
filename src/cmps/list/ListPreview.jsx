@@ -1,9 +1,14 @@
+import { CardPreview } from "../card/CardPreview";
 
 
-export function ListPreview() {
+export function ListPreview({ cards }) {
     return (
-        <section className="list-preview">
-            <h1>ListPreview</h1>
-        </section>
+        <ol className="list-preview">
+            {cards.map(card =>
+                <li key={card._id}>
+                    <CardPreview card={card} />
+                </li>
+            )}
+        </ol>
     )
 }

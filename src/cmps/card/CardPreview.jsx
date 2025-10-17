@@ -1,9 +1,9 @@
 
 
-export function CardPreview() {
+export function CardPreview({ card }) {
     return (
         <section className="card-preview">
-            <h1>CardPreview</h1>
+            <span>{card.name}</span>
         </section>
     )
 }

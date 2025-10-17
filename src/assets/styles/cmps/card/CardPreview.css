@@ -1,0 +1,11 @@
+.card-preview {
+    /* Set basic card styling */
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+    padding: 6px 8px;
+    
+    /* Ensure text within the card wraps to a new line */
+    white-space: normal; 
+    cursor: pointer;
+}
