@@ -72,10 +72,12 @@ button {
     }
 }
 
-
 .icon-btn {
     width: 32px;
     height: 32px;
+}
+
+.dynamic-btn {
     background-color: var(--dynamic-button);
     color: var(--dynamic-text);
 

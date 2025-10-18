@@ -56,16 +56,16 @@ export function AppHeader() {
 						</div>
 
 						<div className="btn-group">
-							<button className="icon-btn" title="Share your thoughts on Trellist">
+							<button className="dynamic-btn icon-btn" title="Share your thoughts on Trellist">
 								<MegaphoneIcon width={16} height={16} fill="currentColor" />
 							</button>
-							<button className="icon-btn" title="Notifications">
+							<button className="dynamic-btn icon-btn" title="Notifications">
 								<BellIcon width={16} height={16} fill="currentColor" />
 							</button>
-							<button className="icon-btn" title="Information">
+							<button className="dynamic-btn icon-btn" title="Information">
 								<HelpIcon width={16} height={16} fill="currentColor" />
 							</button>
-							<button className="icon-btn" title="Oxana Shvartsman (oxanashvartsman)" >
+							<button className="dynamic-btn icon-btn" title="Oxana Shvartsman (oxanashvartsman)" >
 								<img src={osAvatarImg} alt="Oxana Shvartsman" width={16} height={16} />
 							</button>
 						</div>

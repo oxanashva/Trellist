@@ -102,24 +102,24 @@ export function BoardDetails() {
                 <div className="btn-group">
                     <div className="avatar-btn-group">
                         {/* TODO: Render avatars based on board data */}
-                        <button className="icon-btn avatar-btn" title="Oxana Shvartsman (oxanashvartsman)" >
+                        <button className="dynamic-btn icon-btn avatar-btn" title="Oxana Shvartsman (oxanashvartsman)" >
                             <img src={osAvatarImg} alt="Oxana Shvartsman" width={16} height={16} />
                         </button>
-                        <button className="icon-btn avatar-btn" title="Anna Coss (annacoss" >
+                        <button className="dynamic-btn icon-btn avatar-btn" title="Anna Coss (annacoss" >
                             <img src={acAvatarImg} alt="Anna Coss" />
                         </button>
                     </div>
-                    <button className="icon-btn action-icon-btn">
+                    <button className="dynamic-btn icon-btn action-dynamic-btn">
                         <Filter width={16} height={16} fill="currentColor" />
                     </button>
-                    <button className="icon-btn action-icon-btn">
+                    <button className="dynamic-btn icon-btn action-dynamic-btn">
                         <Star width={16} height={16} fill="currentColor" />
                     </button>
                     <button className="btn-highlighted">
                         <UserPlus width={16} height={16} fill="currentColor" />
                         <span>Share</span>
                     </button>
-                    <button className="icon-btn action-icon-btn">
+                    <button className="dynamic-btn icon-btn action-dynamic-btn">
                         <More width={16} height={16} fill="currentColor" />
                     </button>
                 </div>
