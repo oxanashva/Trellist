@@ -12,7 +12,7 @@
         
         & .board-title {
             margin: 0;
-            padding: 0 0.85rem;
+            padding: 0 0.75rem;
             color: var(--dynamic-text);
             font-size: 16px;
             font-weight: 700;

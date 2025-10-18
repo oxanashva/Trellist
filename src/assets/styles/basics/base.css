@@ -4,13 +4,13 @@
 
 html {
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem; /* 14px */
     color: var(--text);
     line-height: 1.428571;
 }
 
 body {
     margin: 0;
+    font-size: 0.875rem; /* 14px */
 }
 
 body, input, select, textarea, button {
