@@ -48,9 +48,7 @@ export function ListPreview({ list, cards }) {
             <div className="list-card-gap"></div>
             <ol>
                 {cards.map(card =>
-                    <li key={card._id}>
-                        <CardPreview card={card} />
-                    </li>
+                    <CardPreview key={card._id} card={card} />
                 )}
             </ol>
             <div className="list-footer">
