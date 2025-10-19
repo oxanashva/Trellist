@@ -9,14 +9,16 @@ import { userService } from '../services/user'
 
 import { BoardList } from '../cmps/board/BoardList'
 import { BoardFilter } from '../cmps/board/BoardFilter'
+import { NavLink } from 'react-router'
+import { loadBoards } from '../store/actions/board.actions'
 
 export function BoardIndex() {
     // const [filterBy, setFilterBy] = useState(boardService.getDefaultFilter())
-    // const cars = useSelector(storeState => storeState.carModule.cars)
+    const boards = useSelector(storeState => storeState.boardModule.boards)
 
-    // useEffect(() => {
-    //     loadCars(filterBy)
-    // }, [filterBy])
+    useEffect(() => {
+        loadBoards()
+    }, [])
 
     // async function onRemoveCar(carId) {
     //     try {
@@ -53,15 +55,12 @@ export function BoardIndex() {
 
     return (
         <section className="board-index full">
-            {/* <header>
-                <h2>Cars</h2>
-                {userService.getLoggedinUser() && <button onClick={onAddCar}>Add a Car</button>}
-            </header>
-            <BoardFilter filterBy={filterBy} setFilterBy={setFilterBy} />
-            <BoardList
-                cars={cars}
-                onRemoveCar={onRemoveCar}
-                onUpdateCar={onUpdateCar} /> */}
+            <nav>
+                <NavLink to="/workspace">Boards</NavLink>
+                <NavLink to="/home">Home</NavLink>
+            </nav>
+            <h2>Your boards</h2>
+            <BoardList boards={boards} />
         </section>
     )
 }

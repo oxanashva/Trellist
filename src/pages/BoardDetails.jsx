@@ -32,6 +32,13 @@ export function BoardDetails() {
         }
     }, [isEditing])
 
+    function onAddCard(newCard) {
+        updateBoard({
+            ...board,
+            cards: [...board.cards, newCard]
+        })
+    }
+
 
     // useEffect(() => {
     //     loadCars(filterBy)
@@ -125,7 +132,7 @@ export function BoardDetails() {
                 </div>
             </header>
 
-            {board && <ListList board={board} lists={board.lists} cards={board.cards} />}
+            {board && <ListList board={board} lists={board.lists} cards={board.cards} onAddCard={onAddCard} />}
         </section>
     )
 }

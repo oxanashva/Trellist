@@ -6,8 +6,9 @@ import { CardPreview } from "../card/CardPreview";
 
 import Plus from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
+import { makeId } from "../../services/util.service";
 
-export function ListPreview({ board, list, cards }) {
+export function ListPreview({ board, list, cards, onAddCard }) {
     const inputRef = useRef(null)
     const textareaRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false)
@@ -27,20 +28,6 @@ export function ListPreview({ board, list, cards }) {
         if (!isAddingCard) {
             return
         }
-
-        function handleClickOutside(event) {
-            // Check if the click event occurred outside the textarea
-            if (textareaRef.current && !textareaRef.current.contains(event.target)) {
-                setIsAddingCard(false)
-                setCardName('')
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside)
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        };
     }, [isEditing, isAddingCard])
 
     function handleInput({ target }) {
@@ -55,14 +42,17 @@ export function ListPreview({ board, list, cards }) {
         setIsEditing(false);
     }
 
-    function onAddCard(e) {
+    function addCard(e) {
         e.preventDefault()
         if (!cardName) return
         // TODO: update cards state
-        updateBoard({
-            ...board,
-            cards: [...board.cards, { name: cardName }]
-        })
+        const newCard = {
+            _id: makeId(),
+            idBoard: board._id,
+            idList: list._id,
+            name: cardName
+        }
+        onAddCard(newCard)
         setCardName('')
         setIsAddingCard(false)
     }
@@ -109,6 +99,7 @@ export function ListPreview({ board, list, cards }) {
                                 <button
                                     className="btn-primary"
                                     type="submit"
+                                    onClick={addCard}
                                 >
                                     Add card
                                 </button>
