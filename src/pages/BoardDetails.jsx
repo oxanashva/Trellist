@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router'
+import { Outlet, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
 import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../store/actions/board.actions'
@@ -144,6 +144,7 @@ export function BoardDetails() {
                     onCompleteTask={onCompleteTask}
                     onUpdateList={onUpdateList}
                 />}
+            <Outlet context={board} />
         </section>
     )
 }

@@ -53,7 +53,7 @@ object {
   display: block;
 }
 
-button {
+button, .link-btn {
     display: flex;
     align-items: center;
     justify-content: center;

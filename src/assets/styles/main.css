@@ -12,6 +12,7 @@
 @import "pages/HomePage";
 @import "pages/LoginSignup";
 @import "pages/board/BoardDetails";
+@import "pages/card/CardEdit";
 
 @import "cmps/AppHeader";
 @import "cmps/UserMsg";
