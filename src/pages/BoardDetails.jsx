@@ -53,43 +53,6 @@ export function BoardDetails() {
         })
     }
 
-    // useEffect(() => {
-    //     loadCars(filterBy)
-    // }, [filterBy])
-
-    // async function onRemoveCar(carId) {
-    //     try {
-    //         await removeCar(carId)
-    //         showSuccessMsg('Car removed')
-    //     } catch (err) {
-    //         showErrorMsg('Cannot remove car')
-    //     }
-    // }
-
-    // async function onAddCar() {
-    //     const car = boardService.getEmptyCar()
-    //     car.vendor = prompt('Vendor?', 'Some Vendor')
-    //     try {
-    //         const savedCar = await addCar(car)
-    //         showSuccessMsg(`Car added (id: ${savedCar._id})`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot add car')
-    //     }
-    // }
-
-    // async function onUpdateCar(car) {
-    //     const speed = +prompt('New speed?', car.speed) || 0
-    //     if (speed === 0 || speed === car.speed) return
-
-    //     const carToSave = { ...car, speed }
-    //     try {
-    //         const savedCar = await updateCar(carToSave)
-    //         showSuccessMsg(`Car updated, new speed: ${savedCar.speed}`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot update car')
-    //     }
-    // }
-
     function handleTitleClick() {
         setIsEditing(true)
     }
