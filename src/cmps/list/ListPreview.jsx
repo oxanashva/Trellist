@@ -6,7 +6,7 @@ import { CardPreview } from "../card/CardPreview"
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function ListPreview({ board, list, cards, onAddCard }) {
+export function ListPreview({ board, list, cards, onAddCard, onCompleteTask }) {
     const inputRef = useRef(null)
     const textareaRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false)
@@ -80,7 +80,7 @@ export function ListPreview({ board, list, cards, onAddCard }) {
             <div className="list-card-gap"></div>
             <ol>
                 {cards.map(card =>
-                    <CardPreview key={card._id} card={card} />
+                    <CardPreview key={card._id} card={card} onCompleteTask={onCompleteTask} />
                 )}
                 {isAddingCard &&
                     <li className="add-card-form">

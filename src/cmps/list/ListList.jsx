@@ -6,7 +6,7 @@ import { ListPreview } from "./ListPreview"
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function ListList({ board, lists, cards, onAddCard, onAddList }) {
+export function ListList({ board, lists, cards, onAddCard, onAddList, onCompleteTask }) {
     const [listName, setListName] = useState('')
     const [isAddingList, setIsAddingList] = useState(false)
     const textareaRef = useRef(null)
@@ -41,7 +41,7 @@ export function ListList({ board, lists, cards, onAddCard, onAddList }) {
             <ol className="lists">
                 {lists.map(list => {
                     const cardsForThisList = cards.filter(card => card.idList === list._id)
-                    return <ListPreview key={list._id} board={board} list={list} cards={cardsForThisList} onAddCard={onAddCard} />
+                    return <ListPreview key={list._id} board={board} list={list} cards={cardsForThisList} onAddCard={onAddCard} onCompleteTask={onCompleteTask} />
                 }
                 )}
                 {isAddingList &&

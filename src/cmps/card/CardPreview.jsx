@@ -4,12 +4,13 @@ import CircleIcon from '../../assets/images/icons/circle.svg?react'
 import CircleCheckIcon from '../../assets/images/icons/circle-check.svg?react'
 import EditIcon from '../../assets/images/icons/edit.svg?react'
 
-export function CardPreview({ card }) {
-    const [isChecked, setIsChecked] = useState(false)
+export function CardPreview({ card, onCompleteTask }) {
+    const [isChecked, setIsChecked] = useState(card.closed || false)
 
     function handleCheck() {
-        // TODO: Update card state (card.closed)
-        setIsChecked(!isChecked)
+        const newStatus = !isChecked
+        setIsChecked(newStatus)
+        onCompleteTask(card, newStatus)
     }
 
     return (

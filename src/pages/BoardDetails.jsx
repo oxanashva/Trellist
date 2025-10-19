@@ -46,6 +46,12 @@ export function BoardDetails() {
         })
     }
 
+    function onCompleteTask(card, isCompleted) {
+        updateBoard({
+            ...board,
+            cards: board.cards.map(c => c._id === card._id ? { ...c, closed: isCompleted } : c)
+        })
+    }
 
     // useEffect(() => {
     //     loadCars(filterBy)
@@ -145,7 +151,9 @@ export function BoardDetails() {
                     lists={board.lists}
                     cards={board.cards}
                     onAddCard={onAddCard}
-                    onAddList={onAddList} />}
+                    onAddList={onAddList}
+                    onCompleteTask={onCompleteTask}
+                />}
         </section>
     )
 }
