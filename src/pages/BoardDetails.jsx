@@ -32,6 +32,13 @@ export function BoardDetails() {
         }
     }, [isEditing])
 
+    function onAddList(newList) {
+        updateBoard({
+            ...board,
+            lists: [...board.lists, newList]
+        })
+    }
+
     function onAddCard(newCard) {
         updateBoard({
             ...board,
@@ -132,7 +139,13 @@ export function BoardDetails() {
                 </div>
             </header>
 
-            {board && <ListList board={board} lists={board.lists} cards={board.cards} onAddCard={onAddCard} />}
+            {board &&
+                <ListList
+                    board={board}
+                    lists={board.lists}
+                    cards={board.cards}
+                    onAddCard={onAddCard}
+                    onAddList={onAddList} />}
         </section>
     )
 }

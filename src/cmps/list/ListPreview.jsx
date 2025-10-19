@@ -1,18 +1,15 @@
 import { useEffect, useRef, useState } from "react"
 
-import { updateBoard } from "../../store/actions/board.actions";
+import { makeId } from "../../services/util.service"
+import { CardPreview } from "../card/CardPreview"
 
-import { CardPreview } from "../card/CardPreview";
-
-import Plus from '../../assets/images/icons/plus.svg?react'
+import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
-import { makeId } from "../../services/util.service";
 
 export function ListPreview({ board, list, cards, onAddCard }) {
     const inputRef = useRef(null)
     const textareaRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false)
-    // const [listName, setListName] = useState(list.name)
     const [cardName, setCardName] = useState('')
     const [isAddingCard, setIsAddingCard] = useState(false)
 
@@ -45,7 +42,7 @@ export function ListPreview({ board, list, cards, onAddCard }) {
     function addCard(e) {
         e.preventDefault()
         if (!cardName) return
-        // TODO: update cards state
+
         const newCard = {
             _id: makeId(),
             idBoard: board._id,
@@ -117,7 +114,7 @@ export function ListPreview({ board, list, cards, onAddCard }) {
             {!isAddingCard &&
                 <div className="list-footer">
                     <button className="dynamic-btn" onClick={() => setIsAddingCard(true)}>
-                        <Plus width={16} height={16} fill="currentColor" />
+                        <PlusIcon width={16} height={16} fill="currentColor" />
                         <span>Add a card</span>
                     </button>
                 </div>

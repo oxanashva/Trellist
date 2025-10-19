@@ -3,7 +3,7 @@
     flex-direction: column;
     flex-shrink: 0;
     width: 272px;
-    height: 100%;
+    height: fit-content;
     max-height: 100%;
     padding-bottom: 0.25rem; /* 4px */
     border-radius: 0.75rem; /* 12px */
@@ -74,7 +74,7 @@
                 align-items: center;
                 justify-content: flex-start;
                 gap: 0.25rem;
-                margin-block-start: 0.5rem;
+                margin-block-start: 0.25rem;
 
                 & button {
                     font-size: 0.875rem;

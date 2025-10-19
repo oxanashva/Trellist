@@ -17,6 +17,40 @@
         position: absolute;
         overflow: auto hidden;
 
+        .add-list-item {
+            padding: 0.5rem;
+            height: fit-content;
+        }
+
+        & .add-list-form {
+            & .add-list-textarea {
+                width: 100%;
+                min-height: 36px;
+                border-color: #fff;;
+                border-radius: 0.5rem;
+                box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
+                padding: 0.5rem 0.75rem 0.25rem;
+                resize: none;
+
+                &:focus {
+                    outline: #4688EC auto 2px;
+                    outline-offset: 2px;
+                }
+            }
+
+            & .add-list-actions {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 0.25rem;
+                margin-block-start: 0.25rem;
+
+                & button {
+                    font-size: 0.875rem;
+                }
+            }
+        }
+
         & .add-list {
             width: 272px;
             flex-shrink: 0;
