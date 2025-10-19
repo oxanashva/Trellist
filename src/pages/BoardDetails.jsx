@@ -6,21 +6,26 @@ import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../s
 
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
-import Filter from '../assets/images/icons/filter.svg?react'
-import Star from '../assets/images/icons/star.svg?react'
-import UserPlus from '../assets/images/icons/user-plus.svg?react'
-import More from '../assets/images/icons/more.svg?react'
+import FilterIcon from '../assets/images/icons/filter.svg?react'
+import StarIcon from '../assets/images/icons/star.svg?react'
+import UserPlusIcon from '../assets/images/icons/user-plus.svg?react'
+import MoreIcon from '../assets/images/icons/more.svg?react'
 
 import { ListList } from '../cmps/list/ListList'
 
 export function BoardDetails() {
-    const inputRef = useRef(null)
-    const [isEditing, setIsEditing] = useState(false)
-    // const [filterBy, setFilterBy] = useState(boardService.getDefaultFilter())
-    // const cars = useSelector(storeState => storeState.carModule.cars)
-
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
+
+    const inputRef = useRef(null)
+    const [boardName, setBoardName] = useState('')
+    const [isEditing, setIsEditing] = useState(false)
+
+    useEffect(() => {
+        if (board) {
+            setBoardName(board.name)
+        }
+    }, [board])
 
     useEffect(() => {
         loadBoard(boardId)
@@ -31,6 +36,15 @@ export function BoardDetails() {
             inputRef.current?.focus()
         }
     }, [isEditing])
+
+    function handleInputBlur() {
+        updateBoard({ ...board, name: boardName })
+        setIsEditing(false);
+    }
+
+    function handleInput({ target }) {
+        setBoardName(target.value)
+    }
 
     function onAddList(newList) {
         updateBoard({
@@ -53,16 +67,10 @@ export function BoardDetails() {
         })
     }
 
-    function handleTitleClick() {
-        setIsEditing(true)
-    }
-
-    function handleInputBlur() {
-        setIsEditing(false);
-    }
-
     const h1ClassName = `board-title ${isEditing ? 'hidden' : ''}`
     const inputClassName = `board-title ${isEditing ? '' : 'hidden'}`
+
+    if (!board) return <div>Loading...</div>
 
     return (
         <section className="board-details full">
@@ -70,16 +78,27 @@ export function BoardDetails() {
                 <div>
                     <h1
                         className={h1ClassName}
-                        onClick={handleTitleClick}
+                        onClick={() => setIsEditing(true)}
                     >
-                        Trellist Agile Sprint Board
+                        {boardName}
                     </h1>
                     <input
                         ref={inputRef}
                         className={inputClassName}
                         type="text"
-                        value="Trellist Agile Sprint Board"
+                        value={boardName}
+                        onChange={handleInput}
                         onBlur={handleInputBlur}
+                        onKeyDown={(ev) => {
+                            if (ev.key === 'Enter') {
+                                ev.preventDefault()
+                                ev.target.blur()
+                            }
+                            if (ev.key === 'Escape') {
+                                setBoardName(boardName)
+                                setIsEditing(false)
+                            }
+                        }}
                     />
                 </div>
                 <div className="btn-group">
@@ -93,17 +112,17 @@ export function BoardDetails() {
                         </button>
                     </div>
                     <button className="dynamic-btn icon-btn action-dynamic-btn">
-                        <Filter width={16} height={16} fill="currentColor" />
+                        <FilterIcon width={16} height={16} fill="currentColor" />
                     </button>
                     <button className="dynamic-btn icon-btn action-dynamic-btn">
-                        <Star width={16} height={16} fill="currentColor" />
+                        <StarIcon width={16} height={16} fill="currentColor" />
                     </button>
                     <button className="btn-highlighted">
-                        <UserPlus width={16} height={16} fill="currentColor" />
+                        <UserPlusIcon width={16} height={16} fill="currentColor" />
                         <span>Share</span>
                     </button>
                     <button className="dynamic-btn icon-btn action-dynamic-btn">
-                        <More width={16} height={16} fill="currentColor" />
+                        <MoreIcon width={16} height={16} fill="currentColor" />
                     </button>
                 </div>
             </header>
