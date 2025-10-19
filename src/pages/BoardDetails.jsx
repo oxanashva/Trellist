@@ -125,7 +125,7 @@ export function BoardDetails() {
                 </div>
             </header>
 
-            {board && <ListList lists={board.lists} cards={board.cards} />}
+            {board && <ListList board={board} lists={board.lists} cards={board.cards} />}
         </section>
     )
 }
