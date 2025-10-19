@@ -50,6 +50,7 @@ export function ListPreview({ board, list, cards }) {
             ...board,
             cards: [...board.cards, { name: cardName }]
         })
+        setCardName('')
         setIsAddingCard(false)
     }
 

@@ -3,13 +3,18 @@
     flex-direction: column;
     row-gap: 0.5rem;
     background-color: #fff;
+    box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
+    border-radius: 0.5rem;
+
+    &:hover {
+        outline: #4688EC auto 2px;
+        outline-offset: 2px;
+    }
 
     & .card-wrapper {
         position: relative;
         min-height: 36px;
         border-color: #fff;;
-        border-radius: 0.5rem;
-        box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
         padding: 0.5rem 0.75rem 0.25rem;
         cursor: pointer;
         scroll-margin: 0.5rem;
@@ -42,9 +47,6 @@
         }
 
         &:hover {
-            outline: #4688EC auto 2px;
-            outline-offset: 2px;
-
             & .edit-btn {
                 display: flex;
                 align-items: center;
