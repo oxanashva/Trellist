@@ -39,7 +39,7 @@ export function BoardDetails() {
 
     function handleInputBlur() {
         updateBoard({ ...board, name: boardName })
-        setIsEditing(false);
+        setIsEditing(false)
     }
 
     function handleInput({ target }) {
@@ -57,6 +57,13 @@ export function BoardDetails() {
         updateBoard({
             ...board,
             cards: [...board.cards, newCard]
+        })
+    }
+
+    function onUpdateList(updatedList) {
+        updateBoard({
+            ...board,
+            lists: board.lists.map(list => list._id === updatedList._id ? updatedList : list)
         })
     }
 
@@ -135,6 +142,7 @@ export function BoardDetails() {
                     onAddCard={onAddCard}
                     onAddList={onAddList}
                     onCompleteTask={onCompleteTask}
+                    onUpdateList={onUpdateList}
                 />}
         </section>
     )

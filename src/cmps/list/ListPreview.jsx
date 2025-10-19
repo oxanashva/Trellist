@@ -6,9 +6,10 @@ import { CardPreview } from "../card/CardPreview"
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function ListPreview({ board, list, cards, onAddCard, onCompleteTask }) {
+export function ListPreview({ board, list, cards, onAddCard, onCompleteTask, onUpdateList }) {
     const inputRef = useRef(null)
     const textareaRef = useRef(null)
+    const [listName, setListName] = useState(list.name)
     const [isEditing, setIsEditing] = useState(false)
     const [cardName, setCardName] = useState('')
     const [isAddingCard, setIsAddingCard] = useState(false)
@@ -28,15 +29,21 @@ export function ListPreview({ board, list, cards, onAddCard, onCompleteTask }) {
     }, [isEditing, isAddingCard])
 
     function handleInput({ target }) {
-        setCardName(target.value)
-    }
+        const { name, value } = target
 
-    function handleTitleClick() {
-        setIsEditing(true)
+        if (name === 'listName') {
+            setListName(value)
+        } else if (name === 'cardName') {
+            setCardName(value)
+        }
     }
 
     function handleInputBlur() {
-        setIsEditing(false);
+        if (listName !== list.name) {
+            const updatedList = { ...list, name: listName }
+            onUpdateList(updatedList)
+        }
+        setIsEditing(false)
     }
 
     function addCard(e) {
@@ -63,7 +70,7 @@ export function ListPreview({ board, list, cards, onAddCard, onCompleteTask }) {
                 <div className="list-title">
                     <h2
                         className={h2ClassName}
-                        onClick={handleTitleClick}
+                        onClick={() => setIsEditing(true)}
                     >
                         {list.name}
                     </h2>
@@ -71,9 +78,20 @@ export function ListPreview({ board, list, cards, onAddCard, onCompleteTask }) {
                         ref={inputRef}
                         className={inputClassName}
                         type="text"
-                        // TODO: add dynamic value
-                        value="listname"
+                        name="listName"
+                        value={listName}
+                        onChange={handleInput}
                         onBlur={handleInputBlur}
+                        onKeyDown={(ev) => {
+                            if (ev.key === 'Enter') {
+                                ev.preventDefault()
+                                ev.target.blur()
+                            }
+                            if (ev.key === 'Escape') {
+                                setListName(listName)
+                                setIsEditing(false)
+                            }
+                        }}
                     />
                 </div>
             </div>
@@ -88,8 +106,9 @@ export function ListPreview({ board, list, cards, onAddCard, onCompleteTask }) {
                             <textarea
                                 ref={textareaRef}
                                 className="add-card-textarea"
-                                onChange={handleInput}
+                                name="cardName"
                                 value={cardName}
+                                onChange={handleInput}
                                 placeholder="Enter a title or paste a link"
                             />
                             <div className="add-card-actions">
