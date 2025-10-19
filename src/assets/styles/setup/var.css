@@ -27,6 +27,7 @@
   --dynamic-button-highlighted-text: #FFFFFF;
   
   --text: #292a2e;
+  --text-subtle: #505258;
   --dynamic-text: var(--secondary);
   --text-selected: #0c66e4;
   --link: var(--primary);

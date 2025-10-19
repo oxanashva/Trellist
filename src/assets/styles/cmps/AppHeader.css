@@ -16,7 +16,7 @@
             display: flex;
             align-items: center;
             gap: 0.25rem;
-            font-size: 1.42857em;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-inline-end: 2em;
             color: var(--primary);
@@ -35,7 +35,7 @@
             & > a {
                 align-items: center;
                 display: flex;
-                font-size: 1.2rem;
+                font-size: 1.25rem;
                 height: 48px;
                 padding: 0 1.5rem;
                 text-decoration: none;
@@ -85,15 +85,6 @@
 
         .logo {
             color: var(--secondary);
-        }
-        
-        .btn-primary {
-            background-color: var(--dynamic-button-primary);
-            color: var(--dynamic-button-primary-text);
-
-            &:hover {
-                background-color: var(--dynamic-button-primary-hovered);
-            }
         }
     }
 }

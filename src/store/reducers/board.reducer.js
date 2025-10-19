@@ -1,41 +1,41 @@
-export const SET_CARS = 'SET_CARS'
-export const SET_CAR = 'SET_CAR'
-export const REMOVE_CAR = 'REMOVE_CAR'
-export const ADD_CAR = 'ADD_CAR'
-export const UPDATE_CAR = 'UPDATE_CAR'
-export const ADD_CAR_MSG = 'ADD_CAR_MSG'
+export const SET_BOARDS = 'SET_BOARDS'
+export const SET_BOARD = 'SET_BOARD'
+export const REMOVE_BOARD = 'REMOVE_BOARD'
+export const ADD_BOARD = 'ADD_BOARD'
+export const UPDATE_BOARD = 'UPDATE_BOARD'
+export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
 
 const initialState = {
-    cars: [],
-    car: null
+    boards: [],
+    board: null
 }
 
 export function boardReducer(state = initialState, action) {
     var newState = state
-    var cars
+    var boards
     switch (action.type) {
-        case SET_CARS:
-            newState = { ...state, cars: action.cars }
+        case SET_BOARDS:
+            newState = { ...state, boards: action.boards }
             break
-        case SET_CAR:
-            newState = { ...state, car: action.car }
+        case SET_BOARD:
+            newState = { ...state, board: action.board }
             break
-        case REMOVE_CAR: {
-            const lastRemovedCar = state.cars.find(car => car._id === action.carId)
-            const cars = state.cars.filter(car => car._id !== action.carId)
-            newState = { ...state, cars, lastRemovedCar }
+        case REMOVE_BOARD: {
+            const lastRemovedBoard = state.boards.find(board => board._id === action.boardId)
+            const boards = state.boards.filter(board => board._id !== action.boardId)
+            newState = { ...state, boards, lastRemovedBoard }
             break
         }
-        case ADD_CAR:
-            newState = { ...state, cars: [...state.cars, action.car] }
+        case ADD_BOARD:
+            newState = { ...state, boards: [...state.boards, action.board] }
             break
-        case UPDATE_CAR:
-            cars = state.cars.map(car => (car._id === action.car._id) ? action.car : car)
-            newState = { ...state, cars }
+        case UPDATE_BOARD:
+            boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
+            newState = { ...state, boards, board: action.board }
             break
-        case ADD_CAR_MSG:
-            if (action.msg && state.car) {
-                newState = { ...state, car: { ...state.car, msgs: [...state.car.msgs || [], action.msg] } }
+        case ADD_BOARD_MSG:
+            if (action.msg && state.board) {
+                newState = { ...state, board: { ...state.board, msgs: [...state.board.msgs || [], action.msg] } }
             }
             break
         default:

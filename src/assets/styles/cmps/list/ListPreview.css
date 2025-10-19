@@ -1,0 +1,103 @@
+.list-preview {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 272px;
+    height: fit-content;
+    max-height: 100%;
+    padding-bottom: 0.25rem; /* 4px */
+    border-radius: 0.75rem; /* 12px */
+    background-color:#f1f2f4;
+    box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
+    color: var(--ds-text-subtle);     
+    margin: 0 0.375rem; /* 6px */
+
+    & .list-header {
+        display: flex;
+        flex-grow: 0;
+        padding: 0.375rem 0.375rem 0; /* 6px 6px 0 */
+        margin: 0;
+
+        & .list-title {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        & h2, input {
+            display: block;
+            width: 100%;
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.375rem 0.5rem 0.375rem 0.75rem; /* 6px 8px 6px 12px */
+            margin: 0;
+
+            &.hidden {
+                display: none;
+            }
+
+            & input:focus {
+                background-color: #fff;
+            }
+        }
+    }
+
+    & .list-card-gap {
+        height: 0.5rem;
+    }
+
+    & ol {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        margin: 0 0.25rem; /* 4px */
+        padding: 0.25rem; /* 4px */
+        overflow-x: hidden;
+        overflow-y: auto;
+        list-style: none;
+        row-gap: 8px;
+        scrollbar-color: #0B120E24 #0515240F;
+        scrollbar-width: thin;
+
+        .add-card-form {
+            & .add-card-textarea {
+                width: 100%;
+                min-height: 36px;
+                border-color: #fff;;
+                border-radius: 0.5rem;
+                box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
+                padding: 0.5rem 0.75rem 0.25rem;
+                resize: none;
+
+                &:focus {
+                    outline: #4688EC auto 2px;
+                    outline-offset: 2px;
+                }
+            }
+
+            & .add-card-actions {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 0.25rem;
+                margin-block-start: 0.25rem;
+
+                & button {
+                    font-size: 0.875rem;
+                }
+            }
+        }
+    }
+
+    .list-footer {
+        padding: 0.25rem 0.5rem; /* 4px 8px */
+
+        & button {
+            width: 100%;
+            justify-content: start;
+            gap: 0.5rem;
+            border-radius: 0.5rem; /* 8px */
+            padding: 0.375rem 0.5rem; /* 6px 8px */
+            font-size: 0.875rem; /* 14px */
+        }
+    }
+}

@@ -27,11 +27,11 @@ export function RootCmp() {
       <AppHeader />
       <UserMsg />
 
-      <main>
+      <main className="main-container full">
         <Routes>
           <Route path="" element={<Navigate to="/home" replace />} />
           <Route path="home" element={<HomePage />} />
-          <Route path="board" element={<BoardIndex />} />
+          <Route path="workspace" element={<BoardIndex />} />
           <Route path="board/:boardId" element={<BoardDetails />} />
           <Route path="board/:boardId/card/:cardId" element={<CardDetails />} />
           <Route path="auth" element={<LoginSignup />}>

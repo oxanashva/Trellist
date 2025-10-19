@@ -1,117 +1,117 @@
 import { boardService } from '../../services/board'
 import { store } from '../store'
-import { ADD_CAR, REMOVE_CAR, SET_CARS, SET_CAR, UPDATE_CAR, ADD_CAR_MSG } from '../reducers/board.reducer'
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, ADD_BOARD_MSG } from '../reducers/board.reducer'
 
-export async function loadCars(filterBy) {
+export async function loadBoards() {
     try {
-        const cars = await boardService.query(filterBy)
-        store.dispatch(getCmdSetCars(cars))
+        const boards = await boardService.query()
+        store.dispatch(getCmdSetBoards(boards))
     } catch (err) {
-        console.log('Cannot load cars', err)
+        console.log('Cannot load boards', err)
         throw err
     }
 }
 
-export async function loadCar(carId) {
+export async function loadBoard(boardId) {
     try {
-        const car = await boardService.getById(carId)
-        store.dispatch(getCmdSetCar(car))
+        const board = await boardService.getById(boardId)
+        store.dispatch(getCmdSetBoard(board))
     } catch (err) {
-        console.log('Cannot load car', err)
+        console.log('Cannot load board', err)
         throw err
     }
 }
 
 
-export async function removeCar(carId) {
+export async function removeBoard(boardId) {
     try {
-        await boardService.remove(carId)
-        store.dispatch(getCmdRemoveCar(carId))
+        await boardService.remove(boardId)
+        store.dispatch(getCmdRemoveBoard(boardId))
     } catch (err) {
-        console.log('Cannot remove car', err)
+        console.log('Cannot remove board', err)
         throw err
     }
 }
 
-export async function addCar(car) {
+export async function addBoard(board) {
     try {
-        const savedCar = await boardService.save(car)
-        store.dispatch(getCmdAddCar(savedCar))
-        return savedCar
+        const savedBoard = await boardService.save(board)
+        store.dispatch(getCmdAddBoard(savedBoard))
+        return savedBoard
     } catch (err) {
-        console.log('Cannot add car', err)
+        console.log('Cannot add board', err)
         throw err
     }
 }
 
-export async function updateCar(car) {
+export async function updateBoard(board) {
     try {
-        const savedCar = await boardService.save(car)
-        store.dispatch(getCmdUpdateCar(savedCar))
-        return savedCar
+        const savedBoard = await boardService.save(board)
+        store.dispatch(getCmdUpdateBoard(savedBoard))
+        return savedBoard
     } catch (err) {
-        console.log('Cannot save car', err)
+        console.log('Cannot save board', err)
         throw err
     }
 }
 
-export async function addCarMsg(carId, txt) {
+export async function addBoardMsg(boardId, txt) {
     try {
-        const msg = await boardService.addCarMsg(carId, txt)
-        store.dispatch(getCmdAddCarMsg(msg))
+        const msg = await boardService.addBoardMsg(boardId, txt)
+        store.dispatch(getCmdAddBoardMsg(msg))
         return msg
     } catch (err) {
-        console.log('Cannot add car msg', err)
+        console.log('Cannot add board msg', err)
         throw err
     }
 }
 
 // Command Creators:
-function getCmdSetCars(cars) {
+function getCmdSetBoards(boards) {
     return {
-        type: SET_CARS,
-        cars
+        type: SET_BOARDS,
+        boards
     }
 }
-function getCmdSetCar(car) {
+function getCmdSetBoard(board) {
     return {
-        type: SET_CAR,
-        car
+        type: SET_BOARD,
+        board
     }
 }
-function getCmdRemoveCar(carId) {
+function getCmdRemoveBoard(boardId) {
     return {
-        type: REMOVE_CAR,
-        carId
+        type: REMOVE_BOARD,
+        boardId
     }
 }
-function getCmdAddCar(car) {
+function getCmdAddBoard(board) {
     return {
-        type: ADD_CAR,
-        car
+        type: ADD_BOARD,
+        board
     }
 }
-function getCmdUpdateCar(car) {
+function getCmdUpdateBoard(board) {
     return {
-        type: UPDATE_CAR,
-        car
+        type: UPDATE_BOARD,
+        board
     }
 }
-function getCmdAddCarMsg(msg) {
+function getCmdAddBoardMsg(msg) {
     return {
-        type: ADD_CAR_MSG,
+        type: ADD_BOARD_MSG,
         msg
     }
 }
 
 // unitTestActions()
 // async function unitTestActions() {
-//     await loadCars()
-//     await addCar(boardService.getEmptyCar())
-//     await updateCar({
+//     await loadBoards()
+//     await addBoard(boardService.getEmptyBoard())
+//     await updateBoard({
 //         _id: 'm1oC7',
-//         vendor: 'Car-Good',
+//         vendor: 'Board-Good',
 //     })
-//     await removeCar('m1oC7')
-//     // TODO unit test addCarMsg
+//     await removeBoard('m1oC7')
+//     // TODO unit test addBoardMsg
 // }

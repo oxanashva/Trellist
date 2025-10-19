@@ -4,13 +4,13 @@
 
 html {
     font-family: 'Inter', sans-serif;
-    font-size: 0.875rem; /* 14px */
     color: var(--text);
     line-height: 1.428571;
 }
 
 body {
     margin: 0;
+    font-size: 0.875rem; /* 14px */
 }
 
 body, input, select, textarea, button {
@@ -72,9 +72,12 @@ button {
     }
 }
 
-
 .icon-btn {
     width: 32px;
+    height: 32px;
+}
+
+.dynamic-btn {
     background-color: var(--dynamic-button);
     color: var(--dynamic-text);
 
@@ -89,6 +92,24 @@ button {
     color: var(--button-primary-text);
     &:hover {
         background-color: var(--button-primary-hovered);
+    }
+}
+
+.btn-secondary {
+    padding: 0 12px;
+    background-color: var(--dynamic-button-primary);
+    color: var(--dynamic-button-primary-text);
+    &:hover {
+        background-color: var(--dynamic-button-primary-hovered);
+    }
+}
+
+.btn-highlighted {
+    padding: 0 12px;
+    background-color: var(--dynamic-button-highlighted);
+    color: var(--dynamic-button-highlighted-text);
+    &:hover {
+        background-color: var(--dynamic-button-highlighted-hovered);
     }
 }
 

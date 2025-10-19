@@ -2,41 +2,22 @@
 import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
+import { board } from './board-data'
 
-const STORAGE_KEY = 'car'
+const STORAGE_KEY = 'board'
 
 export const boardService = {
     query,
     getById,
     save,
     remove,
-    addCarMsg
+    addBoardMsg
 }
 window.bs = boardService
 
 
-async function query(filterBy = { txt: '', minSpeed: 0 }) {
-    var cars = await storageService.query(STORAGE_KEY)
-    const { txt, minSpeed, sortField, sortDir } = filterBy
-
-    if (txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        cars = cars.filter(car => regex.test(car.vendor) || regex.test(car.description))
-    }
-    if (minSpeed) {
-        cars = cars.filter(car => car.speed >= minSpeed)
-    }
-    if (sortField === 'vendor') {
-        cars.sort((car1, car2) =>
-            car1[sortField].localeCompare(car2[sortField]) * +sortDir)
-    }
-    if (sortField === 'speed') {
-        cars.sort((car1, car2) =>
-            (car1[sortField] - car2[sortField]) * +sortDir)
-    }
-
-    cars = cars.map(({ _id, vendor, speed, owner }) => ({ _id, vendor, speed, owner }))
-    return cars
+async function query() {
+    return await storageService.query(STORAGE_KEY)
 }
 
 function getById(carId) {
@@ -48,28 +29,17 @@ async function remove(carId) {
     await storageService.remove(STORAGE_KEY, carId)
 }
 
-async function save(car) {
-    var savedCar
-    if (car._id) {
-        const carToSave = {
-            _id: car._id,
-            speed: car.speed
-        }
-        savedCar = await storageService.put(STORAGE_KEY, carToSave)
+async function save(board) {
+    let savedBoard
+    if (board._id) {
+        savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
-        const carToSave = {
-            vendor: car.vendor,
-            speed: car.speed,
-            // Later, owner is set by the backend
-            owner: userService.getLoggedinUser(),
-            msgs: []
-        }
-        savedCar = await storageService.post(STORAGE_KEY, carToSave)
+        savedBoard = await storageService.post(STORAGE_KEY, board)
     }
-    return savedCar
+    return savedBoard
 }
 
-async function addCarMsg(carId, txt) {
+async function addBoardMsg(carId, txt) {
     // Later, this is all done by the backend
     const car = await getById(carId)
 
@@ -83,3 +53,16 @@ async function addCarMsg(carId, txt) {
 
     return msg
 }
+
+function _createBoard() {
+    let boards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+
+    if (!boards || !boards.length) {
+        boards = [board]
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(boards))
+    }
+
+    return boards
+}
+
+_createBoard()

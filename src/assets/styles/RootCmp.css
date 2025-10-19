@@ -1,6 +1,4 @@
 .main-container {
-    height: 100vh;
-
     &.home-container {
         background-color: rgb(244, 245, 247);
         color: rgb(9, 30, 66);
@@ -14,5 +12,5 @@
 }
 
 .main-container > main {
-    min-height: calc(100vh - 9rem);
+    min-height: calc(100vh - 48px);
 }
