@@ -19,9 +19,28 @@ export function ListPreview({ board, list, cards }) {
         if (isEditing) {
             inputRef.current?.focus()
         }
+
         if (isAddingCard) {
             textareaRef.current?.focus()
         }
+
+        if (!isAddingCard) {
+            return
+        }
+
+        function handleClickOutside(event) {
+            // Check if the click event occurred outside the textarea
+            if (textareaRef.current && !textareaRef.current.contains(event.target)) {
+                setIsAddingCard(false)
+                setCardName('')
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        };
     }, [isEditing, isAddingCard])
 
     function handleInput({ target }) {
@@ -34,12 +53,6 @@ export function ListPreview({ board, list, cards }) {
 
     function handleInputBlur() {
         setIsEditing(false);
-    }
-
-    function handleTextareaBlur() {
-        setTimeout(() => {
-            textareaRef.current?.focus();
-        }, 0)
     }
 
     function onAddCard(e) {
@@ -89,7 +102,6 @@ export function ListPreview({ board, list, cards }) {
                                 ref={textareaRef}
                                 className="add-card-textarea"
                                 onChange={handleInput}
-                                onBlur={handleTextareaBlur}
                                 value={cardName}
                                 placeholder="Enter a title or paste a link"
                             />
