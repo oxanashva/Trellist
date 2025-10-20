@@ -76,6 +76,7 @@ export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, o
         <li className="group-preview">
             <div className="group-header">
                 <div className="group-title">
+                    {/* TODO: implement reusable component for editable field */}
                     {!isEditing &&
                         <h2
                             onClick={() => setIsEditing(true)}
