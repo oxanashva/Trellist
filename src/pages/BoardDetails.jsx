@@ -46,6 +46,17 @@ export function BoardDetails() {
         setBoardName(target.value)
     }
 
+    function onBoardNameKeyDown(ev) {
+        if (ev.key === 'Enter') {
+            ev.preventDefault()
+            ev.target.blur()
+        }
+        if (ev.key === 'Escape') {
+            setBoardName(board.name)
+            setIsEditing(false)
+        }
+    }
+
     function onAddGroup(newGroup) {
         updateBoard({
             ...board,
@@ -74,39 +85,32 @@ export function BoardDetails() {
         })
     }
 
-    const h1ClassName = `board-title ${isEditing ? 'hidden' : ''}`
-    const inputClassName = `board-title ${isEditing ? '' : 'hidden'}`
-
     if (!board) return <div>Loading...</div>
 
     return (
         <section className="board-details full">
             <header>
                 <div>
-                    <h1
-                        className={h1ClassName}
-                        onClick={() => setIsEditing(true)}
-                    >
-                        {boardName}
-                    </h1>
-                    <input
-                        ref={inputRef}
-                        className={inputClassName}
-                        type="text"
-                        value={boardName}
-                        onChange={handleInput}
-                        onBlur={handleInputBlur}
-                        onKeyDown={(ev) => {
-                            if (ev.key === 'Enter') {
-                                ev.preventDefault()
-                                ev.target.blur()
-                            }
-                            if (ev.key === 'Escape') {
-                                setBoardName(boardName)
-                                setIsEditing(false)
-                            }
-                        }}
-                    />
+                    {!isEditing &&
+                        <h1
+                            className="board-title"
+                            onClick={() => setIsEditing(true)}
+                            title="Edit board name"
+                        >
+                            {boardName}
+                        </h1>
+                    }
+                    {isEditing &&
+                        <input
+                            ref={inputRef}
+                            className="board-title"
+                            type="text"
+                            value={boardName}
+                            onChange={handleInput}
+                            onBlur={handleInputBlur}
+                            onKeyDown={onBoardNameKeyDown}
+                        />
+                    }
                 </div>
                 <div className="btn-group">
                     <div className="avatar-btn-group">

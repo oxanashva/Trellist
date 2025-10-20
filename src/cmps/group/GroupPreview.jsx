@@ -46,6 +46,17 @@ export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, o
         setIsEditing(false)
     }
 
+    function onGroupNameKeyDown(ev) {
+        if (ev.key === 'Enter') {
+            ev.preventDefault()
+            ev.target.blur()
+        }
+        if (ev.key === 'Escape') {
+            setGroupName(group.name)
+            setIsEditing(false)
+        }
+    }
+
     function addTask(e) {
         e.preventDefault()
         if (!taskName) return
@@ -61,38 +72,29 @@ export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, o
         setIsAddingTask(false)
     }
 
-    const h2ClassName = `${isEditing ? 'hidden' : ''}`
-    const inputClassName = `${isEditing ? '' : 'hidden'}`
-
     return (
         <li className="group-preview">
             <div className="group-header">
                 <div className="group-title">
-                    <h2
-                        className={h2ClassName}
-                        onClick={() => setIsEditing(true)}
-                    >
-                        {group.name}
-                    </h2>
-                    <input
-                        ref={inputRef}
-                        className={inputClassName}
-                        type="text"
-                        name="groupName"
-                        value={groupName}
-                        onChange={handleInput}
-                        onBlur={handleInputBlur}
-                        onKeyDown={(ev) => {
-                            if (ev.key === 'Enter') {
-                                ev.preventDefault()
-                                ev.target.blur()
-                            }
-                            if (ev.key === 'Escape') {
-                                setGroupName(groupName)
-                                setIsEditing(false)
-                            }
-                        }}
-                    />
+                    {!isEditing &&
+                        <h2
+                            onClick={() => setIsEditing(true)}
+                            title="Edit group name"
+                        >
+                            {group.name}
+                        </h2>
+                    }
+                    {isEditing &&
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            name="groupName"
+                            value={groupName}
+                            onChange={handleInput}
+                            onBlur={handleInputBlur}
+                            onKeyDown={onGroupNameKeyDown}
+                        />
+                    }
                 </div>
             </div>
             <div className="group-task-gap"></div>
