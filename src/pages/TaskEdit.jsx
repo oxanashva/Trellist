@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router"
 
@@ -32,12 +32,11 @@ export function TaskEdit() {
     const comments = board?.actions.filter(action => {
         return action.data.idTask === task._id
     })
-    console.log('comments :', comments);
 
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isDescEditing, setIsDescEditing] = useState(false)
-    const [isCommentEditing, setIsCommentEditing] = useState(false)
+    const [editingCommentId, setEditingCommentId] = useState(null)
 
     const [taskName, setTaskName] = useState(task?.name || "")
     const [taskDescription, setTaskDescription] = useState(task?.desc || "")
@@ -52,10 +51,10 @@ export function TaskEdit() {
             nameInputRef.current?.focus()
         } else if (isDescEditing) {
             descTextareaRef.current?.focus()
-        } else if (isCommentEditing) { // Focus on comment textarea when editing
+        } else if (editingCommentId) {
             commentTextareaRef.current?.focus()
         }
-    }, [isNameEditing, isDescEditing, isCommentEditing])
+    }, [isNameEditing, isDescEditing, editingCommentId])
 
     function handleCheck() {
         const newStatus = !isChecked
@@ -65,8 +64,8 @@ export function TaskEdit() {
     }
 
     function handleChange(ev) {
-        const field = ev.target.name;
-        const value = ev.target.value;
+        const field = ev.target.name
+        const value = ev.target.value
 
         if (field === "name") {
             setTaskName(value)
@@ -82,14 +81,24 @@ export function TaskEdit() {
     }
 
     function updateTask(taskId, updatedFields) {
-        updateBoard({
+        const updatedBoard = {
             ...board,
             tasks: board.tasks.map(task =>
                 task._id === taskId
                     ? { ...task, ...updatedFields }
                     : task
             )
-        })
+        }
+        updateBoard(updatedBoard)
+    }
+
+    function updateBoardAction(updatedActions) {
+        const updatedBoard = {
+            ...board,
+            actions: updatedActions
+        }
+
+        updateBoard(updatedBoard)
     }
 
     function onUpdateTask(taskId, field, value) {
@@ -120,43 +129,57 @@ export function TaskEdit() {
 
     function onCommentSubmit(ev) {
         ev.preventDefault()
-        if (!commentText.trim()) {
-            setIsCommentEditing(false)
+        const trimmedCommentText = commentText.trim()
+
+        if (!trimmedCommentText) {
+            setEditingCommentId(null)
+            setCommentText('')
             return
         }
 
-        // Example structure for a new comment
-        const newComment = {
-            _id: makeId(),
-            data: {
-                idTask: task._id,
-                text: commentText
-            },
-            date: Date.now(),
-            type: "commentTask",
-            memberCreator: {
-                fullName: "Oxana Shvartzman",
-                avatarUrl: "images/avatars/OS-avatar.png",
-                username: "oxanashvartzman"
+        let updatedComments
+
+        if (editingCommentId) {
+            const existingComments = board.actions || []
+            updatedComments = existingComments.map(action => {
+                if (action._id === editingCommentId) {
+                    return {
+                        ...action,
+                        data: { ...action.data, text: trimmedCommentText }
+                    }
+                }
+                return action
+            })
+
+        } else {
+            const newComment = {
+                _id: makeId(),
+                data: {
+                    idTask: task._id,
+                    text: trimmedCommentText
+                },
+                date: Date.now(),
+                type: "commentTask",
+                memberCreator: {
+                    fullName: "Oxana Shvartzman",
+                    avatarUrl: "images/avatars/OS-avatar.png",
+                    username: "oxanashvartzman"
+                }
             }
+
+            updatedComments = [...(board.actions || []), newComment]
         }
 
-        const updatedComments = [...(board.actions || []), newComment];
-        onUpdateTask(task._id, "actions", updatedComments)
+        updateBoardAction(updatedComments)
 
-        // Assuming you have an 'comments' array on the task:
-        // const updatedComments = [...(task.comments || []), newComment];
-        // updateTask(task._id, { comments: updatedComments });
-
-
-        setCommentText("") // Clear the input
-        setIsCommentEditing(false)
+        setEditingCommentId(null)
+        setCommentText('')
     }
 
     return (
         <dialog ref={elDialog} className="task-edit">
             <header>
-                <span >{group.name}</span>
+                <span className="group-name">{group.name}</span>
                 <div className="task-header-actions">
                     <button className="icon-btn dynamic-btn">
                         <ImageIcon width={16} height={16} fill="currentColor" />
@@ -282,52 +305,57 @@ export function TaskEdit() {
                             <CommentText width={16} height={16} fill="currentColor" />
                         </div>
                         <h3 className="heading">Comments and activities</h3>
-                        <div></div>
                         {/* TODO: implement reusable component for editable field */}
-                        {comments.map((action, idx) => {
+                        {comments.map((comment) => {
+                            const isThisCommentEditing = comment._id === editingCommentId
                             return (
-                                <>
-                                    {
-                                        (!isCommentEditing) &&
-                                        <textarea
-                                            className="add-comment-textarea add-description-btn"
-                                            placeholder="Write a comment..."
-                                            onClick={() => setIsCommentEditing(true)}
-                                            readOnly
-                                        ></textarea>
-                                    }
-                                    {
-                                        isCommentEditing && <form onSubmit={onCommentSubmit}>
-                                            <textarea
-                                                ref={commentTextareaRef}
-                                                className="edit-comment edit-description"
-                                                name="comment"
-                                                value={commentText}
-                                                onChange={handleChange}
-                                                placeholder="Write a comment...">
-                                            </textarea>
-                                            <div className="edit-comment-actions edit-description-actions">
-                                                <button
-                                                    className="btn-primary"
-                                                    type="submit"
-                                                >
-                                                    Save
-                                                </button>
-                                                <button
-                                                    className="dynamic-btn"
-                                                    type="button"
-                                                    onClick={() => {
-                                                        setCommentText("")
-                                                        setIsCommentEditing(false)
-                                                    }}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </form>
-                                    }
+                                <React.Fragment key={comment._id}>
                                     <div></div>
-                                </>
+                                    <div key={comment}>
+                                        {
+                                            (!isThisCommentEditing) &&
+                                            <div
+                                                className="add-comment-textarea add-description-btn"
+                                                onClick={() => {
+                                                    setEditingCommentId(comment._id)
+                                                    setCommentText(comment.data.text)
+                                                }}
+                                            >
+                                                <span>{comment.data.text}</span>
+                                            </div>
+                                        }
+                                        {
+                                            isThisCommentEditing && <form onSubmit={onCommentSubmit}>
+                                                <textarea
+                                                    ref={commentTextareaRef}
+                                                    className="edit-comment edit-description"
+                                                    name="comment"
+                                                    value={commentText}
+                                                    onChange={handleChange}
+                                                    placeholder="Write a comment...">
+                                                </textarea>
+                                                <div className="edit-comment-actions edit-description-actions">
+                                                    <button
+                                                        className="btn-primary"
+                                                        type="submit"
+                                                    >
+                                                        Save
+                                                    </button>
+                                                    <button
+                                                        className="dynamic-btn"
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setCommentText("")
+                                                            setEditingCommentId(null)
+                                                        }}
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        }
+                                    </div>
+                                </React.Fragment>
                             )
                         })
 
