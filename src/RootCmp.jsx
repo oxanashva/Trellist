@@ -6,7 +6,7 @@ import { BoardIndex } from './pages/BoardIndex'
 import { BoardDetails } from './pages/BoardDetails'
 import './assets/styles/main.css'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup'
-import { CardDetails } from './pages/CardDetails'
+import { CardEdit } from './pages/CardEdit'
 import { Icon } from './pages/Icon'
 
 export function RootCmp() {
@@ -32,8 +32,9 @@ export function RootCmp() {
           <Route path="" element={<Navigate to="/home" replace />} />
           <Route path="home" element={<HomePage />} />
           <Route path="workspace" element={<BoardIndex />} />
-          <Route path="board/:boardId" element={<BoardDetails />} />
-          <Route path="board/:boardId/card/:cardId" element={<CardDetails />} />
+          <Route path="board/:boardId" element={<BoardDetails />}>
+            <Route path="card/:cardId" element={<CardEdit />} />
+          </Route>
           <Route path="auth" element={<LoginSignup />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
