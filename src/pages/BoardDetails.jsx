@@ -12,10 +12,12 @@ import UserPlusIcon from '../assets/images/icons/user-plus.svg?react'
 import MoreIcon from '../assets/images/icons/more.svg?react'
 
 import { GroupList } from '../cmps/group/GroupList'
+import { Loader } from '../cmps/Loader'
 
 export function BoardDetails() {
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
+    const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
 
     const inputRef = useRef(null)
     const [boardName, setBoardName] = useState('')
@@ -85,7 +87,7 @@ export function BoardDetails() {
         })
     }
 
-    if (!board) return <div>Loading...</div>
+    if (isLoading) return <Loader />
 
     return (
         <section className="board-details full">
