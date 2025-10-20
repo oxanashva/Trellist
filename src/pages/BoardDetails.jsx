@@ -144,7 +144,7 @@ export function BoardDetails() {
                     onCompleteTask={onCompleteTask}
                     onUpdateGroup={onUpdateGroup}
                 />}
-            <Outlet context={board} />
+            <Outlet />
         </section>
     )
 }

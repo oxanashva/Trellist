@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useParams } from "react-router"
+import { Link, useParams, useOutletContext } from "react-router"
+
+import { updateBoard } from "../store/actions/board.actions"
 
 import MoreIcon from '../assets/images/icons/more.svg?react'
 import ImageIcon from '../assets/images/icons/image.svg?react'
@@ -26,9 +28,14 @@ export function TaskEdit() {
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const [isEditing, setIsEditing] = useState(false)
 
-    function handleCheck() {
+    async function handleCheck() {
         const newStatus = !isChecked
         setIsChecked(newStatus)
+
+        updateBoard({
+            ...board,
+            tasks: board.tasks.map(c => c._id === task._id ? { ...c, closed: newStatus } : c)
+        })
     }
 
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
 
 import CircleIcon from '../../assets/images/icons/circle.svg?react'
@@ -10,7 +10,14 @@ export function TaskPreview({ task, onCompleteTask }) {
     const { boardId } = useParams()
     const [isChecked, setIsChecked] = useState(task.closed || false)
 
-    function handleCheck() {
+    useEffect(() => {
+        setIsChecked(task.closed || false)
+    }, [task.closed])
+
+    function handleCheck(e) {
+        e.stopPropagation()
+        e.preventDefault()
+
         const newStatus = !isChecked
         setIsChecked(newStatus)
         onCompleteTask(task, newStatus)
