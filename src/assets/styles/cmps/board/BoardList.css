@@ -1,4 +1,4 @@
-.car-list {
+.car-group {
     --min-column-size: 220px;
 
     display: grid;

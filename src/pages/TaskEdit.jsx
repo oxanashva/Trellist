@@ -10,20 +10,20 @@ import CircleCheckIcon from '../assets/images/icons/circle-check.svg?react'
 import PlusIcon from '../assets/images/icons/plus.svg?react'
 import LabelIcon from '../assets/images/icons/label.svg?react'
 import ClockIcon from '../assets/images/icons/clock.svg?react'
-import ChecklistIcon from '../assets/images/icons/checklist.svg?react'
+import CheckListIcon from '../assets/images/icons/checklist.svg?react'
 import MemberPlusIcon from '../assets/images/icons/member-plus.svg?react'
 import ThumbsUpIcon from '../assets/images/icons/thumbs-up.svg?react'
 import DescriptionIcon from '../assets/images/icons/description.svg?react';
 
-export function CardEdit() {
+export function TaskEdit() {
     const elDialog = useRef(null)
-    const { cardId } = useParams()
+    const { taskId } = useParams()
 
     const board = useSelector(storeState => storeState.boardModule.board)
-    const card = board?.cards.find(card => card._id === cardId)
-    const list = board?.lists.find(list => list._id === card.idList)
+    const task = board?.tasks.find(task => task._id === taskId)
+    const group = board?.groups.find(group => group._id === task.idGroup)
 
-    const [isChecked, setIsChecked] = useState(card.closed || false)
+    const [isChecked, setIsChecked] = useState(task.closed || false)
     const [isEditing, setIsEditing] = useState(false)
 
     function handleCheck() {
@@ -38,10 +38,10 @@ export function CardEdit() {
 
 
     return (
-        <dialog ref={elDialog} className="card-edit">
+        <dialog ref={elDialog} className="task-edit">
             <header>
-                <span >{list.name}</span>
-                <div className="card-header-actions">
+                <span >{group.name}</span>
+                <div className="task-header-actions">
                     <button className="icon-btn dynamic-btn">
                         <ImageIcon width={16} height={16} fill="currentColor" />
                     </button>
@@ -55,19 +55,19 @@ export function CardEdit() {
             </header>
             <div className="content-wrapper">
                 <main>
-                    <section className="card-title card-grid-container">
-                        {/* TODO: implement editable card name and complete status */}
-                        <div className="card-icon" onClick={handleCheck}>
+                    <section className="task-title task-grid-container">
+                        {/* TODO: implement editable task name and complete status */}
+                        <div className="task-icon" onClick={handleCheck}>
                             {isChecked
                                 ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
                                 : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
                         </div>
-                        <h2>{card.name}</h2>
+                        <h2>{task.name}</h2>
                     </section>
-                    <div className="card-content">
-                        <section className="card-actions card-grid-container">
+                    <div className="task-content">
+                        <section className="task-actions task-grid-container">
                             <div></div>
-                            <div className="card-actions-btns">
+                            <div className="task-actions-btns">
                                 <button className="action-btn">
                                     <PlusIcon width={16} height={16} fill="currentColor" />
                                     <span>Add</span>
@@ -81,8 +81,8 @@ export function CardEdit() {
                                     <span>Dates</span>
                                 </button>
                                 <button className="action-btn">
-                                    <ChecklistIcon width={16} height={16} fill="currentColor" />
-                                    <span>Checklist</span>
+                                    <CheckListIcon width={16} height={16} fill="currentColor" />
+                                    <span>Checkgroup</span>
                                 </button>
                                 <button className="action-btn">
                                     <MemberPlusIcon width={16} height={16} fill="currentColor" />
@@ -90,7 +90,7 @@ export function CardEdit() {
                                 </button>
                             </div>
                         </section>
-                        <section className="card-actions card-grid-container">
+                        <section className="task-actions task-grid-container">
                             <div></div>
                             <h3 className="votes-heading">Votes</h3>
                             <div></div>
@@ -99,14 +99,14 @@ export function CardEdit() {
                                 <span>Vote</span>
                             </button>
                         </section>
-                        <section className="card-actions card-grid-container">
-                            <div className="card-icon">
+                        <section className="task-actions task-grid-container">
+                            <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>
                             <h3 className="description-heading">Description</h3>
                             <div></div>
-                            {card.desc && <p>{card.desc}</p>}
-                            {(!card.desc && !isEditing) &&
+                            {task.desc && <p>{task.desc}</p>}
+                            {(!task.desc && !isEditing) &&
                                 <button
                                     className="add-description-btn"
                                     onClick={() => setIsEditing(true)}
@@ -116,7 +116,7 @@ export function CardEdit() {
                             {/* TODO: implement editable description */}
                             {isEditing && <form>
                                 <textarea
-                                    defaultValue={card.desc}
+                                    defaultValue={task.desc}
                                     placeholder="Add a more detailed description">
                                 </textarea>
                                 <div className="edit-description-actions">

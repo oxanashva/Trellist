@@ -11,7 +11,7 @@ import StarIcon from '../assets/images/icons/star.svg?react'
 import UserPlusIcon from '../assets/images/icons/user-plus.svg?react'
 import MoreIcon from '../assets/images/icons/more.svg?react'
 
-import { ListList } from '../cmps/list/ListList'
+import { GroupList } from '../cmps/group/GroupList'
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -46,31 +46,31 @@ export function BoardDetails() {
         setBoardName(target.value)
     }
 
-    function onAddList(newList) {
+    function onAddGroup(newGroup) {
         updateBoard({
             ...board,
-            lists: [...board.lists, newList]
+            groups: [...board.groups, newGroup]
         })
     }
 
-    function onAddCard(newCard) {
+    function onAddTask(newTask) {
         updateBoard({
             ...board,
-            cards: [...board.cards, newCard]
+            tasks: [...board.tasks, newTask]
         })
     }
 
-    function onUpdateList(updatedList) {
+    function onUpdateGroup(updatedGroup) {
         updateBoard({
             ...board,
-            lists: board.lists.map(list => list._id === updatedList._id ? updatedList : list)
+            groups: board.groups.map(group => group._id === updatedGroup._id ? updatedGroup : group)
         })
     }
 
-    function onCompleteTask(card, isCompleted) {
+    function onCompleteTask(task, isCompleted) {
         updateBoard({
             ...board,
-            cards: board.cards.map(c => c._id === card._id ? { ...c, closed: isCompleted } : c)
+            tasks: board.tasks.map(c => c._id === task._id ? { ...c, closed: isCompleted } : c)
         })
     }
 
@@ -135,14 +135,14 @@ export function BoardDetails() {
             </header>
 
             {board &&
-                <ListList
+                <GroupList
                     board={board}
-                    lists={board.lists}
-                    cards={board.cards}
-                    onAddCard={onAddCard}
-                    onAddList={onAddList}
+                    groups={board.groups}
+                    tasks={board.tasks}
+                    onAddTask={onAddTask}
+                    onAddGroup={onAddGroup}
                     onCompleteTask={onCompleteTask}
-                    onUpdateList={onUpdateList}
+                    onUpdateGroup={onUpdateGroup}
                 />}
             <Outlet context={board} />
         </section>

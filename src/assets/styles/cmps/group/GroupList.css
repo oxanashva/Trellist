@@ -1,10 +1,10 @@
-.list-list {
+.group-list {
     position: relative;
     flex-grow: 1;
     
-    & .lists {
+    & .groups {
         display: flex;
-        list-style-type: none;
+        group-style-type: none;
         margin: 12px 0 0 0; /* 12px 0 0 0 */
         padding: 0;
         top: -0.125rem;
@@ -17,13 +17,13 @@
         position: absolute;
         overflow: auto hidden;
 
-        .add-list-item {
+        .add-group-item {
             padding: 0.5rem;
             height: fit-content;
         }
 
-        & .add-list-form {
-            & .add-list-textarea {
+        & .add-group-form {
+            & .add-group-textarea {
                 width: 100%;
                 min-height: 36px;
                 border-color: #fff;;
@@ -38,7 +38,7 @@
                 }
             }
 
-            & .add-list-actions {
+            & .add-group-actions {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
@@ -51,7 +51,7 @@
             }
         }
 
-        & .add-list {
+        & .add-group {
             width: 272px;
             flex-shrink: 0;
 

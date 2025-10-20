@@ -41,7 +41,7 @@
   --text-accent-blue: #1558BC;
   --background-accent-blue: #CFE1FD;
 
-  /* Icons in Cards */
+  /* Icons in Tasks */
   --text-subtle: #505258;
 
   /* badge-completed */
@@ -54,7 +54,7 @@
   --background-accent-red: #FD9891;
   --text-accent-red: #AE2E24;
 
-  /* card-done */
+  /* task-done */
   --icon-success: #6A9A23;
 
   /* 'Delete comment' */
