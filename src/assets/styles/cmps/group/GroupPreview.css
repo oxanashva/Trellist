@@ -1,4 +1,4 @@
-.list-preview {
+.group-preview {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -12,13 +12,13 @@
     color: var(--ds-text-subtle);     
     margin: 0 0.375rem; /* 6px */
 
-    & .list-header {
+    & .group-header {
         display: flex;
         flex-grow: 0;
         padding: 0.375rem 0.375rem 0; /* 6px 6px 0 */
         margin: 0;
 
-        & .list-title {
+        & .group-title {
             flex-grow: 1;
             cursor: pointer;
         }
@@ -41,7 +41,7 @@
         }
     }
 
-    & .list-card-gap {
+    & .group-task-gap {
         height: 0.5rem;
     }
 
@@ -53,13 +53,13 @@
         padding: 0.25rem; /* 4px */
         overflow-x: hidden;
         overflow-y: auto;
-        list-style: none;
+        group-style: none;
         row-gap: 8px;
         scrollbar-color: #0B120E24 #0515240F;
         scrollbar-width: thin;
 
-        .add-card-form {
-            & .add-card-textarea {
+        .add-task-form {
+            & .add-task-textarea {
                 width: 100%;
                 min-height: 36px;
                 border-color: #fff;;
@@ -74,7 +74,7 @@
                 }
             }
 
-            & .add-card-actions {
+            & .add-task-actions {
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
@@ -88,7 +88,7 @@
         }
     }
 
-    .list-footer {
+    .group-footer {
         padding: 0.25rem 0.5rem; /* 4px 8px */
 
         & button {

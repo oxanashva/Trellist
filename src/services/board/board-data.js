@@ -5,7 +5,7 @@ export const board = {
     "closed": false,
     "dateClosed": null,
     "starred": false,
-    "url": "https://trello.com/b/VJFx5D4Z/trellist-agile-sprint-board",
+    "url": "https://trello.com/b/VJFx5D4Z/trelgroup-agile-sprint-board",
     "shortUrl": "https://trello.com/b/VJFx5D4Z",
     "prefs": {
         "background": "68e81a3510a4ca484820f7b1",
@@ -56,11 +56,11 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "dueComplete": false },
-                "card": {
+                "task": {
                     "dueComplete": true,
                     "dateCompleted": "2025-10-09T20:47:13.200Z",
                     "_id": "68e8092c100aad2a6c23f9c1",
-                    "name": "(8) Let the server choose the default name when creating a card from a URL",
+                    "name": "(8) Let the server choose the default name when creating a task from a URL",
                     "idShort": 5,
                     "shortLink": "7VhJQXjc"
                 },
@@ -69,12 +69,12 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": {
+                "group": {
                     "_id": "68e8092c100aad2a6c23f95f",
                     "name": "8.9.25 Sprint - Complete"
                 }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:47:13.220Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -88,7 +88,7 @@ export const board = {
             "_id": "68e81ee97018a2bfa12f67a9",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9cb",
                     "name": "(3) Restore hidden short ids (or don't, up to you)",
                     "idShort": 10,
@@ -104,7 +104,7 @@ export const board = {
                     "shortLink": "VJFx5D4Z"
                 }
             },
-            "type": "addChecklistToCard",
+            "type": "addCheckgroupToTask",
             "date": "2025-10-09T20:45:29.183Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -123,20 +123,20 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9c1",
-                    "name": "(8) Let the server choose the default name when creating a card from a URL",
+                    "name": "(8) Let the server choose the default name when creating a task from a URL",
                     "idShort": 5,
                     "shortLink": "7VhJQXjc"
                 },
-                "checklist": { "_id": "68e8092c100aad2a6c23f9df", "name": "Checklist" },
+                "checklist": { "_id": "68e8092c100aad2a6c23f9df", "name": "Checkgroup" },
                 "checkItem": {
                     "_id": "68e8092d100aad2a6c23fdaa",
                     "name": "Determine appropriate naming scheme (Due 8/9)",
                     "state": "complete"
                 }
             },
-            "type": "updateCheckItemStateOnCard",
+            "type": "updateCheckItemStateOnTask",
             "date": "2025-10-09T20:43:36.498Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -155,7 +155,7 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
                     "idShort": 15,
@@ -172,7 +172,7 @@ export const board = {
                     "textData": { "emoji": {} }
                 }
             },
-            "type": "updateCheckItemStateOnCard",
+            "type": "updateCheckItemStateOnTask",
             "date": "2025-10-09T20:42:30.843Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -191,7 +191,7 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
                     "idShort": 15,
@@ -208,7 +208,7 @@ export const board = {
                     "textData": { "emoji": {} }
                 }
             },
-            "type": "updateCheckItemStateOnCard",
+            "type": "updateCheckItemStateOnTask",
             "date": "2025-10-09T20:42:29.574Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -227,7 +227,7 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
                     "idShort": 15,
@@ -244,7 +244,7 @@ export const board = {
                     "textData": { "emoji": {} }
                 }
             },
-            "type": "updateCheckItemStateOnCard",
+            "type": "updateCheckItemStateOnTask",
             "date": "2025-10-09T20:42:28.557Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -263,7 +263,7 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
                     "idShort": 15,
@@ -280,7 +280,7 @@ export const board = {
                     "textData": { "emoji": {} }
                 }
             },
-            "type": "updateCheckItemStateOnCard",
+            "type": "updateCheckItemStateOnTask",
             "date": "2025-10-09T20:42:27.689Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -299,7 +299,7 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "card": {
+                "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
                     "idShort": 15,
@@ -316,7 +316,7 @@ export const board = {
                     "textData": { "emoji": {} }
                 }
             },
-            "type": "updateCheckItemStateOnCard",
+            "type": "updateCheckItemStateOnTask",
             "date": "2025-10-09T20:42:26.882Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -331,7 +331,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "due": "2025-10-22T06:00:00.000Z" },
-                "card": {
+                "task": {
                     "due": null,
                     "_id": "68e8092c100aad2a6c23f9c3",
                     "name": "(3) plugins: attachment preview icon",
@@ -343,12 +343,12 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": {
+                "group": {
                     "_id": "68e8092c100aad2a6c23f95f",
                     "name": "8.9.25 Sprint - Complete"
                 }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:41:19.687Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -363,7 +363,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "start": null },
-                "card": {
+                "task": {
                     "start": "2025-10-06T05:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9c3",
                     "name": "(3) plugins: attachment preview icon",
@@ -375,12 +375,12 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": {
+                "group": {
                     "_id": "68e8092c100aad2a6c23f95f",
                     "name": "8.9.25 Sprint - Complete"
                 }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:41:19.573Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -395,7 +395,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "due": null },
-                "card": {
+                "task": {
                     "due": "2025-10-22T06:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9c3",
                     "name": "(3) plugins: attachment preview icon",
@@ -407,12 +407,12 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": {
+                "group": {
                     "_id": "68e8092c100aad2a6c23f95f",
                     "name": "8.9.25 Sprint - Complete"
                 }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:40:55.292Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -427,7 +427,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "dueReminder": null },
-                "card": {
+                "task": {
                     "dueReminder": -1,
                     "_id": "68e8092c100aad2a6c23f9c3",
                     "name": "(3) plugins: attachment preview icon",
@@ -439,12 +439,12 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": {
+                "group": {
                     "_id": "68e8092c100aad2a6c23f95f",
                     "name": "8.9.25 Sprint - Complete"
                 }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:40:55.255Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -459,7 +459,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "due": null },
-                "card": {
+                "task": {
                     "due": "2025-10-22T06:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
@@ -471,9 +471,9 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:40:15.295Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -488,7 +488,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "start": "2025-10-11T05:00:00.000Z" },
-                "card": {
+                "task": {
                     "start": "2025-10-06T05:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
@@ -500,9 +500,9 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:39:24.699Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -517,7 +517,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "dueReminder": null },
-                "card": {
+                "task": {
                     "dueReminder": -1,
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
@@ -529,9 +529,9 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:39:10.317Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -546,7 +546,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "start": null },
-                "card": {
+                "task": {
                     "start": "2025-10-11T05:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
@@ -558,9 +558,9 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:39:10.273Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -575,7 +575,7 @@ export const board = {
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
                 "old": { "due": "2025-10-11T06:00:00.000Z" },
-                "card": {
+                "task": {
                     "due": "2025-10-10T06:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d9",
                     "name": "👍 Sprint Review 👎",
@@ -587,12 +587,12 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": {
+                "group": {
                     "_id": "68e8092c100aad2a6c23f960",
                     "name": "8.2.25 Sprint - Complete"
                 }
             },
-            "type": "updateCard",
+            "type": "updateTask",
             "date": "2025-10-09T20:37:03.528Z",
             "memberCreator": {
                 "_id": "5eafad22c718790469a3db7a",
@@ -603,7 +603,7 @@ export const board = {
             }
         }
     ],
-    "cards": [
+    "tasks": [
         {
             "_id": "68e8092c100aad2a6c23f9db",
             "badges": {
@@ -627,8 +627,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95c",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95c",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -815,21 +815,21 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95c",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95c",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": ["5eafad22c718790469a3db7a"],
             "idAttachmentCover": null,
             "labels": [],
-            "name": "(3) Pre-load card attachments",
+            "name": "(3) Pre-load task attachments",
             "originalDesc": "",
             "originalName": "",
             "pos": 64768000,
             "shortLink": "RNsR772s",
             "shortUrl": "https://trello.com/c/RNsR772s",
             "start": null,
-            "url": "https://trello.com/c/RNsR772s/8-3-pre-load-card-attachments",
+            "url": "https://trello.com/c/RNsR772s/8-3-pre-load-task-attachments",
             "cover": {
                 "idAttachment": null,
                 "color": null,
@@ -896,8 +896,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95c",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95c",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -946,8 +946,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95c",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95c",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -1006,8 +1006,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95c",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95c",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -1072,8 +1072,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95d",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95d",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": ["5eafad22c718790469a3db7a"],
@@ -1096,7 +1096,7 @@ export const board = {
             "shortLink": "RNsR772s",
             "shortUrl": "https://trello.com/c/RNsR772s",
             "start": null,
-            "url": "https://trello.com/c/RNsR772s/8-3-pre-load-card-attachments",
+            "url": "https://trello.com/c/RNsR772s/8-3-pre-load-task-attachments",
             "cover": {
                 "idAttachment": null,
                 "color": null,
@@ -1155,7 +1155,7 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "card": 0 } },
+                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -1182,9 +1182,9 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
+            "idCheckgroups": [],
             "idLabels": [],
-            "idList": "68e8092c100aad2a6c23f95d",
+            "idGroup": "68e8092c100aad2a6c23f95d",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -1194,19 +1194,19 @@ export const board = {
             "labels": [],
             "limits": {
                 "attachments": {
-                    "perCard": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
                 },
                 "checklists": {
-                    "perCard": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
                 },
                 "stickers": {
-                    "perCard": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
                 }
             },
             "locationName": null,
             "manualCoverAttachment": true,
             "name": "(2) BC3 team boards page: Show Other Private Boards",
-            "nodeId": "ari:cloud:trello::card/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9cf",
+            "nodeId": "ari:cloud:trello::task/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9cf",
             "originalDesc": "",
             "originalName": "",
             "pinned": false,
@@ -1231,7 +1231,7 @@ export const board = {
                 "idPlugin": null
             },
             "isTemplate": false,
-            "cardRole": null,
+            "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
             "attachments": [
@@ -1247,7 +1247,7 @@ export const board = {
                     "name": "Screen Shot 2015-09-02 at 2.22.19 PM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0a/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0a/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe0a",
                             "scaled": false,
                             "bytes": 2974,
@@ -1255,7 +1255,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0b/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0b/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe0b",
                             "scaled": false,
                             "bytes": 15368,
@@ -1263,7 +1263,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0c/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0c/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe0c",
                             "scaled": true,
                             "bytes": 7400,
@@ -1271,7 +1271,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0d/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0d/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe0d",
                             "scaled": true,
                             "bytes": 19416,
@@ -1279,7 +1279,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0e/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0e/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe0e",
                             "scaled": true,
                             "bytes": 54765,
@@ -1287,7 +1287,7 @@ export const board = {
                             "width": 600
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0f/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe0f/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe0f",
                             "scaled": true,
                             "bytes": 159525,
@@ -1295,7 +1295,7 @@ export const board = {
                             "width": 1200
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe10/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/previews/68e8092d100aad2a6c23fe10/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                             "_id": "68e8092d100aad2a6c23fe10",
                             "scaled": true,
                             "bytes": 329939,
@@ -1303,7 +1303,7 @@ export const board = {
                             "width": 2312
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9cf/attachments/68e8092d100aad2a6c23fe09/download/Screen_Shot_2015-09-02_at_2.22.19_PM.png",
                     "pos": 16384,
                     "fileName": "Screen_Shot_2015-09-02_at_2.22.19_PM.png"
                 }
@@ -1326,7 +1326,7 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "card": 0 } },
+                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -1353,9 +1353,9 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
+            "idCheckgroups": [],
             "idLabels": ["68e8092c100aad2a6c23fa32"],
-            "idList": "68e8092c100aad2a6c23f95d",
+            "idGroup": "68e8092c100aad2a6c23f95d",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -1375,19 +1375,19 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perCard": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
                 },
                 "checklists": {
-                    "perCard": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
                 },
                 "stickers": {
-                    "perCard": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
                 }
             },
             "locationName": null,
             "manualCoverAttachment": true,
             "name": "(1) Add post-message-io",
-            "nodeId": "ari:cloud:trello::card/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9bb",
+            "nodeId": "ari:cloud:trello::task/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9bb",
             "originalDesc": "",
             "originalName": "",
             "pinned": false,
@@ -1413,7 +1413,7 @@ export const board = {
                     {
                         "_id": "68e81194dd267fc1d2426ac5",
                         "scaled": false,
-                        "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
+                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
                         "bytes": 498,
                         "height": 50,
                         "width": 70
@@ -1421,7 +1421,7 @@ export const board = {
                     {
                         "_id": "68e81194dd267fc1d2426ac7",
                         "scaled": true,
-                        "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
+                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
                         "bytes": 808,
                         "height": 84,
                         "width": 150
@@ -1429,7 +1429,7 @@ export const board = {
                     {
                         "_id": "68e81194dd267fc1d2426ac6",
                         "scaled": false,
-                        "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
+                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
                         "bytes": 1278,
                         "height": 150,
                         "width": 250
@@ -1437,7 +1437,7 @@ export const board = {
                     {
                         "_id": "68e81194dd267fc1d2426ac8",
                         "scaled": true,
-                        "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
+                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
                         "bytes": 1266,
                         "height": 168,
                         "width": 300
@@ -1447,7 +1447,7 @@ export const board = {
                 "idPlugin": null
             },
             "isTemplate": false,
-            "cardRole": null,
+            "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
             "attachments": [
@@ -1508,7 +1508,7 @@ export const board = {
                     "name": "npm.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
                             "_id": "68e81194dd267fc1d2426ac5",
                             "scaled": false,
                             "bytes": 498,
@@ -1516,7 +1516,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
                             "_id": "68e81194dd267fc1d2426ac6",
                             "scaled": false,
                             "bytes": 1278,
@@ -1524,7 +1524,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
                             "_id": "68e81194dd267fc1d2426ac7",
                             "scaled": true,
                             "bytes": 808,
@@ -1532,7 +1532,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
                             "_id": "68e81194dd267fc1d2426ac8",
                             "scaled": true,
                             "bytes": 1266,
@@ -1540,7 +1540,7 @@ export const board = {
                             "width": 300
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/download/npm.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/download/npm.png",
                     "pos": 65536,
                     "fileName": "npm.png"
                 }
@@ -1563,7 +1563,7 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "card": 0 } },
+                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -1582,7 +1582,7 @@ export const board = {
             "dateLastActivity": "2025-10-09T19:44:03.428Z",
             "dateCompleted": null,
             "dateViewedByCreator": null,
-            "desc": "# Plan\n\n- migrate all existing `EditableView` code to use `EditableFieldView`\n- clean up all the now-unnecessary code that we can eliminate with `EditableView` out of our lives\n- get `EditableFieldView` up to feature parity with `EditableView`\n- test, test, test\n- ship a version of the app that uses `EditableFieldView` for current fields, but no new ones, to ensure everything is stable\n- extend `EditableFieldView` with new features to support non-field-backed-inputs\n- convert comment editing, comment authoring, and checkitem authoring to use `EditableFieldView`\n- test, test, test\n- ship\n\n# Phase 1 (done)\n\n- card name (done)\n- card description (done)\n- checklist name (done)\n- checkitem name (done)\n- board description (done)\n- list name (done)\n\n# Phase 2\n\n- `Layout.isEditing`\n- `Layout.cancelEdits`\n- `js-no-higher-edits`\n- `keepEdits`\n\n# Phase 3\n\n- special handling for fields that shouldn't be empty\n- special handling for \"single-line\" fields\n    - some which *can't* contain newlines at all (checkitem), others require shift-enter\n- \"text is too long\" error message\n- click-away behavior and X button behavior are currently different\n- only one field should be editable at a time\n- `CardDetailView::editTitle`\n- `AutoInsertionView` and `CompleterUtil`\n- escape behavior (done)\n\n# Bugs\n\n- all the CSS is wrong\n- list title selection is being broken by something dumb higher in the propagation\n\n# Intentional changes\n\n- you can no longer edit the board name from the board description dialog\n- the board description view has the same format helper as the card description, instead of a link to Gruber's markdown page\n- editing the card name no longer triggers the editing typing indicator",
+            "desc": "# Plan\n\n- migrate all existing `EditableView` code to use `EditableFieldView`\n- clean up all the now-unnecessary code that we can eliminate with `EditableView` out of our lives\n- get `EditableFieldView` up to feature parity with `EditableView`\n- test, test, test\n- ship a version of the app that uses `EditableFieldView` for current fields, but no new ones, to ensure everything is stable\n- extend `EditableFieldView` with new features to support non-field-backed-inputs\n- convert comment editing, comment authoring, and checkitem authoring to use `EditableFieldView`\n- test, test, test\n- ship\n\n# Phase 1 (done)\n\n- task name (done)\n- task description (done)\n- checklist name (done)\n- checkitem name (done)\n- board description (done)\n- group name (done)\n\n# Phase 2\n\n- `Layout.isEditing`\n- `Layout.cancelEdits`\n- `js-no-higher-edits`\n- `keepEdits`\n\n# Phase 3\n\n- special handling for fields that shouldn't be empty\n- special handling for \"single-line\" fields\n    - some which *can't* contain newlines at all (checkitem), others require shift-enter\n- \"text is too long\" error message\n- click-away behavior and X button behavior are currently different\n- only one field should be editable at a time\n- `TaskDetailView::editTitle`\n- `AutoInsertionView` and `CompleterUtil`\n- escape behavior (done)\n\n# Bugs\n\n- all the CSS is wrong\n- group title selection is being broken by something dumb higher in the propagation\n\n# Intentional changes\n\n- you can no longer edit the board name from the board description dialog\n- the board description view has the same format helper as the task description, instead of a link to Gruber's markdown page\n- editing the task name no longer triggers the editing typing indicator",
             "descData": null,
             "due": "2025-10-22T06:00:00.000Z",
             "dueReminder": 1440,
@@ -1590,9 +1590,9 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
+            "idCheckgroups": [],
             "idLabels": ["68e8092c100aad2a6c23fa3a"],
-            "idList": "68e8092c100aad2a6c23f95e",
+            "idGroup": "68e8092c100aad2a6c23f95e",
             "idMemberCreator": null,
             "idMembers": ["5eafad22c718790469a3db7a"],
             "idMembersVoted": [],
@@ -1612,19 +1612,19 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perCard": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
                 },
                 "checklists": {
-                    "perCard": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
                 },
                 "stickers": {
-                    "perCard": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
                 }
             },
             "locationName": null,
             "manualCoverAttachment": false,
             "name": "(5) EditableFieldView",
-            "nodeId": "ari:cloud:trello::card/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9b9",
+            "nodeId": "ari:cloud:trello::task/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9b9",
             "originalDesc": "",
             "originalName": "",
             "pinned": false,
@@ -1649,7 +1649,7 @@ export const board = {
                 "idPlugin": null
             },
             "isTemplate": false,
-            "cardRole": null,
+            "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
             "attachments": [],
@@ -1671,7 +1671,7 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": "2025-10-06T05:00:00.000Z",
-                "attachmentsByType": { "trello": { "board": 0, "card": 0 } },
+                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
                 "externalSource": null,
                 "location": false,
                 "votes": 1,
@@ -1704,9 +1704,9 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": ["68e80ffb448b9afa0ee45d62"],
+            "idCheckgroups": ["68e80ffb448b9afa0ee45d62"],
             "idLabels": ["68e8092c100aad2a6c23fa38"],
-            "idList": "68e8092c100aad2a6c23f95e",
+            "idGroup": "68e8092c100aad2a6c23f95e",
             "idMemberCreator": null,
             "idMembers": ["5eafad22c718790469a3db7a", "68e809da40f4d09300719d2d"],
             "idMembersVoted": ["5eafad22c718790469a3db7a"],
@@ -1726,19 +1726,19 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perCard": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
                 },
                 "checklists": {
-                    "perCard": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
                 },
                 "stickers": {
-                    "perCard": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
                 }
             },
             "locationName": null,
             "manualCoverAttachment": true,
             "name": "(21) Update CSS",
-            "nodeId": "ari:cloud:trello::card/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9d5",
+            "nodeId": "ari:cloud:trello::task/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9d5",
             "originalDesc": "",
             "originalName": "",
             "pinned": false,
@@ -1847,7 +1847,7 @@ export const board = {
                 "idPlugin": null
             },
             "isTemplate": false,
-            "cardRole": null,
+            "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
             "attachments": [
@@ -1990,7 +1990,7 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "card": 0 } },
+                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -2017,9 +2017,9 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
+            "idCheckgroups": [],
             "idLabels": [],
-            "idList": "68e8092c100aad2a6c23f95e",
+            "idGroup": "68e8092c100aad2a6c23f95e",
             "idMemberCreator": null,
             "idMembers": ["68e809da40f4d09300719d2d"],
             "idMembersVoted": [],
@@ -2029,19 +2029,19 @@ export const board = {
             "labels": [],
             "limits": {
                 "attachments": {
-                    "perCard": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
                 },
                 "checklists": {
-                    "perCard": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
                 },
                 "stickers": {
-                    "perCard": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
                 }
             },
             "locationName": null,
             "manualCoverAttachment": false,
             "name": "(1) Show collection helper text in collections menu",
-            "nodeId": "ari:cloud:trello::card/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9cd",
+            "nodeId": "ari:cloud:trello::task/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9cd",
             "originalDesc": "",
             "originalName": "",
             "pinned": false,
@@ -2066,7 +2066,7 @@ export const board = {
                 "idPlugin": null
             },
             "isTemplate": false,
-            "cardRole": null,
+            "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
             "attachments": [
@@ -2104,7 +2104,7 @@ export const board = {
                 "dueComplete": true,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "card": 0 } },
+                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -2135,9 +2135,9 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": ["68e8092c100aad2a6c23f9df"],
+            "idCheckgroups": ["68e8092c100aad2a6c23f9df"],
             "idLabels": ["68e8092c100aad2a6c23fa36"],
-            "idList": "68e8092c100aad2a6c23f95f",
+            "idGroup": "68e8092c100aad2a6c23f95f",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -2157,19 +2157,19 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perCard": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
                 },
                 "checklists": {
-                    "perCard": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
                 },
                 "stickers": {
-                    "perCard": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
                 }
             },
             "locationName": null,
             "manualCoverAttachment": true,
-            "name": "(8) Let the server choose the default name when creating a card from a URL",
-            "nodeId": "ari:cloud:trello::card/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9c1",
+            "name": "(8) Let the server choose the default name when creating a task from a URL",
+            "nodeId": "ari:cloud:trello::task/workspace/68e807eaaf07e785344018be/68e8092c100aad2a6c23f9c1",
             "originalDesc": "",
             "originalName": "",
             "pinned": false,
@@ -2182,7 +2182,7 @@ export const board = {
             "staticMapUrl": null,
             "start": null,
             "subscribed": false,
-            "url": "https://trello.com/c/7VhJQXjc/5-8-let-the-server-choose-the-default-name-when-creating-a-card-from-a-url",
+            "url": "https://trello.com/c/7VhJQXjc/5-8-let-the-server-choose-the-default-name-when-creating-a-task-from-a-url",
             "urlSource": null,
             "urlSourceText": null,
             "cover": {
@@ -2278,7 +2278,7 @@ export const board = {
                 "idPlugin": null
             },
             "isTemplate": false,
-            "cardRole": null,
+            "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
             "attachments": [
@@ -2291,7 +2291,7 @@ export const board = {
                     "isMalicious": false,
                     "isUpload": false,
                     "mimeType": "",
-                    "name": "#540 Let server pick default name when creating card from URL",
+                    "name": "#540 Let server pick default name when creating task from URL",
                     "previews": [],
                     "url": "https://github.com/trello/web/pull/540",
                     "pos": 16384,
@@ -2309,7 +2309,7 @@ export const board = {
                     "name": "Screen Shot 2015-08-20 at 10.44.09 AM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdbd/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdbd/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdbd",
                             "scaled": false,
                             "bytes": 2006,
@@ -2317,7 +2317,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdbe/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdbe/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdbe",
                             "scaled": false,
                             "bytes": 12397,
@@ -2325,7 +2325,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdbf/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdbf/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdbf",
                             "scaled": true,
                             "bytes": 5628,
@@ -2333,7 +2333,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdc0/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdc0/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc0",
                             "scaled": true,
                             "bytes": 15321,
@@ -2341,7 +2341,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdc1/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/previews/68e8092d100aad2a6c23fdc1/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc1",
                             "scaled": true,
                             "bytes": 19891,
@@ -2349,7 +2349,7 @@ export const board = {
                             "width": 520
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdbc/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                     "pos": 32768,
                     "fileName": "Screen_Shot_2015-08-20_at_10.44.09_AM.png"
                 },
@@ -2365,7 +2365,7 @@ export const board = {
                     "name": "Screen Shot 2015-08-20 at 10.42.33 AM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc4/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc4/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc4",
                             "scaled": false,
                             "bytes": 1136,
@@ -2373,7 +2373,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc5/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc5/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc5",
                             "scaled": false,
                             "bytes": 9315,
@@ -2381,7 +2381,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc6/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc6/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc6",
                             "scaled": true,
                             "bytes": 3370,
@@ -2389,7 +2389,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc7/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc7/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc7",
                             "scaled": true,
                             "bytes": 11642,
@@ -2397,7 +2397,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc8/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc8/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc8",
                             "scaled": true,
                             "bytes": 42263,
@@ -2405,7 +2405,7 @@ export const board = {
                             "width": 600
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc9/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdc9/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdc9",
                             "scaled": true,
                             "bytes": 125218,
@@ -2413,7 +2413,7 @@ export const board = {
                             "width": 1200
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdca/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/previews/68e8092d100aad2a6c23fdca/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdca",
                             "scaled": true,
                             "bytes": 156282,
@@ -2421,7 +2421,7 @@ export const board = {
                             "width": 2410
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdc3/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                     "pos": 49152,
                     "fileName": "Screen_Shot_2015-08-20_at_10.42.33_AM.png"
                 },
@@ -2437,7 +2437,7 @@ export const board = {
                     "name": "Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdcd/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdcd/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdcd",
                             "scaled": false,
                             "bytes": 1136,
@@ -2445,7 +2445,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdce/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdce/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdce",
                             "scaled": false,
                             "bytes": 9315,
@@ -2453,7 +2453,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdcf/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdcf/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdcf",
                             "scaled": true,
                             "bytes": 3370,
@@ -2461,7 +2461,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd0/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd0/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd0",
                             "scaled": true,
                             "bytes": 11642,
@@ -2469,7 +2469,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd1/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd1/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd1",
                             "scaled": true,
                             "bytes": 42263,
@@ -2477,7 +2477,7 @@ export const board = {
                             "width": 600
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd2/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd2/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd2",
                             "scaled": true,
                             "bytes": 125218,
@@ -2485,7 +2485,7 @@ export const board = {
                             "width": 1200
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd3/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/previews/68e8092d100aad2a6c23fdd3/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd3",
                             "scaled": true,
                             "bytes": 156282,
@@ -2493,7 +2493,7 @@ export const board = {
                             "width": 2410
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdcc/download/Screen_Shot_2015-08-20_at_10.42.33_AM.png",
                     "pos": 65536,
                     "fileName": "Screen_Shot_2015-08-20_at_10.42.33_AM.png"
                 },
@@ -2509,7 +2509,7 @@ export const board = {
                     "name": "Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd6/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd6/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd6",
                             "scaled": false,
                             "bytes": 2006,
@@ -2517,7 +2517,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd7/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd7/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd7",
                             "scaled": false,
                             "bytes": 12397,
@@ -2525,7 +2525,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd8/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd8/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd8",
                             "scaled": true,
                             "bytes": 5628,
@@ -2533,7 +2533,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd9/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdd9/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdd9",
                             "scaled": true,
                             "bytes": 15321,
@@ -2541,7 +2541,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdda/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/previews/68e8092d100aad2a6c23fdda/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                             "_id": "68e8092d100aad2a6c23fdda",
                             "scaled": true,
                             "bytes": 19891,
@@ -2549,7 +2549,7 @@ export const board = {
                             "width": 520
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e8092d100aad2a6c23fdd5/download/Screen_Shot_2015-08-20_at_10.44.09_AM.png",
                     "pos": 81920,
                     "fileName": "Screen_Shot_2015-08-20_at_10.44.09_AM.png"
                 },
@@ -2580,7 +2580,7 @@ export const board = {
                     "name": "bug.webp",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1edd/download/bug.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1edd/download/bug.webp",
                             "_id": "68e81205b36e3cd4b10c1edd",
                             "scaled": false,
                             "bytes": 776,
@@ -2588,7 +2588,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ede/download/bug.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ede/download/bug.webp",
                             "_id": "68e81205b36e3cd4b10c1ede",
                             "scaled": false,
                             "bytes": 2434,
@@ -2596,7 +2596,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1edf/download/bug.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1edf/download/bug.webp",
                             "_id": "68e81205b36e3cd4b10c1edf",
                             "scaled": true,
                             "bytes": 2380,
@@ -2604,7 +2604,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ee0/download/bug.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ee0/download/bug.webp",
                             "_id": "68e81205b36e3cd4b10c1ee0",
                             "scaled": true,
                             "bytes": 5070,
@@ -2612,7 +2612,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ee1/download/bug.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ee1/download/bug.webp",
                             "_id": "68e81205b36e3cd4b10c1ee1",
                             "scaled": true,
                             "bytes": 10326,
@@ -2620,7 +2620,7 @@ export const board = {
                             "width": 600
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/download/bug.webp",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/download/bug.webp",
                     "pos": 114688,
                     "fileName": "bug.webp"
                 }
@@ -2651,8 +2651,8 @@ export const board = {
             "due": null,
             "dueReminder": -1,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95f",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95f",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -2688,7 +2688,7 @@ export const board = {
                     "name": "Screen Shot 2015-08-27 at 1.38.57 PM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fddf/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fddf/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                             "_id": "68e8092d100aad2a6c23fddf",
                             "scaled": false,
                             "bytes": 2034,
@@ -2696,7 +2696,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde0/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde0/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                             "_id": "68e8092d100aad2a6c23fde0",
                             "scaled": false,
                             "bytes": 13254,
@@ -2704,7 +2704,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde1/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde1/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                             "_id": "68e8092d100aad2a6c23fde1",
                             "scaled": true,
                             "bytes": 5793,
@@ -2712,7 +2712,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde2/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde2/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                             "_id": "68e8092d100aad2a6c23fde2",
                             "scaled": true,
                             "bytes": 16841,
@@ -2720,7 +2720,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde3/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde3/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                             "_id": "68e8092d100aad2a6c23fde3",
                             "scaled": true,
                             "bytes": 48307,
@@ -2728,7 +2728,7 @@ export const board = {
                             "width": 600
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde4/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/previews/68e8092d100aad2a6c23fde4/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                             "_id": "68e8092d100aad2a6c23fde4",
                             "scaled": true,
                             "bytes": 59700,
@@ -2736,7 +2736,7 @@ export const board = {
                             "width": 1114
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fdde/download/Screen_Shot_2015-08-27_at_1.38.57_PM.png",
                     "pos": 16384,
                     "fileName": "Screen_Shot_2015-08-27_at_1.38.57_PM.png"
                 },
@@ -2752,7 +2752,7 @@ export const board = {
                     "name": "new-logos.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fde7/download/new-logos.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fde7/download/new-logos.png",
                             "_id": "68e8092d100aad2a6c23fde7",
                             "scaled": false,
                             "bytes": 3279,
@@ -2760,7 +2760,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fde8/download/new-logos.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fde8/download/new-logos.png",
                             "_id": "68e8092d100aad2a6c23fde8",
                             "scaled": false,
                             "bytes": 21353,
@@ -2768,7 +2768,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fde9/download/new-logos.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fde9/download/new-logos.png",
                             "_id": "68e8092d100aad2a6c23fde9",
                             "scaled": true,
                             "bytes": 9798,
@@ -2776,7 +2776,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fdea/download/new-logos.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fdea/download/new-logos.png",
                             "_id": "68e8092d100aad2a6c23fdea",
                             "scaled": true,
                             "bytes": 30236,
@@ -2784,7 +2784,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fdeb/download/new-logos.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fdeb/download/new-logos.png",
                             "_id": "68e8092d100aad2a6c23fdeb",
                             "scaled": true,
                             "bytes": 89616,
@@ -2792,7 +2792,7 @@ export const board = {
                             "width": 600
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fdec/download/new-logos.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/previews/68e8092d100aad2a6c23fdec/download/new-logos.png",
                             "_id": "68e8092d100aad2a6c23fdec",
                             "scaled": true,
                             "bytes": 153606,
@@ -2800,7 +2800,7 @@ export const board = {
                             "width": 1134
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/download/new-logos.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c3/attachments/68e8092d100aad2a6c23fde6/download/new-logos.png",
                     "pos": 32768,
                     "fileName": "new-logos.png"
                 },
@@ -2845,8 +2845,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f95f",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f95f",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -2862,14 +2862,14 @@ export const board = {
                     "uses": 154
                 }
             ],
-            "name": "(1) Decouple board page list CSS",
+            "name": "(1) Decouple board page group CSS",
             "originalDesc": "",
             "originalName": "",
             "pos": 54575104,
             "shortLink": "kFCiRNcg",
             "shortUrl": "https://trello.com/c/kFCiRNcg",
             "start": null,
-            "url": "https://trello.com/c/kFCiRNcg/7-1-decouple-board-page-list-css",
+            "url": "https://trello.com/c/kFCiRNcg/7-1-decouple-board-page-group-css",
             "cover": {
                 "idAttachment": null,
                 "color": null,
@@ -2907,7 +2907,7 @@ export const board = {
                     "name": "Screen Shot 2015-09-01 at 4.37.18 PM.png",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf3/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf3/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf3",
                             "scaled": false,
                             "bytes": 4484,
@@ -2915,7 +2915,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf4/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf4/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf4",
                             "scaled": false,
                             "bytes": 16424,
@@ -2923,7 +2923,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf5/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf5/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf5",
                             "scaled": true,
                             "bytes": 10893,
@@ -2931,7 +2931,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf6/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf6/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf6",
                             "scaled": true,
                             "bytes": 26224,
@@ -2939,7 +2939,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf7/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf7/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf7",
                             "scaled": true,
                             "bytes": 68695,
@@ -2947,7 +2947,7 @@ export const board = {
                             "width": 600
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf8/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf8/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf8",
                             "scaled": true,
                             "bytes": 200589,
@@ -2955,7 +2955,7 @@ export const board = {
                             "width": 1200
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf9/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/previews/68e8092d100aad2a6c23fdf9/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                             "_id": "68e8092d100aad2a6c23fdf9",
                             "scaled": true,
                             "bytes": 776562,
@@ -2963,7 +2963,7 @@ export const board = {
                             "width": 3168
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c5/attachments/68e8092d100aad2a6c23fdf2/download/Screen_Shot_2015-09-01_at_4.37.18_PM.png",
                     "pos": 32768,
                     "fileName": "Screen_Shot_2015-09-01_at_4.37.18_PM.png"
                 }
@@ -2993,8 +2993,8 @@ export const board = {
             "due": "2025-10-10T06:00:00.000Z",
             "dueReminder": -1,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f960",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f960",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -3031,7 +3031,7 @@ export const board = {
                     "name": "sprint-review.jpeg",
                     "previews": [
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d0f/download/sprint-review.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d0f/download/sprint-review.webp",
                             "_id": "68e8131e7e14b68c5bb40d0f",
                             "scaled": false,
                             "bytes": 1138,
@@ -3039,7 +3039,7 @@ export const board = {
                             "width": 70
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d10/download/sprint-review.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d10/download/sprint-review.webp",
                             "_id": "68e8131e7e14b68c5bb40d10",
                             "scaled": false,
                             "bytes": 7336,
@@ -3047,7 +3047,7 @@ export const board = {
                             "width": 250
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d11/download/sprint-review.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d11/download/sprint-review.webp",
                             "_id": "68e8131e7e14b68c5bb40d11",
                             "scaled": true,
                             "bytes": 3402,
@@ -3055,7 +3055,7 @@ export const board = {
                             "width": 150
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d12/download/sprint-review.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d12/download/sprint-review.webp",
                             "_id": "68e8131e7e14b68c5bb40d12",
                             "scaled": true,
                             "bytes": 9970,
@@ -3063,7 +3063,7 @@ export const board = {
                             "width": 300
                         },
                         {
-                            "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d13/download/sprint-review.webp",
+                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d13/download/sprint-review.webp",
                             "_id": "68e8131e7e14b68c5bb40d13",
                             "scaled": true,
                             "bytes": 11160,
@@ -3071,7 +3071,7 @@ export const board = {
                             "width": 312
                         }
                     ],
-                    "url": "https://trello.com/1/cards/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/download/sprint-review.jpeg",
+                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/download/sprint-review.jpeg",
                     "pos": 140737488355328,
                     "fileName": "sprint-review.jpeg"
                 }
@@ -3101,8 +3101,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": ["68e81ee97018a2bfa12f67a2"],
-            "idList": "68e8092c100aad2a6c23f960",
+            "idCheckgroups": ["68e81ee97018a2bfa12f67a2"],
+            "idGroup": "68e8092c100aad2a6c23f960",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -3212,8 +3212,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f960",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f960",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -3278,8 +3278,8 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idChecklists": [],
-            "idList": "68e8092c100aad2a6c23f960",
+            "idCheckgroups": [],
+            "idGroup": "68e8092c100aad2a6c23f960",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
@@ -3387,7 +3387,7 @@ export const board = {
             "uses": 1
         }
     ],
-    "lists": [
+    "groups": [
         {
             "_id": "68e8092c100aad2a6c23f95c",
             "name": "Backlog",
@@ -3455,7 +3455,7 @@ export const board = {
             "_id": "68e81ee97018a2bfa12f67a2",
             "name": "Short ID Decision & Action",
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idCard": "68e8092c100aad2a6c23f9cb",
+            "idTask": "68e8092c100aad2a6c23f9cb",
             "pos": 140737488355328,
             "checkItems": [
                 {
@@ -3463,65 +3463,65 @@ export const board = {
                     "name": "Review Decision: Confirm the final necessity/value of restoring short IDs (consult with @product/UX).",
                     "pos": 140737488355328,
                     "state": "incomplete",
-                    "idChecklist": "68e81ee97018a2bfa12f67a2"
+                    "idCheckgroup": "68e81ee97018a2bfa12f67a2"
                 },
                 {
                     "_id": "68e81f01d813423c662eb607",
                     "name": "(If Restoring): Locate and modify the function responsible for hiding/generating IDs.",
                     "pos": 140737488371712,
                     "state": "incomplete",
-                    "idChecklist": "68e81ee97018a2bfa12f67a2"
+                    "idCheckgroup": "68e81ee97018a2bfa12f67a2"
                 },
                 {
                     "_id": "68e81f12361e3d2bd6634277",
                     "name": "(If Restoring): Run tests to ensure ID restoration doesn't cause conflicts in board URLs.",
                     "pos": 140737488388096,
                     "state": "incomplete",
-                    "idChecklist": "68e81ee97018a2bfa12f67a2"
+                    "idCheckgroup": "68e81ee97018a2bfa12f67a2"
                 },
                 {
                     "_id": "68e81f1fcd9e68e17f326d34",
                     "name": "(If NOT Restoring): Add a permanent technical note/comment explaining the rationale for leaving them hidden.",
                     "pos": 140737488404480,
                     "state": "incomplete",
-                    "idChecklist": "68e81ee97018a2bfa12f67a2"
+                    "idCheckgroup": "68e81ee97018a2bfa12f67a2"
                 },
                 {
                     "_id": "68e81f2cd050500a850e3a01",
                     "name": "Code Clean-up: Remove any legacy code related to the old short ID display logic.",
                     "pos": 140737488420864,
                     "state": "incomplete",
-                    "idChecklist": "68e81ee97018a2bfa12f67a2"
+                    "idCheckgroup": "68e81ee97018a2bfa12f67a2"
                 }
             ]
         },
         {
             "_id": "68e8092c100aad2a6c23f9df",
-            "name": "Checklist",
+            "name": "Checkgroup",
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idCard": "68e8092c100aad2a6c23f9c1",
+            "idTask": "68e8092c100aad2a6c23f9c1",
             "pos": 16384,
             "checkItems": [
                 {
                     "_id": "68e8092d100aad2a6c23fda9",
-                    "name": "Duplicate cards being created (Due (8/7)",
+                    "name": "Duplicate tasks being created (Due (8/7)",
                     "pos": 33667,
                     "state": "complete",
-                    "idChecklist": "68e8092c100aad2a6c23f9df"
+                    "idCheckgroup": "68e8092c100aad2a6c23f9df"
                 },
                 {
                     "_id": "68e8092d100aad2a6c23fdaa",
                     "name": "Determine appropriate naming scheme (Due 8/9)",
                     "pos": 50836,
                     "state": "complete",
-                    "idChecklist": "68e8092c100aad2a6c23f9df"
+                    "idCheckgroup": "68e8092c100aad2a6c23f9df"
                 },
                 {
                     "_id": "68e8092d100aad2a6c23fdab",
                     "name": "https://trello.com/c/BxgfB5SA/54-identify-issue-in-source-code",
                     "pos": 16833.5,
                     "state": "complete",
-                    "idChecklist": "68e8092c100aad2a6c23f9df"
+                    "idCheckgroup": "68e8092c100aad2a6c23f9df"
                 }
             ]
         },
@@ -3529,7 +3529,7 @@ export const board = {
             "_id": "68e80ffb448b9afa0ee45d62",
             "name": "CSS Update Workflow",
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idCard": "68e8092c100aad2a6c23f9d5",
+            "idTask": "68e8092c100aad2a6c23f9d5",
             "pos": 140737488355328,
             "checkItems": [
                 {
@@ -3537,56 +3537,56 @@ export const board = {
                     "name": "Scope Defined: Identify specific elements/sections to be styled.",
                     "pos": 140737488355328,
                     "state": "complete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e8101614afd694b9136ace",
                     "name": "Branch Created: Pull and create a new feature branch (e.g., git checkout -b css-update-123).",
                     "pos": 140737488371712,
                     "state": "complete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e81024ce03ffabcd6a9765",
                     "name": "Styles Implemented: Write and save new CSS code.",
                     "pos": 140737488388096,
                     "state": "complete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e8102f8c7b4cb5d2bcc73f",
                     "name": "Desktop QA: Verify look and feel on Chrome, Firefox, and Safari.",
                     "pos": 140737488404480,
                     "state": "complete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e8103bce79f96b0b97fd53",
                     "name": "Mobile QA: Check responsiveness and layout on small screens.",
                     "pos": 140737488420864,
                     "state": "complete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e810464fb8a7ac94661d98",
                     "name": "No Regressions: Ensure no existing styles were accidentally broken.",
                     "pos": 140737488437248,
                     "state": "incomplete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e8105171cba3181d6876ea",
                     "name": "Code Cleaned: Remove any unused or commented-out CSS.",
                     "pos": 140737488453632,
                     "state": "incomplete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 },
                 {
                     "_id": "68e8105c596907a59698d906",
-                    "name": "Self-Reviewed: Commit changes and mark the card as complete.",
+                    "name": "Self-Reviewed: Commit changes and mark the task as complete.",
                     "pos": 140737488470016,
                     "state": "incomplete",
-                    "idChecklist": "68e80ffb448b9afa0ee45d62"
+                    "idCheckgroup": "68e80ffb448b9afa0ee45d62"
                 }
             ]
         }

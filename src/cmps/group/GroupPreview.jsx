@@ -1,85 +1,85 @@
 import { useEffect, useRef, useState } from "react"
 
 import { makeId } from "../../services/util.service"
-import { CardPreview } from "../card/CardPreview"
+import { TaskPreview } from "../task/TaskPreview"
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function ListPreview({ board, list, cards, onAddCard, onCompleteTask, onUpdateList }) {
+export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
     const inputRef = useRef(null)
     const textareaRef = useRef(null)
-    const [listName, setListName] = useState(list.name)
+    const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
-    const [cardName, setCardName] = useState('')
-    const [isAddingCard, setIsAddingCard] = useState(false)
+    const [taskName, setTaskName] = useState('')
+    const [isAddingTask, setIsAddingTask] = useState(false)
 
     useEffect(() => {
         if (isEditing) {
             inputRef.current?.focus()
         }
 
-        if (isAddingCard) {
+        if (isAddingTask) {
             textareaRef.current?.focus()
         }
 
-        if (!isAddingCard) {
+        if (!isAddingTask) {
             return
         }
-    }, [isEditing, isAddingCard])
+    }, [isEditing, isAddingTask])
 
     function handleInput({ target }) {
         const { name, value } = target
 
-        if (name === 'listName') {
-            setListName(value)
-        } else if (name === 'cardName') {
-            setCardName(value)
+        if (name === 'groupName') {
+            setGroupName(value)
+        } else if (name === 'taskName') {
+            setTaskName(value)
         }
     }
 
     function handleInputBlur() {
-        if (listName !== list.name) {
-            const updatedList = { ...list, name: listName }
-            onUpdateList(updatedList)
+        if (groupName !== group.name) {
+            const updatedGroup = { ...group, name: groupName }
+            onUpdateGroup(updatedGroup)
         }
         setIsEditing(false)
     }
 
-    function addCard(e) {
+    function addTask(e) {
         e.preventDefault()
-        if (!cardName) return
+        if (!taskName) return
 
-        const newCard = {
+        const newTask = {
             _id: makeId(),
             idBoard: board._id,
-            idList: list._id,
-            name: cardName
+            idGroup: group._id,
+            name: taskName
         }
-        onAddCard(newCard)
-        setCardName('')
-        setIsAddingCard(false)
+        onAddTask(newTask)
+        setTaskName('')
+        setIsAddingTask(false)
     }
 
     const h2ClassName = `${isEditing ? 'hidden' : ''}`
     const inputClassName = `${isEditing ? '' : 'hidden'}`
 
     return (
-        <li className="list-preview">
-            <div className="list-header">
-                <div className="list-title">
+        <li className="group-preview">
+            <div className="group-header">
+                <div className="group-title">
                     <h2
                         className={h2ClassName}
                         onClick={() => setIsEditing(true)}
                     >
-                        {list.name}
+                        {group.name}
                     </h2>
                     <input
                         ref={inputRef}
                         className={inputClassName}
                         type="text"
-                        name="listName"
-                        value={listName}
+                        name="groupName"
+                        value={groupName}
                         onChange={handleInput}
                         onBlur={handleInputBlur}
                         onKeyDown={(ev) => {
@@ -88,40 +88,40 @@ export function ListPreview({ board, list, cards, onAddCard, onCompleteTask, onU
                                 ev.target.blur()
                             }
                             if (ev.key === 'Escape') {
-                                setListName(listName)
+                                setGroupName(groupName)
                                 setIsEditing(false)
                             }
                         }}
                     />
                 </div>
             </div>
-            <div className="list-card-gap"></div>
+            <div className="group-task-gap"></div>
             <ol>
-                {cards.map(card =>
-                    <CardPreview key={card._id} card={card} onCompleteTask={onCompleteTask} />
+                {tasks.map(task =>
+                    <TaskPreview key={task._id} task={task} onCompleteTask={onCompleteTask} />
                 )}
-                {isAddingCard &&
-                    <li className="add-card-form">
-                        <form onSubmit={onAddCard}>
+                {isAddingTask &&
+                    <li className="add-task-form">
+                        <form onSubmit={onAddTask}>
                             <textarea
                                 ref={textareaRef}
-                                className="add-card-textarea"
-                                name="cardName"
-                                value={cardName}
+                                className="add-task-textarea"
+                                name="taskName"
+                                value={taskName}
                                 onChange={handleInput}
                                 placeholder="Enter a title or paste a link"
                             />
-                            <div className="add-card-actions">
+                            <div className="add-task-actions">
                                 <button
                                     className="btn-primary"
                                     type="submit"
-                                    onClick={addCard}
+                                    onClick={addTask}
                                 >
-                                    Add card
+                                    Add task
                                 </button>
                                 <button
                                     className="icon-btn dynamic-btn"
-                                    onClick={() => setIsAddingCard(false)}
+                                    onClick={() => setIsAddingTask(false)}
                                 >
                                     <CloseIcon width={16} height={16} fill="currentColor" />
                                 </button>
@@ -130,11 +130,11 @@ export function ListPreview({ board, list, cards, onAddCard, onCompleteTask, onU
                     </li>
                 }
             </ol>
-            {!isAddingCard &&
-                <div className="list-footer">
-                    <button className="dynamic-btn" onClick={() => setIsAddingCard(true)}>
+            {!isAddingTask &&
+                <div className="group-footer">
+                    <button className="dynamic-btn" onClick={() => setIsAddingTask(true)}>
                         <PlusIcon width={16} height={16} fill="currentColor" />
-                        <span>Add a card</span>
+                        <span>Add a task</span>
                     </button>
                 </div>
             }

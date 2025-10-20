@@ -12,16 +12,16 @@
 @import "pages/HomePage";
 @import "pages/LoginSignup";
 @import "pages/board/BoardDetails";
-@import "pages/card/CardEdit";
+@import "pages/task/TaskEdit";
 
 @import "cmps/AppHeader";
 @import "cmps/UserMsg";
 
-@import "cmps/list/ListList";
-@import "cmps/list/ListPreview";
-@import "cmps/card/CardPreview";
+@import "cmps/group/GroupList";
+@import "cmps/group/GroupPreview";
+@import "cmps/task/TaskPreview";
 
 /* @import "pages/board/BoardIndex"; */
-/* @import "cmps/board/BoardList";
+/* @import "cmps/board/BoardGroup";
 @import "cmps/board/BoardPreview";
 @import "cmps/board/BoardFilter"; */

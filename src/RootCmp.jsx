@@ -6,7 +6,7 @@ import { BoardIndex } from './pages/BoardIndex'
 import { BoardDetails } from './pages/BoardDetails'
 import './assets/styles/main.css'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup'
-import { CardEdit } from './pages/CardEdit'
+import { TaskEdit } from './pages/TaskEdit'
 import { Icon } from './pages/Icon'
 
 export function RootCmp() {
@@ -33,7 +33,7 @@ export function RootCmp() {
           <Route path="home" element={<HomePage />} />
           <Route path="workspace" element={<BoardIndex />} />
           <Route path="board/:boardId" element={<BoardDetails />}>
-            <Route path="card/:cardId" element={<CardEdit />} />
+            <Route path="task/:taskId" element={<TaskEdit />} />
           </Route>
           <Route path="auth" element={<LoginSignup />}>
             <Route path="login" element={<Login />} />

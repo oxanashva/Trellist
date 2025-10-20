@@ -1,4 +1,4 @@
-.card-preview {
+.task-preview {
     display: flex;
     flex-direction: column;
     row-gap: 0.5rem;
@@ -16,7 +16,7 @@
         outline-offset: 2px;
     }
 
-    & .card-wrapper {
+    & .task-wrapper {
         position: relative;
         min-height: 36px;
         border-color: #fff;;
@@ -24,13 +24,13 @@
         cursor: pointer;
         scroll-margin: 0.5rem;
 
-        & .card-header {
+        & .task-header {
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
             gap: 0.5rem;
 
-            & .card-state {
+            & .task-state {
                 margin-block-start: 0.125rem;
             }
         }

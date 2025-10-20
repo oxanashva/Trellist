@@ -1,17 +1,17 @@
 export const SHOW_MSG = 'show-msg'
 
 function createEventEmitter() {
-    const listenersMap = {}
+    const groupenersMap = {}
     return {
-        on(evName, listener){
-            listenersMap[evName] = (listenersMap[evName])? [...listenersMap[evName], listener] : [listener]
-            return ()=>{
-                listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
+        on(evName, groupener) {
+            groupenersMap[evName] = (groupenersMap[evName]) ? [...groupenersMap[evName], groupener] : [groupener]
+            return () => {
+                groupenersMap[evName] = groupenersMap[evName].filter(func => func !== groupener)
             }
         },
         emit(evName, data) {
-            if (!listenersMap[evName]) return
-            listenersMap[evName].forEach(listener => listener(data))
+            if (!groupenersMap[evName]) return
+            groupenersMap[evName].forEach(groupener => groupener(data))
         }
     }
 }
@@ -23,10 +23,10 @@ export function showUserMsg(msg) {
 }
 
 export function showSuccessMsg(txt) {
-    showUserMsg({txt, type: 'success'})
+    showUserMsg({ txt, type: 'success' })
 }
 export function showErrorMsg(txt) {
-    showUserMsg({txt, type: 'error'})
+    showUserMsg({ txt, type: 'error' })
 }
 
 window.showUserMsg = showUserMsg
