@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useParams, useOutletContext } from "react-router"
+import { Link, useParams } from "react-router"
 
 import { updateBoard } from "../store/actions/board.actions"
 
@@ -20,29 +20,88 @@ import DescriptionIcon from '../assets/images/icons/description.svg?react';
 export function TaskEdit() {
     const elDialog = useRef(null)
     const { taskId } = useParams()
+    const nameInputRef = useRef(null)
+    const descTextareaRef = useRef(null)
 
     const board = useSelector(storeState => storeState.boardModule.board)
     const task = board?.tasks.find(task => task._id === taskId)
     const group = board?.groups.find(group => group._id === task.idGroup)
 
     const [isChecked, setIsChecked] = useState(task.closed || false)
-    const [isEditing, setIsEditing] = useState(false)
+    const [isNameEditing, setIsNameEditing] = useState(false)
+    const [isDescEditing, setIsDescEditing] = useState(false)
 
-    async function handleCheck() {
-        const newStatus = !isChecked
-        setIsChecked(newStatus)
-
-        updateBoard({
-            ...board,
-            tasks: board.tasks.map(c => c._id === task._id ? { ...c, closed: newStatus } : c)
-        })
-    }
-
+    const [taskName, setTaskName] = useState(task?.name || "")
+    const [taskDescription, setTaskDescription] = useState(task?.desc || "")
 
     useEffect(() => {
         elDialog.current.showModal()
     }, [])
 
+    useEffect(() => {
+        if (isNameEditing) {
+            nameInputRef.current?.focus()
+        } else if (isDescEditing) {
+            descTextareaRef.current?.focus()
+        }
+    }, [isNameEditing, isDescEditing])
+
+    function handleCheck() {
+        const newStatus = !isChecked
+        setIsChecked(newStatus)
+
+        updateTask(task._id, { closed: newStatus })
+    }
+
+    function handleChange(ev) {
+        const field = ev.target.name;
+        const value = ev.target.value;
+
+        if (field === "name") {
+            setTaskName(value)
+        }
+
+        if (field === "desc") {
+            setTaskDescription(value)
+        }
+    }
+
+    function updateTask(taskId, updatedFields) {
+        updateBoard({
+            ...board,
+            tasks: board.tasks.map(task =>
+                task._id === taskId
+                    ? { ...task, ...updatedFields }
+                    : task
+            )
+        })
+    }
+
+    function onUpdateTask(taskId, field, value) {
+        updateTask(taskId, { [field]: value });
+    }
+
+    function onDescriptionSubmit(ev) {
+        ev.preventDefault()
+        setIsDescEditing(false)
+        onUpdateTask(task._id, "desc", taskDescription)
+    }
+
+    function onNameBlur() {
+        setIsNameEditing(false)
+        onUpdateTask(task._id, "name", taskName)
+    }
+
+    function onNameKeyDown(ev) {
+        if (ev.key === 'Enter') {
+            ev.preventDefault()
+            ev.target.blur()
+        }
+        if (ev.key === 'Escape') {
+            setTaskName(task.name)
+            setIsNameEditing(false)
+        }
+    }
 
     return (
         <dialog ref={elDialog} className="task-edit">
@@ -63,13 +122,28 @@ export function TaskEdit() {
             <div className="content-wrapper">
                 <main>
                     <section className="task-title task-grid-container">
-                        {/* TODO: implement editable task name and complete status */}
                         <div className="task-icon" onClick={handleCheck}>
                             {isChecked
                                 ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
                                 : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
                         </div>
-                        <h2>{task.name}</h2>
+                        {/* TODO: implement reusable component for editable field */}
+                        {!isNameEditing &&
+                            <h2
+                                onClick={() => setIsNameEditing(true)}
+                            >
+                                {taskName}
+                            </h2>}
+                        {isNameEditing &&
+                            <input
+                                ref={nameInputRef}
+                                type="text"
+                                name="name"
+                                value={taskName}
+                                onChange={handleChange}
+                                onBlur={onNameBlur}
+                                onKeyDown={onNameKeyDown}
+                            />}
                     </section>
                     <div className="task-content">
                         <section className="task-actions task-grid-container">
@@ -112,23 +186,41 @@ export function TaskEdit() {
                             </div>
                             <h3 className="description-heading">Description</h3>
                             <div></div>
-                            {task.desc && <p>{task.desc}</p>}
-                            {(!task.desc && !isEditing) &&
+                            {(task.desc && !isDescEditing) && <p onClick={() => setIsDescEditing(true)}>{task.desc}</p>}
+                            {(!task.desc && !isDescEditing) &&
                                 <button
                                     className="add-description-btn"
-                                    onClick={() => setIsEditing(true)}
+                                    onClick={() => setIsDescEditing(true)}
                                 >
                                     Add a more detailed description
                                 </button>}
-                            {/* TODO: implement editable description */}
-                            {isEditing && <form>
+                            {/* TODO: implement reusable component for editable field */}
+                            {isDescEditing && <form onSubmit={onDescriptionSubmit}>
                                 <textarea
-                                    defaultValue={task.desc}
+                                    ref={descTextareaRef}
+                                    className="edit-description"
+                                    name="desc"
+                                    value={taskDescription}
+                                    onChange={handleChange}
                                     placeholder="Add a more detailed description">
                                 </textarea>
                                 <div className="edit-description-actions">
-                                    <button className="btn-primary">Save</button>
-                                    <button className="dynamic-btn">Cancel</button>
+                                    <button
+                                        className="btn-primary"
+                                        type="submit"
+                                    >
+                                        Save
+                                    </button>
+                                    <button
+                                        className="dynamic-btn"
+                                        type="button"
+                                        onClick={() => {
+                                            setTaskDescription(task.desc || "")
+                                            setIsDescEditing(false)
+                                        }}
+                                    >
+                                        Cancel
+                                    </button>
                                 </div>
                             </form>}
                         </section>
