@@ -70,15 +70,6 @@
                 }
             }
 
-            .task-icon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 28px;
-                height: 28px;
-                margin: 0.125rem;
-            }
-
             & .task-content {
                 grid-column: 1;
                 grid-row: 2;
@@ -125,12 +116,6 @@
                     }
                 }
 
-                & .votes-heading {
-                    font-size: 0.875rem;
-                    font-weight: 600;
-                    margin: 0;
-                }
-
                 & .vote-btn {
                     width: fit-content;
                     background-color: #0515240f;
@@ -142,14 +127,7 @@
                     }
                 }
 
-                & .description-heading {
-                    font-size: 0.875rem;
-                    font-weight: 600;
-                    margin: 0;
-                    align-self: center;
-                }
-
-                & .add-description-btn {
+                /* & .add-description-btn {
                     justify-content: flex-start;
                     background-color: #fff;
                     border: 1px solid #8c8f97;
@@ -184,7 +162,7 @@
                     button {
                         padding: 0.5rem 0.75rem;
                     }
-                }
+                } */
             }
         }
 
@@ -195,6 +173,65 @@
             overflow-y: auto;
             border-left: 1px solid #0b120e24;
             background-color: #f8f8f8;
+            padding: 1rem;
+
+            & .task-grid-container {
+                margin-block-end: 2rem;
+            }
+        }
+
+        & .heading {
+            display: flex;
+            align-self: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        & .task-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            margin: 0.125rem;
+        }
+
+        & .add-description-btn {
+            justify-content: flex-start;
+            background-color: #fff;
+            border: 1px solid #8c8f97;
+            color: var(--text-subtle);
+            padding: 0.5rem 0.75rem 2rem;
+            box-sizing: content-box;
+
+            &:hover {
+                background-color: #f8f8f8;
+            }
+        }
+
+        & .edit-description {
+            width: 100%;
+            min-height: 200px;
+            border: 1px solid #8c8f97;
+            border-radius: 0.25rem;
+            padding: 0.75rem;
+            resize: none;
+
+            &:focus {
+                border: 1px solid #388BFF;
+            }
+        }
+
+        & .edit-description-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-block-start: 0.5rem;
+
+            button {
+                padding: 0.5rem 0.75rem;
+            }
         }
     }
 

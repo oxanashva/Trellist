@@ -52,6 +52,100 @@ export const board = {
     "idMemberCreator": "5eafad22c718790469a3db7a",
     "actions": [
         {
+            "_id": "68e8195da4c9f405818b0ce5",
+            "idMemberCreator": "5eafad22c718790469a3db7a",
+            "data": {
+                "idTask": "68e8092c100aad2a6c23f9d5",
+                "text": "**\\@Developers** - We are now enforcing the \"Mobile First\" approach for **all** new CSS cards. Before requesting review, please ensure the mobile styles are complete and verified. Added a new step to the 'Code Review' checklist.",
+                "textData": { "emoji": {} },
+                "task": {
+                    "_id": "68e8092c100aad2a6c23f9d5",
+                    "name": "(21) Update CSS",
+                    "idShort": 15,
+                    "shortLink": "ULOoPt2o"
+                },
+                "board": {
+                    "_id": "68e8092c100aad2a6c23f961",
+                    "name": "Trellist Agile Sprint Board",
+                    "shortLink": "VJFx5D4Z"
+                },
+                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+            },
+            "appCreator": null,
+            "type": "commentTask",
+            "date": "2025-10-09T20:21:49.478Z",
+            "limits": {
+                "reactions": {
+                    "perAction": { "status": "ok", "disableAt": 900, "warnAt": 720 },
+                    "uniquePerAction": { "status": "ok", "disableAt": 17, "warnAt": 14 }
+                }
+            },
+            "memberCreator": {
+                "_id": "5eafad22c718790469a3db7a",
+                "activityBlocked": false,
+                "avatarHash": "d17b40d037a634eac9c53310f9546929",
+                "avatarUrl": "images/avatars/OS-avatar.png",
+                "fullName": "Oxana Shvartzman",
+                "idMemberReferrer": null,
+                "initials": "OS",
+                "nonPublic": {
+                    "fullName": "Oxana Shvartzman",
+                    "initials": "OS",
+                    "avatarUrl": "https://trello-members.s3.amazonaws.com/5eafad22c718790469a3db7a/d17b40d037a634eac9c53310f9546929",
+                    "avatarHash": "d17b40d037a634eac9c53310f9546929"
+                },
+                "nonPublicAvailable": true,
+                "username": "oxanashvartzman"
+            }
+        },
+        {
+            "_id": "68e8195086985f1244c2a6fd",
+            "idMemberCreator": "5eafad22c718790469a3db7a",
+            "data": {
+                "idTask": "68e8092c100aad2a6c23f9d5",
+                "text": "**\\@UX Team** - Just a reminder that all CSS updates for the main application (as per the v2.0 design spec) are now scheduled for the next sprint. Please ensure all design files are finalized by EOD Friday.",
+                "textData": { "emoji": {} },
+                "task": {
+                    "_id": "68e8092c100aad2a6c23f9d5",
+                    "name": "(21) Update CSS",
+                    "idShort": 15,
+                    "shortLink": "ULOoPt2o"
+                },
+                "board": {
+                    "_id": "68e8092c100aad2a6c23f961",
+                    "name": "Trellist Agile Sprint Board",
+                    "shortLink": "VJFx5D4Z"
+                },
+                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+            },
+            "appCreator": null,
+            "type": "commentTask",
+            "date": "2025-10-09T20:21:36.782Z",
+            "limits": {
+                "reactions": {
+                    "perAction": { "status": "ok", "disableAt": 900, "warnAt": 720 },
+                    "uniquePerAction": { "status": "ok", "disableAt": 17, "warnAt": 14 }
+                }
+            },
+            "memberCreator": {
+                "_id": "5eafad22c718790469a3db7a",
+                "activityBlocked": false,
+                "avatarHash": "d17b40d037a634eac9c53310f9546929",
+                "avatarUrl": "images/avatars/OS-avatar.png",
+                "fullName": "Oxana Shvartzman",
+                "idMemberReferrer": null,
+                "initials": "OS",
+                "nonPublic": {
+                    "fullName": "Oxana Shvartzman",
+                    "initials": "OS",
+                    "avatarUrl": "https://trello-members.s3.amazonaws.com/5eafad22c718790469a3db7a/d17b40d037a634eac9c53310f9546929",
+                    "avatarHash": "d17b40d037a634eac9c53310f9546929"
+                },
+                "nonPublicAvailable": true,
+                "username": "oxanashvartzman"
+            }
+        },
+        {
             "_id": "68e81f51b188aaff25f9b936",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {

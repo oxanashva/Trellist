@@ -15,24 +15,33 @@ import ClockIcon from '../assets/images/icons/clock.svg?react'
 import CheckListIcon from '../assets/images/icons/checklist.svg?react'
 import MemberPlusIcon from '../assets/images/icons/member-plus.svg?react'
 import ThumbsUpIcon from '../assets/images/icons/thumbs-up.svg?react'
-import DescriptionIcon from '../assets/images/icons/description.svg?react';
+import DescriptionIcon from '../assets/images/icons/description.svg?react'
+import CommentText from '../assets/images/icons/comment-text.svg?react'
+import { makeId } from "../services/util.service"
 
 export function TaskEdit() {
     const elDialog = useRef(null)
     const { taskId } = useParams()
     const nameInputRef = useRef(null)
     const descTextareaRef = useRef(null)
+    const commentTextareaRef = useRef(null)
 
     const board = useSelector(storeState => storeState.boardModule.board)
     const task = board?.tasks.find(task => task._id === taskId)
     const group = board?.groups.find(group => group._id === task.idGroup)
+    const comments = board?.actions.filter(action => {
+        return action.data.idTask === task._id
+    })
+    console.log('comments :', comments);
 
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isDescEditing, setIsDescEditing] = useState(false)
+    const [isCommentEditing, setIsCommentEditing] = useState(false)
 
     const [taskName, setTaskName] = useState(task?.name || "")
     const [taskDescription, setTaskDescription] = useState(task?.desc || "")
+    const [commentText, setCommentText] = useState("")
 
     useEffect(() => {
         elDialog.current.showModal()
@@ -43,8 +52,10 @@ export function TaskEdit() {
             nameInputRef.current?.focus()
         } else if (isDescEditing) {
             descTextareaRef.current?.focus()
+        } else if (isCommentEditing) { // Focus on comment textarea when editing
+            commentTextareaRef.current?.focus()
         }
-    }, [isNameEditing, isDescEditing])
+    }, [isNameEditing, isDescEditing, isCommentEditing])
 
     function handleCheck() {
         const newStatus = !isChecked
@@ -64,6 +75,10 @@ export function TaskEdit() {
         if (field === "desc") {
             setTaskDescription(value)
         }
+
+        if (field === "comment") {
+            setCommentText(value)
+        }
     }
 
     function updateTask(taskId, updatedFields) {
@@ -78,7 +93,7 @@ export function TaskEdit() {
     }
 
     function onUpdateTask(taskId, field, value) {
-        updateTask(taskId, { [field]: value });
+        updateTask(taskId, { [field]: value })
     }
 
     function onDescriptionSubmit(ev) {
@@ -101,6 +116,41 @@ export function TaskEdit() {
             setTaskName(task.name)
             setIsNameEditing(false)
         }
+    }
+
+    function onCommentSubmit(ev) {
+        ev.preventDefault()
+        if (!commentText.trim()) {
+            setIsCommentEditing(false)
+            return
+        }
+
+        // Example structure for a new comment
+        const newComment = {
+            _id: makeId(),
+            data: {
+                idTask: task._id,
+                text: commentText
+            },
+            date: Date.now(),
+            type: "commentTask",
+            memberCreator: {
+                fullName: "Oxana Shvartzman",
+                avatarUrl: "images/avatars/OS-avatar.png",
+                username: "oxanashvartzman"
+            }
+        }
+
+        const updatedComments = [...(board.actions || []), newComment];
+        onUpdateTask(task._id, "actions", updatedComments)
+
+        // Assuming you have an 'comments' array on the task:
+        // const updatedComments = [...(task.comments || []), newComment];
+        // updateTask(task._id, { comments: updatedComments });
+
+
+        setCommentText("") // Clear the input
+        setIsCommentEditing(false)
     }
 
     return (
@@ -173,7 +223,7 @@ export function TaskEdit() {
                         </section>
                         <section className="task-actions task-grid-container">
                             <div></div>
-                            <h3 className="votes-heading">Votes</h3>
+                            <h3 className="heading">Votes</h3>
                             <div></div>
                             <button className="action-btn vote-btn">
                                 <ThumbsUpIcon width={16} height={16} fill="currentColor" />
@@ -184,7 +234,7 @@ export function TaskEdit() {
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>
-                            <h3 className="description-heading">Description</h3>
+                            <h3 className="heading">Description</h3>
                             <div></div>
                             {(task.desc && !isDescEditing) && <p onClick={() => setIsDescEditing(true)}>{task.desc}</p>}
                             {(!task.desc && !isDescEditing) &&
@@ -226,7 +276,64 @@ export function TaskEdit() {
                         </section>
                     </div>
                 </main>
-                <aside>Comments</aside>
+                <aside>
+                    <section className="task-grid-container">
+                        <div className="task-icon">
+                            <CommentText width={16} height={16} fill="currentColor" />
+                        </div>
+                        <h3 className="heading">Comments and activities</h3>
+                        <div></div>
+                        {/* TODO: implement reusable component for editable field */}
+                        {comments.map((action, idx) => {
+                            return (
+                                <>
+                                    {
+                                        (!isCommentEditing) &&
+                                        <textarea
+                                            className="add-comment-textarea add-description-btn"
+                                            placeholder="Write a comment..."
+                                            onClick={() => setIsCommentEditing(true)}
+                                            readOnly
+                                        ></textarea>
+                                    }
+                                    {
+                                        isCommentEditing && <form onSubmit={onCommentSubmit}>
+                                            <textarea
+                                                ref={commentTextareaRef}
+                                                className="edit-comment edit-description"
+                                                name="comment"
+                                                value={commentText}
+                                                onChange={handleChange}
+                                                placeholder="Write a comment...">
+                                            </textarea>
+                                            <div className="edit-comment-actions edit-description-actions">
+                                                <button
+                                                    className="btn-primary"
+                                                    type="submit"
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    className="dynamic-btn"
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setCommentText("")
+                                                        setIsCommentEditing(false)
+                                                    }}
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
+                                    }
+                                    <div></div>
+                                </>
+                            )
+                        })
+
+                        }
+                    </section>
+                </aside>
             </div>
         </dialog>
     )
