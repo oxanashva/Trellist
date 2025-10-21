@@ -34,7 +34,7 @@ export function TaskPreview({ board, task, onCompleteTask }) {
             <Link to={`/board/${boardId}/task/${task._id}`}>
                 <div className="task-wrapper">
                     <div className="task-header">
-                        {task.cover.sharedSourceUrl &&
+                        {task.cover?.sharedSourceUrl &&
                             <div className="cover-img" >
                                 <img src={task.cover.sharedSourceUrl} alt="card-image" />
                             </div>
