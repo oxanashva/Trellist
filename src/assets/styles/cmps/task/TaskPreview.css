@@ -35,6 +35,30 @@
             }
         }
 
+        .task-badges {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 0.25rem;
+            max-width: 100%;
+
+            & .badge {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.25rem;
+                width: fit-content;
+                max-width: 100%;
+                height: 20px;
+                margin-block-end: 0.25rem;
+                padding: 0.125rem;
+                border-radius: 0.25rem;
+                color: var(--text-subtle);
+                font-size: 12px;
+                cursor: pointer;
+            }
+        }
+
         & .edit-btn {
             display: none;
             position: absolute;
