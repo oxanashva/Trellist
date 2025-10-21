@@ -1,22 +1,29 @@
-.car-group {
-    --min-column-size: 220px;
-
+.board-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--min-column-size), 1fr));
-    gap: .5em;
+    grid-template-columns: repeat(auto-fill, minmax(23%, 1fr));
+    column-gap: 2%;
+    row-gap: 1.25rem;
+    list-style-type: none;
 
     & li {
-        display: grid;
-        grid-template-columns: max-content auto;
-        padding: .5em;
-        background-color: var(--clr2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+        min-height: 108px;
+        border-radius: 0.5rem;
+        box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
+        background-color: #0515240f;
+        font-size: 0.875rem;
+        color: var(--text-subtle);
+        cursor: pointer;
+        overflow: hidden;
 
-        .actions {
-            justify-self: end;
-
-            & button {
-                padding: .3em .5em;
-            }
+        &.board-preview {
+            align-items: initial;
+            justify-content: initial;
         }
     }
 }

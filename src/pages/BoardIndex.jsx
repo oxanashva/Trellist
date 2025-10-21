@@ -56,11 +56,25 @@ export function BoardIndex() {
     return (
         <section className="board-index full">
             <nav>
-                <NavLink to="/workspace">Boards</NavLink>
-                <NavLink to="/home">Home</NavLink>
+                <ul>
+                    <li>
+                        <NavLink to="/workspace" className="active">
+                            Boards
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/home">
+                            Home
+                        </NavLink>
+                    </li>
+                </ul>
             </nav>
-            <h2>Your boards</h2>
-            <BoardList boards={boards} />
+            <main>
+                <div className="boards-container">
+                    <h3>Your boards</h3>
+                    <BoardList boards={boards} />
+                </div>
+            </main>
         </section>
     )
 }

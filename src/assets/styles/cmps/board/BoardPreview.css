@@ -1,1 +1,23 @@
-.board-preview {}
+.board-preview {
+    & a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    & .board-img {
+        width: 100%;
+        height: 72px;
+        background: url('../../../images/bg-img/bg-img-1.jpeg');
+        background-position: center center;
+        background-size: cover;
+        overflow: hidden;
+    }
+
+    & .board-name {
+        margin: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        color: var(--text-subtle);
+    }
+}
