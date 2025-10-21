@@ -18,6 +18,8 @@ import ThumbsUpIcon from '../assets/images/icons/thumbs-up.svg?react'
 import DescriptionIcon from '../assets/images/icons/description.svg?react'
 import CommentText from '../assets/images/icons/comment-text.svg?react'
 import { makeId } from "../services/util.service"
+import { DynamicCmp } from "../cmps/task/DynamicCmp"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 export function TaskEdit() {
     const elDialog = useRef(null)
@@ -41,6 +43,35 @@ export function TaskEdit() {
     const [taskName, setTaskName] = useState(task?.name || "")
     const [taskDescription, setTaskDescription] = useState(task?.desc || "")
     const [commentText, setCommentText] = useState("")
+
+    const cmps = [
+        {
+            type: 'StatusPicker',
+            info: {
+                label: 'Status:',
+                propName: 'status',
+                selectedStatus: task.status,
+                // statuses: _getStatuses()
+            }
+        },
+        {
+            type: 'DatePicker',
+            info: {
+                label: 'Due date:',
+                propName: 'dueDate',
+                selectedDate: task.dueDate,
+            }
+        },
+        {
+            type: 'MemberPicker',
+            info: {
+                label: 'Members: ',
+                propName: 'memberIds',
+                selectedMemberIds: task.memberIds || [],
+                members: board.members
+            }
+        }
+    ]
 
     useEffect(() => {
         elDialog.current.showModal()
@@ -176,6 +207,25 @@ export function TaskEdit() {
         setCommentText('')
     }
 
+    async function updateCmpInfo(cmp, cmpInfoPropName, data, activityTitle) {
+        const taskPropName = cmp.info.propName
+        console.log(`Updating: ${taskPropName} to: `, data)
+        // Update cmps in local state
+        const updatedCmp = structuredClone(cmp)
+        updatedCmp.info[cmpInfoPropName] = data
+        // setCmps(cmps.map(currCmp => (currCmp.info.propName !== cmp.info.propName) ? currCmp : updatedCmp))
+        // Update the task
+        const updatedTask = structuredClone(task)
+        updatedTask[taskPropName] = data
+        try {
+            // await updateTask(boardId, groupId, updatedTask, activityTitle)
+            showSuccessMsg(`Task updated`)
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+    }
+
+
     return (
         <dialog ref={elDialog} className="task-edit">
             <header>
@@ -219,6 +269,9 @@ export function TaskEdit() {
                             />}
                     </section>
                     <div className="task-content">
+                        <div className="cmps-container">
+                            {cmps.map((cmp, idx) => <DynamicCmp cmp={cmp} key={idx} updateCmpInfo={updateCmpInfo} />)}
+                        </div>
                         <section className="task-actions task-grid-container">
                             <div></div>
                             <div className="task-actions-btns">

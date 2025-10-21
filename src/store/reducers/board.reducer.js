@@ -35,6 +35,18 @@ export function boardReducer(state = initialState, action) {
             boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
             newState = { ...state, boards, board: action.board }
             break
+        // case UPDATE_TASK:
+        //     const board = { ...state.board }
+        //     board.groups = state.board.groups.map(g => {
+        //         if (g.id !== action.groupId) return g
+        //         const group = { ...g }
+        //         group.tasks = group.tasks.map(t => (t.id !== action.task.id) ? t : action.task)
+        //         return group
+        //     })
+        //     board.activities = [...board.activities, action.activity]
+        //     newState = { ...state, board }
+        //     break
+
         case ADD_BOARD_MSG:
             if (action.msg && state.board) {
                 newState = { ...state, board: { ...state.board, msgs: [...state.board.msgs || [], action.msg] } }

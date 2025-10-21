@@ -40,6 +40,19 @@ async function save(board) {
     return savedBoard
 }
 
+async function updateTask(boardId, groupId, task, activityTitle) {
+    // Later, this is all done by the backend
+    const board = await getById(boardId)
+    const group = board.groups.find(g => g.id === groupId)
+    const idx = group.tasks.findIndex(t => t.id === task.id)
+    group.tasks[idx] = task
+    // const activity = _createActivity(activityTitle, _toMiniTask(task), _toMiniGroup(group))
+    // board.activities.push(activity)
+    // await storageService.put(STORAGE_KEY, board)
+    // return [task, activity]
+}
+
+
 async function addBoardMsg(carId, txt) {
     // Later, this is all done by the backend
     const car = await getById(carId)

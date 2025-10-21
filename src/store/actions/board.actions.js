@@ -65,6 +65,19 @@ export async function updateBoard(board) {
     }
 }
 
+export async function updateTask(boardId, groupId, task, activityTitle) {
+    try {
+        const [savedTask, activity] = await boardService.updateTask(boardId, groupId, task, activityTitle)
+        console.log('Updated task', savedTask)
+        // store.dispatch(getCmdUpdateTask(groupId, task, activity))
+        return savedTask
+    } catch (err) {
+        console.log('Cannot update task', err)
+        throw err
+    }
+}
+
+
 export async function addBoardMsg(boardId, txt) {
     try {
         const msg = await boardService.addBoardMsg(boardId, txt)
