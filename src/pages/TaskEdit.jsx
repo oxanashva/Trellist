@@ -27,13 +27,13 @@ export function TaskEdit() {
     const commentTextareaRef = useRef(null)
 
     const board = useSelector(storeState => storeState.boardModule.board)
-    const task = board?.tasks.find(task => task._id === taskId)
-    const group = board?.groups.find(group => group._id === task.idGroup)
+    const task = board?.tasks.find(task => task?._id === taskId)
+    const group = board?.groups.find(group => group?._id === task?.idGroup)
     const comments = board?.actions.filter(action => {
         return action.data.idTask === task._id
     })
 
-    const [isChecked, setIsChecked] = useState(task.closed || false)
+    const [isChecked, setIsChecked] = useState(task?.closed || false)
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isDescEditing, setIsDescEditing] = useState(false)
     const [editingCommentId, setEditingCommentId] = useState(null)
@@ -179,7 +179,7 @@ export function TaskEdit() {
     return (
         <dialog ref={elDialog} className="task-edit">
             <header>
-                <span className="group-name">{group.name}</span>
+                <span className="group-name">{group?.name}</span>
                 <div className="task-header-actions">
                     <button className="icon-btn dynamic-btn">
                         <ImageIcon width={16} height={16} fill="currentColor" />
@@ -187,7 +187,7 @@ export function TaskEdit() {
                     <button className="icon-btn dynamic-btn">
                         <MoreIcon width={16} height={16} fill="currentColor" />
                     </button>
-                    <Link to={`/board/${board._id}`} className="icon-btn dynamic-btn link-btn">
+                    <Link to={`/board/${board?._id}`} className="icon-btn dynamic-btn link-btn">
                         <CloseIcon width={24} height={24} fill="currentColor" />
                     </Link>
                 </div>
@@ -259,8 +259,8 @@ export function TaskEdit() {
                             </div>
                             <h3 className="heading">Description</h3>
                             <div></div>
-                            {(task.desc && !isDescEditing) && <p onClick={() => setIsDescEditing(true)}>{task.desc}</p>}
-                            {(!task.desc && !isDescEditing) &&
+                            {(task?.desc && !isDescEditing) && <p onClick={() => setIsDescEditing(true)}>{task.desc}</p>}
+                            {(!task?.desc && !isDescEditing) &&
                                 <button
                                     className="add-description-btn"
                                     onClick={() => setIsDescEditing(true)}
@@ -306,7 +306,7 @@ export function TaskEdit() {
                         </div>
                         <h3 className="heading">Comments and activities</h3>
                         {/* TODO: implement reusable component for editable field */}
-                        {comments.map((comment) => {
+                        {comments?.map((comment) => {
                             const isThisCommentEditing = comment._id === editingCommentId
                             return (
                                 <React.Fragment key={comment._id}>
