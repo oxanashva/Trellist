@@ -101,7 +101,7 @@ export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, o
             <div className="group-task-gap"></div>
             <ol>
                 {tasks.map(task =>
-                    <TaskPreview key={task._id} task={task} onCompleteTask={onCompleteTask} />
+                    <TaskPreview key={task._id} board={board} task={task} onCompleteTask={onCompleteTask} />
                 )}
                 {isAddingTask &&
                     <li className="add-task-form">

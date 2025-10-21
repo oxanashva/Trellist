@@ -26,12 +26,49 @@
 
         & .task-header {
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
             gap: 0.5rem;
 
+            .cover-img {
+                width: 100%;
+                background-color: #e4e4e4;
+                border-radius: 0.25rem;
+                overflow: hidden;
+            }
+
+            & .task-name {
+                display: flex;
+                gap: 0.5rem;
+            }
+
             & .task-state {
                 margin-block-start: 0.125rem;
+            }
+        }
+
+        .task-badges {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 0.25rem;
+            max-width: 100%;
+
+            & .badge {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.25rem;
+                width: fit-content;
+                max-width: 100%;
+                height: 20px;
+                margin-block-end: 0.25rem;
+                padding: 0.125rem;
+                border-radius: 0.25rem;
+                color: var(--text-subtle);
+                font-size: 12px;
+                cursor: pointer;
             }
         }
 
