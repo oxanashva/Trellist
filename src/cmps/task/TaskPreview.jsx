@@ -34,12 +34,19 @@ export function TaskPreview({ board, task, onCompleteTask }) {
             <Link to={`/board/${boardId}/task/${task._id}`}>
                 <div className="task-wrapper">
                     <div className="task-header">
-                        <div className="task-state" onClick={handleCheck}>
-                            {isChecked
-                                ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
-                                : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
+                        {task.cover.sharedSourceUrl &&
+                            <div className="cover-img" >
+                                <img src={task.cover.sharedSourceUrl} alt="card-image" />
+                            </div>
+                        }
+                        <div className="task-name">
+                            <div className="task-state" onClick={handleCheck}>
+                                {isChecked
+                                    ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
+                                    : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
+                            </div>
+                            <span>{task.name}</span>
                         </div>
-                        <span>{task.name}</span>
                     </div>
                     {/* TODO: update task.badges on add comment/description or another action and use them to conditionally render */}
                     <div className="task-badges">
