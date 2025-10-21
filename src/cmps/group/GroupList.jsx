@@ -39,8 +39,8 @@ export function GroupList({ board, groups, tasks, onAddTask, onAddGroup, onCompl
     return (
         <section className="group-list">
             <ol className="groups">
-                {groups.map(group => {
-                    const tasksForThisGroup = tasks.filter(task => task.idGroup === group._id)
+                {groups?.map(group => {
+                    const tasksForThisGroup = tasks?.filter(task => task.idGroup === group._id)
                     return <GroupPreview key={group._id} board={board} group={group} tasks={tasksForThisGroup} onAddTask={onAddTask} onCompleteTask={onCompleteTask} onUpdateGroup={onUpdateGroup} />
                 }
                 )}

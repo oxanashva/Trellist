@@ -11,7 +11,8 @@ export const boardService = {
     getById,
     save,
     remove,
-    addBoardMsg
+    addBoardMsg,
+    getEmptyBoard
 }
 window.bs = boardService
 
@@ -52,6 +53,33 @@ async function addBoardMsg(carId, txt) {
     await storageService.put(STORAGE_KEY, car)
 
     return msg
+}
+
+function getEmptyBoard() {
+    const placeholderMember = {
+        _id: makeId(),
+        avatarUrl: null,
+        fullname: 'Guest User',
+        username: 'guest',
+        initials: 'GU'
+    };
+
+    return {
+        desc: '',
+        closed: false,
+        starred: false,
+        prefs: {
+            background: '#1868DB',
+        },
+        dateLastActivity: Date.now(),
+        dateLastView: Date.now(),
+        idMemberCreator: placeholderMember._id,
+        actions: [],
+        cards: [],
+        labels: [],
+        members: [placeholderMember],
+        checklists: []
+    };
 }
 
 function _createBoard() {

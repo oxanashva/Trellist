@@ -62,14 +62,20 @@ export function BoardDetails() {
     function onAddGroup(newGroup) {
         updateBoard({
             ...board,
-            groups: [...board.groups, newGroup]
+            groups: [
+                ...(board.groups || []),
+                newGroup
+            ]
         })
     }
 
     function onAddTask(newTask) {
         updateBoard({
             ...board,
-            tasks: [...board.tasks, newTask]
+            tasks: [
+                ...(board.tasks || []),
+                newTask
+            ]
         })
     }
 
