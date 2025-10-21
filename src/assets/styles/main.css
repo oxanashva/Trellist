@@ -16,6 +16,7 @@
 
 @import "cmps/AppHeader";
 @import "cmps/UserMsg";
+@import "cmps/Loader";
 
 @import "cmps/group/GroupList";
 @import "cmps/group/GroupPreview";

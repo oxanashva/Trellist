@@ -24,10 +24,7 @@
 
         & h1, input {
             display: block;
-
-            &.hidden {
-                display: none;
-            }
+            cursor: pointer;
         }
 
         & .btn-group {

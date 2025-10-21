@@ -12,10 +12,12 @@ import UserPlusIcon from '../assets/images/icons/user-plus.svg?react'
 import MoreIcon from '../assets/images/icons/more.svg?react'
 
 import { GroupList } from '../cmps/group/GroupList'
+import { Loader } from '../cmps/Loader'
 
 export function BoardDetails() {
     const { boardId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
+    const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
 
     const inputRef = useRef(null)
     const [boardName, setBoardName] = useState('')
@@ -46,6 +48,17 @@ export function BoardDetails() {
         setBoardName(target.value)
     }
 
+    function onBoardNameKeyDown(ev) {
+        if (ev.key === 'Enter') {
+            ev.preventDefault()
+            ev.target.blur()
+        }
+        if (ev.key === 'Escape') {
+            setBoardName(board.name)
+            setIsEditing(false)
+        }
+    }
+
     function onAddGroup(newGroup) {
         updateBoard({
             ...board,
@@ -74,39 +87,33 @@ export function BoardDetails() {
         })
     }
 
-    const h1ClassName = `board-title ${isEditing ? 'hidden' : ''}`
-    const inputClassName = `board-title ${isEditing ? '' : 'hidden'}`
-
-    if (!board) return <div>Loading...</div>
+    if (isLoading) return <Loader />
 
     return (
         <section className="board-details full">
             <header>
                 <div>
-                    <h1
-                        className={h1ClassName}
-                        onClick={() => setIsEditing(true)}
-                    >
-                        {boardName}
-                    </h1>
-                    <input
-                        ref={inputRef}
-                        className={inputClassName}
-                        type="text"
-                        value={boardName}
-                        onChange={handleInput}
-                        onBlur={handleInputBlur}
-                        onKeyDown={(ev) => {
-                            if (ev.key === 'Enter') {
-                                ev.preventDefault()
-                                ev.target.blur()
-                            }
-                            if (ev.key === 'Escape') {
-                                setBoardName(boardName)
-                                setIsEditing(false)
-                            }
-                        }}
-                    />
+                    {/* TODO: implement reusable component for editable field */}
+                    {!isEditing &&
+                        <h1
+                            className="board-title"
+                            onClick={() => setIsEditing(true)}
+                            title="Edit board name"
+                        >
+                            {boardName}
+                        </h1>
+                    }
+                    {isEditing &&
+                        <input
+                            ref={inputRef}
+                            className="board-title"
+                            type="text"
+                            value={boardName}
+                            onChange={handleInput}
+                            onBlur={handleInputBlur}
+                            onKeyDown={onBoardNameKeyDown}
+                        />
+                    }
                 </div>
                 <div className="btn-group">
                     <div className="avatar-btn-group">
@@ -144,7 +151,7 @@ export function BoardDetails() {
                     onCompleteTask={onCompleteTask}
                     onUpdateGroup={onUpdateGroup}
                 />}
-            <Outlet context={board} />
+            <Outlet />
         </section>
     )
 }
