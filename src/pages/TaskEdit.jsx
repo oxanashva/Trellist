@@ -3,6 +3,8 @@ import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router"
 
 import { updateBoard } from "../store/actions/board.actions"
+import { makeId } from "../services/util.service"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import MoreIcon from '../assets/images/icons/more.svg?react'
 import ImageIcon from '../assets/images/icons/image.svg?react'
@@ -14,12 +16,12 @@ import LabelIcon from '../assets/images/icons/label.svg?react'
 import ClockIcon from '../assets/images/icons/clock.svg?react'
 import CheckListIcon from '../assets/images/icons/checklist.svg?react'
 import MemberPlusIcon from '../assets/images/icons/member-plus.svg?react'
+import AttachmentIcon from '../assets/images/icons/attachment.svg?react'
 import ThumbsUpIcon from '../assets/images/icons/thumbs-up.svg?react'
 import DescriptionIcon from '../assets/images/icons/description.svg?react'
 import CommentText from '../assets/images/icons/comment-text.svg?react'
-import { makeId } from "../services/util.service"
-import { DynamicCmp } from "../cmps/task/DynamicCmp"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+
+import { DynamicPicker } from "../cmps/task/picker/DynamicPicker"
 
 export function TaskEdit() {
     const elDialog = useRef(null)
@@ -39,39 +41,60 @@ export function TaskEdit() {
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isDescEditing, setIsDescEditing] = useState(false)
     const [editingCommentId, setEditingCommentId] = useState(null)
+    const [picker, setPicker] = useState(null)
+    const [anchorEl, setAnchorEl] = useState(null)
+    const openPopover = Boolean(anchorEl);
+
+    // Open popover when button clicked
+    const handlePopoverOpen = (event, pickerType) => {
+        setAnchorEl(event.currentTarget)
+        setPicker(pickerType)
+    };
+
+    // Close popover
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
 
     const [taskName, setTaskName] = useState(task?.name || "")
     const [taskDescription, setTaskDescription] = useState(task?.desc || "")
     const [commentText, setCommentText] = useState("")
 
-    const cmps = [
-        {
-            type: 'StatusPicker',
+    const PICKER_MAP = {
+        // STATUS: {
+        //     type: 'StatusPicker',
+        //     info: {
+        //         label: 'Status:',
+        //         propName: 'status',
+        //         selectedStatus: task?.status,
+        //     }
+        // },
+        LABEL: {
+            type: 'LabelPicker',
             info: {
-                label: 'Status:',
-                propName: 'status',
-                selectedStatus: task.status,
-                // statuses: _getStatuses()
+                label: 'Labels:',
+                propName: 'labels',
+                selectedDate: task?.labels,
             }
         },
-        {
+        DATE: {
             type: 'DatePicker',
             info: {
                 label: 'Due date:',
                 propName: 'dueDate',
-                selectedDate: task.dueDate,
+                selectedDate: task?.dueDate,
             }
         },
-        {
-            type: 'MemberPicker',
-            info: {
-                label: 'Members: ',
-                propName: 'memberIds',
-                selectedMemberIds: task.memberIds || [],
-                members: board.members
-            }
-        }
-    ]
+        // MEMBER: {
+        //     type: 'MemberPicker',
+        //     info: {
+        //         label: 'Members: ',
+        //         propName: 'memberIds',
+        //         selectedMemberIds: task?.memberIds || [],
+        //         members: board?.members
+        //     }
+        // }
+    }
 
     useEffect(() => {
         elDialog.current.showModal()
@@ -207,13 +230,13 @@ export function TaskEdit() {
         setCommentText('')
     }
 
-    async function updateCmpInfo(cmp, cmpInfoPropName, data, activityTitle) {
-        const taskPropName = cmp.info.propName
+    async function updatePickerInfo(picker, pickerInfoPropName, data, activityTitle) {
+        const taskPropName = picker.info.propName
         console.log(`Updating: ${taskPropName} to: `, data)
-        // Update cmps in local state
-        const updatedCmp = structuredClone(cmp)
-        updatedCmp.info[cmpInfoPropName] = data
-        // setCmps(cmps.map(currCmp => (currCmp.info.propName !== cmp.info.propName) ? currCmp : updatedCmp))
+        // Update pickers in local state
+        const updatedPicker = structuredClone(picker)
+        updatedPicker.info[pickerInfoPropName] = data
+        // setCmps(pickers.map(currCmp => (currCmp.info.propName !== picker.info.propName) ? currCmp : updatedCmp))
         // Update the task
         const updatedTask = structuredClone(task)
         updatedTask[taskPropName] = data
@@ -228,7 +251,7 @@ export function TaskEdit() {
 
     return (
         <dialog ref={elDialog} className="task-edit">
-            <header>
+            <header className="task-edit-header">
                 <span className="group-name">{group?.name}</span>
                 <div className="task-header-actions">
                     <button className="icon-btn dynamic-btn">
@@ -269,31 +292,68 @@ export function TaskEdit() {
                             />}
                     </section>
                     <div className="task-content">
-                        <div className="cmps-container">
-                            {cmps.map((cmp, idx) => <DynamicCmp cmp={cmp} key={idx} updateCmpInfo={updateCmpInfo} />)}
+                        <div className="pickers-container">
+                            {picker && (
+                                <DynamicPicker
+                                    picker={picker}
+                                    activePicker={picker}
+                                    open={openPopover}
+                                    anchorEl={anchorEl}
+                                    onClose={handlePopoverClose}
+                                    updatePickerInfo={updatePickerInfo}
+                                />
+                            )}
                         </div>
                         <section className="task-actions task-grid-container">
                             <div></div>
                             <div className="task-actions-btns">
-                                <button className="action-btn">
+                                <button
+                                    className="action-btn"
+                                    onClick={(event) => {
+                                        handlePopoverOpen(event, PICKER_MAP.ADD)
+                                    }}>
                                     <PlusIcon width={16} height={16} fill="currentColor" />
                                     <span>Add</span>
                                 </button>
-                                <button className="action-btn">
+                                <button
+                                    className="action-btn"
+                                    onClick={(event) => {
+                                        handlePopoverOpen(event, PICKER_MAP.LABEL)
+                                    }}>
                                     <LabelIcon width={16} height={16} fill="currentColor" />
                                     <span>Labels</span>
                                 </button>
-                                <button className="action-btn">
+                                <button
+                                    className="action-btn"
+                                    onClick={(event) => {
+                                        handlePopoverOpen(event, PICKER_MAP.DATE)
+                                    }}>
                                     <ClockIcon width={16} height={16} fill="currentColor" />
                                     <span>Dates</span>
                                 </button>
-                                <button className="action-btn">
+                                <button
+                                    className="action-btn"
+                                    onClick={(event) => {
+                                        handlePopoverOpen(event, PICKER_MAP.CHECKLIST)
+                                    }}>
                                     <CheckListIcon width={16} height={16} fill="currentColor" />
-                                    <span>Checkgroup</span>
+                                    <span>Checklists</span>
                                 </button>
-                                <button className="action-btn">
+                                <button
+                                    className="action-btn"
+                                    onClick={() => {
+                                        handlePopoverOpen(event, PICKER_MAP.MEMBER)
+                                    }}>
                                     <MemberPlusIcon width={16} height={16} fill="currentColor" />
                                     <span>Members</span>
+                                </button>
+                                <button
+                                    className="action-btn"
+                                    onClick={(event) => {
+                                        handlePopoverOpen(event, PICKER_MAP.ATTACHMENT)
+                                    }}>
+                                    <AttachmentIcon width={16} height={16} fill="currentColor" />
+                                    <span>Attachments</span>
                                 </button>
                             </div>
                         </section>

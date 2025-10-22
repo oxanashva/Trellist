@@ -97,7 +97,7 @@ export function BoardDetails() {
 
     return (
         <section className="board-details full">
-            <header>
+            <header className="board-details-header">
                 <div>
                     {/* TODO: implement reusable component for editable field */}
                     {!isEditing &&

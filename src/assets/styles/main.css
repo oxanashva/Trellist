@@ -25,6 +25,10 @@
 @import "cmps/group/GroupPreview";
 @import "cmps/task/TaskPreview";
 
+@import "cmps/task/picker/DynamicPicker";
+@import "cmps/task/picker/DatePicker";
+@import "cmps/task/picker/LabelPicker";
+
 /* @import "cmps/board/BoardGroup";
 @import "cmps/board/BoardPreview";
 @import "cmps/board/BoardFilter"; */
