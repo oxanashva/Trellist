@@ -101,6 +101,7 @@ export function DatePicker({ info, onUpdate }) {
 
 
             <div className="date-range">
+                {/* <form action=""> */}
                 <div className="start-date">
                     {renderCalendar("startDate")}
                     <fieldset>
@@ -169,6 +170,7 @@ export function DatePicker({ info, onUpdate }) {
                         />
                     </fieldset>
                 </div>
+                {/* </form> */}
             </div>
         </section>
     )

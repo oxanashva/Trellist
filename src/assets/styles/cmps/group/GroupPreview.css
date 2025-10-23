@@ -53,7 +53,7 @@
         padding: 0.25rem; /* 4px */
         overflow-x: hidden;
         overflow-y: auto;
-        group-style: none;
+        list-style: none;
         row-gap: 8px;
         scrollbar-color: #0B120E24 #0515240F;
         scrollbar-width: thin;

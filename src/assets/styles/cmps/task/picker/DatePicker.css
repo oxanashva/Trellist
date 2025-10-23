@@ -1,4 +1,8 @@
 .date-picker {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
     &  .picker-header {
         display: flex;
         align-items: center;
@@ -20,6 +24,31 @@
             white-space: nowrap;
 
             color: var(--dynamic-text);
+        }
+    }
+
+    & .date-range {
+        flex-grow: 1;
+        overflow-y: auto;
+        max-height: 100vh;
+        min-height: 0;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
         }
     }
 

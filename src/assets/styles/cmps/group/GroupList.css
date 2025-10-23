@@ -4,7 +4,7 @@
     
     & .groups {
         display: flex;
-        group-style-type: none;
+        list-style-type: none;
         margin: 12px 0 0 0; /* 12px 0 0 0 */
         padding: 0;
         top: -0.125rem;

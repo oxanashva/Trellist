@@ -60,8 +60,11 @@ export function DynamicPicker({ picker, updateCmpInfo, activePicker, open, ancho
             slotProps={{
                 paper: {
                     sx: {
+                        top: '68px !important',
+                        bottom: "10px !important",
                         borderRadius: '0.5rem',
                         boxShadow: '0px 2px 6px #1E1F2126, 0px 0px 1px #1E1F214F',
+                        overflowY: "hidden",
                         transition: 'none',
                     },
                 },
