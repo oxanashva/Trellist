@@ -30,6 +30,8 @@ import ShevronUp from '../assets/images/icons/shevron-up.svg?react'
 import ShevronDown from '../assets/images/icons/shevron-down.svg?react'
 import GitHub from '../assets/images/icons/github.svg?react'
 import Trello from '../assets/images/icons/trello.svg?react'
+import CheckboxCheckIcon from '../assets/images/icons/checkbox-check.svg?react'
+import CheckboxUncheckIcon from '../assets/images/icons/checkbox-uncheck.svg?react'
 
 export function Icon() {
     return (
@@ -66,6 +68,8 @@ export function Icon() {
             <ShevronDown width={16} height={16} fill="currentColor" />
             <GitHub width={16} height={16} fill="currentColor" />
             <Trello width={16} height={16} fill="currentColor" />
+            <CheckboxCheckIcon width={16} height={16} fill="currentColor" />
+            <CheckboxUncheckIcon width={16} height={16} fill="currentColor" />
         </>
     )
 }

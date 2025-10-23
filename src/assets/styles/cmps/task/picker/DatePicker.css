@@ -22,4 +22,8 @@
             color: var(--dynamic-text);
         }
     }
+
+    & .calendar {
+        padding: 0.5rem;
+    }
 }
