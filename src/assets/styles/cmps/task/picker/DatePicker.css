@@ -1,7 +1,7 @@
 .date-picker {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    min-height: 0;
 
     &  .picker-header {
         display: flex;
@@ -28,10 +28,7 @@
     }
 
     & .date-range {
-        flex-grow: 1;
         overflow-y: auto;
-        max-height: 100vh;
-        min-height: 0;
 
         &::-webkit-scrollbar-track {
             background: transparent;
@@ -52,7 +49,70 @@
         }
     }
 
-    & .calendar {
+    & .calendar, .date-control, .action-btns {
         padding: 0.5rem;
+    }
+
+    & .date-control {
+        & > fieldset {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            border: 0;
+
+            & > legend {
+                width: 100%;
+                margin-block: 0.75rem 0.25rrem;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: var(--ds-text-subtle);
+            }
+        }        
+    }
+
+    & .date-checkbox {
+        & > input {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 1px;
+            height: 1px;
+            margin: 0;
+            padding:0;
+
+            border: 0;
+            clip: rect(1px, 1px, 1px, 1px);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        & > span {
+            position: relative;
+            
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin-inline-start: 0.125rem;
+
+            white-space: nowrap;
+
+            border-radius: 2px;
+            outline:#4688EC auto 2px;
+            outline-offset: 2px;
+            background-color: #ffffff;
+            box-shadow: inset 0 0 0 1px #8C8F97;
+
+            transition: all 0.2s ease-in-out;
+            overflow: hidden;
+        }
+    }
+
+    & .action-btns {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 0.5rem;
     }
 }

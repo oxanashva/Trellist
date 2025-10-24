@@ -1,7 +1,9 @@
 .dynamic-picker {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 304px;
-    overflow: hidden;
+    height: 100%;
 
     & .close-btn {
         position: absolute;
