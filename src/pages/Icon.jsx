@@ -31,7 +31,6 @@ import ShevronDown from '../assets/images/icons/shevron-down.svg?react'
 import GitHub from '../assets/images/icons/github.svg?react'
 import Trello from '../assets/images/icons/trello.svg?react'
 import CheckboxCheckIcon from '../assets/images/icons/checkbox-check.svg?react'
-import CheckboxUncheckIcon from '../assets/images/icons/checkbox-uncheck.svg?react'
 
 export function Icon() {
     return (
