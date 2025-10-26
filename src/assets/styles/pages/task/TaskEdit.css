@@ -1,8 +1,8 @@
 .task-edit {
     position: relative;
     width: 1080px;
-    height: 100dvh;
-    max-height: calc(100dvh - 128px);
+    height: 100vh;
+    max-height: calc(100vh - 128px);
 
     border: 0;
     border-radius: 0.75rem;
@@ -44,7 +44,7 @@
     }
 
     & .content-wrapper {
-        height: 100%;
+        height: calc(100% - 56px);
         display: flex;
         overflow-y: hidden;
 
