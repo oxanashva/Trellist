@@ -172,6 +172,11 @@
                         background-color: var(--background-accent-red);
                         color: var(--text-accent-red);
                     }
+
+                    &.badge-closed {
+                        background-color: var(--background-success-bold);
+                        color: #ffffff;
+                    }
                 }
             }
         }

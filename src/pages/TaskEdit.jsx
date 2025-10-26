@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router"
 import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for parsing time like "h:mm A"
 dayjs.extend(customParseFormat)
+import { getDueStatusBadge } from "../services/task/task.utils"
 
 import { updateBoard } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
@@ -24,7 +25,7 @@ import AttachmentIcon from "../assets/images/icons/attachment.svg?react"
 import ThumbsUpIcon from "../assets/images/icons/thumbs-up.svg?react"
 import DescriptionIcon from "../assets/images/icons/description.svg?react"
 import CommentText from "../assets/images/icons/comment-text.svg?react"
-import ShevronDown from '../assets/images/icons/shevron-down.svg?react'
+import ShevronDown from "../assets/images/icons/shevron-down.svg?react"
 
 import { DynamicPicker } from "../cmps/task/picker/DynamicPicker"
 
@@ -56,7 +57,6 @@ export function TaskEdit() {
         setPicker(pickerType)
     };
 
-    // Close popover
     const handlePopoverClose = () => {
         setAnchorEl(null);
     };
@@ -235,37 +235,7 @@ export function TaskEdit() {
         setCommentText("")
     }
 
-    function getDueStatusBadge(dueDateString, dueTimeString = null) {
-        let deadline = dayjs(dueDateString)
-
-        if (dueTimeString) {
-            const time = dayjs(dueTimeString, "h:mm A")
-
-            deadline = deadline.hour(time.hour()).minute(time.minute()).second(0).millisecond(0)
-        }
-
-        const now = dayjs()
-
-        if (deadline.isBefore(now)) {
-            return {
-                text: "Overdue",
-                className: "badge-overdue"
-            }
-        }
-
-        const hoursDiff = deadline.diff(now, "hour", true)
-
-        if (hoursDiff <= 24) {
-            return {
-                text: "Due soon",
-                className: "badge-due-soon"
-            }
-        }
-
-        return null
-    }
-
-    const badgeInfo = getDueStatusBadge(task.due, task.dueTime)
+    const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
 
     return (
         <dialog ref={elDialog} className="task-edit">
@@ -389,14 +359,23 @@ export function TaskEdit() {
 
                             {(task?.due || task?.start) &&
                                 <section className="task-actions task-flex-container">
-                                    <h3 className="params-heading">Dates</h3>
+                                    <h3 className="params-heading">
+                                        {(task?.start && task?.due)
+                                            ? "Dates"
+                                            : task?.due
+                                                ? "Due date"
+                                                : "Start date"
+                                        }
+                                    </h3>
                                     <button
                                         className="params-btn"
                                         onClick={(event) => {
                                             handlePopoverOpen(event, PICKER_MAP.DATE)
                                         }}
                                     >
-                                        {dayjs(task.due).format("MMM DD")} {task.dueTime ? `, ${task.dueTime}` : ""}
+                                        {task.start ? dayjs(task.start).format("MMM DD") : ""}
+                                        {task.start && task.due && " - "}
+                                        {task.due ? dayjs(task.due).format("MMM DD") : ""} {task.dueTime ? `, ${task.dueTime}` : ""}
                                         {badgeInfo && (
                                             <span className={`due-badge ${badgeInfo.className}`}>
                                                 {badgeInfo.text}

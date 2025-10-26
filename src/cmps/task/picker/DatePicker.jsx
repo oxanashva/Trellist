@@ -18,8 +18,8 @@ export function DatePicker({ task, onUpdate, onClose }) {
         startDate: task.start ? dayjs(task.start) : dayjs(),
         startDateInput: task.start ? dayjs(task.start).format("MM/DD/YYYY") : dayjs().format("MM/DD/YYYY"),
         isDueDateSet: true,
-        dueDate: task.due ? dayjs(task.due) : dayjs().add(1, 'day'),
-        dueDateInput: task.due ? dayjs(task.due).format("MM/DD/YYYY") : dayjs().add(1, 'day').format("MM/DD/YYYY"),
+        dueDate: task.due ? dayjs(task.due) : dayjs().add(1, "day"),
+        dueDateInput: task.due ? dayjs(task.due).format("MM/DD/YYYY") : dayjs().add(1, "day").format("MM/DD/YYYY"),
         dueTime: (task.dueTime && task.dueTime) || dayjs().format("h:mm A"),
     })
 
@@ -65,7 +65,11 @@ export function DatePicker({ task, onUpdate, onClose }) {
 
     function onSubmit(e) {
         e.preventDefault()
-        onUpdate(task._id, { due: dueDate, dueTime, start: startDate })
+        onUpdate(task._id, {
+            due: isDueDateSet ? dueDate : null,
+            dueTime: isDueDateSet ? dueTime : null,
+            start: isStartDateSet ? startDate : null
+        })
         onClose()
     }
 
