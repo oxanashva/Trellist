@@ -102,6 +102,12 @@
         }
     }
 
+    & .divider {
+        height: 1px;
+        margin-inline: 0.75rem;
+        background-color: #080F214A;
+    }
+
     & .date-checkbox {
         &>input {
             position: absolute;

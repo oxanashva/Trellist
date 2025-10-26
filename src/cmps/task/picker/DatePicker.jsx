@@ -77,6 +77,10 @@ export function DatePicker({ info, onUpdate }) {
                         sx={{
                             width: "unset",
                             fontSize: "0.875rem",
+                            height: "unset",
+                            "& .MuiPickersSlideTransition-root": {
+                                minHeight: "200px",
+                            },
                             "& .MuiPickersDay-root": {
                                 fontSize: "0.875rem",
                             },
@@ -110,37 +114,6 @@ export function DatePicker({ info, onUpdate }) {
             <div className="date-range">
                 <form onSubmit={onUpdate}>
                     <div className="date-field-container">
-                        {renderCalendar("startDate")}
-                        <fieldset>
-                            <legend>Start Date</legend>
-                            <div className="date-input-with-toggle">
-                                <label htmlFor="start-checkbox" className="date-checkbox">
-                                    <input
-                                        type="checkbox"
-                                        id="start-checkbox"
-                                        name="isStartDateSet"
-                                        checked={isStartDateSet}
-                                        onChange={handleChange}
-                                    />
-                                    <span className={startCheckIconClass}>
-                                        <CheckboxCheckIcon width={16} height={16} fill={isStartDateSet ? "#ffffff" : "transparent"} />
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    ref={startDateInputRef}
-                                    className="date-input"
-                                    name="startDate"
-                                    value={isStartDateSet ? startDateInput : ""}
-                                    disabled={!isStartDateSet}
-                                    placeholder="M/D/YYYY"
-                                    onChange={(e) => handleDateInputChange("startDate", e.target.value)}
-                                />
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div className="date-field-container">
-                        {renderCalendar("dueDate")}
                         <fieldset>
                             <legend>Due Date</legend>
                             <div className="date-input-with-toggle">
@@ -176,6 +149,38 @@ export function DatePicker({ info, onUpdate }) {
                                     onChange={handleChange}
                                 />
                             </div>
+                            {renderCalendar("dueDate")}
+                        </fieldset>
+                    </div>
+                    <div className="divider"></div>
+                    <div className="date-field-container">
+                        <fieldset>
+                            <legend>Start Date</legend>
+                            <div className="date-input-with-toggle">
+                                <label htmlFor="start-checkbox" className="date-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        id="start-checkbox"
+                                        name="isStartDateSet"
+                                        checked={isStartDateSet}
+                                        onChange={handleChange}
+                                    />
+                                    <span className={startCheckIconClass}>
+                                        <CheckboxCheckIcon width={16} height={16} fill={isStartDateSet ? "#ffffff" : "transparent"} />
+                                    </span>
+                                </label>
+                                <input
+                                    type="text"
+                                    ref={startDateInputRef}
+                                    className="date-input"
+                                    name="startDate"
+                                    value={isStartDateSet ? startDateInput : ""}
+                                    disabled={!isStartDateSet}
+                                    placeholder="M/D/YYYY"
+                                    onChange={(e) => handleDateInputChange("startDate", e.target.value)}
+                                />
+                            </div>
+                            {renderCalendar("startDate")}
                         </fieldset>
                     </div>
                     <div className="action-btns">
