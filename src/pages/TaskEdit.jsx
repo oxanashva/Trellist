@@ -295,12 +295,12 @@ export function TaskEdit() {
                         <div className="pickers-container">
                             {picker && (
                                 <DynamicPicker
+                                    task={task}
                                     picker={picker}
-                                    activePicker={picker}
                                     open={openPopover}
                                     anchorEl={anchorEl}
                                     onClose={handlePopoverClose}
-                                    updatePickerInfo={updatePickerInfo}
+                                    updateTask={updateTask}
                                 />
                             )}
                         </div>

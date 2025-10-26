@@ -12,15 +12,15 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar"
 
 import CheckboxCheckIcon from "../../../assets/images/icons/checkbox-check.svg?react"
 
-export function DatePicker({ info, onUpdate }) {
+export function DatePicker({ task, onUpdate, onClose }) {
     const [schedule, setSchedule] = useState({
-        isStartDateSet: false,
-        startDate: dayjs(),
-        startDateInput: dayjs().format("MM/DD/YYYY"),
+        isStartDateSet: task.start ? true : false,
+        startDate: task.start ? dayjs(task.start) : dayjs(),
+        startDateInput: task.start ? dayjs(task.start).format("MM/DD/YYYY") : dayjs().format("MM/DD/YYYY"),
         isDueDateSet: true,
-        dueDate: dayjs().add(1, 'day'),
-        dueDateInput: dayjs().format("MM/DD/YYYY"),
-        dueTime: dayjs().format("h:mm A"),
+        dueDate: task.due ? dayjs(task.due) : dayjs().add(1, 'day'),
+        dueDateInput: task.due ? dayjs(task.due).format("MM/DD/YYYY") : dayjs().add(1, 'day').format("MM/DD/YYYY"),
+        dueTime: (task.dueTime && task.dueTime) || dayjs().format("h:mm A"),
     })
 
     const {
@@ -61,6 +61,17 @@ export function DatePicker({ info, onUpdate }) {
             [name]: newDate,
             [`${name}Input`]: newDate.format("MM/DD/YYYY"),
         }))
+    }
+
+    function onSubmit(e) {
+        e.preventDefault()
+        onUpdate(task._id, { due: dueDate, dueTime, start: startDate })
+        onClose()
+    }
+
+    function onRemove() {
+        onUpdate(task._id, { due: null, dueTime: null, start: null })
+        onClose()
     }
 
     function renderCalendar(name) {
@@ -112,7 +123,7 @@ export function DatePicker({ info, onUpdate }) {
 
 
             <div className="date-range">
-                <form onSubmit={onUpdate}>
+                <form onSubmit={onSubmit}>
                     <div className="date-field-container">
                         <fieldset>
                             <legend>Due Date</legend>
@@ -193,7 +204,7 @@ export function DatePicker({ info, onUpdate }) {
                         <button
                             className="btn-secondary"
                             type="button"
-                            onClick={onUpdate}
+                            onClick={onRemove}
                         >
                             Remove
                         </button>

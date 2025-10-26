@@ -3,7 +3,7 @@ import { DatePicker } from "./DatePicker"
 import { LabelPicker } from "./LabelPicker"
 import CloseIcon from '../../../assets/images/icons/close.svg?react'
 
-export function DynamicPicker({ picker, updateCmpInfo, activePicker, open, anchorEl, onClose }) {
+export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClose }) {
     const renderPickerContent = () => {
         switch (picker.type) {
             // case 'StatusPicker':
@@ -12,26 +12,14 @@ export function DynamicPicker({ picker, updateCmpInfo, activePicker, open, ancho
             //     }} />
             case 'LabelPicker':
                 return <LabelPicker
-                    type={picker.type}
-                    info={picker.info}
-                    onUpdate={(data) => {
-                        updateCmpInfo(picker, 'selectedColor', data, `Changed color to ${data}`)
-                    }}
-                    activePicker={activePicker}
-                    open={open}
-                    anchorEl={anchorEl}
+                    task={task}
+                    onUpdate={updateTask}
                     onClose={onClose}
                 />
             case 'DatePicker':
                 return <DatePicker
-                    type={picker.type}
-                    info={picker.info}
-                    onUpdate={(data) => {
-                        updateCmpInfo(picker, 'selectedDate', data, `Changed due date to ${data}`)
-                    }}
-                    activePicker={activePicker}
-                    open={open}
-                    anchorEl={anchorEl}
+                    task={task}
+                    onUpdate={updateTask}
                     onClose={onClose}
                 />
             // case 'MemberPicker':
