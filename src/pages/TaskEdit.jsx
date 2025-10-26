@@ -2,24 +2,29 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router"
 
+import dayjs from "dayjs"
+import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for parsing time like "h:mm A"
+dayjs.extend(customParseFormat)
+
 import { updateBoard } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
-import MoreIcon from '../assets/images/icons/more.svg?react'
-import ImageIcon from '../assets/images/icons/image.svg?react'
-import CloseIcon from '../assets/images/icons/close.svg?react'
-import CircleIcon from '../assets/images/icons/circle.svg?react'
-import CircleCheckIcon from '../assets/images/icons/circle-check.svg?react'
-import PlusIcon from '../assets/images/icons/plus.svg?react'
-import LabelIcon from '../assets/images/icons/label.svg?react'
-import ClockIcon from '../assets/images/icons/clock.svg?react'
-import CheckListIcon from '../assets/images/icons/checklist.svg?react'
-import MemberPlusIcon from '../assets/images/icons/member-plus.svg?react'
-import AttachmentIcon from '../assets/images/icons/attachment.svg?react'
-import ThumbsUpIcon from '../assets/images/icons/thumbs-up.svg?react'
-import DescriptionIcon from '../assets/images/icons/description.svg?react'
-import CommentText from '../assets/images/icons/comment-text.svg?react'
+import MoreIcon from "../assets/images/icons/more.svg?react"
+import ImageIcon from "../assets/images/icons/image.svg?react"
+import CloseIcon from "../assets/images/icons/close.svg?react"
+import CircleIcon from "../assets/images/icons/circle.svg?react"
+import CircleCheckIcon from "../assets/images/icons/circle-check.svg?react"
+import PlusIcon from "../assets/images/icons/plus.svg?react"
+import LabelIcon from "../assets/images/icons/label.svg?react"
+import ClockIcon from "../assets/images/icons/clock.svg?react"
+import CheckListIcon from "../assets/images/icons/checklist.svg?react"
+import MemberPlusIcon from "../assets/images/icons/member-plus.svg?react"
+import AttachmentIcon from "../assets/images/icons/attachment.svg?react"
+import ThumbsUpIcon from "../assets/images/icons/thumbs-up.svg?react"
+import DescriptionIcon from "../assets/images/icons/description.svg?react"
+import CommentText from "../assets/images/icons/comment-text.svg?react"
+import ShevronDown from '../assets/images/icons/shevron-down.svg?react'
 
 import { DynamicPicker } from "../cmps/task/picker/DynamicPicker"
 
@@ -62,34 +67,34 @@ export function TaskEdit() {
 
     const PICKER_MAP = {
         // STATUS: {
-        //     type: 'StatusPicker',
+        //     type: "StatusPicker",
         //     info: {
-        //         label: 'Status:',
-        //         propName: 'status',
+        //         label: "Status:",
+        //         propName: "status",
         //         selectedStatus: task?.status,
         //     }
         // },
         LABEL: {
-            type: 'LabelPicker',
+            type: "LabelPicker",
             info: {
-                label: 'Labels:',
-                propName: 'labels',
+                label: "Labels:",
+                propName: "labels",
                 selectedDate: task?.labels,
             }
         },
         DATE: {
-            type: 'DatePicker',
+            type: "DatePicker",
             info: {
-                label: 'Due date:',
-                propName: 'dueDate',
+                label: "Due date:",
+                propName: "dueDate",
                 selectedDate: task?.dueDate,
             }
         },
         // MEMBER: {
-        //     type: 'MemberPicker',
+        //     type: "MemberPicker",
         //     info: {
-        //         label: 'Members: ',
-        //         propName: 'memberIds',
+        //         label: "Members: ",
+        //         propName: "memberIds",
         //         selectedMemberIds: task?.memberIds || [],
         //         members: board?.members
         //     }
@@ -171,11 +176,11 @@ export function TaskEdit() {
     }
 
     function onNameKeyDown(ev) {
-        if (ev.key === 'Enter') {
+        if (ev.key === "Enter") {
             ev.preventDefault()
             ev.target.blur()
         }
-        if (ev.key === 'Escape') {
+        if (ev.key === "Escape") {
             setTaskName(task.name)
             setIsNameEditing(false)
         }
@@ -187,7 +192,7 @@ export function TaskEdit() {
 
         if (!trimmedCommentText) {
             setEditingCommentId(null)
-            setCommentText('')
+            setCommentText("")
             return
         }
 
@@ -227,27 +232,40 @@ export function TaskEdit() {
         updateBoardAction(updatedComments)
 
         setEditingCommentId(null)
-        setCommentText('')
+        setCommentText("")
     }
 
-    async function updatePickerInfo(picker, pickerInfoPropName, data, activityTitle) {
-        const taskPropName = picker.info.propName
-        console.log(`Updating: ${taskPropName} to: `, data)
-        // Update pickers in local state
-        const updatedPicker = structuredClone(picker)
-        updatedPicker.info[pickerInfoPropName] = data
-        // setCmps(pickers.map(currCmp => (currCmp.info.propName !== picker.info.propName) ? currCmp : updatedCmp))
-        // Update the task
-        const updatedTask = structuredClone(task)
-        updatedTask[taskPropName] = data
-        try {
-            // await updateTask(boardId, groupId, updatedTask, activityTitle)
-            showSuccessMsg(`Task updated`)
-        } catch (err) {
-            showErrorMsg('Cannot update task')
+    function getDueStatusBadge(dueDateString, dueTimeString = null) {
+        let deadline = dayjs(dueDateString)
+
+        if (dueTimeString) {
+            const time = dayjs(dueTimeString, "h:mm A")
+
+            deadline = deadline.hour(time.hour()).minute(time.minute()).second(0).millisecond(0)
         }
+
+        const now = dayjs()
+
+        if (deadline.isBefore(now)) {
+            return {
+                text: "Overdue",
+                className: "badge-overdue"
+            }
+        }
+
+        const hoursDiff = deadline.diff(now, "hour", true)
+
+        if (hoursDiff <= 24) {
+            return {
+                text: "Due soon",
+                className: "badge-due-soon"
+            }
+        }
+
+        return null
     }
 
+    const badgeInfo = getDueStatusBadge(task.due, task.dueTime)
 
     return (
         <dialog ref={elDialog} className="task-edit">
@@ -292,18 +310,16 @@ export function TaskEdit() {
                             />}
                     </section>
                     <div className="task-content">
-                        <div className="pickers-container">
-                            {picker && (
-                                <DynamicPicker
-                                    task={task}
-                                    picker={picker}
-                                    open={openPopover}
-                                    anchorEl={anchorEl}
-                                    onClose={handlePopoverClose}
-                                    updateTask={updateTask}
-                                />
-                            )}
-                        </div>
+                        {picker && (
+                            <DynamicPicker
+                                task={task}
+                                picker={picker}
+                                open={openPopover}
+                                anchorEl={anchorEl}
+                                onClose={handlePopoverClose}
+                                updateTask={updateTask}
+                            />
+                        )}
                         <section className="task-actions task-grid-container">
                             <div></div>
                             <div className="task-actions-btns">
@@ -357,15 +373,48 @@ export function TaskEdit() {
                                 </button>
                             </div>
                         </section>
-                        <section className="task-actions task-grid-container">
-                            <div></div>
-                            <h3 className="heading">Votes</h3>
-                            <div></div>
-                            <button className="action-btn vote-btn">
-                                <ThumbsUpIcon width={16} height={16} fill="currentColor" />
-                                <span>Vote</span>
-                            </button>
-                        </section>
+                        <div className="task-params">
+                            <section className="task-actions task-flex-container">
+                                <h3 className="params-heading">Members</h3>
+                                <button className="params-btn">
+                                    Member
+                                </button>
+                            </section>
+                            <section className="task-actions task-flex-container">
+                                <h3 className="params-heading">Labels</h3>
+                                <button className="params-btn">
+                                    Label
+                                </button>
+                            </section>
+
+                            {(task?.due || task?.start) &&
+                                <section className="task-actions task-flex-container">
+                                    <h3 className="params-heading">Dates</h3>
+                                    <button
+                                        className="params-btn"
+                                        onClick={(event) => {
+                                            handlePopoverOpen(event, PICKER_MAP.DATE)
+                                        }}
+                                    >
+                                        {dayjs(task.due).format("MMM DD")} {task.dueTime ? `, ${task.dueTime}` : ""}
+                                        {badgeInfo && (
+                                            <span className={`due-badge ${badgeInfo.className}`}>
+                                                {badgeInfo.text}
+                                            </span>
+                                        )}
+                                        <ShevronDown width={16} height={16} fill="currentColor" />
+                                    </button>
+                                </section>
+                            }
+
+                            <section className="task-actions task-flex-container">
+                                <h3 className="params-heading">Votes</h3>
+                                <button className="params-btn">
+                                    <ThumbsUpIcon width={16} height={16} fill="currentColor" />
+                                    <span>Vote</span>
+                                </button>
+                            </section>
+                        </div>
                         <section className="task-actions task-grid-container">
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />

@@ -19,13 +19,13 @@
   --dynamic-button-primary-hovered: rgba(0, 0, 0, 0.32);
   --dynamic-button-primary-pressed: rgba(0, 0, 0, 0.32);
   --dynamic-button-primary-text: var(--dynamic-text);
-  
+
   /* /Share' button */
   --dynamic-button-highlighted: rgba(0, 0, 0, 0.5);
   --dynamic-button-highlighted-hovered: rgba(0, 0, 0, 0.6);
   --dynamic-button-highlighted-pressed: rgba(0, 0, 0, 0.6);
   --dynamic-button-highlighted-text: #FFFFFF;
-  
+
   --text: #292a2e;
   --text-subtle: #505258;
   --dynamic-text: var(--secondary);
@@ -51,7 +51,7 @@
   --background-warning-bold: #FBC828;
 
   /* badge-overdue */
-  --background-accent-red: #FD9891;
+  --background-accent-red: #FFD5D2;
   --text-accent-red: #AE2E24;
 
   /* task-done */
