@@ -2,9 +2,7 @@ import { useState } from "react"
 
 import { useFocusOnStateChange } from "../../../customHooks/useFocusOnStateChange"
 
-import dayjs from "dayjs"
-import customParseFormat from "dayjs/plugin/customParseFormat"
-dayjs.extend(customParseFormat)
+import { formatDate, formatTime, createDate, parseDateInput, combineDateAndTime } from "../../../services/date.service"
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
@@ -15,12 +13,12 @@ import CheckboxCheckIcon from "../../../assets/images/icons/checkbox-check.svg?r
 export function DatePicker({ task, onUpdate, onClose }) {
     const [schedule, setSchedule] = useState({
         isStartDateSet: task.start ? true : false,
-        startDate: task.start ? dayjs(task.start) : dayjs(),
-        startDateInput: task.start ? dayjs(task.start).format("MM/DD/YYYY") : dayjs().format("MM/DD/YYYY"),
+        startDate: createDate(task.start),
+        startDateInput: formatDate(task.start),
         isDueDateSet: true,
-        dueDate: task.due ? dayjs(task.due) : dayjs().add(1, "day"),
-        dueDateInput: task.due ? dayjs(task.due).format("MM/DD/YYYY") : dayjs().add(1, "day").format("MM/DD/YYYY"),
-        dueTime: (task.dueTime && task.dueTime) || dayjs().format("h:mm A"),
+        dueDate: createDate(task.due, 1),
+        dueDateInput: formatDate(task.due),
+        dueTime: formatTime(task.dueTime),
     })
 
     const {
@@ -46,7 +44,7 @@ export function DatePicker({ task, onUpdate, onClose }) {
     }
 
     const handleDateInputChange = (name, value) => {
-        const parsed = dayjs(value, ["M/D/YYYY", "MM/DD/YYYY"], true)
+        const parsed = parseDateInput(value)
 
         setSchedule(prev => ({
             ...prev,
@@ -59,16 +57,20 @@ export function DatePicker({ task, onUpdate, onClose }) {
         setSchedule(prevSchedule => ({
             ...prevSchedule,
             [name]: newDate,
-            [`${name}Input`]: newDate.format("MM/DD/YYYY"),
+            [`${name}Input`]: formatDate(newDate),
         }))
     }
 
     function onSubmit(e) {
         e.preventDefault()
+
+        const finalDueDate = isDueDateSet ? combineDateAndTime(dueDate, dueTime) : null
+        const finalStartDate = isStartDateSet ? combineDateAndTime(startDate, null) : null
+
         onUpdate(task._id, {
-            due: isDueDateSet ? dueDate : null,
+            due: finalDueDate,
             dueTime: isDueDateSet ? dueTime : null,
-            start: isStartDateSet ? startDate : null
+            start: finalStartDate
         })
         onClose()
     }
