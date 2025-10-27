@@ -3,7 +3,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat"
 dayjs.extend(customParseFormat)
 
 const DATE_FORMAT = "MM/DD/YYYY"
-const TIME_FORMAT = "h:mm"
+const TIME_FORMAT = "h:mm A"
 
 const DATE_PARSE_FORMATS = ["M/D/YYYY", DATE_FORMAT]
 
@@ -24,12 +24,12 @@ export function formatDate(dateValue) {
  */
 export function formatTime(timeValue) {
     if (!timeValue) {
-        return ""
+        return dayjs().format(TIME_FORMAT)
     }
 
     const parsedTime = dayjs(timeValue, TIME_FORMAT);
 
-    return parsedTime.isValid() ? parsedTime.format(TIME_FORMAT) : "";
+    return parsedTime.isValid() ? parsedTime.format(TIME_FORMAT) : dayjs().format(TIME_FORMAT)
 }
 
 /**
@@ -39,8 +39,8 @@ export function formatTime(timeValue) {
  * @returns {dayjs.Dayjs} A dayjs object.
  */
 export function createDate(dateString, daysToAdd = 0) {
-    let date = dateString ? dayjs(dateString) : dayjs().add(daysToAdd, "day");
-    return date;
+    let date = dateString ? dayjs(dateString) : dayjs().add(daysToAdd, "day")
+    return date
 }
 
 /**
@@ -49,8 +49,8 @@ export function createDate(dateString, daysToAdd = 0) {
  * @returns {dayjs.Dayjs | null} A valid dayjs object, or null if parsing fails.
  */
 export function parseDateInput(dateInput) {
-    const parsed = dayjs(dateInput, DATE_PARSE_FORMATS, true);
-    return parsed.isValid() ? parsed : null;
+    const parsed = dayjs(dateInput, DATE_PARSE_FORMATS, true)
+    return parsed.isValid() ? parsed : null
 }
 
 /**
@@ -62,12 +62,33 @@ export function parseDateInput(dateInput) {
  */
 export function combineDateAndTime(dateObj, timeString) {
     if (!dateObj) return null;
-    if (!timeString) return dateObj.hour(0).minute(0).second(0).millisecond(0);
+    if (!timeString) return dateObj.hour(0).minute(0).second(0).millisecond(0)
 
-    const time = dayjs(timeString, TIME_FORMAT);
+    const time = dayjs(timeString, TIME_FORMAT)
     return dateObj
         .hour(time.hour())
         .minute(time.minute())
         .second(0)
-        .millisecond(0);
+        .millisecond(0)
 }
+
+export function normalizeTimeInput(timeString) {
+    if (!timeString) return dayjs().format(TIME_FORMAT)
+
+    const trimmedTime = timeString.trim().toLowerCase()
+
+    let parsed
+
+    if (trimmedTime.includes('am') || trimmedTime.includes('pm')) {
+        parsed = dayjs(timeString, ["h:m a", "h:mm a"], true);
+        return parsed.isValid() ? parsed.format("h:mm A") : timeString
+    }
+
+    parsed = dayjs(trimmedTime, ["h", "h:m", "h:mm"], true)
+
+    if (parsed.isValid()) {
+        return parsed.format("h:mm A")
+    }
+
+    return timeString
+};

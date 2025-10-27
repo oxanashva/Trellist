@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { useFocusOnStateChange } from "../../../customHooks/useFocusOnStateChange"
 
-import { formatDate, formatTime, createDate, parseDateInput, combineDateAndTime } from "../../../services/date.service"
+import { formatDate, formatTime, createDate, parseDateInput, combineDateAndTime, normalizeTimeInput } from "../../../services/date.service"
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
@@ -35,12 +35,28 @@ export function DatePicker({ task, onUpdate, onClose }) {
     const dueDateInputRef = useFocusOnStateChange(isDueDateSet)
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target
+        const { name, type, checked } = e.target
+        let value = e.target.value
 
         setSchedule(prevSchedule => ({
             ...prevSchedule,
             [name]: type === "checkbox" ? checked : value,
         }))
+    }
+
+    function handleBlur({ target }) {
+        const { name, value } = target
+
+        if (name === 'dueTime') {
+            const normalizedTime = normalizeTimeInput(value)
+
+            if (normalizedTime !== value) {
+                setSchedule((prevFields) => ({
+                    ...prevFields,
+                    [name]: normalizedTime,
+                }))
+            }
+        }
     }
 
     const handleDateInputChange = (name, value) => {
@@ -164,6 +180,7 @@ export function DatePicker({ task, onUpdate, onClose }) {
                                     disabled={!isDueDateSet}
                                     placeholder="hh:mm a"
                                     onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             </div>
                             {renderCalendar("dueDate")}
