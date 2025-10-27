@@ -1,8 +1,7 @@
-import { useState } from "react"
-
 import { useFocusOnStateChange } from "../../../customHooks/useFocusOnStateChange"
 
-import { formatDate, formatTime, createDate, parseDateInput, combineDateAndTime, normalizeTimeInput } from "../../../services/date.service"
+import { formatDate, formatTime, createDate, combineDateAndTime } from "../../../services/date.service"
+import { useForm } from "../../../customHooks/useForm"
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
@@ -11,7 +10,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar"
 import CheckboxCheckIcon from "../../../assets/images/icons/checkbox-check.svg?react"
 
 export function DatePicker({ task, onUpdate, onClose }) {
-    const [schedule, setSchedule] = useState({
+    const initialState = {
         isStartDateSet: task.start ? true : false,
         startDate: createDate(task.start),
         startDateInput: formatDate(task.start),
@@ -19,7 +18,10 @@ export function DatePicker({ task, onUpdate, onClose }) {
         dueDate: createDate(task.due, 1),
         dueDateInput: formatDate(task.due),
         dueTime: formatTime(task.dueTime),
-    })
+    }
+
+    const [fields, setFields, handleChange, handleBlur, handleDateInputChange, handleCalendarChange] = useForm(initialState)
+
 
     const {
         isStartDateSet,
@@ -29,54 +31,12 @@ export function DatePicker({ task, onUpdate, onClose }) {
         dueDate,
         dueDateInput,
         dueTime,
-    } = schedule
+    } = fields
 
     const startDateInputRef = useFocusOnStateChange(isStartDateSet)
     const dueDateInputRef = useFocusOnStateChange(isDueDateSet)
 
-    const handleChange = (e) => {
-        const { name, type, checked } = e.target
-        let value = e.target.value
-
-        setSchedule(prevSchedule => ({
-            ...prevSchedule,
-            [name]: type === "checkbox" ? checked : value,
-        }))
-    }
-
-    function handleBlur({ target }) {
-        const { name, value } = target
-
-        if (name === 'dueTime') {
-            const normalizedTime = normalizeTimeInput(value)
-
-            if (normalizedTime !== value) {
-                setSchedule((prevFields) => ({
-                    ...prevFields,
-                    [name]: normalizedTime,
-                }))
-            }
-        }
-    }
-
-    const handleDateInputChange = (name, value) => {
-        const parsed = parseDateInput(value)
-
-        setSchedule(prev => ({
-            ...prev,
-            [`${name}Input`]: value,
-            ...(parsed.isValid() ? { [name]: parsed } : {}),
-        }))
-    }
-
-    const handleCalendarChange = (name, newDate) => {
-        setSchedule(prevSchedule => ({
-            ...prevSchedule,
-            [name]: newDate,
-            [`${name}Input`]: formatDate(newDate),
-        }))
-    }
-
+    // TODO: normalize input if it remains focused on submit
     function onSubmit(e) {
         e.preventDefault()
 
@@ -91,11 +51,14 @@ export function DatePicker({ task, onUpdate, onClose }) {
         onClose()
     }
 
+    // TODO: implement submit on enter
+
     function onRemove() {
         onUpdate(task._id, { due: null, dueTime: null, start: null })
         onClose()
     }
 
+    // TODO: move renderCalendar to separate component
     function renderCalendar(name) {
         const dateValue = name === "startDate" ? startDate : dueDate
 
@@ -171,6 +134,7 @@ export function DatePicker({ task, onUpdate, onClose }) {
                                     disabled={!isDueDateSet}
                                     placeholder="M/D/YYYY"
                                     onChange={(e) => handleDateInputChange("dueDate", e.target.value)}
+                                    onBlur={handleBlur}
                                 />
                                 <input
                                     type="text"
@@ -212,6 +176,7 @@ export function DatePicker({ task, onUpdate, onClose }) {
                                     disabled={!isStartDateSet}
                                     placeholder="M/D/YYYY"
                                     onChange={(e) => handleDateInputChange("startDate", e.target.value)}
+                                    onBlur={handleBlur}
                                 />
                             </div>
                             {renderCalendar("startDate")}
