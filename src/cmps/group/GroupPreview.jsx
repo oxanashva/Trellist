@@ -3,10 +3,13 @@ import { useEffect, useRef, useState } from "react"
 import { makeId } from "../../services/util.service"
 import { TaskPreview } from "../task/TaskPreview"
 
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
+
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
+export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
     const inputRef = useRef(null)
     const textareaRef = useRef(null)
     const [groupName, setGroupName] = useState(group.name)
@@ -72,10 +75,30 @@ export function GroupPreview({ board, group, tasks, onAddTask, onCompleteTask, o
         setIsAddingTask(false)
     }
 
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({ id: id })
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : 1,
+    }
+
     return (
-        <li className="group-preview">
+        <li
+            ref={setNodeRef}
+            style={style}
+            className="group-preview"
+            {...attributes}
+        >
             <div className="group-header">
-                <div className="group-title">
+                <div className="group-title" {...listeners}>
                     {/* TODO: implement reusable component for editable field */}
                     {!isEditing &&
                         <h2

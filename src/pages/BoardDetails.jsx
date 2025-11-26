@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 
 import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../store/actions/board.actions'
 
+import { DndContext, closestCenter } from '@dnd-kit/core'
+import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
 import FilterIcon from '../assets/images/icons/filter.svg?react'
@@ -22,10 +24,15 @@ export function BoardDetails() {
     const inputRef = useRef(null)
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
+    const [groupsOrder, setGroupsOrder] = useState(board?.groups || []);
 
     useEffect(() => {
         if (board) {
             setBoardName(board.name)
+
+            if (board.groups && board.groups !== groupsOrder) {
+                setGroupsOrder(board.groups)
+            }
         }
     }, [board])
 
@@ -93,6 +100,20 @@ export function BoardDetails() {
         })
     }
 
+    const onDragEnd = (event) => {
+        const { active, over } = event
+
+        if (active.id !== over?.id) {
+            const oldIndex = board.groups.findIndex(group => group._id === active.id)
+            const newIndex = board.groups.findIndex(group => group._id === over.id)
+
+            const reorderedGroups = arrayMove(board.groups, oldIndex, newIndex)
+            setGroupsOrder(reorderedGroups)
+            const updatedBoard = { ...board, groups: reorderedGroups }
+            updateBoard(updatedBoard)
+        }
+    }
+
     if (isLoading) return <Loader />
 
     return (
@@ -148,15 +169,26 @@ export function BoardDetails() {
             </header>
 
             {board &&
-                <GroupList
-                    board={board}
-                    groups={board.groups}
-                    tasks={board.tasks}
-                    onAddTask={onAddTask}
-                    onAddGroup={onAddGroup}
-                    onCompleteTask={onCompleteTask}
-                    onUpdateGroup={onUpdateGroup}
-                />}
+                <DndContext
+                    collisionDetection={closestCenter}
+                    onDragEnd={onDragEnd}
+                >
+                    <SortableContext
+                        items={groupsOrder.map(g => g._id)}
+                        strategy={horizontalListSortingStrategy}
+                    >
+                        <GroupList
+                            board={board}
+                            groups={groupsOrder}
+                            tasks={board.tasks}
+                            onAddTask={onAddTask}
+                            onAddGroup={onAddGroup}
+                            onCompleteTask={onCompleteTask}
+                            onUpdateGroup={onUpdateGroup}
+                        />
+                    </SortableContext>
+                </DndContext>
+            }
             <Outlet />
         </section>
     )
