@@ -1,0 +1,77 @@
+
+import { useEffect, useRef, useState } from 'react'
+import { makeId } from '../../services/util.service'
+
+import { TaskPreview } from './TaskPreview'
+
+import CloseIcon from '../../assets/images/icons/close.svg?react'
+
+export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAddingTask, onCompleteTask }) {
+    const [taskName, setTaskName] = useState('')
+    const textareaRef = useRef(null)
+
+    useEffect(() => {
+        if (isAddingTask) {
+            textareaRef.current.focus()
+        }
+    }, [isAddingTask])
+
+    function handleInput({ target }) {
+        const { name, value } = target
+
+        if (name === 'taskName') {
+            setTaskName(value)
+        }
+    }
+
+    function addTask(e) {
+        e.preventDefault()
+        if (!taskName) return
+
+        const newTask = {
+            _id: makeId(),
+            idBoard: board._id,
+            idGroup: group._id,
+            name: taskName
+        }
+        onAddTask(newTask)
+        setTaskName('')
+        setIsAddingTask(false)
+    }
+    return (
+        <ol className='task-list'>
+            {tasks?.map(task =>
+                <TaskPreview key={task._id} board={board} task={task} onCompleteTask={onCompleteTask} />
+            )}
+            {isAddingTask &&
+                <li>
+                    <form className="add-task-form" onSubmit={addTask}>
+                        <textarea
+                            ref={textareaRef}
+                            className="add-task-textarea"
+                            name="taskName"
+                            value={taskName}
+                            onChange={handleInput}
+                            placeholder="Enter a title or paste a link"
+                        />
+                        <div className="add-task-actions">
+                            <button
+                                className="btn-primary"
+                                type="submit"
+                                onClick={addTask}
+                            >
+                                Add task
+                            </button>
+                            <button
+                                className="icon-btn dynamic-btn"
+                                onClick={() => setIsAddingTask(false)}
+                            >
+                                <CloseIcon width={16} height={16} fill="currentColor" />
+                            </button>
+                        </div>
+                    </form>
+                </li>
+            }
+        </ol>
+    )
+}

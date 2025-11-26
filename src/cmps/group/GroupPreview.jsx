@@ -1,43 +1,30 @@
 import { useEffect, useRef, useState } from "react"
 
 import { makeId } from "../../services/util.service"
-import { TaskPreview } from "../task/TaskPreview"
 
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
-import CloseIcon from '../../assets/images/icons/close.svg?react'
+import { TaskList } from "../task/TaskList"
 
 export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
     const inputRef = useRef(null)
-    const textareaRef = useRef(null)
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
-    const [taskName, setTaskName] = useState('')
     const [isAddingTask, setIsAddingTask] = useState(false)
 
     useEffect(() => {
         if (isEditing) {
             inputRef.current?.focus()
         }
-
-        if (isAddingTask) {
-            textareaRef.current?.focus()
-        }
-
-        if (!isAddingTask) {
-            return
-        }
-    }, [isEditing, isAddingTask])
+    }, [isEditing])
 
     function handleInput({ target }) {
         const { name, value } = target
 
         if (name === 'groupName') {
             setGroupName(value)
-        } else if (name === 'taskName') {
-            setTaskName(value)
         }
     }
 
@@ -58,21 +45,6 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
             setGroupName(group.name)
             setIsEditing(false)
         }
-    }
-
-    function addTask(e) {
-        e.preventDefault()
-        if (!taskName) return
-
-        const newTask = {
-            _id: makeId(),
-            idBoard: board._id,
-            idGroup: group._id,
-            name: taskName
-        }
-        onAddTask(newTask)
-        setTaskName('')
-        setIsAddingTask(false)
     }
 
     const {
@@ -122,41 +94,17 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                 </div>
             </div>
             <div className="group-task-gap"></div>
-            <ol>
-                {tasks?.map(task =>
-                    <TaskPreview key={task._id} board={board} task={task} onCompleteTask={onCompleteTask} />
-                )}
-                {isAddingTask &&
-                    <li className="add-task-form">
-                        <form onSubmit={onAddTask}>
-                            <textarea
-                                ref={textareaRef}
-                                className="add-task-textarea"
-                                name="taskName"
-                                value={taskName}
-                                onChange={handleInput}
-                                placeholder="Enter a title or paste a link"
-                            />
-                            <div className="add-task-actions">
-                                <button
-                                    className="btn-primary"
-                                    type="submit"
-                                    onClick={addTask}
-                                >
-                                    Add task
-                                </button>
-                                <button
-                                    className="icon-btn dynamic-btn"
-                                    onClick={() => setIsAddingTask(false)}
-                                >
-                                    <CloseIcon width={16} height={16} fill="currentColor" />
-                                </button>
-                            </div>
-                        </form>
-                    </li>
-                }
-            </ol>
-            {!isAddingTask &&
+            <TaskList
+                board={board}
+                group={group}
+                tasks={tasks}
+                onCompleteTask={onCompleteTask}
+                onAddTask={onAddTask}
+                isAddingTask={isAddingTask}
+                setIsAddingTask={setIsAddingTask}
+            />
+            {
+                !isAddingTask &&
                 <div className="group-footer">
                     <button className="dynamic-btn" onClick={() => setIsAddingTask(true)}>
                         <PlusIcon width={16} height={16} fill="currentColor" />
