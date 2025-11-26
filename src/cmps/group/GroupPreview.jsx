@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react"
 
-import { makeId } from "../../services/util.service"
-
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 

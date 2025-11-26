@@ -9,10 +9,12 @@ import CloseIcon from '../../assets/images/icons/close.svg?react'
 export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAddingTask, onCompleteTask }) {
     const [taskName, setTaskName] = useState('')
     const textareaRef = useRef(null)
+    const scrollRef = useRef(null)
 
     useEffect(() => {
         if (isAddingTask) {
             textareaRef.current.focus()
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight
         }
     }, [isAddingTask])
 
@@ -38,8 +40,9 @@ export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAd
         setTaskName('')
         setIsAddingTask(false)
     }
+
     return (
-        <ol className='task-list'>
+        <ol ref={scrollRef} className='task-list'>
             {tasks?.map(task =>
                 <TaskPreview key={task._id} board={board} task={task} onCompleteTask={onCompleteTask} />
             )}
