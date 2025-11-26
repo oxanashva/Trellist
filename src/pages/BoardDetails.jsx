@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../store/actions/board.actions'
 
-import { DndContext, closestCenter } from '@dnd-kit/core'
+import { DndContext, closestCenter, useSensors, useSensor, MouseSensor } from '@dnd-kit/core'
 import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
@@ -114,6 +114,18 @@ export function BoardDetails() {
         }
     }
 
+    const customMouseSensor = useSensor(MouseSensor, {
+        // Defines conditions (like delay) needed to start dragging
+        activationConstraint: {
+            // Requires 250ms press. Differentiates a quick 'click' (edit) 
+            // from a 'click and hold' (drag).
+            delay: 250,
+        },
+    })
+
+    // Registers the custom delayed sensor for use in <DndContext>
+    const sensors = useSensors(customMouseSensor)
+
     if (isLoading) return <Loader />
 
     return (
@@ -170,6 +182,7 @@ export function BoardDetails() {
 
             {board &&
                 <DndContext
+                    sensors={sensors}
                     collisionDetection={closestCenter}
                     onDragEnd={onDragEnd}
                 >

@@ -72,7 +72,12 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                     {/* TODO: implement reusable component for editable field */}
                     {!isEditing &&
                         <h2
-                            onClick={() => setIsEditing(true)}
+                            onClick={(e) => {
+                                //Stop the event from propagating up to dnd-kit's listeners 
+                                // to ensure the click is registered for editing.
+                                e.stopPropagation()
+                                setIsEditing(true)
+                            }}
                             title="Edit group name"
                         >
                             {group.name}
