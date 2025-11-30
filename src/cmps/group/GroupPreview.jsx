@@ -72,6 +72,7 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                     {/* TODO: implement reusable component for editable field */}
                     {!isEditing &&
                         <h2
+                            className="editable"
                             onClick={(e) => {
                                 //Stop the event from propagating up to dnd-kit's listeners 
                                 // to ensure the click is registered for editing.
@@ -86,6 +87,7 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                     {isEditing &&
                         <input
                             ref={inputRef}
+                            className="editable"
                             type="text"
                             name="groupName"
                             value={groupName}
