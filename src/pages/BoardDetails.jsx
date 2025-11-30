@@ -25,6 +25,7 @@ export function BoardDetails() {
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
     const [groupsOrder, setGroupsOrder] = useState(board?.groups || []);
+    const [tasksOrder, setTasksOrder] = useState(board?.tasks || []);
 
     useEffect(() => {
         if (board) {
@@ -32,6 +33,10 @@ export function BoardDetails() {
 
             if (board.groups && board.groups !== groupsOrder) {
                 setGroupsOrder(board.groups)
+            }
+
+            if (board.tasks && board.tasks !== tasksOrder) {
+                setTasksOrder(board.tasks)
             }
         }
     }, [board])
@@ -102,15 +107,55 @@ export function BoardDetails() {
 
     const onDragEnd = (event) => {
         const { active, over } = event
+        if (!over) return
 
-        if (active.id !== over?.id) {
+        const activeId = active.id
+        const overId = over.id
+
+        if (activeId === overId) return
+
+        const groupIds = board.groups.map(g => g._id)
+
+        const isDraggingGroup = board.groups.some(g => g._id === activeId)
+
+        if (isDraggingGroup) {
             const oldIndex = board.groups.findIndex(group => group._id === active.id)
             const newIndex = board.groups.findIndex(group => group._id === over.id)
 
-            const reorderedGroups = arrayMove(board.groups, oldIndex, newIndex)
-            setGroupsOrder(reorderedGroups)
-            const updatedBoard = { ...board, groups: reorderedGroups }
+            if (oldIndex !== newIndex) {
+                const reorderedGroups = arrayMove(board.groups, oldIndex, newIndex)
+                setGroupsOrder(reorderedGroups)
+                const updatedBoard = { ...board, groups: reorderedGroups }
+                updateBoard(updatedBoard)
+            }
+        } else {
+            const activeContainer = active.data?.current?.sortable?.containerId
+            const overContainer = over.data?.current?.sortable?.containerId
+
+
+            if (!activeContainer || !overContainer || !groupIds.includes(overContainer)) return
+
+            const activeTaskIndex = board.tasks.findIndex(t => t._id === activeId)
+            const overTaskIndex = board.tasks.findIndex(t => t._id === overId)
+
+            if (activeTaskIndex === overTaskIndex) return
+
+            let tempTasks = board.tasks
+
+            // Change task groupId if dragging task from one group to another
+            if (activeContainer !== overContainer) {
+                tempTasks = board.tasks.map(t =>
+                    t._id === active.id
+                        ? { ...t, idGroup: overContainer }
+                        : t
+                )
+            }
+
+            const reorderedTasks = arrayMove(tempTasks, activeTaskIndex, overTaskIndex)
+            setTasksOrder(reorderedTasks)
+            const updatedBoard = { ...board, tasks: reorderedTasks }
             updateBoard(updatedBoard)
+
         }
     }
 
@@ -120,6 +165,7 @@ export function BoardDetails() {
             // Requires 250ms press. Differentiates a quick 'click' (edit) 
             // from a 'click and hold' (drag).
             delay: 250,
+            tolerance: 5,
         },
     })
 
@@ -193,7 +239,7 @@ export function BoardDetails() {
                         <GroupList
                             board={board}
                             groups={groupsOrder}
-                            tasks={board.tasks}
+                            tasks={tasksOrder}
                             onAddTask={onAddTask}
                             onAddGroup={onAddGroup}
                             onCompleteTask={onCompleteTask}

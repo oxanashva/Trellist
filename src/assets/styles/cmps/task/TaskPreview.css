@@ -6,12 +6,6 @@
     box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
     border-radius: 0.5rem;
 
-    & a {
-        font-size: 0.875rem;
-        text-decoration: none;
-        color: inherit;
-    }
-
     &:hover {
         outline: #4688EC auto 2px;
         outline-offset: 2px;
@@ -22,6 +16,7 @@
         min-height: 36px;
         border-color: #ffffff;
         padding: 0.5rem 0.75rem 0.25rem;
+        font-size: 0.875rem;
         cursor: pointer;
         scroll-margin: 0.5rem;
 

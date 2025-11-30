@@ -1,6 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { makeId } from '../../services/util.service'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
 import { TaskPreview } from './TaskPreview'
 
@@ -41,40 +42,54 @@ export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAd
         setIsAddingTask(false)
     }
 
+    const taskIds = tasks?.map(task => task._id) || []
+
     return (
-        <ol ref={scrollRef} className='task-list'>
-            {tasks?.map(task =>
-                <TaskPreview key={task._id} board={board} task={task} onCompleteTask={onCompleteTask} />
-            )}
-            {isAddingTask &&
-                <li>
-                    <form className="add-task-form" onSubmit={addTask}>
-                        <textarea
-                            ref={textareaRef}
-                            className="add-task-textarea"
-                            name="taskName"
-                            value={taskName}
-                            onChange={handleInput}
-                            placeholder="Enter a title or paste a link"
-                        />
-                        <div className="add-task-actions">
-                            <button
-                                className="btn-primary"
-                                type="submit"
-                                onClick={addTask}
-                            >
-                                Add task
-                            </button>
-                            <button
-                                className="icon-btn dynamic-btn"
-                                onClick={() => setIsAddingTask(false)}
-                            >
-                                <CloseIcon width={16} height={16} fill="currentColor" />
-                            </button>
-                        </div>
-                    </form>
-                </li>
-            }
-        </ol>
+        <SortableContext
+            items={taskIds}
+            strategy={verticalListSortingStrategy}
+            id={group._id} // Assign the Group ID as the container ID for correct task placement
+        >
+            <ol ref={scrollRef} className='task-list'>
+                {tasks?.map(task =>
+                    <TaskPreview
+                        key={task._id}
+                        id={task._id}
+                        board={board}
+                        task={task}
+                        onCompleteTask={onCompleteTask}
+                    />
+                )}
+                {isAddingTask &&
+                    <li>
+                        <form className="add-task-form" onSubmit={addTask}>
+                            <textarea
+                                ref={textareaRef}
+                                className="add-task-textarea"
+                                name="taskName"
+                                value={taskName}
+                                onChange={handleInput}
+                                placeholder="Enter a title or paste a link"
+                            />
+                            <div className="add-task-actions">
+                                <button
+                                    className="btn-primary"
+                                    type="submit"
+                                    onClick={addTask}
+                                >
+                                    Add task
+                                </button>
+                                <button
+                                    className="icon-btn dynamic-btn"
+                                    onClick={() => setIsAddingTask(false)}
+                                >
+                                    <CloseIcon width={16} height={16} fill="currentColor" />
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+                }
+            </ol>
+        </SortableContext>
     )
 }
