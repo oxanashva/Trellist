@@ -10,6 +10,7 @@ import { getDueStatusBadge } from "../services/task/task.utils"
 import { updateBoard } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
 
 import MoreIcon from "../assets/images/icons/more.svg?react"
 import ImageIcon from "../assets/images/icons/image.svg?react"
@@ -50,7 +51,11 @@ export function TaskEdit() {
     const [picker, setPicker] = useState(null)
     const [anchorEl, setAnchorEl] = useState(null)
     const openPopover = Boolean(anchorEl);
+    const [taskName, setTaskName] = useState(task?.name || "")
+    const [taskDescription, setTaskDescription] = useState(task?.desc || "")
+    const [commentText, setCommentText] = useState("")
 
+    const textareaRef = useTextareaAutofocusAndResize(taskDescription, isDescEditing)
     // Open popover when button clicked
     const handlePopoverOpen = (event, pickerType) => {
         setAnchorEl(event.currentTarget)
@@ -58,12 +63,8 @@ export function TaskEdit() {
     };
 
     const handlePopoverClose = () => {
-        setAnchorEl(null);
-    };
-
-    const [taskName, setTaskName] = useState(task?.name || "")
-    const [taskDescription, setTaskDescription] = useState(task?.desc || "")
-    const [commentText, setCommentText] = useState("")
+        setAnchorEl(null)
+    }
 
     const PICKER_MAP = {
         // STATUS: {
@@ -346,13 +347,13 @@ export function TaskEdit() {
                         <div className="task-params">
                             <section className="task-actions task-flex-container">
                                 <h3 className="params-heading">Members</h3>
-                                <button className="params-btn">
+                                <button className="btn-neutral">
                                     Member
                                 </button>
                             </section>
                             <section className="task-actions task-flex-container">
                                 <h3 className="params-heading">Labels</h3>
-                                <button className="params-btn">
+                                <button className="btn-neutral">
                                     Label
                                 </button>
                             </section>
@@ -368,7 +369,7 @@ export function TaskEdit() {
                                         }
                                     </h3>
                                     <button
-                                        className="params-btn"
+                                        className="btn-neutral"
                                         onClick={(event) => {
                                             handlePopoverOpen(event, PICKER_MAP.DATE)
                                         }}
@@ -388,7 +389,7 @@ export function TaskEdit() {
 
                             <section className="task-actions task-flex-container">
                                 <h3 className="params-heading">Votes</h3>
-                                <button className="params-btn">
+                                <button className="btn-neutral">
                                     <ThumbsUpIcon width={16} height={16} fill="currentColor" />
                                     <span>Vote</span>
                                 </button>
@@ -398,45 +399,63 @@ export function TaskEdit() {
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>
-                            <h3 className="heading">Description</h3>
+                            <div className="flex align-center justify-between">
+                                <h3 className="heading">Description</h3>
+                                <button
+                                    className="btn-neutral"
+                                    onClick={() => setIsDescEditing(true)}
+                                >
+                                    Edit
+                                </button>
+                            </div>
                             <div></div>
-                            {(task?.desc && !isDescEditing) && <p onClick={() => setIsDescEditing(true)}>{task.desc}</p>}
+
+                            {(task?.desc && !isDescEditing) &&
+                                <p className="description" onClick={() => setIsDescEditing(true)}>
+                                    {task.desc}
+                                </p>
+                            }
+
                             {(!task?.desc && !isDescEditing) &&
                                 <button
-                                    className="add-description-btn"
+                                    className="description add-description-btn"
                                     onClick={() => setIsDescEditing(true)}
                                 >
                                     Add a more detailed description
-                                </button>}
+                                </button>
+                            }
+
                             {/* TODO: implement reusable component for editable field */}
-                            {isDescEditing && <form onSubmit={onDescriptionSubmit}>
-                                <textarea
-                                    ref={descTextareaRef}
-                                    className="edit-description"
-                                    name="desc"
-                                    value={taskDescription}
-                                    onChange={handleChange}
-                                    placeholder="Add a more detailed description">
-                                </textarea>
-                                <div className="edit-description-actions">
-                                    <button
-                                        className="btn-primary"
-                                        type="submit"
-                                    >
-                                        Save
-                                    </button>
-                                    <button
-                                        className="dynamic-btn"
-                                        type="button"
-                                        onClick={() => {
-                                            setTaskDescription(task.desc || "")
-                                            setIsDescEditing(false)
-                                        }}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </form>}
+                            {isDescEditing &&
+                                <form onSubmit={onDescriptionSubmit}>
+                                    <textarea
+                                        ref={textareaRef}
+                                        className="description edit-description"
+                                        name="desc"
+                                        value={taskDescription}
+                                        onChange={handleChange}
+                                        placeholder="Add a more detailed description">
+                                    </textarea>
+                                    <div className="edit-description-actions">
+                                        <button
+                                            className="btn-primary"
+                                            type="submit"
+                                        >
+                                            Save
+                                        </button>
+                                        <button
+                                            className="dynamic-btn"
+                                            type="button"
+                                            onClick={() => {
+                                                setTaskDescription(task.desc || "")
+                                                setIsDescEditing(false)
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </form>
+                            }
                         </section>
                     </div>
                 </main>

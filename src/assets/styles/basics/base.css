@@ -132,6 +132,15 @@ button,
     }
 }
 
+.btn-neutral {
+    background-color: var(--background-neutral);
+    color: var(--ds-text);
+
+    &:hover {
+        background-color: var(--background-neutral-hovered);
+    }
+}
+
 input,
 textarea {
     display: flex;
@@ -152,6 +161,6 @@ textarea {
 
     &:focus {
         border: 1px solid #388BFF;
-        box-shadow: inset 0 0 0 1px #8C8F97;
+        box-shadow: inset 0 0 0 1px #388BFF;
     }
 }
