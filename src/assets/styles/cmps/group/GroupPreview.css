@@ -44,6 +44,7 @@
             }
 
             &:focus {
+                box-shadow: inset 0 0 0 1px #4688EC;
                 background-color: #fff;
             }
         }

@@ -4,6 +4,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
+import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 
 export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
@@ -96,6 +97,11 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                             onKeyDown={onGroupNameKeyDown}
                         />
                     }
+                </div>
+                <div className="group-actions">
+                    <button className="dynamic-btn">
+                        <MoreIcon width={16} height={16} fill="currentColor" />
+                    </button>
                 </div>
             </div>
             <div className="group-task-gap"></div>
