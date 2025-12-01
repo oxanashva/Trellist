@@ -1,5 +1,4 @@
-
-export function ActionPicker({ setIsAddingTask, onEditTask, onRemoveTask, onRemoveGroup, onClose }) {
+export function ActionPicker({ setIsAddingTask, onRemoveGroup, onClose }) {
 
     return (
         <section className="action-picker">
@@ -18,23 +17,6 @@ export function ActionPicker({ setIsAddingTask, onEditTask, onRemoveTask, onRemo
                         Add task
                     </button>
                 </li>
-                <li>
-                    <button
-                        className="action-btn"
-                        onClick={onEditTask}
-                    >
-                        Edit task
-                    </button>
-                </li>
-                <li>
-                    <button
-                        className="action-btn"
-                        onClick={onRemoveTask}
-                    >
-                        Remove task
-                    </button>
-                </li>
-                <div className="divider"></div>
                 <li>
                     <button
                         className="action-btn"

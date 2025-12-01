@@ -1,10 +1,19 @@
+import { useEffect, useState } from 'react'
 import Popover from '@mui/material/Popover'
 import { DatePicker } from "./DatePicker"
 import { LabelPicker } from "./LabelPicker"
 import { ActionPicker } from './ActionPicker'
 import CloseIcon from '../../../assets/images/icons/close.svg?react'
 
-export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClose, setIsAddingTask, onAddTask, onEditTask, onRemoveTask, onRemoveGroup }) {
+export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClose, setIsAddingTask, onRemoveGroup }) {
+    const [isSmallPicker, setIsSmallPicker] = useState(false)
+
+    useEffect(() => {
+        if (picker.type === 'ActionPicker') {
+            setIsSmallPicker(true)
+        }
+    }, [picker.type])
+
     const renderPickerContent = () => {
         switch (picker.type) {
             // case 'StatusPicker':
@@ -29,9 +38,6 @@ export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClos
             case 'ActionPicker':
                 return <ActionPicker
                     setIsAddingTask={setIsAddingTask}
-                    onAddTask={onAddTask}
-                    onEditTask={onEditTask}
-                    onRemoveTask={onRemoveTask}
                     onRemoveGroup={onRemoveGroup}
                     onClose={onClose}
                 />
@@ -57,8 +63,10 @@ export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClos
             slotProps={{
                 paper: {
                     sx: {
-                        top: '68px !important',
-                        bottom: "10px !important",
+                        width: '304px !important',
+                        top: isSmallPicker ? '50%' : '68px !important',
+                        bottom: isSmallPicker ? '50%' : '10px !important',
+                        transform: isSmallPicker ? 'translate(-50%, -50%)' : '',
                         maxHeight: 'calc(100vh - 68px - 10px) !important',
                         borderRadius: '0.5rem',
                         boxShadow: '0px 2px 6px #1E1F2126, 0px 0px 1px #1E1F214F',
