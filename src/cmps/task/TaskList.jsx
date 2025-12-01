@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { makeId } from '../../services/util.service'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { useFocusOnStateChange } from '../../customHooks/useFocusOnStateChange'
 
 import { TaskPreview } from './TaskPreview'
 
@@ -9,12 +10,11 @@ import CloseIcon from '../../assets/images/icons/close.svg?react'
 
 export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAddingTask, onCompleteTask }) {
     const [taskName, setTaskName] = useState('')
-    const textareaRef = useRef(null)
+    const textareaRef = useFocusOnStateChange(isAddingTask)
     const scrollRef = useRef(null)
 
     useEffect(() => {
         if (isAddingTask) {
-            textareaRef.current.focus()
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight
         }
     }, [isAddingTask])
