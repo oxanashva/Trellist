@@ -8,7 +8,7 @@ import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
-import { DynamicPicker } from "../task/picker/DynamicPicker"
+import { DynamicPicker } from "../picker/DynamicPicker"
 
 export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateGroup, onAddTask, onCompleteTask }) {
     const [groupName, setGroupName] = useState(group.name)

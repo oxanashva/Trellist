@@ -1,4 +1,4 @@
-import { makeId } from "../../../services/util.service"
+import { makeId } from "../../services/util.service"
 
 export function LabelPicker({ info, onUpdate }) {
     const id = 'label-' + makeId()

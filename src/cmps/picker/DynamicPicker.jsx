@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import Popover from '@mui/material/Popover'
-import { DatePicker } from "./DatePicker"
-import { LabelPicker } from "./LabelPicker"
-import { ActionPicker } from './ActionPicker'
-import CloseIcon from '../../../assets/images/icons/close.svg?react'
+import { DatePicker } from "../picker/DatePicker"
+import { LabelPicker } from "../picker/LabelPicker"
+import { ActionPicker } from '../picker/ActionPicker'
+import CloseIcon from '../../assets/images/icons/close.svg?react'
 
 export function DynamicPicker({ task, picker, anchorEl, open, onClose, updateTask, setIsAddingTask, groupId, onRemoveGroup }) {
     const [isSmallPicker, setIsSmallPicker] = useState(false)

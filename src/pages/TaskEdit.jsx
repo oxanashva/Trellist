@@ -29,7 +29,7 @@ import DescriptionIcon from "../assets/images/icons/description.svg?react"
 import CommentText from "../assets/images/icons/comment-text.svg?react"
 import ShevronDown from "../assets/images/icons/shevron-down.svg?react"
 
-import { DynamicPicker } from "../cmps/task/picker/DynamicPicker"
+import { DynamicPicker } from "../cmps/picker/DynamicPicker"
 
 export function TaskEdit() {
     const elDialog = useRef(null)

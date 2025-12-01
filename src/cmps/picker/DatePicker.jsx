@@ -1,13 +1,13 @@
-import { useFocusOnStateChange } from "../../../customHooks/useFocusOnStateChange"
+import { formatDate, formatTime, createDate, combineDateAndTime } from "../../services/date.service"
 
-import { formatDate, formatTime, createDate, combineDateAndTime } from "../../../services/date.service"
-import { useForm } from "../../../customHooks/useForm"
+import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
+import { useForm } from "../../customHooks/useForm"
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar"
 
-import CheckboxCheckIcon from "../../../assets/images/icons/checkbox-check.svg?react"
+import CheckboxCheckIcon from "../../assets/images/icons/checkbox-check.svg?react"
 
 export function DatePicker({ task, onUpdate, onClose }) {
     const initialState = {
