@@ -1,4 +1,4 @@
-export function ActionPicker({ setIsAddingTask, onRemoveGroup, onClose }) {
+export function ActionPicker({ setIsAddingTask, groupId, onRemoveGroup, onClose }) {
 
     return (
         <section className="action-picker">
@@ -20,7 +20,7 @@ export function ActionPicker({ setIsAddingTask, onRemoveGroup, onClose }) {
                 <li>
                     <button
                         className="action-btn"
-                        onClick={onRemoveGroup}
+                        onClick={() => onRemoveGroup(groupId)}
                     >
                         Remove group
                     </button>

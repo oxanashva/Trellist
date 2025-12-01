@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { makeId } from "../../services/util.service"
 import { GroupPreview } from "./GroupPreview"
@@ -7,7 +7,7 @@ import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function GroupList({ board, groups, tasks, onAddTask, onAddGroup, onCompleteTask, onUpdateGroup }) {
+export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask, onCompleteTask }) {
     const [groupName, setGroupName] = useState('')
     const [isAddingGroup, setIsAddingGroup] = useState(false)
     const textareaRef = useFocusOnStateChange(isAddingGroup)
@@ -41,9 +41,10 @@ export function GroupList({ board, groups, tasks, onAddTask, onAddGroup, onCompl
                         board={board}
                         group={group}
                         tasks={tasksForThisGroup}
+                        onRemoveGroup={onRemoveGroup}
+                        onUpdateGroup={onUpdateGroup}
                         onAddTask={onAddTask}
                         onCompleteTask={onCompleteTask}
-                        onUpdateGroup={onUpdateGroup}
                     />
                 }
                 )}

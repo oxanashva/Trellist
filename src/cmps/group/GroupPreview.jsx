@@ -10,7 +10,7 @@ import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 import { DynamicPicker } from "../task/picker/DynamicPicker"
 
-export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
+export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateGroup, onAddTask, onCompleteTask }) {
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
     const [isAddingTask, setIsAddingTask] = useState(false)
@@ -90,7 +90,8 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                     anchorEl={anchorEl}
                     onClose={handlePopoverClose}
                     setIsAddingTask={setIsAddingTask}
-                // onRemoveGroup={onRemoveGroup}
+                    groupId={group._id}
+                    onRemoveGroup={onRemoveGroup}
                 />
             )}
             <li
@@ -132,6 +133,7 @@ export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTas
                     <div className="group-actions">
                         <button
                             className="dynamic-btn"
+                            title="List actions"
                             onClick={(event) => {
                                 handlePopoverOpen(event, PICKER_MAP.ACTION)
                             }}

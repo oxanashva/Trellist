@@ -79,13 +79,10 @@ export function BoardDetails() {
         })
     }
 
-    function onAddTask(newTask) {
+    function onRemoveGroup(groupId) {
         updateBoard({
             ...board,
-            tasks: [
-                ...(board.tasks || []),
-                newTask
-            ]
+            groups: board.groups.filter(group => group._id !== groupId)
         })
     }
 
@@ -93,6 +90,16 @@ export function BoardDetails() {
         updateBoard({
             ...board,
             groups: board.groups.map(group => group._id === updatedGroup._id ? updatedGroup : group)
+        })
+    }
+
+    function onAddTask(newTask) {
+        updateBoard({
+            ...board,
+            tasks: [
+                ...(board.tasks || []),
+                newTask
+            ]
         })
     }
 
@@ -238,10 +245,11 @@ export function BoardDetails() {
                             board={board}
                             groups={groupsOrder}
                             tasks={tasksOrder}
-                            onAddTask={onAddTask}
                             onAddGroup={onAddGroup}
-                            onCompleteTask={onCompleteTask}
+                            onRemoveGroup={onRemoveGroup}
                             onUpdateGroup={onUpdateGroup}
+                            onAddTask={onAddTask}
+                            onCompleteTask={onCompleteTask}
                         />
                     </SortableContext>
                 </DndContext>
