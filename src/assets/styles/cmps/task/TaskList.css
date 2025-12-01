@@ -32,7 +32,6 @@
 
         &:focus {
             outline: #4688EC auto 2px;
-            outline-offset: 2px;
         }
     }
 

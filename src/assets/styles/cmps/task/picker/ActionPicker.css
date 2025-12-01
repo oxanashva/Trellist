@@ -1,0 +1,14 @@
+.action-picker {
+
+    & .action-btn {
+        font-size: 0.875rem;
+        font-weight: 400;
+    }
+
+    & .divider {
+        display: block;
+        height: 1px;
+        margin: 0.5rem var(--ds-space-150, 10px);
+        background-color: #0B120E24;
+    }
+}

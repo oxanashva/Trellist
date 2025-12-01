@@ -1,9 +1,10 @@
 import Popover from '@mui/material/Popover'
 import { DatePicker } from "./DatePicker"
 import { LabelPicker } from "./LabelPicker"
+import { ActionPicker } from './ActionPicker'
 import CloseIcon from '../../../assets/images/icons/close.svg?react'
 
-export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClose }) {
+export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClose, setIsAddingTask, onAddTask, onEditTask, onRemoveTask, onRemoveGroup }) {
     const renderPickerContent = () => {
         switch (picker.type) {
             // case 'StatusPicker':
@@ -20,12 +21,20 @@ export function DynamicPicker({ task, picker, anchorEl, open, updateTask, onClos
                 return <DatePicker
                     task={task}
                     onUpdate={updateTask}
-                    onClose={onClose}
                 />
             // case 'MemberPicker':
             //     return <MemberPicker info={picker.info} onUpdate={(data) => {
             //         updateCmpInfo(picker, 'selectedMemberIds', data, `Changed members`)
             //     }} />
+            case 'ActionPicker':
+                return <ActionPicker
+                    setIsAddingTask={setIsAddingTask}
+                    onAddTask={onAddTask}
+                    onEditTask={onEditTask}
+                    onRemoveTask={onRemoveTask}
+                    onRemoveGroup={onRemoveGroup}
+                    onClose={onClose}
+                />
             default:
                 return <p>UNKNOWN {picker.type}</p>
         }

@@ -1,31 +1,4 @@
 .date-picker {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-
-    & .picker-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.25rem 0.75rem;
-
-        & .picker-title {
-            grid-column: 1 / span 3;
-            grid-row: 1;
-            height: 40px;
-            margin: 0;
-            padding: 0 32px;
-
-            font-size: 0.875rem;
-            font-weight: 600;
-            line-height: 40px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-
-            color: var(--dynamic-text);
-        }
-    }
 
     & .date-range {
         overflow-y: auto;

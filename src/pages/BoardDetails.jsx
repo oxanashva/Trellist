@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
@@ -26,8 +26,8 @@ export function BoardDetails() {
 
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
-    const [groupsOrder, setGroupsOrder] = useState(board?.groups || []);
-    const [tasksOrder, setTasksOrder] = useState(board?.tasks || []);
+    const [groupsOrder, setGroupsOrder] = useState(board?.groups || [])
+    const [tasksOrder, setTasksOrder] = useState(board?.tasks || [])
 
     const inputRef = useFocusOnStateChange(isEditing)
 
