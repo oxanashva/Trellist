@@ -5,8 +5,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useFocusOnStateChange } from '../../customHooks/useFocusOnStateChange'
 
 import { TaskPreview } from './TaskPreview'
-
-import CloseIcon from '../../assets/images/icons/close.svg?react'
+import { ItemCreator } from '../ItemCreator'
 
 export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAddingTask, onCompleteTask }) {
     const [taskName, setTaskName] = useState('')
@@ -61,33 +60,16 @@ export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAd
                     />
                 )}
                 {isAddingTask &&
-                    <li>
-                        <form className="add-task-form" onSubmit={addTask}>
-                            <textarea
-                                ref={textareaRef}
-                                className="add-task-textarea"
-                                name="taskName"
-                                value={taskName}
-                                onChange={handleInput}
-                                placeholder="Enter a title or paste a link"
-                            />
-                            <div className="add-task-actions">
-                                <button
-                                    className="btn-primary"
-                                    type="submit"
-                                    onClick={addTask}
-                                >
-                                    Add task
-                                </button>
-                                <button
-                                    className="icon-btn dynamic-btn"
-                                    onClick={() => setIsAddingTask(false)}
-                                >
-                                    <CloseIcon width={16} height={16} fill="currentColor" />
-                                </button>
-                            </div>
-                        </form>
-                    </li>
+                    <ItemCreator
+                        mode="task"
+                        onSubmit={addTask}
+                        textareaRef={textareaRef}
+                        value={taskName}
+                        onChange={handleInput}
+                        placeholder="Enter a title or paste a link"
+                        buttonText="Add task"
+                        onCancel={() => setIsAddingTask(false)}
+                    />
                 }
             </ol>
         </SortableContext>

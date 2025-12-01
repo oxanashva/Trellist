@@ -5,7 +5,7 @@ import { GroupPreview } from "./GroupPreview"
 import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
-import CloseIcon from '../../assets/images/icons/close.svg?react'
+import { ItemCreator } from "../ItemCreator"
 
 export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask, onCompleteTask }) {
     const [groupName, setGroupName] = useState('')
@@ -49,32 +49,16 @@ export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onU
                 }
                 )}
                 {isAddingGroup &&
-                    <li className="group-preview add-group-item">
-                        <form className="add-group-form" onSubmit={addGroup}>
-                            <textarea
-                                ref={textareaRef}
-                                className="add-group-textarea"
-                                onChange={handleInput}
-                                type="text"
-                                value={groupName}
-                                placeholder="Enter group name" />
-                            <div className="add-group-actions">
-                                <button
-                                    className="btn-primary"
-                                    type="submit"
-                                    onClick={addGroup}
-                                >
-                                    Add group
-                                </button>
-                                <button
-                                    className="icon-btn dynamic-btn"
-                                    onClick={() => setIsAddingGroup(false)}
-                                >
-                                    <CloseIcon width={16} height={16} fill="currentColor" />
-                                </button>
-                            </div>
-                        </form>
-                    </li>
+                    <ItemCreator
+                        mode="group"
+                        onSubmit={addGroup}
+                        textareaRef={textareaRef}
+                        value={groupName}
+                        onChange={handleInput}
+                        placeholder="Enter group name"
+                        buttonText="Add group"
+                        onCancel={() => setIsAddingGroup(false)}
+                    />
                 }
                 {!isAddingGroup &&
                     <div className="add-group">

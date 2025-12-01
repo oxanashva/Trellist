@@ -17,6 +17,7 @@
 @import "cmps/AppHeader";
 @import "cmps/UserMsg";
 @import "cmps/Loader";
+@import "cmps/ItemCreator";
 
 @import "cmps/board/BoardList";
 @import "cmps/board/BoardPreview";
