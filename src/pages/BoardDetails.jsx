@@ -6,6 +6,9 @@ import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../s
 
 import { DndContext, closestCenter, useSensors, useSensor, MouseSensor } from '@dnd-kit/core'
 import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
+
+import { useFocusOnStateChange } from '../customHooks/useFocusOnStateChange'
+
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
 import FilterIcon from '../assets/images/icons/filter.svg?react'
@@ -21,11 +24,12 @@ export function BoardDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
 
-    const inputRef = useRef(null)
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
     const [groupsOrder, setGroupsOrder] = useState(board?.groups || []);
     const [tasksOrder, setTasksOrder] = useState(board?.tasks || []);
+
+    const inputRef = useFocusOnStateChange(isEditing)
 
     useEffect(() => {
         if (board) {
@@ -44,12 +48,6 @@ export function BoardDetails() {
     useEffect(() => {
         loadBoard(boardId)
     }, [boardId])
-
-    useEffect(() => {
-        if (isEditing) {
-            inputRef.current?.focus()
-        }
-    }, [isEditing])
 
     function handleInputBlur() {
         updateBoard({ ...board, name: boardName })

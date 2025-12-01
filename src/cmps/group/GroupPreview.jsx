@@ -1,23 +1,20 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+
+import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 
 export function GroupPreview({ id, board, group, tasks, onAddTask, onCompleteTask, onUpdateGroup }) {
-    const inputRef = useRef(null)
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
     const [isAddingTask, setIsAddingTask] = useState(false)
 
-    useEffect(() => {
-        if (isEditing) {
-            inputRef.current?.focus()
-        }
-    }, [isEditing])
+    const inputRef = useFocusOnStateChange(isEditing)
 
     function handleInput({ target }) {
         const { name, value } = target

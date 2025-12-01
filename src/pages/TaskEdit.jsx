@@ -10,6 +10,7 @@ import { getDueStatusBadge } from "../services/task/task.utils"
 import { updateBoard } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+
 import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
 
 import MoreIcon from "../assets/images/icons/more.svg?react"
@@ -33,9 +34,6 @@ import { DynamicPicker } from "../cmps/task/picker/DynamicPicker"
 export function TaskEdit() {
     const elDialog = useRef(null)
     const { taskId } = useParams()
-    const nameInputRef = useRef(null)
-    const descTextareaRef = useRef(null)
-    const commentTextareaRef = useRef(null)
 
     const board = useSelector(storeState => storeState.boardModule.board)
     const task = board?.tasks.find(task => task?._id === taskId)
@@ -55,8 +53,10 @@ export function TaskEdit() {
     const [taskDescription, setTaskDescription] = useState(task?.desc || "")
     const [commentText, setCommentText] = useState("")
 
-    const textareaRef = useTextareaAutofocusAndResize(taskDescription, isDescEditing)
-    // Open popover when button clicked
+    const nameInputRef = useTextareaAutofocusAndResize(taskName, isNameEditing)
+    const descTextareaRef = useTextareaAutofocusAndResize(taskDescription, isDescEditing)
+    const commentTextareaRef = useTextareaAutofocusAndResize(commentText, editingCommentId)
+
     const handlePopoverOpen = (event, pickerType) => {
         setAnchorEl(event.currentTarget)
         setPicker(pickerType)
@@ -105,16 +105,6 @@ export function TaskEdit() {
     useEffect(() => {
         elDialog.current.showModal()
     }, [])
-
-    useEffect(() => {
-        if (isNameEditing) {
-            nameInputRef.current?.focus()
-        } else if (isDescEditing) {
-            descTextareaRef.current?.focus()
-        } else if (editingCommentId) {
-            commentTextareaRef.current?.focus()
-        }
-    }, [isNameEditing, isDescEditing, editingCommentId])
 
     function handleCheck() {
         const newStatus = !isChecked
@@ -270,8 +260,9 @@ export function TaskEdit() {
                                 {taskName}
                             </h2>}
                         {isNameEditing &&
-                            <input
+                            <textarea
                                 ref={nameInputRef}
+                                className="edit-name-textarea"
                                 type="text"
                                 name="name"
                                 value={taskName}
@@ -429,7 +420,7 @@ export function TaskEdit() {
                             {isDescEditing &&
                                 <form onSubmit={onDescriptionSubmit}>
                                     <textarea
-                                        ref={textareaRef}
+                                        ref={descTextareaRef}
                                         className="edit-textarea"
                                         name="desc"
                                         value={taskDescription}
