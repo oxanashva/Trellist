@@ -11,13 +11,14 @@ import { getDueStatusBadge } from "../../services/task/task.utils"
 import CircleIcon from '../../assets/images/icons/circle.svg?react'
 import CircleCheckIcon from '../../assets/images/icons/circle-check.svg?react'
 import EditIcon from '../../assets/images/icons/edit.svg?react'
+import ArchiveIcon from '../../assets/images/icons/archive.svg?react'
 import DescriptionIcon from '../../assets/images/icons/description.svg?react'
 import CommentIcon from '../../assets/images/icons/comment.svg?react'
 import ThumbsUpIcon from '../../assets/images/icons/thumbs-up.svg?react'
 import ClockIcon from '../../assets/images/icons/clock.svg?react'
 
 
-export function TaskPreview({ id, board, task, onCompleteTask }) {
+export function TaskPreview({ id, board, task, onRemoveTask, onCompleteTask }) {
     const { boardId } = useParams()
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const navigate = useNavigate()
@@ -116,8 +117,21 @@ export function TaskPreview({ id, board, task, onCompleteTask }) {
                         </span>
                     }
                 </div>
-                <button className="edit-btn">
+                <button
+                    className="task-btn edit-btn"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/board/${boardId}/task/${task._id}`)
+                    }}>
                     <EditIcon width={16} height={16} fill="currentColor" />
+                </button>
+                <button
+                    className="task-btn archive-btn"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        onRemoveTask(task._id)
+                    }}>
+                    <ArchiveIcon width={16} height={16} fill="currentColor" />
                 </button>
             </div>
         </li>

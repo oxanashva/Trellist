@@ -7,7 +7,7 @@ import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import { ItemCreator } from "../ItemCreator"
 
-export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask, onCompleteTask }) {
+export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask, onRemoveTask, onCompleteTask }) {
     const [groupName, setGroupName] = useState('')
     const [isAddingGroup, setIsAddingGroup] = useState(false)
     const textareaRef = useFocusOnStateChange(isAddingGroup)
@@ -44,6 +44,7 @@ export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onU
                         onRemoveGroup={onRemoveGroup}
                         onUpdateGroup={onUpdateGroup}
                         onAddTask={onAddTask}
+                        onRemoveTask={onRemoveTask}
                         onCompleteTask={onCompleteTask}
                     />
                 }

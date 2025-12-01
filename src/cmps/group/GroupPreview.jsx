@@ -10,7 +10,7 @@ import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 import { DynamicPicker } from "../picker/DynamicPicker"
 
-export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateGroup, onAddTask, onCompleteTask }) {
+export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateGroup, onAddTask, onRemoveTask, onCompleteTask }) {
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
     const [isAddingTask, setIsAddingTask] = useState(false)
@@ -149,6 +149,7 @@ export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateG
                     tasks={tasks}
                     onCompleteTask={onCompleteTask}
                     onAddTask={onAddTask}
+                    onRemoveTask={onRemoveTask}
                     isAddingTask={isAddingTask}
                     setIsAddingTask={setIsAddingTask}
                 />

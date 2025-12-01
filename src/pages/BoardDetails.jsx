@@ -103,6 +103,13 @@ export function BoardDetails() {
         })
     }
 
+    function onRemoveTask(taskId) {
+        updateBoard({
+            ...board,
+            tasks: board.tasks.filter(task => task._id !== taskId)
+        })
+    }
+
     function onCompleteTask(task, isCompleted) {
         updateBoard({
             ...board,
@@ -249,6 +256,7 @@ export function BoardDetails() {
                             onRemoveGroup={onRemoveGroup}
                             onUpdateGroup={onUpdateGroup}
                             onAddTask={onAddTask}
+                            onRemoveTask={onRemoveTask}
                             onCompleteTask={onCompleteTask}
                         />
                     </SortableContext>

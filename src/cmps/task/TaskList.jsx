@@ -7,7 +7,7 @@ import { useFocusOnStateChange } from '../../customHooks/useFocusOnStateChange'
 import { TaskPreview } from './TaskPreview'
 import { ItemCreator } from '../ItemCreator'
 
-export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAddingTask, onCompleteTask }) {
+export function TaskList({ board, group, tasks, onAddTask, onRemoveTask, setIsAddingTask, isAddingTask, onCompleteTask }) {
     const [taskName, setTaskName] = useState('')
     const textareaRef = useFocusOnStateChange(isAddingTask)
     const scrollRef = useRef(null)
@@ -56,6 +56,7 @@ export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAd
                         id={task._id}
                         board={board}
                         task={task}
+                        onRemoveTask={onRemoveTask}
                         onCompleteTask={onCompleteTask}
                     />
                 )}
