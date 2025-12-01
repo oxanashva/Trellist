@@ -418,7 +418,7 @@ export function TaskEdit() {
 
                             {(!task?.desc && !isDescEditing) &&
                                 <button
-                                    className="description add-description-btn"
+                                    className="editable"
                                     onClick={() => setIsDescEditing(true)}
                                 >
                                     Add a more detailed description
@@ -430,7 +430,7 @@ export function TaskEdit() {
                                 <form onSubmit={onDescriptionSubmit}>
                                     <textarea
                                         ref={textareaRef}
-                                        className="description edit-description"
+                                        className="edit-textarea"
                                         name="desc"
                                         value={taskDescription}
                                         onChange={handleChange}
@@ -475,7 +475,7 @@ export function TaskEdit() {
                                         {
                                             (!isThisCommentEditing) &&
                                             <div
-                                                className="add-comment-textarea add-description-btn"
+                                                className="comment editable"
                                                 onClick={() => {
                                                     setEditingCommentId(comment._id)
                                                     setCommentText(comment.data.text)
@@ -488,7 +488,7 @@ export function TaskEdit() {
                                             isThisCommentEditing && <form onSubmit={onCommentSubmit}>
                                                 <textarea
                                                     ref={commentTextareaRef}
-                                                    className="edit-comment edit-description"
+                                                    className="edit-textarea"
                                                     name="comment"
                                                     value={commentText}
                                                     onChange={handleChange}
