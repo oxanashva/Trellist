@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router"
-import { Link } from 'react-router'
+import { removeTask } from '../../store/actions/board.actions'
+import { updateTask } from '../../store/actions/board.actions'
 
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 import dayjs from "dayjs"
 import { getDueStatusBadge } from "../../services/task/task.utils"
+
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 
 import CircleIcon from '../../assets/images/icons/circle.svg?react'
 import CircleCheckIcon from '../../assets/images/icons/circle-check.svg?react'
@@ -18,7 +21,7 @@ import ThumbsUpIcon from '../../assets/images/icons/thumbs-up.svg?react'
 import ClockIcon from '../../assets/images/icons/clock.svg?react'
 
 
-export function TaskPreview({ id, board, task, onRemoveTask, onCompleteTask }) {
+export function TaskPreview({ id, board, task }) {
     const { boardId } = useParams()
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const navigate = useNavigate()
@@ -46,13 +49,33 @@ export function TaskPreview({ id, board, task, onRemoveTask, onCompleteTask }) {
         setIsChecked(task.closed || false)
     }, [task.closed])
 
-    function handleCheck(e) {
+    async function onUpdateTask(e) {
         e.stopPropagation()
         e.preventDefault()
 
-        const newStatus = !isChecked
-        setIsChecked(newStatus)
-        onCompleteTask(task, newStatus)
+        const newStatus = !task.closed
+        setIsChecked(prev => !prev)
+
+        try {
+            const updatedTask = { ...task, closed: newStatus }
+            await updateTask(boardId, updatedTask)
+            showSuccessMsg('Task updated')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+
+    }
+
+    async function onRemoveTask(e) {
+        e.stopPropagation()
+        e.preventDefault()
+
+        try {
+            await removeTask(boardId, task._id)
+            showSuccessMsg('Task removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove task')
+        }
     }
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime)
@@ -79,7 +102,7 @@ export function TaskPreview({ id, board, task, onRemoveTask, onCompleteTask }) {
                         </div>
                     }
                     <div className="task-name">
-                        <div className="task-state" onClick={handleCheck}>
+                        <div className="task-state" onClick={onUpdateTask}>
                             {isChecked
                                 ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
                                 : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
@@ -127,10 +150,7 @@ export function TaskPreview({ id, board, task, onRemoveTask, onCompleteTask }) {
                 </button>
                 <button
                     className="task-btn archive-btn"
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        onRemoveTask(boardId, task._id)
-                    }}>
+                    onClick={onRemoveTask}>
                     <ArchiveIcon width={16} height={16} fill="currentColor" />
                 </button>
             </div>

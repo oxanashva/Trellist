@@ -134,31 +134,6 @@ export function BoardDetails() {
         }
     }
 
-    async function onUpdateTask(boardId, updatedTask) {
-        try {
-            await updateTask(boardId, updatedTask)
-            showSuccessMsg('Task updated')
-        } catch (err) {
-            showErrorMsg('Cannot update task')
-        }
-    }
-
-    async function onRemoveTask(boardId, taskId) {
-        try {
-            await removeTask(boardId, taskId)
-            showSuccessMsg('Task removed')
-        } catch (err) {
-            showErrorMsg('Cannot remove task')
-        }
-    }
-
-    function onCompleteTask(task, isCompleted) {
-        updateBoard({
-            ...board,
-            tasks: board.tasks.map(c => c._id === task._id ? { ...c, closed: isCompleted } : c)
-        })
-    }
-
     const onDragEnd = (event) => {
         const { active, over } = event
         if (!over) return
@@ -298,8 +273,6 @@ export function BoardDetails() {
                             onRemoveGroup={onRemoveGroup}
                             onUpdateGroup={onUpdateGroup}
                             onAddTask={onAddTask}
-                            onRemoveTask={onRemoveTask}
-                            onCompleteTask={onCompleteTask}
                         />
                     </SortableContext>
                 </DndContext>
