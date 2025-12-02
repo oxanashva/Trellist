@@ -135,10 +135,10 @@ export async function removeGroup(boardId, groupId) {
 
 // ------------------- Tasks -------------------
 
-export async function addTask(boardId, groupId, task) {
+export async function addTask(boardId, task) {
     try {
-        const savedTask = await boardService.addTask(boardId, groupId, task)
-        store.dispatch(getCmdAddTask(groupId, savedTask))
+        const savedTask = await boardService.addTask(boardId, task)
+        store.dispatch(getCmdAddTask(savedTask))
         return savedTask
     } catch (err) {
         console.log('Cannot add task', err)
@@ -146,10 +146,10 @@ export async function addTask(boardId, groupId, task) {
     }
 }
 
-export async function updateTask(boardId, groupId, task) {
+export async function updateTask(boardId, task) {
     try {
-        const savedTask = await boardService.updateTask(boardId, groupId, task)
-        store.dispatch(getCmdUpdateTask(groupId, savedTask))
+        const savedTask = await boardService.updateTask(boardId, task)
+        store.dispatch(getCmdUpdateTask(savedTask))
         return savedTask
     } catch (err) {
         console.log('Cannot update task', err)
@@ -157,10 +157,10 @@ export async function updateTask(boardId, groupId, task) {
     }
 }
 
-export async function removeTask(boardId, groupId, taskId) {
+export async function removeTask(boardId, taskId) {
     try {
-        await boardService.removeTask(boardId, groupId, taskId)
-        store.dispatch(getCmdRemoveTask(groupId, taskId))
+        await boardService.removeTask(boardId, taskId)
+        store.dispatch(getCmdRemoveTask(taskId))
     } catch (err) {
         console.log('Cannot remove task', err)
         throw err
@@ -232,26 +232,23 @@ function getCmdRemoveGroup(groupId) {
     }
 }
 
-function getCmdAddTask(groupId, task) {
+function getCmdAddTask(task) {
     return {
         type: ADD_TASK,
-        groupId,
         task
     }
 }
 
-function getCmdUpdateTask(groupId, task) {
+function getCmdUpdateTask(task) {
     return {
         type: UPDATE_TASK,
-        groupId,
         task
     }
 }
 
-function getCmdRemoveTask(groupId, taskId) {
+function getCmdRemoveTask(taskId) {
     return {
         type: REMOVE_TASK,
-        groupId,
         taskId
     }
 }

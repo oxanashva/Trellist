@@ -120,11 +120,7 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 board: {
                     ...state.board,
-                    groups: state.board.groups.map(group =>
-                        group._id === action.groupId
-                            ? { ...group, tasks: [...group.tasks, action.task] }
-                            : group
-                    )
+                    tasks: [...state.board.tasks, action.task]
                 }
             }
 
@@ -133,17 +129,10 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 board: {
                     ...state.board,
-                    groups: state.board.groups.map(group =>
-                        group._id === action.groupId
-                            ? {
-                                ...group,
-                                tasks: group.tasks.map(task =>
-                                    task._id === action.task._id
-                                        ? action.task
-                                        : task
-                                )
-                            }
-                            : group
+                    tasks: state.board.tasks.map(task =>
+                        task._id === action.task._id
+                            ? action.task
+                            : task
                     )
                 }
             }
@@ -153,15 +142,8 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 board: {
                     ...state.board,
-                    groups: state.board.groups.map(group =>
-                        group._id === action.groupId
-                            ? {
-                                ...group,
-                                tasks: group.tasks.filter(
-                                    task => task._id !== action.taskId
-                                )
-                            }
-                            : group
+                    tasks: state.board.tasks.filter(
+                        task => task._id !== action.taskId
                     )
                 }
             }

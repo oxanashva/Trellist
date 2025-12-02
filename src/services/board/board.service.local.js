@@ -63,7 +63,7 @@ async function updateGroup(boardId, updatedGroup) {
     const board = await getById(boardId)
 
     board.groups = board.groups.map(group =>
-        group.id === updatedGroup.id ? updatedGroup : group
+        group._id === updatedGroup._id ? updatedGroup : group
     )
 
     await storageService.put(STORAGE_KEY, board)
@@ -74,32 +74,28 @@ async function updateGroup(boardId, updatedGroup) {
 async function removeGroup(boardId, groupId) {
     const board = await getById(boardId)
 
-    board.groups = board.groups.filter(g => g.id !== groupId)
+    board.groups = board.groups.filter(g => g._id !== groupId)
 
     await storageService.put(STORAGE_KEY, board)
 }
 
 // ------------------- Task CRUD -------------------
 
-async function addTask(boardId, groupId, task) {
+async function addTask(boardId, task) {
     const board = await getById(boardId)
 
-    const group = board.groups.find(g => g.id === groupId)
-
-    group.tasks.push(task)
+    board.tasks.push(task)
 
     await storageService.put(STORAGE_KEY, board)
 
     return task
 }
 
-async function updateTask(boardId, groupId, updatedTask) {
+async function updateTask(boardId, updatedTask) {
     const board = await getById(boardId)
 
-    const group = board.groups.find(g => g.id === groupId)
-
-    group.tasks = group.tasks.map(t =>
-        t.id === updatedTask.id ? updatedTask : t
+    board.tasks = board.tasks.map(t =>
+        t._id === updatedTask._id ? updatedTask : t
     )
 
     await storageService.put(STORAGE_KEY, board)
@@ -110,9 +106,7 @@ async function updateTask(boardId, groupId, updatedTask) {
 async function removeTask(boardId, groupId, taskId) {
     const board = await getById(boardId)
 
-    const group = board.groups.find(g => g.id === groupId)
-
-    group.tasks = group.tasks.filter(t => t.id !== taskId)
+    board.tasks = board.tasks.filter(t => t._id !== taskId)
 
     await storageService.put(STORAGE_KEY, board)
 }
