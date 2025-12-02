@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { Outlet, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
-import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../store/actions/board.actions'
+import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, removeGroup, addTask, updateTask, removeTask, addBoardMsg } from '../store/actions/board.actions'
+
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 import { DndContext, closestCenter, useSensors, useSensor, MouseSensor } from '@dnd-kit/core'
 import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
@@ -69,45 +71,85 @@ export function BoardDetails() {
         }
     }
 
-    function onAddGroup(newGroup) {
-        updateBoard({
-            ...board,
-            groups: [
-                ...(board.groups || []),
-                newGroup
-            ]
-        })
+    async function onAddBoard(newBoard) {
+        try {
+            await addBoard(newBoard)
+            showSuccessMsg('Board added')
+        } catch (err) {
+            showErrorMsg('Cannot add board')
+        }
     }
 
-    function onRemoveGroup(groupId) {
-        updateBoard({
-            ...board,
-            groups: board.groups.filter(group => group._id !== groupId)
-        })
+    async function onUpdateBoard(updatedBoard) {
+        try {
+            await updateBoard(updatedBoard)
+            showSuccessMsg('Board updated')
+        } catch (err) {
+            showErrorMsg('Cannot update board')
+        }
     }
 
-    function onUpdateGroup(updatedGroup) {
-        updateBoard({
-            ...board,
-            groups: board.groups.map(group => group._id === updatedGroup._id ? updatedGroup : group)
-        })
+    async function onRemoveBoard(boardId) {
+        try {
+            await removeBoard(boardId)
+            showSuccessMsg('Board removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove board')
+        }
     }
 
-    function onAddTask(newTask) {
-        updateBoard({
-            ...board,
-            tasks: [
-                ...(board.tasks || []),
-                newTask
-            ]
-        })
+    async function onAddGroup(boardId, newGroup) {
+        try {
+            await addGroup(boardId, newGroup)
+            showSuccessMsg('Group added')
+        } catch (err) {
+            showErrorMsg('Cannot add group')
+        }
     }
 
-    function onRemoveTask(taskId) {
-        updateBoard({
-            ...board,
-            tasks: board.tasks.filter(task => task._id !== taskId)
-        })
+    async function onUpdateGroup(boardId, updatedGroup) {
+        try {
+            await updateGroup(boardId, updatedGroup)
+            showSuccessMsg('Group updated')
+        } catch (err) {
+            showErrorMsg('Cannot update group')
+        }
+    }
+
+    async function onRemoveGroup(boardId, groupId) {
+        try {
+            await removeGroup(boardId, groupId)
+            showSuccessMsg('Group removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove group')
+        }
+    }
+
+    async function onAddTask(boardId, newTask) {
+        try {
+            await addTask(boardId, newTask)
+            showSuccessMsg('Task added')
+        } catch (err) {
+            showErrorMsg('Cannot add task')
+        }
+    }
+
+    async function onUpdateTask(boardId, updatedTask) {
+        try {
+            await updateTask(boardId, updatedTask)
+            showSuccessMsg('Task updated')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
+    }
+
+    async function onRemoveTask(boardId, taskId) {
+        try {
+            await removeTask(boardId, taskId)
+            showSuccessMsg('Task removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove task')
+        }
     }
 
     function onCompleteTask(task, isCompleted) {

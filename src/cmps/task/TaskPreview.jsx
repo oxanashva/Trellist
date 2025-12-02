@@ -129,7 +129,7 @@ export function TaskPreview({ id, board, task, onRemoveTask, onCompleteTask }) {
                     className="task-btn archive-btn"
                     onClick={(e) => {
                         e.stopPropagation()
-                        onRemoveTask(task._id)
+                        onRemoveTask(boardId, task._id)
                     }}>
                     <ArchiveIcon width={16} height={16} fill="currentColor" />
                 </button>
