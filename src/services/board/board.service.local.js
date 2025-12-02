@@ -11,10 +11,18 @@ export const boardService = {
     getById,
     save,
     remove,
+    addGroup,
+    updateGroup,
+    removeGroup,
+    addTask,
+    updateTask,
+    removeTask,
     addBoardMsg,
     getEmptyBoard
 }
 window.bs = boardService
+
+// ------------------- Basic CRUD -------------------
 
 
 async function query() {
@@ -23,11 +31,6 @@ async function query() {
 
 function getById(carId) {
     return storageService.get(STORAGE_KEY, carId)
-}
-
-async function remove(carId) {
-    // throw new Error('Nope')
-    await storageService.remove(STORAGE_KEY, carId)
 }
 
 async function save(board) {
@@ -40,6 +43,81 @@ async function save(board) {
     return savedBoard
 }
 
+async function remove(carId) {
+    await storageService.remove(STORAGE_KEY, carId)
+}
+
+// ------------------- Group CRUD -------------------
+
+async function addGroup(boardId, group) {
+    const board = await getById(boardId)
+
+    board.groups.push(group)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return group
+}
+
+async function updateGroup(boardId, updatedGroup) {
+    const board = await getById(boardId)
+
+    board.groups = board.groups.map(group =>
+        group.id === updatedGroup.id ? updatedGroup : group
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedGroup
+}
+
+async function removeGroup(boardId, groupId) {
+    const board = await getById(boardId)
+
+    board.groups = board.groups.filter(g => g.id !== groupId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+// ------------------- Task CRUD -------------------
+
+async function addTask(boardId, groupId, task) {
+    const board = await getById(boardId)
+
+    const group = board.groups.find(g => g.id === groupId)
+
+    group.tasks.push(task)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return task
+}
+
+async function updateTask(boardId, groupId, updatedTask) {
+    const board = await getById(boardId)
+
+    const group = board.groups.find(g => g.id === groupId)
+
+    group.tasks = group.tasks.map(t =>
+        t.id === updatedTask.id ? updatedTask : t
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedTask
+}
+
+async function removeTask(boardId, groupId, taskId) {
+    const board = await getById(boardId)
+
+    const group = board.groups.find(g => g.id === groupId)
+
+    group.tasks = group.tasks.filter(t => t.id !== taskId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+// ------------------- Board Messages -------------------
 
 async function addBoardMsg(carId, txt) {
     // Later, this is all done by the backend
@@ -55,6 +133,9 @@ async function addBoardMsg(carId, txt) {
 
     return msg
 }
+
+// ------------------- Factory -------------------
+
 
 function getEmptyBoard() {
     const placeholderMember = {

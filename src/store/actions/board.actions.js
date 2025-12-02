@@ -1,10 +1,30 @@
 import { boardService } from '../../services/board'
 import { store } from '../store'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, ADD_BOARD_MSG, SET_IS_LOADING } from '../reducers/board.reducer'
+import {
+    SET_BOARDS,
+    SET_BOARD,
+    ADD_BOARD,
+    UPDATE_BOARD,
+    REMOVE_BOARD,
+    ADD_GROUP,
+    UPDATE_GROUP,
+    REMOVE_GROUP,
+    ADD_TASK,
+    UPDATE_TASK,
+    REMOVE_TASK,
+    ADD_BOARD_MSG,
+    SET_IS_LOADING,
+} from '../reducers/board.reducer'
+
+// ------------------- Helpers -------------------
+
 
 function setIsLoading(isLoading) {
     store.dispatch({ type: SET_IS_LOADING, isLoading })
 }
+
+// ------------------- Boards/Board -------------------
+
 
 export async function loadBoards() {
     try {
@@ -32,17 +52,6 @@ export async function loadBoard(boardId) {
     }
 }
 
-
-export async function removeBoard(boardId) {
-    try {
-        await boardService.remove(boardId)
-        store.dispatch(getCmdRemoveBoard(boardId))
-    } catch (err) {
-        console.log('Cannot remove board', err)
-        throw err
-    }
-}
-
 export async function addBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
@@ -65,17 +74,17 @@ export async function updateBoard(board) {
     }
 }
 
-export async function updateTask(boardId, groupId, task, activityTitle) {
+export async function removeBoard(boardId) {
     try {
-        const [savedTask, activity] = await boardService.updateTask(boardId, groupId, task, activityTitle)
-        console.log('Updated task', savedTask)
-        // store.dispatch(getCmdUpdateTask(groupId, task, activity))
-        return savedTask
+        await boardService.remove(boardId)
+        store.dispatch(getCmdRemoveBoard(boardId))
     } catch (err) {
-        console.log('Cannot update task', err)
+        console.log('Cannot remove board', err)
         throw err
     }
 }
+
+// ------------------- Messages -------------------
 
 
 export async function addBoardMsg(boardId, txt) {
@@ -89,25 +98,92 @@ export async function addBoardMsg(boardId, txt) {
     }
 }
 
-// Command Creators:
+// ------------------- Groups -------------------
+
+
+export async function addGroup(boardId, group) {
+    try {
+        const savedGroup = await boardService.addGroup(boardId, group)
+        store.dispatch(getCmdAddGroup(savedGroup))
+        return savedGroup
+    } catch (err) {
+        console.log('Cannot add group', err)
+        throw err
+    }
+}
+
+export async function updateGroup(boardId, group) {
+    try {
+        const savedGroup = await boardService.updateGroup(boardId, group)
+        store.dispatch(getCmdUpdateGroup(savedGroup))
+        return savedGroup
+    } catch (err) {
+        console.log('Cannot update group', err)
+        throw err
+    }
+}
+
+export async function removeGroup(boardId, groupId) {
+    try {
+        await boardService.removeGroup(boardId, groupId)
+        store.dispatch(getCmdRemoveGroup(groupId))
+    } catch (err) {
+        console.log('Cannot remove group', err)
+        throw err
+    }
+}
+
+// ------------------- Tasks -------------------
+
+export async function addTask(boardId, groupId, task) {
+    try {
+        const savedTask = await boardService.addTask(boardId, groupId, task)
+        store.dispatch(getCmdAddTask(groupId, savedTask))
+        return savedTask
+    } catch (err) {
+        console.log('Cannot add task', err)
+        throw err
+    }
+}
+
+export async function updateTask(boardId, groupId, task) {
+    try {
+        const savedTask = await boardService.updateTask(boardId, groupId, task)
+        store.dispatch(getCmdUpdateTask(groupId, savedTask))
+        return savedTask
+    } catch (err) {
+        console.log('Cannot update task', err)
+        throw err
+    }
+}
+
+export async function removeTask(boardId, groupId, taskId) {
+    try {
+        await boardService.removeTask(boardId, groupId, taskId)
+        store.dispatch(getCmdRemoveTask(groupId, taskId))
+    } catch (err) {
+        console.log('Cannot remove task', err)
+        throw err
+    }
+}
+
+
+// ------------------- Command Creators -------------------
+
 function getCmdSetBoards(boards) {
     return {
         type: SET_BOARDS,
         boards
     }
 }
+
 function getCmdSetBoard(board) {
     return {
         type: SET_BOARD,
         board
     }
 }
-function getCmdRemoveBoard(boardId) {
-    return {
-        type: REMOVE_BOARD,
-        boardId
-    }
-}
+
 function getCmdAddBoard(board) {
     return {
         type: ADD_BOARD,
@@ -120,10 +196,63 @@ function getCmdUpdateBoard(board) {
         board
     }
 }
+
+function getCmdRemoveBoard(boardId) {
+    return {
+        type: REMOVE_BOARD,
+        boardId
+    }
+}
+
 function getCmdAddBoardMsg(msg) {
     return {
         type: ADD_BOARD_MSG,
         msg
+    }
+}
+
+function getCmdAddGroup(group) {
+    return {
+        type: ADD_GROUP,
+        group
+    }
+}
+
+function getCmdUpdateGroup(group) {
+    return {
+        type: UPDATE_GROUP,
+        group
+    }
+}
+
+function getCmdRemoveGroup(groupId) {
+    return {
+        type: REMOVE_GROUP,
+        groupId
+    }
+}
+
+function getCmdAddTask(groupId, task) {
+    return {
+        type: ADD_TASK,
+        groupId,
+        task
+    }
+}
+
+function getCmdUpdateTask(groupId, task) {
+    return {
+        type: UPDATE_TASK,
+        groupId,
+        task
+    }
+}
+
+function getCmdRemoveTask(groupId, taskId) {
+    return {
+        type: REMOVE_TASK,
+        groupId,
+        taskId
     }
 }
 
