@@ -14,7 +14,7 @@ import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 import { DynamicPicker } from "../picker/DynamicPicker"
 
-export function GroupPreview({ id, group, tasks, actions, onRemoveGroup, onUpdateGroup }) {
+export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemoveGroup }) {
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
     const [isAddingTask, setIsAddingTask] = useState(false)
@@ -54,7 +54,7 @@ export function GroupPreview({ id, group, tasks, actions, onRemoveGroup, onUpdat
     function handleInputBlur() {
         if (groupName !== group.name) {
             const updatedGroup = { ...group, name: groupName }
-            onUpdateGroup(updatedGroup)
+            onUpdateGroup(group.idBoard, updatedGroup)
         }
         setIsEditing(false)
     }
@@ -103,6 +103,7 @@ export function GroupPreview({ id, group, tasks, actions, onRemoveGroup, onUpdat
                     anchorEl={anchorEl}
                     onClose={handlePopoverClose}
                     setIsAddingTask={setIsAddingTask}
+                    boardId={group.idBoard}
                     groupId={group._id}
                     onRemoveGroup={onRemoveGroup}
                 />

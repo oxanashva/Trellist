@@ -27,7 +27,7 @@ export function GroupList({ groups, tasks, actions, onAddGroup, onRemoveGroup, o
             idBoard: boardId,
             name: groupName
         }
-        onAddGroup(newGroup)
+        onAddGroup(boardId, newGroup)
         setGroupName('')
         setIsAddingGroup(false)
     }
