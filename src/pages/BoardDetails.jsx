@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Outlet, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
-import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, removeGroup, addTask, updateTask, removeTask, addBoardMsg } from '../store/actions/board.actions'
+import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, removeGroup, addBoardMsg } from '../store/actions/board.actions'
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
@@ -30,6 +30,7 @@ export function BoardDetails() {
     const [isEditing, setIsEditing] = useState(false)
     const [groupsOrder, setGroupsOrder] = useState(board?.groups || [])
     const [tasksOrder, setTasksOrder] = useState(board?.tasks || [])
+    const actions = board?.actions
 
     const inputRef = useFocusOnStateChange(isEditing)
 
@@ -122,15 +123,6 @@ export function BoardDetails() {
             showSuccessMsg('Group removed')
         } catch (err) {
             showErrorMsg('Cannot remove group')
-        }
-    }
-
-    async function onAddTask(boardId, newTask) {
-        try {
-            await addTask(boardId, newTask)
-            showSuccessMsg('Task added')
-        } catch (err) {
-            showErrorMsg('Cannot add task')
         }
     }
 
@@ -266,13 +258,12 @@ export function BoardDetails() {
                         strategy={horizontalListSortingStrategy}
                     >
                         <GroupList
-                            board={board}
                             groups={groupsOrder}
                             tasks={tasksOrder}
+                            actions={actions}
                             onAddGroup={onAddGroup}
                             onRemoveGroup={onRemoveGroup}
                             onUpdateGroup={onUpdateGroup}
-                            onAddTask={onAddTask}
                         />
                     </SortableContext>
                 </DndContext>

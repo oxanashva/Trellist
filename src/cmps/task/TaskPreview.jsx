@@ -21,14 +21,10 @@ import ThumbsUpIcon from '../../assets/images/icons/thumbs-up.svg?react'
 import ClockIcon from '../../assets/images/icons/clock.svg?react'
 
 
-export function TaskPreview({ id, board, task }) {
+export function TaskPreview({ id, task, taskActions }) {
     const { boardId } = useParams()
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const navigate = useNavigate()
-
-    const comments = board?.actions.filter(action => {
-        return action.data.idTask === task._id
-    })
 
     const {
         attributes,
@@ -133,10 +129,10 @@ export function TaskPreview({ id, board, task }) {
                             <DescriptionIcon width={16} height={16} fill="currentColor" />
                         </span>
                     }
-                    {comments.length !== 0 &&
+                    {taskActions.length !== 0 &&
                         <span className="badge">
                             <CommentIcon width={16} height={16} fill="currentColor" />
-                            <span>{comments.length}</span>
+                            <span>{taskActions.length}</span>
                         </span>
                     }
                 </div>

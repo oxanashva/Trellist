@@ -1,5 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router'
+
 import { makeId } from '../../services/util.service'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useFocusOnStateChange } from '../../customHooks/useFocusOnStateChange'
@@ -7,7 +9,8 @@ import { useFocusOnStateChange } from '../../customHooks/useFocusOnStateChange'
 import { TaskPreview } from './TaskPreview'
 import { ItemCreator } from '../ItemCreator'
 
-export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAddingTask }) {
+export function TaskList({ group, tasks, actions, onAddTask, isAddingTask, setIsAddingTask }) {
+    const { boardId } = useParams()
     const [taskName, setTaskName] = useState('')
     const textareaRef = useFocusOnStateChange(isAddingTask)
     const scrollRef = useRef(null)
@@ -32,13 +35,12 @@ export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAd
 
         const newTask = {
             _id: makeId(),
-            idBoard: board._id,
+            idBoard: boardId,
             idGroup: group._id,
             name: taskName
         }
-        onAddTask(newTask)
+        onAddTask(boardId, newTask)
         setTaskName('')
-        setIsAddingTask(false)
     }
 
     const taskIds = tasks?.map(task => task._id) || []
@@ -50,13 +52,21 @@ export function TaskList({ board, group, tasks, onAddTask, setIsAddingTask, isAd
             id={group._id} // Assign the Group ID as the container ID for correct task placement
         >
             <ol ref={scrollRef} className='task-list'>
-                {tasks?.map(task =>
-                    <TaskPreview
-                        key={task._id}
-                        id={task._id}
-                        board={board}
-                        task={task}
-                    />
+                {tasks?.map(task => {
+                    const taskActions = actions.filter(action => {
+                        return action.data.idTask === task._id
+                    })
+
+                    return (
+                        <TaskPreview
+                            key={task._id}
+                            id={task._id}
+                            task={task}
+                            taskActions={taskActions}
+                        />
+                    )
+                }
+
                 )}
                 {isAddingTask &&
                     <ItemCreator

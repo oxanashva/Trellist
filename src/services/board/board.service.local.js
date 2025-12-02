@@ -103,7 +103,7 @@ async function updateTask(boardId, updatedTask) {
     return updatedTask
 }
 
-async function removeTask(boardId, groupId, taskId) {
+async function removeTask(boardId, taskId) {
     const board = await getById(boardId)
 
     board.tasks = board.tasks.filter(t => t._id !== taskId)

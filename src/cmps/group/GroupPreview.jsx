@@ -5,12 +5,16 @@ import { CSS } from '@dnd-kit/utilities'
 
 import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 
+import { addTask } from "../../store/actions/board.actions"
+
+import { showErrorMsg, showSuccessMsg } from "../../services/event-bus.service"
+
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 import { DynamicPicker } from "../picker/DynamicPicker"
 
-export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateGroup, onAddTask }) {
+export function GroupPreview({ id, group, tasks, actions, onRemoveGroup, onUpdateGroup }) {
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
     const [isAddingTask, setIsAddingTask] = useState(false)
@@ -63,6 +67,15 @@ export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateG
         if (ev.key === 'Escape') {
             setGroupName(group.name)
             setIsEditing(false)
+        }
+    }
+
+    async function onAddTask(boardId, newTask) {
+        try {
+            await addTask(boardId, newTask)
+            showSuccessMsg('Task added')
+        } catch (err) {
+            showErrorMsg('Cannot add task')
         }
     }
 
@@ -144,9 +157,9 @@ export function GroupPreview({ id, board, group, tasks, onRemoveGroup, onUpdateG
                 </div>
                 <div className="group-task-gap"></div>
                 <TaskList
-                    board={board}
                     group={group}
                     tasks={tasks}
+                    actions={actions}
                     onAddTask={onAddTask}
                     isAddingTask={isAddingTask}
                     setIsAddingTask={setIsAddingTask}

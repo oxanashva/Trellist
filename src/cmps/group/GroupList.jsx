@@ -6,8 +6,10 @@ import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import { ItemCreator } from "../ItemCreator"
+import { useParams } from "react-router"
 
-export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask }) {
+export function GroupList({ groups, tasks, actions, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask }) {
+    const { boardId } = useParams()
     const [groupName, setGroupName] = useState('')
     const [isAddingGroup, setIsAddingGroup] = useState(false)
     const textareaRef = useFocusOnStateChange(isAddingGroup)
@@ -22,7 +24,7 @@ export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onU
 
         const newGroup = {
             _id: makeId(),
-            idBoard: board._id,
+            idBoard: boardId,
             name: groupName
         }
         onAddGroup(newGroup)
@@ -38,9 +40,9 @@ export function GroupList({ board, groups, tasks, onAddGroup, onRemoveGroup, onU
                     return <GroupPreview
                         key={group._id}
                         id={group._id}
-                        board={board}
                         group={group}
                         tasks={tasksForThisGroup}
+                        actions={actions}
                         onRemoveGroup={onRemoveGroup}
                         onUpdateGroup={onUpdateGroup}
                         onAddTask={onAddTask}
