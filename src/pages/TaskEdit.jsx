@@ -7,7 +7,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for par
 dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
-import { updateBoard } from "../store/actions/board.actions"
+import { updateBoard, updateTask } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
@@ -67,14 +67,6 @@ export function TaskEdit() {
     }
 
     const PICKER_MAP = {
-        // STATUS: {
-        //     type: "StatusPicker",
-        //     info: {
-        //         label: "Status:",
-        //         propName: "status",
-        //         selectedStatus: task?.status,
-        //     }
-        // },
         LABEL: {
             type: "LabelPicker",
             info: {
@@ -106,13 +98,6 @@ export function TaskEdit() {
         elDialog.current.showModal()
     }, [])
 
-    function handleCheck() {
-        const newStatus = !isChecked
-        setIsChecked(newStatus)
-
-        updateTask(task._id, { closed: newStatus })
-    }
-
     function handleChange(ev) {
         const field = ev.target.name
         const value = ev.target.value
@@ -130,40 +115,30 @@ export function TaskEdit() {
         }
     }
 
-    function updateTask(taskId, updatedFields) {
-        const updatedBoard = {
-            ...board,
-            tasks: board.tasks.map(task =>
-                task._id === taskId
-                    ? { ...task, ...updatedFields }
-                    : task
-            )
-        }
-        updateBoard(updatedBoard)
-    }
-
-    function updateBoardAction(updatedActions) {
-        const updatedBoard = {
-            ...board,
-            actions: updatedActions
+    async function onUpdateTask(field, value) {
+        const updatedTask = {
+            ...task,
+            [field]: value
         }
 
-        updateBoard(updatedBoard)
+        try {
+            await updateTask(board._id, updatedTask)
+            showSuccessMsg('Task updated')
+        } catch (err) {
+            showErrorMsg('Cannot update task')
+        }
     }
 
-    function onUpdateTask(taskId, field, value) {
-        updateTask(taskId, { [field]: value })
-    }
+    function completeTask() {
+        const newStatus = !task.closed
+        setIsChecked(prev => !prev)
 
-    function onDescriptionSubmit(ev) {
-        ev.preventDefault()
-        setIsDescEditing(false)
-        onUpdateTask(task._id, "desc", taskDescription)
+        onUpdateTask("closed", newStatus)
     }
 
     function onNameBlur() {
         setIsNameEditing(false)
-        onUpdateTask(task._id, "name", taskName)
+        onUpdateTask("name", taskName)
     }
 
     function onNameKeyDown(ev) {
@@ -175,6 +150,22 @@ export function TaskEdit() {
             setTaskName(task.name)
             setIsNameEditing(false)
         }
+    }
+
+    function onDescriptionSubmit(ev) {
+        ev.preventDefault()
+        setIsDescEditing(false)
+        onUpdateTask("desc", taskDescription)
+    }
+
+
+    function updateBoardAction(updatedActions) {
+        const updatedBoard = {
+            ...board,
+            actions: updatedActions
+        }
+
+        updateBoard(updatedBoard)
     }
 
     function onCommentSubmit(ev) {
@@ -247,7 +238,7 @@ export function TaskEdit() {
             <div className="content-wrapper">
                 <main>
                     <section className="task-title task-grid-container">
-                        <div className="task-icon" onClick={handleCheck}>
+                        <div className="task-icon" onClick={completeTask}>
                             {isChecked
                                 ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
                                 : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
