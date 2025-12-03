@@ -199,12 +199,23 @@
                 margin-block-end: 2rem;
             }
 
+            & .edit-comment-form {
+                grid-column: span 2;
+                margin-block-end: 1rem;
+            }
+
             & .comment {
                 height: 100%;
                 border: none;
                 border-radius: 0.5rem;
                 box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
                 cursor: pointer;
+
+                &.add-comment {
+                    height: auto;
+                    grid-column: span 2;
+                    margin-block-end: 1rem;
+                }
 
                 &:hover {
                     background-color: #fff;

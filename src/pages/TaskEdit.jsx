@@ -7,7 +7,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for par
 dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
-import { removeAction, updateAction, updateTask } from "../store/actions/board.actions"
+import { addAction, removeAction, updateAction, updateTask } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
@@ -38,14 +38,22 @@ export function TaskEdit() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const task = board?.tasks.find(task => task?._id === taskId)
     const group = board?.groups.find(group => group?._id === task?.idGroup)
-    const actions = board?.actions.filter(action => {
-        return action.data.idTask === task._id
-    })
+    const actions = board?.actions
+        .filter(action => action.data.idTask === task._id)
+        .sort((a, b) => {
+            // Convert the date strings to numerical timestamps (milliseconds)
+            const dateA = new Date(a.date).getTime()
+            const dateB = new Date(b.date).getTime()
+
+            // Sort in descending order
+            return dateB - dateA;
+        })
 
     const [isChecked, setIsChecked] = useState(task?.closed || false)
     const [isNameEditing, setIsNameEditing] = useState(false)
     const [isDescEditing, setIsDescEditing] = useState(false)
     const [editingCommentId, setEditingCommentId] = useState(null)
+    const [isAddingNewComment, setIsAddingNewComment] = useState(false)
     const [picker, setPicker] = useState(null)
     const [anchorEl, setAnchorEl] = useState(null)
     const openPopover = Boolean(anchorEl);
@@ -55,7 +63,8 @@ export function TaskEdit() {
 
     const nameInputRef = useTextareaAutofocusAndResize(taskName, isNameEditing)
     const descTextareaRef = useTextareaAutofocusAndResize(taskDescription, isDescEditing)
-    const commentTextareaRef = useTextareaAutofocusAndResize(commentText, editingCommentId)
+    const isCommentTextareaActive = isAddingNewComment || (editingCommentId !== null)
+    const commentTextareaRef = useTextareaAutofocusAndResize(commentText, isCommentTextareaActive)
 
     const handlePopoverOpen = (event, pickerType) => {
         setAnchorEl(event.currentTarget)
@@ -158,6 +167,15 @@ export function TaskEdit() {
         onUpdateTask("desc", taskDescription)
     }
 
+    async function onAddAction(action) {
+        try {
+            await addAction(board._id, action)
+            showSuccessMsg('Action added')
+        } catch (err) {
+            showErrorMsg('Cannot add action')
+        }
+    }
+
     async function onUpdateAction(action) {
         try {
             await updateAction(board._id, action)
@@ -188,6 +206,7 @@ export function TaskEdit() {
                     text: trimmedCommentText
                 }
             }
+            onUpdateAction(actionToSave)
         } else {
             actionToSave = {
                 _id: makeId(),
@@ -203,8 +222,8 @@ export function TaskEdit() {
                     username: "oxanashvartzman"
                 }
             }
+            onAddAction(actionToSave)
         }
-        onUpdateAction(actionToSave)
 
 
         setEditingCommentId(null)
@@ -444,12 +463,58 @@ export function TaskEdit() {
                         </section>
                     </div>
                 </main>
+
+                {/* TODO: move actions to separate component */}
                 <aside>
                     <section className="task-grid-container">
                         <div className="task-icon">
                             <CommentText width={16} height={16} fill="currentColor" />
                         </div>
                         <h3 className="heading">Comments and activities</h3>
+
+                        {(!isAddingNewComment && !editingCommentId) && (
+                            <button
+                                className="comment editable add-comment"
+                                onClick={() => {
+                                    setEditingCommentId(null)
+                                    setCommentText("")
+                                    setIsAddingNewComment(true)
+                                }}
+                            >
+                                Write a comment...
+                            </button>
+                        )}
+
+                        {(isAddingNewComment && !editingCommentId) && (
+                            <form
+                                className="edit-comment-form" onSubmit={(ev) => {
+                                    onActionSubmit(ev, null)
+                                    setIsAddingNewComment(false)
+                                }}>
+                                <textarea
+                                    ref={commentTextareaRef}
+                                    className="edit-textarea"
+                                    name="comment"
+                                    value={commentText}
+                                    onChange={handleChange}
+                                    placeholder="Write a comment..."
+                                ></textarea>
+                                <div className="edit-comment-actions edit-description-actions">
+                                    <button className="btn-primary" type="submit">Save</button>
+                                    <button
+                                        className="dynamic-btn"
+                                        type="button"
+                                        onClick={() => {
+                                            setCommentText("")
+                                            setIsAddingNewComment(false)
+                                        }}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        )}
+
                         {/* TODO: implement reusable component for editable field */}
                         {actions?.map((comment) => {
                             const isThisCommentEditing = comment._id === editingCommentId
@@ -465,6 +530,7 @@ export function TaskEdit() {
                                                     onClick={() => {
                                                         setEditingCommentId(comment._id)
                                                         setCommentText(comment.data.text)
+                                                        setIsAddingNewComment(false)
                                                     }}
                                                 >
                                                     <span>{comment.data.text}</span>
