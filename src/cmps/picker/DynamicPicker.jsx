@@ -66,7 +66,6 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setIsAddi
             slotProps={{
                 paper: {
                     sx: {
-                        width: '304px !important',
                         top: isSmallPicker ? '50%' : '68px !important',
                         bottom: isSmallPicker ? '50%' : '10px !important',
                         transform: isSmallPicker ? 'translate(-50%, -50%)' : '',

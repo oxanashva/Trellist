@@ -22,6 +22,10 @@
         }
     }
 
+    & .calendar-container {
+        display: flex;
+    }
+
     & .date-field-container,
     .action-btns {
         padding: 0.75rem;
@@ -73,6 +77,12 @@
                 user-select: none;
             }
         }
+    }
+
+    .calendar {
+        margin-block-start: 1rem;
+        border: 1px solid #080F214A;
+        border-radius: 0.25rem;
     }
 
     & .divider {
@@ -127,11 +137,9 @@
             box-shadow: inset 0 0 0 1px #8C8F97;
         }
     }
-}
 
-& .action-btns {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    & .action-btns {
+        display: flex;
+        gap: 0.5rem;
+    }
 }

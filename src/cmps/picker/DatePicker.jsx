@@ -109,78 +109,79 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
 
             <div className="date-range">
                 <form onSubmit={onSubmit}>
-                    <div className="date-field-container">
-                        <fieldset>
-                            <legend>Due Date</legend>
-                            <div className="date-input-with-toggle">
-                                <label htmlFor="due-checkbox" className="date-checkbox">
+                    <div className="calendar-container">
+                        <div className="date-field-container">
+                            <fieldset>
+                                <legend>Due Date</legend>
+                                <div className="date-input-with-toggle">
+                                    <label htmlFor="due-checkbox" className="date-checkbox">
+                                        <input
+                                            type="checkbox"
+                                            id="due-checkbox"
+                                            name="isDueDateSet"
+                                            checked={isDueDateSet}
+                                            onChange={handleChange}
+                                        />
+                                        <span className={dueCheckIconClass}>
+                                            <CheckboxCheckIcon width={16} height={16} fill={isDueDateSet ? "#ffffff" : "transparent"} />
+                                        </span>
+                                    </label>
                                     <input
-                                        type="checkbox"
-                                        id="due-checkbox"
-                                        name="isDueDateSet"
-                                        checked={isDueDateSet}
-                                        onChange={handleChange}
+                                        type="text"
+                                        ref={dueDateInputRef}
+                                        className="date-input"
+                                        name="dueDate"
+                                        value={isDueDateSet ? dueDateInput : ""}
+                                        disabled={!isDueDateSet}
+                                        placeholder="M/D/YYYY"
+                                        onChange={(e) => handleDateInputChange("dueDate", e.target.value)}
+                                        onBlur={handleBlur}
                                     />
-                                    <span className={dueCheckIconClass}>
-                                        <CheckboxCheckIcon width={16} height={16} fill={isDueDateSet ? "#ffffff" : "transparent"} />
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    ref={dueDateInputRef}
-                                    className="date-input"
-                                    name="dueDate"
-                                    value={isDueDateSet ? dueDateInput : ""}
-                                    disabled={!isDueDateSet}
-                                    placeholder="M/D/YYYY"
-                                    onChange={(e) => handleDateInputChange("dueDate", e.target.value)}
-                                    onBlur={handleBlur}
-                                />
-                                <input
-                                    type="text"
-                                    className="date-input"
-                                    name="dueTime"
-                                    value={isDueDateSet ? dueTime : ""}
-                                    disabled={!isDueDateSet}
-                                    placeholder="hh:mm a"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                            </div>
-                            {renderCalendar("dueDate")}
-                        </fieldset>
-                    </div>
-                    <div className="divider"></div>
-                    <div className="date-field-container">
-                        <fieldset>
-                            <legend>Start Date</legend>
-                            <div className="date-input-with-toggle">
-                                <label htmlFor="start-checkbox" className="date-checkbox">
                                     <input
-                                        type="checkbox"
-                                        id="start-checkbox"
-                                        name="isStartDateSet"
-                                        checked={isStartDateSet}
+                                        type="text"
+                                        className="date-input"
+                                        name="dueTime"
+                                        value={isDueDateSet ? dueTime : ""}
+                                        disabled={!isDueDateSet}
+                                        placeholder="hh:mm a"
                                         onChange={handleChange}
+                                        onBlur={handleBlur}
                                     />
-                                    <span className={startCheckIconClass}>
-                                        <CheckboxCheckIcon width={16} height={16} fill={isStartDateSet ? "#ffffff" : "transparent"} />
-                                    </span>
-                                </label>
-                                <input
-                                    type="text"
-                                    ref={startDateInputRef}
-                                    className="date-input"
-                                    name="startDate"
-                                    value={isStartDateSet ? startDateInput : ""}
-                                    disabled={!isStartDateSet}
-                                    placeholder="M/D/YYYY"
-                                    onChange={(e) => handleDateInputChange("startDate", e.target.value)}
-                                    onBlur={handleBlur}
-                                />
-                            </div>
-                            {renderCalendar("startDate")}
-                        </fieldset>
+                                </div>
+                                {renderCalendar("dueDate")}
+                            </fieldset>
+                        </div>
+                        <div className="date-field-container">
+                            <fieldset>
+                                <legend>Start Date</legend>
+                                <div className="date-input-with-toggle">
+                                    <label htmlFor="start-checkbox" className="date-checkbox">
+                                        <input
+                                            type="checkbox"
+                                            id="start-checkbox"
+                                            name="isStartDateSet"
+                                            checked={isStartDateSet}
+                                            onChange={handleChange}
+                                        />
+                                        <span className={startCheckIconClass}>
+                                            <CheckboxCheckIcon width={16} height={16} fill={isStartDateSet ? "#ffffff" : "transparent"} />
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        ref={startDateInputRef}
+                                        className="date-input"
+                                        name="startDate"
+                                        value={isStartDateSet ? startDateInput : ""}
+                                        disabled={!isStartDateSet}
+                                        placeholder="M/D/YYYY"
+                                        onChange={(e) => handleDateInputChange("startDate", e.target.value)}
+                                        onBlur={handleBlur}
+                                    />
+                                </div>
+                                {renderCalendar("startDate")}
+                            </fieldset>
+                        </div>
                     </div>
                     <div className="action-btns">
                         <button
