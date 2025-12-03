@@ -8,7 +8,7 @@ dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
 import { addAction, removeAction, updateAction, updateTask } from "../store/actions/board.actions"
-import { makeId } from "../services/util.service"
+import { formatDate, makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
@@ -28,6 +28,7 @@ import ThumbsUpIcon from "../assets/images/icons/thumbs-up.svg?react"
 import DescriptionIcon from "../assets/images/icons/description.svg?react"
 import CommentText from "../assets/images/icons/comment-text.svg?react"
 import ShevronDown from "../assets/images/icons/shevron-down.svg?react"
+
 
 import { DynamicPicker } from "../cmps/picker/DynamicPicker"
 
@@ -217,10 +218,11 @@ export function TaskEdit() {
                 date: Date.now(),
                 type: "commentTask",
                 memberCreator: {
-                    fullName: "Oxana Shvartzman",
-                    avatarUrl: "images/avatars/OS-avatar.png",
-                    username: "oxanashvartzman"
-                }
+                    fullName: "Anna Coss",
+                    avatarUrl: "",
+                    username: "annacoss",
+                    initials: "AC"
+                } // TODO: do not hardcode
             }
             onAddAction(actionToSave)
         }
@@ -520,7 +522,21 @@ export function TaskEdit() {
                             const isThisCommentEditing = comment._id === editingCommentId
                             return (
                                 <React.Fragment key={comment._id}>
+                                    {/* TODO: Implement conditional rendering of avatar-image or avatar-fallback */}
+                                    {/* <div>
+                                        <img src={comment.memberCreator.avatarUrl} alt={`${comment.memberCreator.fullname} avatar`} />
+                                    </div> */}
+                                    <div className="fallback-avatar">
+                                        <span>{comment.memberCreator.initials}</span>
+                                    </div>
+
+                                    <div className="comment-info">
+                                        <span className="comment-author">{comment.memberCreator.fullName}</span>
+                                        <span className="comment-date">{formatDate(comment.date)}</span>
+                                    </div>
+
                                     <div></div>
+
                                     <div key={comment}>
                                         {
                                             (!isThisCommentEditing) &&

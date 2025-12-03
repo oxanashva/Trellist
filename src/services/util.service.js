@@ -51,3 +51,24 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+/**
+ * Format a timestamp into "Mon D, YYYY, HH:MM AM/PM"
+ * Example: Oct 9, 2025, 11:21 PM
+ *
+ * @param {number|string|Date} input - Timestamp (ms), ISO string, or Date object
+ * @returns {string} Formatted date string
+ */
+
+export function formatDate(input) {
+    const date = new Date(input)
+
+    return date.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    })
+}
