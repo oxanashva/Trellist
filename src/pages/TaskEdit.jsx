@@ -535,6 +535,7 @@ export function TaskEdit() {
                                                 >
                                                     <span>{comment.data.text}</span>
                                                 </div>
+
                                                 <button
                                                     className="comment-btn"
                                                     onClick={() => {
@@ -544,6 +545,7 @@ export function TaskEdit() {
                                                 >
                                                     Edit
                                                 </button>
+                                                <span>•</span>
                                                 <button className="comment-btn" onClick={() => onRemoveAction(comment._id)}>Delete</button>
                                             </div>
                                         }

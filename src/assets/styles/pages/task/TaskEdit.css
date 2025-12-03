@@ -221,6 +221,13 @@
                     background-color: #fff;
                 }
             }
+
+            & .comment-btn {
+                padding-inline: 0.5rem;
+                color: var(--text-subtle);
+                font-size: 0.75rem;
+                text-decoration: underline;
+            }
         }
 
         & .heading {
