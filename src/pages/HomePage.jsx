@@ -1,14 +1,20 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"
+import HeroImg from "../assets/images/hero.png"
 
 export function HomePage() {
     return (
         <section className="home">
             <div className="hero-content">
-                <h1>Trellist brings all your tasks, teammates, and tools together</h1>
-                <p>Keep everything in the same place-even if your team isn't.</p>
-                <NavLink to="/workspace" className="link-btn btn-primary">
-                    Start Demo
-                </NavLink>
+                <div className="hero-text">
+                    <h1>Trellist brings all your tasks, teammates, and tools together</h1>
+                    <p>Keep everything in the same place-even if your team isn't.</p>
+                    <NavLink to="/workspace" className="link-btn btn-primary">
+                        Start Demo
+                    </NavLink>
+                </div>
+                <div className="hero-image">
+                    <img src={HeroImg} alt="Hero Image" />
+                </div>
             </div>
         </section >
     )
