@@ -12,6 +12,9 @@ import {
     ADD_TASK,
     UPDATE_TASK,
     REMOVE_TASK,
+    ADD_ACTION,
+    UPDATE_ACTION,
+    REMOVE_ACTION,
     ADD_BOARD_MSG,
     SET_IS_LOADING,
 } from '../reducers/board.reducer'
@@ -167,6 +170,40 @@ export async function removeTask(boardId, taskId) {
     }
 }
 
+// ------------------- Actions -------------------
+
+export async function addAction(boardId, action) {
+    try {
+        const savedAction = await boardService.addAction(boardId, action)
+        store.dispatch(getCmdAddAction(savedAction))
+        return savedAction
+    } catch (err) {
+        console.log('Cannot add action', err)
+        throw err
+    }
+}
+
+export async function updateAction(boardId, action) {
+    try {
+        const savedAction = await boardService.updateAction(boardId, action)
+        store.dispatch(getCmdUpdateAction(savedAction))
+        return savedAction
+    } catch (err) {
+        console.log('Cannot update action', err)
+        throw err
+    }
+}
+
+export async function removeAction(boardId, actionId) {
+    try {
+        await boardService.removeAction(boardId, actionId)
+        store.dispatch(getCmdRemoveAction(actionId))
+    } catch (err) {
+        console.log('Cannot remove action', err)
+        throw err
+    }
+}
+
 
 // ------------------- Command Creators -------------------
 
@@ -250,6 +287,27 @@ function getCmdRemoveTask(taskId) {
     return {
         type: REMOVE_TASK,
         taskId
+    }
+}
+
+function getCmdAddAction(action) {
+    return {
+        type: ADD_ACTION,
+        action
+    }
+}
+
+function getCmdUpdateAction(action) {
+    return {
+        type: UPDATE_ACTION,
+        action
+    }
+}
+
+function getCmdRemoveAction(actionId) {
+    return {
+        type: REMOVE_ACTION,
+        actionId
     }
 }
 

@@ -12,6 +12,10 @@ export const ADD_TASK = 'ADD_TASK'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const REMOVE_TASK = 'REMOVE_TASK'
 
+export const ADD_ACTION = 'ADD_ACTION'
+export const UPDATE_ACTION = 'UPDATE_ACTION'
+export const REMOVE_ACTION = 'REMOVE_ACTION'
+
 export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
 
 export const SET_IS_LOADING = 'SET_IS_LOADING'
@@ -144,6 +148,42 @@ export function boardReducer(state = initialState, action) {
                     ...state.board,
                     tasks: state.board.tasks.filter(
                         task => task._id !== action.taskId
+                    )
+                }
+            }
+
+        // ------------------- Action CRUD -------------------
+
+        case ADD_ACTION:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    actions: [...state.board.actions, action.action]
+                }
+            }
+
+        case UPDATE_ACTION: {
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    actions: state.board.actions.map(a =>
+                        a._id === action.action._id
+                            ? action.action
+                            : a
+                    )
+                }
+            }
+        }
+
+        case REMOVE_ACTION:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    actions: state.board.actions.filter(
+                        action => action._id !== action.actionId
                     )
                 }
             }

@@ -17,6 +17,9 @@ export const boardService = {
     addTask,
     updateTask,
     removeTask,
+    addAction,
+    updateAction,
+    removeAction,
     addBoardMsg,
     getEmptyBoard
 }
@@ -110,6 +113,38 @@ async function removeTask(boardId, taskId) {
 
     await storageService.put(STORAGE_KEY, board)
 }
+
+// ------------------- Actions CRUD -------------------
+async function addAction(boardId, action) {
+    const board = await getById(boardId)
+
+    board.actions.push(action)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return action
+}
+
+async function updateAction(boardId, updatedAction) {
+    const board = await getById(boardId)
+
+    board.actions = board.actions.map(a =>
+        a._id === updatedAction._id ? updatedAction : a
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedAction
+}
+
+async function removeAction(boardId, actionId) {
+    const board = await getById(boardId)
+
+    board.actions = board.actions.filter(a => a._id !== actionId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
 
 // ------------------- Board Messages -------------------
 

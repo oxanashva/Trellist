@@ -7,7 +7,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for par
 dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
-import { updateBoard, updateTask } from "../store/actions/board.actions"
+import { updateAction, updateTask } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
@@ -38,7 +38,7 @@ export function TaskEdit() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const task = board?.tasks.find(task => task?._id === taskId)
     const group = board?.groups.find(group => group?._id === task?.idGroup)
-    const comments = board?.actions.filter(action => {
+    const actions = board?.actions.filter(action => {
         return action.data.idTask === task._id
     })
 
@@ -158,17 +158,16 @@ export function TaskEdit() {
         onUpdateTask("desc", taskDescription)
     }
 
-
-    function updateBoardAction(updatedActions) {
-        const updatedBoard = {
-            ...board,
-            actions: updatedActions
+    async function onUpdateAction(action) {
+        try {
+            await updateAction(board._id, action)
+            showSuccessMsg('Action updated')
+        } catch (err) {
+            showErrorMsg('Cannot update action')
         }
-
-        updateBoard(updatedBoard)
     }
 
-    function onCommentSubmit(ev) {
+    function onActionSubmit(ev, actionId) {
         ev.preventDefault()
         const trimmedCommentText = commentText.trim()
 
@@ -178,22 +177,19 @@ export function TaskEdit() {
             return
         }
 
-        let updatedComments
+        let actionToSave
 
         if (editingCommentId) {
-            const existingComments = board.actions || []
-            updatedComments = existingComments.map(action => {
-                if (action._id === editingCommentId) {
-                    return {
-                        ...action,
-                        data: { ...action.data, text: trimmedCommentText }
-                    }
+            const existingAction = actions.find(a => a._id === actionId)
+            actionToSave = {
+                ...existingAction,
+                data: {
+                    ...existingAction.data,
+                    text: trimmedCommentText
                 }
-                return action
-            })
-
+            }
         } else {
-            const newComment = {
+            actionToSave = {
                 _id: makeId(),
                 data: {
                     idTask: task._id,
@@ -207,11 +203,9 @@ export function TaskEdit() {
                     username: "oxanashvartzman"
                 }
             }
-
-            updatedComments = [...(board.actions || []), newComment]
         }
+        onUpdateAction(actionToSave)
 
-        updateBoardAction(updatedComments)
 
         setEditingCommentId(null)
         setCommentText("")
@@ -448,7 +442,7 @@ export function TaskEdit() {
                         </div>
                         <h3 className="heading">Comments and activities</h3>
                         {/* TODO: implement reusable component for editable field */}
-                        {comments?.map((comment) => {
+                        {actions?.map((comment) => {
                             const isThisCommentEditing = comment._id === editingCommentId
                             return (
                                 <React.Fragment key={comment._id}>
@@ -467,7 +461,7 @@ export function TaskEdit() {
                                             </div>
                                         }
                                         {
-                                            isThisCommentEditing && <form onSubmit={onCommentSubmit}>
+                                            isThisCommentEditing && <form onSubmit={(ev) => onActionSubmit(ev, comment._id)}>
                                                 <textarea
                                                     ref={commentTextareaRef}
                                                     className="edit-textarea"
