@@ -183,7 +183,7 @@ export function boardReducer(state = initialState, action) {
                 board: {
                     ...state.board,
                     actions: state.board.actions.filter(
-                        action => action._id !== action.actionId
+                        a => a._id !== action.actionId
                     )
                 }
             }

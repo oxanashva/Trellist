@@ -7,7 +7,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for par
 dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
-import { updateAction, updateTask } from "../store/actions/board.actions"
+import { removeAction, updateAction, updateTask } from "../store/actions/board.actions"
 import { makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
@@ -209,6 +209,15 @@ export function TaskEdit() {
 
         setEditingCommentId(null)
         setCommentText("")
+    }
+
+    async function onRemoveAction(actionId) {
+        try {
+            await removeAction(board._id, actionId)
+            showSuccessMsg('Action removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove action')
+        }
     }
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
@@ -450,14 +459,26 @@ export function TaskEdit() {
                                     <div key={comment}>
                                         {
                                             (!isThisCommentEditing) &&
-                                            <div
-                                                className="comment editable"
-                                                onClick={() => {
-                                                    setEditingCommentId(comment._id)
-                                                    setCommentText(comment.data.text)
-                                                }}
-                                            >
-                                                <span>{comment.data.text}</span>
+                                            <div>
+                                                <div
+                                                    className="comment editable"
+                                                    onClick={() => {
+                                                        setEditingCommentId(comment._id)
+                                                        setCommentText(comment.data.text)
+                                                    }}
+                                                >
+                                                    <span>{comment.data.text}</span>
+                                                </div>
+                                                <button
+                                                    className="comment-btn"
+                                                    onClick={() => {
+                                                        setEditingCommentId(comment._id)
+                                                        setCommentText(comment.data.text)
+                                                    }}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button className="comment-btn" onClick={() => onRemoveAction(comment._id)}>Delete</button>
                                             </div>
                                         }
                                         {
