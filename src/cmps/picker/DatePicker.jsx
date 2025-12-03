@@ -9,7 +9,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar"
 
 import CheckboxCheckIcon from "../../assets/images/icons/checkbox-check.svg?react"
 
-export function DatePicker({ task, onUpdate, onClose }) {
+export function DatePicker({ task, onClose, onUpdateTask }) {
     const initialState = {
         isStartDateSet: task.start ? true : false,
         startDate: createDate(task.start),
@@ -43,7 +43,7 @@ export function DatePicker({ task, onUpdate, onClose }) {
         const finalDueDate = isDueDateSet ? combineDateAndTime(dueDate, dueTime) : null
         const finalStartDate = isStartDateSet ? combineDateAndTime(startDate, null) : null
 
-        onUpdate(task._id, {
+        onUpdateTask(task.idBoard, {
             due: finalDueDate,
             dueTime: isDueDateSet ? dueTime : null,
             start: finalStartDate
@@ -54,7 +54,7 @@ export function DatePicker({ task, onUpdate, onClose }) {
     // TODO: implement submit on enter
 
     function onRemove() {
-        onUpdate(task._id, { due: null, dueTime: null, start: null })
+        onUpdateTask(task.idBoard, { due: null, dueTime: null, start: null })
         onClose()
     }
 

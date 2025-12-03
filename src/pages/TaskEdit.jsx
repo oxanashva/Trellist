@@ -125,14 +125,14 @@ export function TaskEdit() {
         }
     }
 
-    async function onUpdateTask(field, value) {
+    async function onUpdateTask(boardId, fieldsToUpdate) {
         const updatedTask = {
             ...task,
-            [field]: value
+            ...fieldsToUpdate
         }
 
         try {
-            await updateTask(board._id, updatedTask)
+            await updateTask(boardId, updatedTask)
             showSuccessMsg('Task updated')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -143,12 +143,12 @@ export function TaskEdit() {
         const newStatus = !task.closed
         setIsChecked(prev => !prev)
 
-        onUpdateTask("closed", newStatus)
+        onUpdateTask(task.idBoard, { closed: newStatus })
     }
 
     function onNameBlur() {
         setIsNameEditing(false)
-        onUpdateTask("name", taskName)
+        onUpdateTask(task.idBoard, { name: taskName })
     }
 
     function onNameKeyDown(ev) {
@@ -165,7 +165,7 @@ export function TaskEdit() {
     function onDescriptionSubmit(ev) {
         ev.preventDefault()
         setIsDescEditing(false)
-        onUpdateTask("desc", taskDescription)
+        onUpdateTask(task.idBoard, { desc: taskDescription })
     }
 
     async function onAddAction(action) {
@@ -294,7 +294,7 @@ export function TaskEdit() {
                                 open={openPopover}
                                 anchorEl={anchorEl}
                                 onClose={handlePopoverClose}
-                                updateTask={updateTask}
+                                onUpdateTask={onUpdateTask}
                             />
                         )}
                         <section className="task-actions task-grid-container">
