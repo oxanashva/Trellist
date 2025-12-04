@@ -101,13 +101,20 @@ export function TaskPreview({ id, task, taskActions }) {
                     }
                     {task.idLabels?.length !== 0 &&
                         <div className="task-labels">
-                            {task.labels?.map(label =>
-                                <span
-                                    key={label._id}
-                                    style={{ backgroundColor: labelsColorsMap[label.color] }}
-                                    className="task-label"
-                                >
-                                </span>
+                            {task.labels?.map(label => {
+                                if (task.idLabels?.includes(label._id)) {
+                                    return (
+                                        <span
+                                            key={label._id}
+                                            style={{ backgroundColor: labelsColorsMap[label.color] }}
+                                            className="task-label"
+                                            title={label.name}
+                                        >
+                                        </span>
+                                    )
+                                }
+                            }
+
                             )}
                         </div>
                     }
@@ -120,6 +127,7 @@ export function TaskPreview({ id, task, taskActions }) {
                         <span>{task.name}</span>
                     </div>
                 </div>
+
                 {/* TODO: update task.badges on add comment/description or another action and use them to conditionally render */}
                 <div className="task-badges">
                     {task.idMembersVoted?.length !== 0 &&
