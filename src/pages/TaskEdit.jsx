@@ -331,14 +331,15 @@ export function TaskEdit() {
                         <section className="task-actions task-grid-container">
                             <div></div>
                             <div className="task-actions-btns">
-                                <button
+                                {/* TODO: implement adding new action */}
+                                {/* <button
                                     className="action-btn"
                                     onClick={(event) => {
                                         handlePopoverOpen(event, PICKER_MAP.ADD)
                                     }}>
                                     <PlusIcon width={16} height={16} fill="currentColor" />
                                     <span>Add</span>
-                                </button>
+                                </button> */}
                                 <button
                                     className="action-btn"
                                     onClick={(event) => {
@@ -355,14 +356,15 @@ export function TaskEdit() {
                                     <ClockIcon width={16} height={16} fill="currentColor" />
                                     <span>Dates</span>
                                 </button>
-                                <button
+                                {/* TODO: implement adding checklists */}
+                                {/* <button
                                     className="action-btn"
                                     onClick={(event) => {
                                         handlePopoverOpen(event, PICKER_MAP.CHECKLIST)
                                     }}>
                                     <CheckListIcon width={16} height={16} fill="currentColor" />
                                     <span>Checklists</span>
-                                </button>
+                                </button> */}
                                 <button
                                     className="action-btn"
                                     onClick={() => {
@@ -371,31 +373,32 @@ export function TaskEdit() {
                                     <MemberPlusIcon width={16} height={16} fill="currentColor" />
                                     <span>Members</span>
                                 </button>
-                                <button
+                                {/* TODO: implement adding attachments */}
+                                {/* <button
                                     className="action-btn"
                                     onClick={(event) => {
                                         handlePopoverOpen(event, PICKER_MAP.ATTACHMENT)
                                     }}>
                                     <AttachmentIcon width={16} height={16} fill="currentColor" />
                                     <span>Attachments</span>
-                                </button>
+                                </button> */}
                             </div>
                         </section>
                         <div className="task-params">
-                            <section className="task-flex-container">
+                            {/* TODO: implement displaying members */}
+                            {/* <section className="task-flex-container">
                                 <h3 className="params-heading">Members</h3>
                                 <button className="btn-neutral">
                                     Member
                                 </button>
-                            </section>
+                            </section> */}
+
                             {task?.idLabels?.length > 0 &&
                                 <section className="task-flex-container">
                                     <h3 className="params-heading">Labels</h3>
                                     <div className="labels-container">
                                         {task?.idLabels?.map((labelId) => {
                                             const label = labels.find((l) => l._id === labelId)
-                                            console.log('labels :', labels);
-                                            console.log('label :', label);
                                             return (
                                                 <button
                                                     key={labelId}
@@ -417,7 +420,8 @@ export function TaskEdit() {
                                             <PlusIcon width={16} height={16} fill="currentColor" />
                                         </button>
                                     </div>
-                                </section>}
+                                </section>
+                            }
 
                             {(task?.due || task?.start) &&
                                 <section className="task-flex-container">
@@ -448,13 +452,14 @@ export function TaskEdit() {
                                 </section>
                             }
 
-                            <section className="task-flex-container">
+                            {/* TODO: implement adding votes */}
+                            {/* <section className="task-flex-container">
                                 <h3 className="params-heading">Votes</h3>
                                 <button className="btn-neutral">
                                     <ThumbsUpIcon width={16} height={16} fill="currentColor" />
                                     <span>Vote</span>
                                 </button>
-                            </section>
+                            </section> */}
                         </div>
                         <section className="task-actions task-grid-container">
                             <div className="task-icon">
