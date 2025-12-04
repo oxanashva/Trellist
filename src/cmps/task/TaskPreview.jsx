@@ -86,6 +86,11 @@ export function TaskPreview({ id, task, taskActions }) {
             {...attributes}
             {...listeners}
         >
+            {task.cover?.sharedSourceUrl &&
+                <div className="cover-img" >
+                    <img src={task.cover.sharedSourceUrl} alt="card-image" />
+                </div>
+            }
             {/* Use div instead of Link so we resolve conflict with dnd-kit */}
             <div
                 className="task-wrapper"
@@ -94,11 +99,6 @@ export function TaskPreview({ id, task, taskActions }) {
                 }}
             >
                 <div className="task-header">
-                    {task.cover?.sharedSourceUrl &&
-                        <div className="cover-img" >
-                            <img src={task.cover.sharedSourceUrl} alt="card-image" />
-                        </div>
-                    }
                     {task.idLabels?.length !== 0 &&
                         <div className="task-labels">
                             {task.labels?.map(label => {

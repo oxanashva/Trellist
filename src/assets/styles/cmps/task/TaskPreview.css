@@ -11,6 +11,15 @@
         outline-offset: 2px;
     }
 
+    & .cover-img {
+        width: 100%;
+        background-color: #e4e4e4;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+
     & .task-wrapper {
         position: relative;
         min-height: 36px;
@@ -26,13 +35,6 @@
             align-items: flex-start;
             justify-content: flex-start;
             gap: 0.5rem;
-
-            .cover-img {
-                width: 100%;
-                background-color: #e4e4e4;
-                border-radius: 0.25rem;
-                overflow: hidden;
-            }
 
             & .task-name {
                 display: flex;
