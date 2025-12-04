@@ -106,7 +106,7 @@ export function TaskPreview({ id, task, taskActions }) {
                                     return (
                                         <span
                                             key={label._id}
-                                            style={{ backgroundColor: labelsColorsMap[label.color] }}
+                                            style={{ backgroundColor: labelsColorsMap[label.color] || "#CCCCCC" }}
                                             className="task-label"
                                             title={label.name}
                                         >
