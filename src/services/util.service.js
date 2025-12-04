@@ -72,3 +72,13 @@ export function formatDate(input) {
         hour12: true
     })
 }
+
+export const labelsColorsMap = {
+    "green": "#4BCE97",
+    "yellow": "#EED12B",
+    "orange": "#FCA700",
+    "red": "#F87168",
+    "purple": "#C97CF4",
+    "sky": "#669DF1",
+    "blue": "#6CC3E0"
+}
