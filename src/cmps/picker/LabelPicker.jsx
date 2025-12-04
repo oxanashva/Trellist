@@ -42,13 +42,20 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
             name: labelName,
             color: selectedColorKey,
         }
+
+        const newSelectedLabels = [...selectedLabels, newLabel._id]
+
         onAddLabel(newLabel)
+        onUpdateTask(task.idBoard, {
+            ...task,
+            labels: [...task.labels, newLabel],
+            idLabels: newSelectedLabels
+        })
+        setSelectedLabels(newSelectedLabels)
         setHasLabels(true)
         setIsCreating(false)
         setLabelName("")
         setSelectedColorKey(null)
-        setSelectedLabels([...selectedLabels, newLabel._id])
-        onUpdateTask(task.idBoard, { ...task, labels: [...task.labels, newLabel] })
     }
 
     function editLabel() {

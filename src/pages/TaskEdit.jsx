@@ -8,7 +8,7 @@ dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
 import { addAction, removeAction, updateAction, updateTask, addLabel, updateLabel, removeLabel } from "../store/actions/board.actions"
-import { formatDate, makeId } from "../services/util.service"
+import { formatDate, getHexColor, makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
@@ -49,6 +49,7 @@ export function TaskEdit() {
             // Sort in descending order
             return dateB - dateA;
         })
+    const labels = board?.labels
 
     const [isChecked, setIsChecked] = useState(task?.closed || false)
     const [isNameEditing, setIsNameEditing] = useState(false)
@@ -381,21 +382,45 @@ export function TaskEdit() {
                             </div>
                         </section>
                         <div className="task-params">
-                            <section className="task-actions task-flex-container">
+                            <section className="task-flex-container">
                                 <h3 className="params-heading">Members</h3>
                                 <button className="btn-neutral">
                                     Member
                                 </button>
                             </section>
-                            <section className="task-actions task-flex-container">
-                                <h3 className="params-heading">Labels</h3>
-                                <button className="btn-neutral">
-                                    Label
-                                </button>
-                            </section>
+                            {task?.idLabels?.length > 0 &&
+                                <section className="task-flex-container">
+                                    <h3 className="params-heading">Labels</h3>
+                                    <div className="labels-container">
+                                        {task?.idLabels?.map((labelId) => {
+                                            const label = labels.find((l) => l._id === labelId)
+                                            console.log('labels :', labels);
+                                            console.log('label :', label);
+                                            return (
+                                                <button
+                                                    key={labelId}
+                                                    style={{ backgroundColor: getHexColor(label?.color) }}
+                                                    onClick={(event) => {
+                                                        handlePopoverOpen(event, PICKER_MAP.LABEL, labelId)
+                                                    }}
+                                                    className="btn-neutral"
+                                                >
+                                                    {labels.find((label) => label._id === labelId)?.name}
+                                                </button>
+                                            )
+                                        })}
+                                        <button
+                                            className="btn-neutral label-add-btn"
+                                            onClick={(event) => {
+                                                handlePopoverOpen(event, PICKER_MAP.LABEL)
+                                            }}>
+                                            <PlusIcon width={16} height={16} fill="currentColor" />
+                                        </button>
+                                    </div>
+                                </section>}
 
                             {(task?.due || task?.start) &&
-                                <section className="task-actions task-flex-container">
+                                <section className="task-flex-container">
                                     <h3 className="params-heading">
                                         {(task?.start && task?.due)
                                             ? "Dates"
@@ -423,7 +448,7 @@ export function TaskEdit() {
                                 </section>
                             }
 
-                            <section className="task-actions task-flex-container">
+                            <section className="task-flex-container">
                                 <h3 className="params-heading">Votes</h3>
                                 <button className="btn-neutral">
                                     <ThumbsUpIcon width={16} height={16} fill="currentColor" />

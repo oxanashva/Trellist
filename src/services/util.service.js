@@ -82,3 +82,7 @@ export const labelsColorsMap = {
     "sky": "#669DF1",
     "blue": "#6CC3E0"
 }
+
+export const getHexColor = (colorName) => {
+    return labelsColorsMap[colorName] || '#CCCCCC';
+}
