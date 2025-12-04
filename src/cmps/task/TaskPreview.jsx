@@ -99,12 +99,11 @@ export function TaskPreview({ id, task, taskActions }) {
                             <img src={task.cover.sharedSourceUrl} alt="card-image" />
                         </div>
                     }
-                    {console.log(task[8])}
                     {task.idLabels?.length !== 0 &&
                         <div className="task-labels">
                             {task.labels?.map(label =>
                                 <span
-                                    key={label}
+                                    key={label._id}
                                     style={{ backgroundColor: labelsColorsMap[label.color] }}
                                     className="task-label"
                                 >
