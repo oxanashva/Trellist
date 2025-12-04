@@ -5,7 +5,7 @@ import { LabelPicker } from "../picker/LabelPicker"
 import { ActionPicker } from '../picker/ActionPicker'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function DynamicPicker({ task, picker, anchorEl, open, onClose, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask }) {
+export function DynamicPicker({ task, picker, anchorEl, open, onClose, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
     const [isSmallPicker, setIsSmallPicker] = useState(false)
 
     useEffect(() => {
@@ -24,7 +24,9 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setIsAddi
                 return <LabelPicker
                     task={task}
                     onUpdateTask={onUpdateTask}
-                    onClose={onClose}
+                    onAddLabel={onAddLabel}
+                    onUpdateLabel={onUpdateLabel}
+                    onRemoveLabel={onRemoveLabel}
                 />
             case 'DatePicker':
                 return <DatePicker

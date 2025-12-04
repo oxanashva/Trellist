@@ -9,8 +9,9 @@ const allAvailableLabels = Object.keys(labelsColorsMap).map((colorKey, idx) => (
     color: colorKey,
 }))
 
-export function LabelPicker({ task, onUpdateTask, onClose }) {
+export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
     const [hasLabels, setHasLabels] = useState(task.labels.length > 0)
+    const [selectedLabels, setSelectedLabels] = useState(task.idLabels || [])
     const [isEditing, setIsEditing] = useState(false)
     const [isCreating, setIsCreating] = useState(false)
     const [labelName, setLabelName] = useState("")
@@ -18,6 +19,62 @@ export function LabelPicker({ task, onUpdateTask, onClose }) {
     const [labelToEdit, setLabelToEdit] = useState(null)
 
     const currentPreviewColorKey = selectedColorKey || (labelToEdit && labelToEdit.color) || Object.keys(labelsColorsMap)[0]
+
+    function handleLabelToggle(labelId) {
+        const isCurrentlySelected = selectedLabels.includes(labelId)
+        let newSelectedLabels
+
+        if (isCurrentlySelected) {
+            newSelectedLabels = selectedLabels.filter(l => l !== labelId)
+        } else {
+            newSelectedLabels = [...selectedLabels, labelId]
+        }
+
+        setSelectedLabels(newSelectedLabels)
+
+        onUpdateTask(task.idBoard, { ...task, idLabels: newSelectedLabels })
+    }
+
+    function createLabel() {
+        const newLabel = {
+            _id: makeId(),
+            idBoard: task.idBoard,
+            name: labelName,
+            color: selectedColorKey,
+        }
+        onAddLabel(newLabel)
+        setHasLabels(true)
+        setIsCreating(false)
+        setLabelName("")
+        setSelectedColorKey(null)
+        setSelectedLabels([...selectedLabels, newLabel._id])
+        onUpdateTask(task.idBoard, { ...task, labels: [...task.labels, newLabel] })
+    }
+
+    function editLabel() {
+        const updatedLabel = {
+            ...labelToEdit,
+            name: labelName,
+            color: selectedColorKey,
+        }
+        onUpdateLabel(updatedLabel)
+        setIsEditing(false)
+        setLabelName("")
+        setLabelToEdit(null)
+        setSelectedColorKey(null)
+        onUpdateTask(task.idBoard, { ...task, labels: task.labels.map(l => l._id === updatedLabel._id ? updatedLabel : l) })
+    }
+
+    function removeLabel(labelId) {
+        const newLabels = task.labels.filter(l => l._id !== labelId)
+        onRemoveLabel(labelId)
+        setIsEditing(false)
+        setLabelName("")
+        setLabelToEdit(null)
+        setSelectedColorKey(null)
+        onUpdateTask(task.idBoard, { ...task, labels: task.labels.filter(l => l._id !== labelId) })
+        setHasLabels(newLabels.length > 0)
+    }
 
     return (
         <section className="label-picker">
@@ -45,10 +102,17 @@ export function LabelPicker({ task, onUpdateTask, onClose }) {
                     <div className="label-editor-content">
                         {task.labels.map((label) => {
                             const labelHexColor = labelsColorsMap[label.color]
+                            const isLabelSelected = selectedLabels.includes(label._id)
                             return (
                                 <div className="label-container" key={label._id}>
                                     <label className="label-item" key={label._id} htmlFor={label._id}>
-                                        <input type="checkbox" name="label" id={label._id} />
+                                        <input
+                                            id={label._id}
+                                            type="checkbox"
+                                            name="label"
+                                            checked={isLabelSelected}
+                                            onClick={() => handleLabelToggle(label._id)}
+                                        />
                                         <span className="label-checkbox">
                                             <span style={{ backgroundColor: labelHexColor }} className="label-box">{label.name}</span>
                                         </span>
@@ -75,10 +139,18 @@ export function LabelPicker({ task, onUpdateTask, onClose }) {
                     <div className="label-editor-content">
                         {allAvailableLabels.map((label) => {
                             const labelHexColor = labelsColorsMap[label.color]
+                            const isLabelSelected = selectedLabels.includes(label._id)
+
                             return (
                                 <div className="label-container" key={label._id}>
                                     <label className="label-item" key={label._id} htmlFor={label._id}>
-                                        <input type="checkbox" name="label" id={label._id} />
+                                        <input
+                                            type="checkbox"
+                                            name="label"
+                                            id={label._id}
+                                            checked={isLabelSelected}
+                                            onClick={() => handleLabelToggle(label._id)}
+                                        />
                                         <span className="label-checkbox">
                                             <span style={{ backgroundColor: labelHexColor }} className="label-box">{label.name}</span>
                                         </span>
@@ -122,7 +194,7 @@ export function LabelPicker({ task, onUpdateTask, onClose }) {
                             <h3 className="picker-subtitle">Select a color</h3>
                             <ul className="label-colors-container">
                                 {Object.keys(labelsColorsMap).map((colorKey, idx) => (
-                                    <li className={`label-colors-item ${currentPreviewColorKey === colorKey ? 'selected' : ''}`}>
+                                    <li key={colorKey} className={`label-colors-item ${currentPreviewColorKey === colorKey ? 'selected' : ''}`}>
                                         <button
                                             key={colorKey}
                                             className={`label-colors-btn`}
@@ -156,13 +228,13 @@ export function LabelPicker({ task, onUpdateTask, onClose }) {
                         <div className="label-editor-actions">
                             <button
                                 className="btn-primary"
-                                onClick={onClose} // In a real app, this should save the label: onSaveLabel(labelToEdit, labelName, currentPreviewColorKey)
+                                onClick={editLabel}
                             >
                                 Save
                             </button>
                             <button
                                 className="btn-danger"
-                                onClick={onClose} // In a real app, this should delete the label
+                                onClick={() => removeLabel(labelToEdit._id)}
                             >
                                 Delete
                             </button>
@@ -174,7 +246,7 @@ export function LabelPicker({ task, onUpdateTask, onClose }) {
                     <div className="label-editor-actions">
                         <button
                             className="btn-primary"
-                            onClick={onClose} // In a real app, this should create the new label
+                            onClick={createLabel}
                         >
                             Create
                         </button>

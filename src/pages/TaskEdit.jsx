@@ -7,7 +7,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat" // Needed for par
 dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
-import { addAction, removeAction, updateAction, updateTask } from "../store/actions/board.actions"
+import { addAction, removeAction, updateAction, updateTask, addLabel, updateLabel, removeLabel } from "../store/actions/board.actions"
 import { formatDate, makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
@@ -241,6 +241,33 @@ export function TaskEdit() {
         }
     }
 
+    async function onAddLabel(label) {
+        try {
+            await addLabel(board._id, label)
+            showSuccessMsg('Label added')
+        } catch (err) {
+            showErrorMsg('Cannot add label')
+        }
+    }
+
+    async function onUpdateLabel(label) {
+        try {
+            await updateLabel(board._id, label)
+            showSuccessMsg('Label updated')
+        } catch (err) {
+            showErrorMsg('Cannot update label')
+        }
+    }
+
+    async function onRemoveLabel(labelId) {
+        try {
+            await removeLabel(board._id, labelId)
+            showSuccessMsg('Label removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove label')
+        }
+    }
+
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
 
     return (
@@ -295,6 +322,9 @@ export function TaskEdit() {
                                 anchorEl={anchorEl}
                                 onClose={handlePopoverClose}
                                 onUpdateTask={onUpdateTask}
+                                onAddLabel={onAddLabel}
+                                onUpdateLabel={onUpdateLabel}
+                                onRemoveLabel={onRemoveLabel}
                             />
                         )}
                         <section className="task-actions task-grid-container">

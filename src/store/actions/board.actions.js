@@ -15,6 +15,9 @@ import {
     ADD_ACTION,
     UPDATE_ACTION,
     REMOVE_ACTION,
+    ADD_LABEL,
+    UPDATE_LABEL,
+    REMOVE_LABEL,
     ADD_BOARD_MSG,
     SET_IS_LOADING,
 } from '../reducers/board.reducer'
@@ -204,6 +207,39 @@ export async function removeAction(boardId, actionId) {
     }
 }
 
+// ------------------- Labels CRUD -------------------
+
+export async function addLabel(boardId, label) {
+    try {
+        const savedLabel = await boardService.addLabel(boardId, label)
+        store.dispatch(getCmdAddLabel(savedLabel))
+        return savedLabel
+    } catch (err) {
+        console.log('Cannot add label', err)
+        throw err
+    }
+}
+
+export async function updateLabel(boardId, label) {
+    try {
+        const savedLabel = await boardService.updateLabel(boardId, label)
+        store.dispatch(getCmdUpdateLabel(savedLabel))
+        return savedLabel
+    } catch (err) {
+        console.log('Cannot update label', err)
+        throw err
+    }
+}
+
+export async function removeLabel(boardId, labelId) {
+    try {
+        await boardService.removeLabel(boardId, labelId)
+        store.dispatch(getCmdRemoveLabel(labelId))
+    } catch (err) {
+        console.log('Cannot remove label', err)
+        throw err
+    }
+}
 
 // ------------------- Command Creators -------------------
 
@@ -308,6 +344,27 @@ function getCmdRemoveAction(actionId) {
     return {
         type: REMOVE_ACTION,
         actionId
+    }
+}
+
+function getCmdAddLabel(label) {
+    return {
+        type: ADD_LABEL,
+        label
+    }
+}
+
+function getCmdUpdateLabel(label) {
+    return {
+        type: UPDATE_LABEL,
+        label
+    }
+}
+
+function getCmdRemoveLabel(labelId) {
+    return {
+        type: REMOVE_LABEL,
+        labelId
     }
 }
 

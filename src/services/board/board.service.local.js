@@ -11,15 +11,23 @@ export const boardService = {
     getById,
     save,
     remove,
+    // Group CRUD
     addGroup,
     updateGroup,
     removeGroup,
+    // Task CRUD
     addTask,
     updateTask,
     removeTask,
+    // Action CRUD
     addAction,
     updateAction,
     removeAction,
+    // Labels CRUD
+    addLabel,
+    updateLabel,
+    removeLabel,
+    // Board messages
     addBoardMsg,
     getEmptyBoard
 }
@@ -141,6 +149,38 @@ async function removeAction(boardId, actionId) {
     const board = await getById(boardId)
 
     board.actions = board.actions.filter(a => a._id !== actionId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+// ------------------- Labels CRUD -------------------
+
+async function addLabel(boardId, label) {
+    const board = await getById(boardId)
+
+    board.labels.push(label)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return label
+}
+
+async function updateLabel(boardId, updatedLabel) {
+    const board = await getById(boardId)
+
+    board.labels = board.labels.map(l =>
+        l._id === updatedLabel._id ? updatedLabel : l
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedLabel
+}
+
+async function removeLabel(boardId, labelId) {
+    const board = await getById(boardId)
+
+    board.labels = board.labels.filter(l => l._id !== labelId)
 
     await storageService.put(STORAGE_KEY, board)
 }

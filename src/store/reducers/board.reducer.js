@@ -16,6 +16,10 @@ export const ADD_ACTION = 'ADD_ACTION'
 export const UPDATE_ACTION = 'UPDATE_ACTION'
 export const REMOVE_ACTION = 'REMOVE_ACTION'
 
+export const ADD_LABEL = 'ADD_LABEL'
+export const UPDATE_LABEL = 'UPDATE_LABEL'
+export const REMOVE_LABEL = 'REMOVE_LABEL'
+
 export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
 
 export const SET_IS_LOADING = 'SET_IS_LOADING'
@@ -187,6 +191,40 @@ export function boardReducer(state = initialState, action) {
                     )
                 }
             }
+
+        // ------------------- Labels CRUD -------------------
+
+        case ADD_LABEL:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    labels: [...state.board.labels, action.label]
+                }
+            }
+
+        case UPDATE_LABEL:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    labels: state.board.labels.map(l =>
+                        l._id === action.label._id ? action.label : l
+                    )
+                }
+            }
+
+        case REMOVE_LABEL:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    labels: state.board.labels.filter(
+                        l => l._id !== action.labelId
+                    )
+                }
+            }
+
 
         // ------------------- Loading state -------------------
 
