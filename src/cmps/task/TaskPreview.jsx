@@ -20,6 +20,8 @@ import CommentIcon from '../../assets/images/icons/comment.svg?react'
 import ThumbsUpIcon from '../../assets/images/icons/thumbs-up.svg?react'
 import ClockIcon from '../../assets/images/icons/clock.svg?react'
 
+import { labelsColorsMap } from '../../services/util.service'
+
 
 export function TaskPreview({ id, task, taskActions }) {
     const { boardId } = useParams()
@@ -95,6 +97,19 @@ export function TaskPreview({ id, task, taskActions }) {
                     {task.cover?.sharedSourceUrl &&
                         <div className="cover-img" >
                             <img src={task.cover.sharedSourceUrl} alt="card-image" />
+                        </div>
+                    }
+                    {console.log(task[8])}
+                    {task.idLabels?.length !== 0 &&
+                        <div className="task-labels">
+                            {task.labels?.map(label =>
+                                <span
+                                    key={label}
+                                    style={{ backgroundColor: labelsColorsMap[label.color] }}
+                                    className="task-label"
+                                >
+                                </span>
+                            )}
                         </div>
                     }
                     <div className="task-name">
