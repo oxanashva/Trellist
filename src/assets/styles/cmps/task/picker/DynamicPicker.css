@@ -44,5 +44,14 @@
 
     & .picker-container {
         padding: 0.75rem;
+        flex-grow: 1;
+    }
+
+    & .picker-subtitle {
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 16px;
+        color: var(--text-subtle);
+        margin: 0.75rem 0 0.5rem 0;
     }
 }

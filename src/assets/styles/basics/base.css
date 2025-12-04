@@ -141,6 +141,15 @@ button,
     }
 }
 
+.btn-danger {
+    background-color: var(--background-danger-bold);
+    color: #fff;
+
+    &:hover {
+        background-color: var(--background-danger-bold-hovered);
+    }
+}
+
 input,
 textarea {
     display: flex;

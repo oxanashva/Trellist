@@ -112,7 +112,7 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
                     <div className="calendar-container">
                         <div className="date-field-container">
                             <fieldset>
-                                <legend>Due Date</legend>
+                                <legend className="picker-subtitle">Due Date</legend>
                                 <div className="date-input-with-toggle">
                                     <label htmlFor="due-checkbox" className="date-checkbox">
                                         <input
@@ -153,7 +153,7 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
                         </div>
                         <div className="date-field-container">
                             <fieldset>
-                                <legend>Start Date</legend>
+                                <legend className="picker-subtitle">Start Date</legend>
                                 <div className="date-input-with-toggle">
                                     <label htmlFor="start-checkbox" className="date-checkbox">
                                         <input
