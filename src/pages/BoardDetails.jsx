@@ -6,7 +6,7 @@ import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, r
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
-import { DndContext, closestCenter, useSensors, useSensor, MouseSensor } from '@dnd-kit/core'
+import { DndContext, pointerWithin, useSensors, useSensor, MouseSensor } from '@dnd-kit/core'
 import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
 
 import { useFocusOnStateChange } from '../customHooks/useFocusOnStateChange'
@@ -250,7 +250,7 @@ export function BoardDetails() {
             {board &&
                 <DndContext
                     sensors={sensors}
-                    collisionDetection={closestCenter}
+                    collisionDetection={pointerWithin}
                     onDragEnd={onDragEnd}
                 >
                     <SortableContext
