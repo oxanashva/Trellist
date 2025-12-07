@@ -151,10 +151,10 @@ export function TaskPreview({ id, task, taskActions }) {
                             <DescriptionIcon width={16} height={16} fill="currentColor" />
                         </span>
                     }
-                    {taskActions.length !== 0 &&
+                    {taskActions?.length !== 0 &&
                         <span className="badge">
                             <CommentIcon width={16} height={16} fill="currentColor" />
-                            <span>{taskActions.length}</span>
+                            <span>{taskActions?.length}</span>
                         </span>
                     }
                 </div>

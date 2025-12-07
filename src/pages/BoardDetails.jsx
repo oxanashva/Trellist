@@ -6,8 +6,9 @@ import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, r
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
-import { DndContext, pointerWithin, useSensors, useSensor, MouseSensor } from '@dnd-kit/core'
+import { DndContext, useSensors, useSensor, MouseSensor, DragOverlay, closestCenter } from '@dnd-kit/core'
 import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
+import { DragOverlayWrapper } from '../cmps/DragOverlayWrapper'
 
 import { useFocusOnStateChange } from '../customHooks/useFocusOnStateChange'
 
@@ -31,6 +32,8 @@ export function BoardDetails() {
     const [groupsOrder, setGroupsOrder] = useState(board?.groups || [])
     const [tasksOrder, setTasksOrder] = useState(board?.tasks || [])
     const actions = board?.actions
+
+    const [activeId, setActiveId] = useState(null)
 
     const inputRef = useFocusOnStateChange(isEditing)
 
@@ -126,58 +129,109 @@ export function BoardDetails() {
         }
     }
 
-    const onDragEnd = (event) => {
+    const onDragStart = (event) => {
+        setActiveId(event.active.id)
+    }
+
+    const onDragCancel = () => {
+        setActiveId(null)
+    }
+
+    const onDragOver = (event) => {
         const { active, over } = event
         if (!over) return
 
         const activeId = active.id
         const overId = over.id
 
-        if (activeId === overId) return
+        // We only care about task dragging, not group dragging
+        const isDraggingGroup = groupsOrder.some(g => g._id === activeId)
+        if (isDraggingGroup) return
 
-        const groupIds = board.groups.map(g => g._id)
+        const activeTaskIndex = tasksOrder.findIndex(t => t._id === activeId)
+        if (activeTaskIndex === -1) return
 
-        const isDraggingGroup = board.groups.some(g => g._id === activeId)
+        const activeTask = tasksOrder[activeTaskIndex]
+        const oldIdGroup = activeTask.idGroup
+
+        const overTask = tasksOrder.find(t => t._id === overId)
+        const overGroup = groupsOrder.find(g => g._id === overId)
+
+        const newIdGroup = overTask ? overTask.idGroup : overGroup?._id
+
+        if (newIdGroup && oldIdGroup !== newIdGroup) {
+            const updatedTasks = tasksOrder.map(task => {
+                if (task._id === activeId) {
+                    return { ...task, idGroup: newIdGroup }
+                }
+                return task
+            })
+
+            setTasksOrder(updatedTasks)
+        }
+    }
+
+    const onDragEnd = (event) => {
+        const { active, over } = event
+
+        if (!over) {
+            setActiveId(null)
+            return
+        }
+
+        const activeId = active.id
+        const overId = over.id
+
+        const isDraggingGroup = groupsOrder.some(g => g._id === activeId)
+
+        if ((activeId === overId) && isDraggingGroup) {
+            setActiveId(null)
+            return
+        }
+
 
         if (isDraggingGroup) {
-            const oldIndex = board.groups.findIndex(group => group._id === active.id)
-            const newIndex = board.groups.findIndex(group => group._id === over.id)
+            const oldIndex = groupsOrder.findIndex(group => group._id === activeId)
+            const newIndex = groupsOrder.findIndex(group => group._id === overId)
+
+            if (oldIndex === -1 || newIndex === -1) {
+                setActiveId(null)
+                return
+            }
 
             if (oldIndex !== newIndex) {
-                const reorderedGroups = arrayMove(board.groups, oldIndex, newIndex)
-                setGroupsOrder(reorderedGroups)
+                const reorderedGroups = arrayMove(groupsOrder, oldIndex, newIndex)
+
                 const updatedBoard = { ...board, groups: reorderedGroups }
                 updateBoard(updatedBoard)
             }
         } else {
-            const activeContainer = active.data?.current?.sortable?.containerId
-            const overContainer = over.data?.current?.sortable?.containerId
+            const activeTaskIndex = tasksOrder.findIndex(t => t._id === activeId)
+            const overTaskIndex = tasksOrder.findIndex(t => t._id === overId)
+
+            if (activeTaskIndex === -1 || overTaskIndex === -1) {
+                setActiveId(null)
+                return
+            }
 
 
-            if (!activeContainer || !overContainer || !groupIds.includes(overContainer)) return
+            const activeTask = tasksOrder[activeTaskIndex]
+            const overTask = tasksOrder[overTaskIndex]
 
-            const activeTaskIndex = board.tasks.findIndex(t => t._id === activeId)
-            const overTaskIndex = board.tasks.findIndex(t => t._id === overId)
+            let tempTasks = [...tasksOrder]
 
-            if (activeTaskIndex === overTaskIndex) return
-
-            let tempTasks = board.tasks
-
-            // Change task groupId if dragging task from one group to another
-            if (activeContainer !== overContainer) {
-                tempTasks = board.tasks.map(t =>
-                    t._id === active.id
-                        ? { ...t, idGroup: overContainer }
-                        : t
-                )
+            if (activeTask.idGroup !== overTask.idGroup) {
+                tempTasks[activeTaskIndex] = { ...activeTask, idGroup: overTask.idGroup }
             }
 
             const reorderedTasks = arrayMove(tempTasks, activeTaskIndex, overTaskIndex)
             setTasksOrder(reorderedTasks)
+
             const updatedBoard = { ...board, tasks: reorderedTasks }
             updateBoard(updatedBoard)
 
         }
+        setActiveId(null)
     }
 
     const customMouseSensor = useSensor(MouseSensor, {
@@ -194,6 +248,8 @@ export function BoardDetails() {
     const sensors = useSensors(customMouseSensor)
 
     if (isLoading) return <Loader />
+
+
 
     return (
         <section className="board-details full">
@@ -250,7 +306,10 @@ export function BoardDetails() {
             {board &&
                 <DndContext
                     sensors={sensors}
-                    collisionDetection={pointerWithin}
+                    collisionDetection={closestCenter}
+                    onDragStart={onDragStart}
+                    onDragCancel={onDragCancel}
+                    onDragOver={onDragOver}
                     onDragEnd={onDragEnd}
                 >
                     <SortableContext
@@ -266,6 +325,15 @@ export function BoardDetails() {
                             onUpdateGroup={onUpdateGroup}
                         />
                     </SortableContext>
+
+                    <DragOverlay>
+                        {activeId ? (
+                            <DragOverlayWrapper
+                                activeId={activeId}
+                                board={{ ...board, groups: groupsOrder, tasks: tasksOrder }}
+                            />
+                        ) : null}
+                    </DragOverlay>
                 </DndContext>
             }
             <Outlet />

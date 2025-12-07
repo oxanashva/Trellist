@@ -53,7 +53,7 @@ export function TaskList({ group, tasks, actions, onAddTask, isAddingTask, setIs
         >
             <ol ref={scrollRef} className='task-list'>
                 {tasks?.map(task => {
-                    const taskActions = actions.filter(action => {
+                    const taskActions = actions?.filter(action => {
                         return action.data.idTask === task._id
                     })
 
