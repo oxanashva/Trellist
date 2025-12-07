@@ -8,7 +8,7 @@ dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
 import { addAction, removeAction, updateAction, updateTask, addLabel, updateLabel, removeLabel } from "../store/actions/board.actions"
-import { formatDate, getHexColor, makeId } from "../services/util.service"
+import { formatDate, getLabelColor, makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
@@ -402,7 +402,7 @@ export function TaskEdit() {
                                             return (
                                                 <button
                                                     key={labelId}
-                                                    style={{ backgroundColor: getHexColor(label?.color) }}
+                                                    style={{ backgroundColor: getLabelColor(label?.color) }}
                                                     onClick={(event) => {
                                                         handlePopoverOpen(event, PICKER_MAP.LABEL, labelId)
                                                     }}
