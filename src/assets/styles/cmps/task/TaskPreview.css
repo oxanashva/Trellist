@@ -6,6 +6,14 @@
     box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
     border-radius: 0.5rem;
 
+    &.task-preview-ghost>* {
+        visibility: visible;
+    }
+
+    &.task-preview-placholder>* {
+        visibility: hidden;
+    }
+
     &:hover {
         outline: #4688EC auto 2px;
         outline-offset: 2px;

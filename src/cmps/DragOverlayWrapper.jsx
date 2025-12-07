@@ -10,7 +10,7 @@ export function DragOverlayWrapper({ activeId, board }) {
 
     if (isDraggingGroup) {
         return (
-            <GroupPreview group={activeGroup} tasks={groupTasks} />
+            <GroupPreview group={activeGroup} tasks={groupTasks} className="group-preview group-preview-ghost" />
         )
     }
 
@@ -19,7 +19,7 @@ export function DragOverlayWrapper({ activeId, board }) {
 
     if (activeTask && taskGroup) {
         return (
-            <TaskPreview task={activeTask} group={taskGroup} />
+            <TaskPreview task={activeTask} group={taskGroup} className="task-preview task-preview-ghost" />
         )
     }
 
