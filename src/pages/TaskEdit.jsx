@@ -102,7 +102,15 @@ export function TaskEdit() {
         //         selectedMemberIds: task?.memberIds || [],
         //         members: board?.members
         //     }
-        // }
+        // },
+        COVER: {
+            type: "CoverPicker",
+            info: {
+                label: "Cover:",
+                propName: "cover",
+                selectedCover: task?.cover
+            }
+        }
     }
 
     useEffect(() => {
@@ -127,13 +135,8 @@ export function TaskEdit() {
     }
 
     async function onUpdateTask(boardId, fieldsToUpdate) {
-        const updatedTask = {
-            ...task,
-            ...fieldsToUpdate
-        }
-
         try {
-            await updateTask(boardId, updatedTask)
+            await updateTask(boardId, task, fieldsToUpdate)
             showSuccessMsg('Task updated')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -276,7 +279,12 @@ export function TaskEdit() {
             <header className="task-edit-header">
                 <span className="group-name">{group?.name}</span>
                 <div className="task-header-actions">
-                    <button className="icon-btn dynamic-btn">
+                    <button
+                        className="icon-btn dynamic-btn"
+                        onClick={(event) => {
+                            handlePopoverOpen(event, PICKER_MAP.COVER)
+                        }}
+                    >
                         <ImageIcon width={16} height={16} fill="currentColor" />
                     </button>
                     <button className="icon-btn dynamic-btn">

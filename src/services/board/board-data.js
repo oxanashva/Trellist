@@ -786,85 +786,8 @@ export const board = {
                 "idAttachment": null,
                 "color": null,
                 "idUploadedBackground": "68e81369ef494010dd052a07",
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e81369ef494010dd052a08",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x100/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 760,
-                        "height": 100,
-                        "width": 100
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a09",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/192x192/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 1898,
-                        "height": 192,
-                        "width": 192
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0a",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x480/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 7702,
-                        "height": 480,
-                        "width": 480
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0b",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x960/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 21292,
-                        "height": 960,
-                        "width": 960
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0c",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x1024/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 23834,
-                        "height": 1024,
-                        "width": 1024
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0d",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1280/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 31892,
-                        "height": 1280,
-                        "width": 1280
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0f",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1600x1600/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 46958,
-                        "height": 1600,
-                        "width": 1600
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0e",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1920/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 55754,
-                        "height": 1920,
-                        "width": 1920
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a10",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x2048/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 61054,
-                        "height": 2048,
-                        "width": 2048
-                    }
-                ],
                 "edgeColor": "#e4e4e4",
-                "sharedSourceUrl": "https://images.unsplash.com/photo-1709651669999-57741c9bf085?ixid=M3w3MDY2fDB8MXxzZWFyY2h8MTN8fGJyYWlufGVufDF8fHx8MTc1OTk2Nzk4NXww&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-                "idPlugin": null
+                "sharedSourceUrl": "https://images.unsplash.com/photo-1709651669999-57741c9bf085?ixid=M3w3MDY2fDB8MXxzZWFyY2h8MTN8fGJyYWlufGVufDF8fHx8MTc1OTk2Nzk4NXww&ixlib=rb-4.1.0&w=2560&h=2048&q=90"
             },
             "isTemplate": false,
             "attachments": [
@@ -927,10 +850,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -1008,10 +928,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [],
@@ -1068,10 +985,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "light",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [],
@@ -1118,10 +1032,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -1194,10 +1105,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -1319,10 +1227,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "taskRole": null,
@@ -1501,42 +1406,6 @@ export const board = {
                 "idAttachment": "68e81194dd267fc1d2426ac0",
                 "color": null,
                 "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e81194dd267fc1d2426ac5",
-                        "scaled": false,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
-                        "bytes": 498,
-                        "height": 50,
-                        "width": 70
-                    },
-                    {
-                        "_id": "68e81194dd267fc1d2426ac7",
-                        "scaled": true,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
-                        "bytes": 808,
-                        "height": 84,
-                        "width": 150
-                    },
-                    {
-                        "_id": "68e81194dd267fc1d2426ac6",
-                        "scaled": false,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
-                        "bytes": 1278,
-                        "height": 150,
-                        "width": 250
-                    },
-                    {
-                        "_id": "68e81194dd267fc1d2426ac8",
-                        "scaled": true,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
-                        "bytes": 1266,
-                        "height": 168,
-                        "width": 300
-                    }
-                ],
                 "edgeColor": "#fcfcfc",
                 "idPlugin": null
             },
@@ -1737,10 +1606,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "taskRole": null,
@@ -1852,93 +1718,8 @@ export const board = {
                 "idAttachment": null,
                 "color": null,
                 "idUploadedBackground": "68e810fbd714de961b1310b9",
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e810fbd714de961b1310ba",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 1570,
-                        "height": 93,
-                        "width": 140
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bb",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 3860,
-                        "height": 171,
-                        "width": 256
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bc",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 8400,
-                        "height": 320,
-                        "width": 480
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bd",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 32244,
-                        "height": 640,
-                        "width": 960
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310be",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x682/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 36392,
-                        "height": 682,
-                        "width": 1024
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c0",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x853/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 54336,
-                        "height": 853,
-                        "width": 1280
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c1",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 104790,
-                        "height": 1280,
-                        "width": 1920
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bf",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1365/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 117218,
-                        "height": 1365,
-                        "width": 2048
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c2",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2401x1600/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 152238,
-                        "height": 1600,
-                        "width": 2401
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c3",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1706/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 164850,
-                        "height": 1706,
-                        "width": 2560
-                    }
-                ],
                 "edgeColor": "#161b1b",
-                "sharedSourceUrl": "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?ixid=M3w3MDY2fDB8MXxzZWFyY2h8MXx8Y3NzfGVufDF8fHx8MTc1OTkzOTM0NXww&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-                "idPlugin": null
+                "sharedSourceUrl": "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?ixid=M3w3MDY2fDB8MXxzZWFyY2h8MXx8Y3NzfGVufDF8fHx8MTc1OTkzOTM0NXww&ixlib=rb-4.1.0&w=2560&h=2048&q=90"
             },
             "isTemplate": false,
             "taskRole": null,
@@ -2154,10 +1935,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "taskRole": null,
@@ -2283,93 +2061,8 @@ export const board = {
                 "idAttachment": null,
                 "color": null,
                 "idUploadedBackground": "68e8124f36120b14a0a15bde",
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e8124f36120b14a0a15bdf",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 2016,
-                        "height": 93,
-                        "width": 140
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be0",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 4218,
-                        "height": 171,
-                        "width": 256
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be1",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 9660,
-                        "height": 320,
-                        "width": 480
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be2",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 24122,
-                        "height": 640,
-                        "width": 960
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be3",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x683/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 26358,
-                        "height": 683,
-                        "width": 1024
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be5",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x854/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 36228,
-                        "height": 854,
-                        "width": 1280
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be6",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 64244,
-                        "height": 1280,
-                        "width": 1920
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be4",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1366/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 70712,
-                        "height": 1366,
-                        "width": 2048
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be7",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 89092,
-                        "height": 1600,
-                        "width": 2400
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be8",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1707/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 99926,
-                        "height": 1707,
-                        "width": 2560
-                    }
-                ],
                 "edgeColor": "#5b9d32",
-                "sharedSourceUrl": "https://images.unsplash.com/photo-1629798696162-fb698df8048e?ixid=M3w3MDY2fDB8MXxzZWFyY2h8NTZ8fGJ1Z3xlbnwxfHx8fDE3NjAwMzk0ODZ8MA&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-                "idPlugin": null
+                "sharedSourceUrl": "https://images.unsplash.com/photo-1629798696162-fb698df8048e?ixid=M3w3MDY2fDB8MXxzZWFyY2h8NTZ8fGJ1Z3xlbnwxfHx8fDE3NjAwMzk0ODZ8MA&ixlib=rb-4.1.0&w=2560&h=2048&q=90"
             },
             "isTemplate": false,
             "taskRole": null,
@@ -2763,10 +2456,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -2967,10 +2657,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3106,10 +2793,7 @@ export const board = {
                 "idAttachment": "68e8131e7e14b68c5bb40d0a",
                 "color": null,
                 "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "edgeColor": "#060505",
-                "idPlugin": null
+                "edgeColor": "#060505"
             },
             "isTemplate": false,
             "attachments": [
@@ -3213,10 +2897,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3324,10 +3005,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": "sky",
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "light",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3390,10 +3068,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [

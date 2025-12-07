@@ -55,8 +55,7 @@ export function TaskPreview({ id, task, taskActions, className }) {
         setIsChecked(prev => !prev)
 
         try {
-            const updatedTask = { ...task, closed: newStatus }
-            await updateTask(boardId, updatedTask)
+            await updateTask(boardId, task, { closed: newStatus })
             showSuccessMsg('Task updated')
         } catch (err) {
             showErrorMsg('Cannot update task')
