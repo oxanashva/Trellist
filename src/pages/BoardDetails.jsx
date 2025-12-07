@@ -1,8 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
-import { loadBoard, addBoard, updateBoard, removeBoard, addBoardMsg } from '../store/actions/board.actions'
+import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, removeGroup, addBoardMsg } from '../store/actions/board.actions'
+
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+
+import { DndContext, useSensors, useSensor, MouseSensor, DragOverlay, closestCenter } from '@dnd-kit/core'
+import { SortableContext, horizontalListSortingStrategy, arrayMove } from '@dnd-kit/sortable'
+import { DragOverlayWrapper } from '../cmps/DragOverlayWrapper'
+
+import { useFocusOnStateChange } from '../customHooks/useFocusOnStateChange'
 
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
@@ -19,25 +27,33 @@ export function BoardDetails() {
     const board = useSelector(storeState => storeState.boardModule.board)
     const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
 
-    const inputRef = useRef(null)
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
+    const [groupsOrder, setGroupsOrder] = useState(board?.groups || [])
+    const [tasksOrder, setTasksOrder] = useState(board?.tasks || [])
+    const actions = board?.actions
+
+    const [activeId, setActiveId] = useState(null)
+
+    const inputRef = useFocusOnStateChange(isEditing)
 
     useEffect(() => {
         if (board) {
             setBoardName(board.name)
+
+            if (board.groups && board.groups !== groupsOrder) {
+                setGroupsOrder(board.groups)
+            }
+
+            if (board.tasks && board.tasks !== tasksOrder) {
+                setTasksOrder(board.tasks)
+            }
         }
     }, [board])
 
     useEffect(() => {
         loadBoard(boardId)
     }, [boardId])
-
-    useEffect(() => {
-        if (isEditing) {
-            inputRef.current?.focus()
-        }
-    }, [isEditing])
 
     function handleInputBlur() {
         updateBoard({ ...board, name: boardName })
@@ -59,45 +75,185 @@ export function BoardDetails() {
         }
     }
 
-    function onAddGroup(newGroup) {
-        updateBoard({
-            ...board,
-            groups: [
-                ...(board.groups || []),
-                newGroup
-            ]
-        })
+    async function onAddBoard(newBoard) {
+        try {
+            await addBoard(newBoard)
+            showSuccessMsg('Board added')
+        } catch (err) {
+            showErrorMsg('Cannot add board')
+        }
     }
 
-    function onAddTask(newTask) {
-        updateBoard({
-            ...board,
-            tasks: [
-                ...(board.tasks || []),
-                newTask
-            ]
-        })
+    async function onUpdateBoard(updatedBoard) {
+        try {
+            await updateBoard(updatedBoard)
+            showSuccessMsg('Board updated')
+        } catch (err) {
+            showErrorMsg('Cannot update board')
+        }
     }
 
-    function onUpdateGroup(updatedGroup) {
-        updateBoard({
-            ...board,
-            groups: board.groups.map(group => group._id === updatedGroup._id ? updatedGroup : group)
-        })
+    async function onRemoveBoard(boardId) {
+        try {
+            await removeBoard(boardId)
+            showSuccessMsg('Board removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove board')
+        }
     }
 
-    function onCompleteTask(task, isCompleted) {
-        updateBoard({
-            ...board,
-            tasks: board.tasks.map(c => c._id === task._id ? { ...c, closed: isCompleted } : c)
-        })
+    async function onAddGroup(boardId, newGroup) {
+        try {
+            await addGroup(boardId, newGroup)
+            showSuccessMsg('Group added')
+        } catch (err) {
+            showErrorMsg('Cannot add group')
+        }
     }
+
+    async function onUpdateGroup(boardId, updatedGroup) {
+        try {
+            await updateGroup(boardId, updatedGroup)
+            showSuccessMsg('Group updated')
+        } catch (err) {
+            showErrorMsg('Cannot update group')
+        }
+    }
+
+    async function onRemoveGroup(boardId, groupId) {
+        try {
+            await removeGroup(boardId, groupId)
+            showSuccessMsg('Group removed')
+        } catch (err) {
+            showErrorMsg('Cannot remove group')
+        }
+    }
+
+    const onDragStart = (event) => {
+        setActiveId(event.active.id)
+    }
+
+    const onDragCancel = () => {
+        setActiveId(null)
+    }
+
+    const onDragOver = (event) => {
+        const { active, over } = event
+        if (!over) return
+
+        const activeId = active.id
+        const overId = over.id
+
+        // We only care about task dragging, not group dragging
+        const isDraggingGroup = groupsOrder.some(g => g._id === activeId)
+        if (isDraggingGroup) return
+
+        const activeTaskIndex = tasksOrder.findIndex(t => t._id === activeId)
+        if (activeTaskIndex === -1) return
+
+        const activeTask = tasksOrder[activeTaskIndex]
+        const oldIdGroup = activeTask.idGroup
+
+        const overTask = tasksOrder.find(t => t._id === overId)
+        const overGroup = groupsOrder.find(g => g._id === overId)
+
+        const newIdGroup = overTask ? overTask.idGroup : overGroup?._id
+
+        if (newIdGroup && oldIdGroup !== newIdGroup) {
+            const updatedTasks = tasksOrder.map(task => {
+                if (task._id === activeId) {
+                    return { ...task, idGroup: newIdGroup }
+                }
+                return task
+            })
+
+            setTasksOrder(updatedTasks)
+        }
+    }
+
+    const onDragEnd = (event) => {
+        const { active, over } = event
+
+        if (!over) {
+            setActiveId(null)
+            return
+        }
+
+        const activeId = active.id
+        const overId = over.id
+
+        const isDraggingGroup = groupsOrder.some(g => g._id === activeId)
+
+        if ((activeId === overId) && isDraggingGroup) {
+            setActiveId(null)
+            return
+        }
+
+
+        if (isDraggingGroup) {
+            const oldIndex = groupsOrder.findIndex(group => group._id === activeId)
+            const newIndex = groupsOrder.findIndex(group => group._id === overId)
+
+            if (oldIndex === -1 || newIndex === -1) {
+                setActiveId(null)
+                return
+            }
+
+            if (oldIndex !== newIndex) {
+                const reorderedGroups = arrayMove(groupsOrder, oldIndex, newIndex)
+
+                const updatedBoard = { ...board, groups: reorderedGroups }
+                updateBoard(updatedBoard)
+            }
+        } else {
+            const activeTaskIndex = tasksOrder.findIndex(t => t._id === activeId)
+            const overTaskIndex = tasksOrder.findIndex(t => t._id === overId)
+
+            if (activeTaskIndex === -1 || overTaskIndex === -1) {
+                setActiveId(null)
+                return
+            }
+
+
+            const activeTask = tasksOrder[activeTaskIndex]
+            const overTask = tasksOrder[overTaskIndex]
+
+            let tempTasks = [...tasksOrder]
+
+            if (activeTask.idGroup !== overTask.idGroup) {
+                tempTasks[activeTaskIndex] = { ...activeTask, idGroup: overTask.idGroup }
+            }
+
+            const reorderedTasks = arrayMove(tempTasks, activeTaskIndex, overTaskIndex)
+            setTasksOrder(reorderedTasks)
+
+            const updatedBoard = { ...board, tasks: reorderedTasks }
+            updateBoard(updatedBoard)
+
+        }
+        setActiveId(null)
+    }
+
+    const customMouseSensor = useSensor(MouseSensor, {
+        // Defines conditions (like delay) needed to start dragging
+        activationConstraint: {
+            // Requires 250ms press. Differentiates a quick 'click' (edit) 
+            // from a 'click and hold' (drag).
+            delay: 250,
+            tolerance: 5,
+        },
+    })
+
+    // Registers the custom delayed sensor for use in <DndContext>
+    const sensors = useSensors(customMouseSensor)
 
     if (isLoading) return <Loader />
 
+
+
     return (
         <section className="board-details full">
-            <header>
+            <header className="board-details-header">
                 <div>
                     {/* TODO: implement reusable component for editable field */}
                     {!isEditing &&
@@ -148,15 +304,38 @@ export function BoardDetails() {
             </header>
 
             {board &&
-                <GroupList
-                    board={board}
-                    groups={board.groups}
-                    tasks={board.tasks}
-                    onAddTask={onAddTask}
-                    onAddGroup={onAddGroup}
-                    onCompleteTask={onCompleteTask}
-                    onUpdateGroup={onUpdateGroup}
-                />}
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragStart={onDragStart}
+                    onDragCancel={onDragCancel}
+                    onDragOver={onDragOver}
+                    onDragEnd={onDragEnd}
+                >
+                    <SortableContext
+                        items={groupsOrder.map(g => g._id)}
+                        strategy={horizontalListSortingStrategy}
+                    >
+                        <GroupList
+                            groups={groupsOrder}
+                            tasks={tasksOrder}
+                            actions={actions}
+                            onAddGroup={onAddGroup}
+                            onRemoveGroup={onRemoveGroup}
+                            onUpdateGroup={onUpdateGroup}
+                        />
+                    </SortableContext>
+
+                    <DragOverlay>
+                        {activeId ? (
+                            <DragOverlayWrapper
+                                activeId={activeId}
+                                board={{ ...board, groups: groupsOrder, tasks: tasksOrder }}
+                            />
+                        ) : null}
+                    </DragOverlay>
+                </DndContext>
+            }
             <Outlet />
         </section>
     )

@@ -1,9 +1,27 @@
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
-export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
+export const REMOVE_BOARD = 'REMOVE_BOARD'
+
+export const ADD_GROUP = 'ADD_GROUP'
+export const UPDATE_GROUP = 'UPDATE_GROUP'
+export const REMOVE_GROUP = 'REMOVE_GROUP'
+
+export const ADD_TASK = 'ADD_TASK'
+export const UPDATE_TASK = 'UPDATE_TASK'
+export const REMOVE_TASK = 'REMOVE_TASK'
+
+export const ADD_ACTION = 'ADD_ACTION'
+export const UPDATE_ACTION = 'UPDATE_ACTION'
+export const REMOVE_ACTION = 'REMOVE_ACTION'
+
+export const ADD_LABEL = 'ADD_LABEL'
+export const UPDATE_LABEL = 'UPDATE_LABEL'
+export const REMOVE_LABEL = 'REMOVE_LABEL'
+
 export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
+
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
@@ -13,40 +31,214 @@ const initialState = {
 }
 
 export function boardReducer(state = initialState, action) {
-    var newState = state
-    var boards
     switch (action.type) {
+
+        // ------------------- Basic CRUD -------------------
+
         case SET_BOARDS:
-            newState = { ...state, boards: action.boards }
-            break
-        case SET_BOARD:
-            newState = { ...state, board: action.board }
-            break
-        case REMOVE_BOARD: {
-            const lastRemovedBoard = state.boards.find(board => board._id === action.boardId)
-            const boards = state.boards.filter(board => board._id !== action.boardId)
-            newState = { ...state, boards, lastRemovedBoard }
-            break
-        }
-        case ADD_BOARD:
-            newState = { ...state, boards: [...state.boards, action.board] }
-            break
-        case UPDATE_BOARD:
-            boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
-            newState = { ...state, boards, board: action.board }
-            break
-        case ADD_BOARD_MSG:
-            if (action.msg && state.board) {
-                newState = { ...state, board: { ...state.board, msgs: [...state.board.msgs || [], action.msg] } }
+            return {
+                ...state,
+                boards: action.boards
             }
-            break
+
+        case SET_BOARD:
+            return {
+                ...state,
+                board: action.board
+            }
+
+        case ADD_BOARD:
+            return {
+                ...state,
+                boards: [...state.boards, action.board]
+            }
+
+        case UPDATE_BOARD:
+            return {
+                ...state,
+                boards: state.boards.map(b =>
+                    b._id === action.board._id ? action.board : b
+                ),
+                board:
+                    state.board && state.board._id === action.board._id
+                        ? action.board
+                        : state.board
+            }
+
+        case REMOVE_BOARD:
+            return {
+                ...state,
+                boards: state.boards.filter(b => b._id !== action.boardId),
+                board:
+                    state.board && state.board._id === action.boardId
+                        ? null
+                        : state.board
+            }
+
+        // ------------------- Board Messages -------------------
+
+        case ADD_BOARD_MSG:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    msgs: [...(state.board.msgs || []), action.msg]
+                }
+            }
+
+        // ------------------- Group CRUD -------------------
+
+        case ADD_GROUP:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: [...state.board.groups, action.group]
+                }
+            }
+
+        case UPDATE_GROUP:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: state.board.groups.map(group =>
+                        group._id === action.group._id ? action.group : group
+                    )
+                }
+            }
+
+        case REMOVE_GROUP:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups: state.board.groups.filter(
+                        group => group._id !== action.groupId
+                    )
+                }
+            }
+
+
+
+        // ------------------- Task CRUD -------------------
+
+        case ADD_TASK:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    tasks: [...state.board.tasks, action.task]
+                }
+            }
+
+        case UPDATE_TASK:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    tasks: state.board.tasks.map(task =>
+                        task._id === action.task._id
+                            ? action.task
+                            : task
+                    )
+                }
+            }
+
+        case REMOVE_TASK:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    tasks: state.board.tasks.filter(
+                        task => task._id !== action.taskId
+                    )
+                }
+            }
+
+        // ------------------- Action CRUD -------------------
+
+        case ADD_ACTION:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    actions: [...state.board.actions, action.action]
+                }
+            }
+
+        case UPDATE_ACTION: {
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    actions: state.board.actions.map(a =>
+                        a._id === action.action._id
+                            ? action.action
+                            : a
+                    )
+                }
+            }
+        }
+
+        case REMOVE_ACTION:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    actions: state.board.actions.filter(
+                        a => a._id !== action.actionId
+                    )
+                }
+            }
+
+        // ------------------- Labels CRUD -------------------
+
+        case ADD_LABEL:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    labels: [...state.board.labels, action.label]
+                }
+            }
+
+        case UPDATE_LABEL:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    labels: state.board.labels.map(l =>
+                        l._id === action.label._id ? action.label : l
+                    )
+                }
+            }
+
+        case REMOVE_LABEL:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    labels: state.board.labels.filter(
+                        l => l._id !== action.labelId
+                    )
+                }
+            }
+
+
+        // ------------------- Loading state -------------------
+
         case SET_IS_LOADING:
-            newState = { ...state, isLoading: action.isLoading }
-            break
+            return {
+                ...state,
+                isLoading: action.isLoading
+            }
+
+        // ------------------- Default -------------------
+
         default:
             return state
     }
-    return newState
 }
 
 // unitTestReducer()
@@ -71,7 +263,7 @@ export function boardReducer(state = initialState, action) {
 //     state = carReducer(state, { type: SET_CAR, car: car1 })
 //     console.log('After SET_CAR:', state)
 
-//     const msg = { id: 'm' + parseInt('' + Math.random() * 100), txt: 'Some msg', by: { _id: 'u123', fullname: 'test' } }
+//     const msg = { _id: 'm' + parseInt('' + Math.random() * 100), txt: 'Some msg', by: { _id: 'u123', fullname: 'test' } }
 //     state = carReducer(state, { type: ADD_CAR_MSG, carId: car1._id, msg })
 //     console.log('After ADD_CAR_MSG:', state)
 // }

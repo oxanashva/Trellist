@@ -1,22 +1,18 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 
 import { makeId } from "../../services/util.service"
 import { GroupPreview } from "./GroupPreview"
+import { useFocusOnStateChange } from "../../customHooks/useFocusOnStateChange"
 
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
-import CloseIcon from '../../assets/images/icons/close.svg?react'
+import { ItemCreator } from "../ItemCreator"
+import { useParams } from "react-router"
 
-export function GroupList({ board, groups, tasks, onAddTask, onAddGroup, onCompleteTask, onUpdateGroup }) {
+export function GroupList({ groups, tasks, actions, onAddGroup, onRemoveGroup, onUpdateGroup, onAddTask }) {
+    const { boardId } = useParams()
     const [groupName, setGroupName] = useState('')
     const [isAddingGroup, setIsAddingGroup] = useState(false)
-    const textareaRef = useRef(null)
-
-
-    useEffect(() => {
-        if (isAddingGroup) {
-            textareaRef.current?.focus()
-        }
-    }, [isAddingGroup])
+    const textareaRef = useFocusOnStateChange(isAddingGroup)
 
     function handleInput({ target }) {
         setGroupName(target.value)
@@ -28,10 +24,10 @@ export function GroupList({ board, groups, tasks, onAddTask, onAddGroup, onCompl
 
         const newGroup = {
             _id: makeId(),
-            idBoard: board._id,
+            idBoard: boardId,
             name: groupName
         }
-        onAddGroup(newGroup)
+        onAddGroup(boardId, newGroup)
         setGroupName('')
         setIsAddingGroup(false)
     }
@@ -41,36 +37,29 @@ export function GroupList({ board, groups, tasks, onAddTask, onAddGroup, onCompl
             <ol className="groups">
                 {groups?.map(group => {
                     const tasksForThisGroup = tasks?.filter(task => task.idGroup === group._id)
-                    return <GroupPreview key={group._id} board={board} group={group} tasks={tasksForThisGroup} onAddTask={onAddTask} onCompleteTask={onCompleteTask} onUpdateGroup={onUpdateGroup} />
+                    return <GroupPreview
+                        key={group._id}
+                        id={group._id}
+                        group={group}
+                        tasks={tasksForThisGroup}
+                        actions={actions}
+                        onRemoveGroup={onRemoveGroup}
+                        onUpdateGroup={onUpdateGroup}
+                        onAddTask={onAddTask}
+                    />
                 }
                 )}
                 {isAddingGroup &&
-                    <li className="group-preview add-group-item">
-                        <form className="add-group-form" onSubmit={addGroup}>
-                            <textarea
-                                ref={textareaRef}
-                                className="add-group-textarea"
-                                onChange={handleInput}
-                                type="text"
-                                value={groupName}
-                                placeholder="Enter group name" />
-                            <div className="add-group-actions">
-                                <button
-                                    className="btn-primary"
-                                    type="submit"
-                                    onClick={addGroup}
-                                >
-                                    Add group
-                                </button>
-                                <button
-                                    className="icon-btn dynamic-btn"
-                                    onClick={() => setIsAddingGroup(false)}
-                                >
-                                    <CloseIcon width={16} height={16} fill="currentColor" />
-                                </button>
-                            </div>
-                        </form>
-                    </li>
+                    <ItemCreator
+                        mode="group"
+                        onSubmit={addGroup}
+                        textareaRef={textareaRef}
+                        value={groupName}
+                        onChange={handleInput}
+                        placeholder="Enter group name"
+                        buttonText="Add group"
+                        onCancel={() => setIsAddingGroup(false)}
+                    />
                 }
                 {!isAddingGroup &&
                     <div className="add-group">
