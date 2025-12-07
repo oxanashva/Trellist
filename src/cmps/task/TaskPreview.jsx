@@ -23,7 +23,7 @@ import ClockIcon from '../../assets/images/icons/clock.svg?react'
 import { labelsColorsMap } from '../../services/util.service'
 
 
-export function TaskPreview({ id, task, taskActions }) {
+export function TaskPreview({ id, task, taskActions, className }) {
     const { boardId } = useParams()
     const [isChecked, setIsChecked] = useState(task.closed || false)
     const navigate = useNavigate()
@@ -78,11 +78,22 @@ export function TaskPreview({ id, task, taskActions }) {
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime)
 
+    // If `className` contains 'task-preview-ghost', the component is used for DragOverlay
+    // and should render as a semi‑transparent copy of the task element.
+    // Otherwise, the component is used for normal rendering.
+    // When `isDragging` is true, the element should render as a placeholder.
+    const taskPreviewClass = className?.includes('task-preview-ghost')
+        ? className
+        : isDragging
+            ? 'task-preview task-preview-placholder'
+            : 'task-preview';
+
+
     return (
         <li
             ref={setNodeRef}
             style={style}
-            className="task-preview"
+            className={taskPreviewClass}
             {...attributes}
             {...listeners}
         >

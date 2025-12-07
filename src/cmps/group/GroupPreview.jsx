@@ -14,7 +14,7 @@ import MoreIcon from '../../assets/images/icons/more.svg?react'
 import { TaskList } from "../task/TaskList"
 import { DynamicPicker } from "../picker/DynamicPicker"
 
-export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemoveGroup }) {
+export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemoveGroup, className }) {
     const [groupName, setGroupName] = useState(group.name)
     const [isEditing, setIsEditing] = useState(false)
     const [isAddingTask, setIsAddingTask] = useState(false)
@@ -94,6 +94,16 @@ export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemov
         opacity: isDragging ? 0.5 : 1,
     }
 
+    // If `className` contains 'group-preview-ghost', the component is used for DragOverlay
+    // and should render as a semi‑transparent copy of the element.
+    // If not, the component is used for normal rendering.
+    // When `isDragging` is true, the element should render as a placeholder.
+    const groupPreviewClass = className?.includes('group-preview-ghost')
+        ? className
+        : isDragging
+            ? 'group-preview group-preview-placholder'
+            : 'group-preview';
+
     return (
         <>
             {picker && (
@@ -111,7 +121,7 @@ export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemov
             <li
                 ref={setNodeRef}
                 style={style}
-                className="group-preview"
+                className={groupPreviewClass}
                 {...attributes}
             >
                 <div className="group-header">
