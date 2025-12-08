@@ -16,11 +16,13 @@ import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 import acAvatarImg from '../assets/images/avatars/AC-avatar.png'
 import FilterIcon from '../assets/images/icons/filter.svg?react'
 import StarIcon from '../assets/images/icons/star.svg?react'
+import StarSolidIcon from '../assets/images/icons/star-solid.svg?react'
 import UserPlusIcon from '../assets/images/icons/user-plus.svg?react'
 import MoreIcon from '../assets/images/icons/more.svg?react'
 
 import { GroupList } from '../cmps/group/GroupList'
 import { Loader } from '../cmps/Loader'
+import { DynamicPicker } from '../cmps/picker/DynamicPicker'
 
 export function BoardDetails() {
     const { boardId } = useParams()
@@ -29,6 +31,11 @@ export function BoardDetails() {
 
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
+
+    const [anchorEl, setAnchorEl] = useState(null)
+    const openPopover = Boolean(anchorEl)
+    const [picker, setPicker] = useState(null)
+
     const [groupsOrder, setGroupsOrder] = useState(board?.groups || [])
     const [tasksOrder, setTasksOrder] = useState(board?.tasks || [])
     const actions = board?.actions
@@ -36,6 +43,16 @@ export function BoardDetails() {
     const [activeId, setActiveId] = useState(null)
 
     const inputRef = useFocusOnStateChange(isEditing)
+
+    const PICKER_MAP = {
+        BOARD: {
+            type: "BoardPicker",
+            info: {
+                label: "Board: ",
+                propName: "board",
+            }
+        }
+    }
 
     useEffect(() => {
         if (board) {
@@ -73,6 +90,19 @@ export function BoardDetails() {
             setBoardName(board.name)
             setIsEditing(false)
         }
+    }
+
+    const handlePopoverOpen = (event, pickerType) => {
+        setAnchorEl(event.currentTarget)
+        setPicker(pickerType)
+    }
+
+    const handlePopoverClose = () => {
+        setAnchorEl(null)
+    }
+
+    function setStarred() {
+        updateBoard({ ...board, isStarred: !board.isStarred })
     }
 
     async function onAddBoard(newBoard) {
@@ -247,96 +277,119 @@ export function BoardDetails() {
     // Registers the custom delayed sensor for use in <DndContext>
     const sensors = useSensors(customMouseSensor)
 
+    const starBtnStyle = board?.isStarred ? { color: '#FBC828' } : {}
+
     if (isLoading) return <Loader />
 
-
-
     return (
-        <section className="board-details full">
-            <header className="board-details-header">
-                <div>
-                    {/* TODO: implement reusable component for editable field */}
-                    {!isEditing &&
-                        <h1
-                            className="board-title"
-                            onClick={() => setIsEditing(true)}
-                            title="Edit board name"
-                        >
-                            {boardName}
-                        </h1>
-                    }
-                    {isEditing &&
-                        <input
-                            ref={inputRef}
-                            className="board-title"
-                            type="text"
-                            value={boardName}
-                            onChange={handleInput}
-                            onBlur={handleInputBlur}
-                            onKeyDown={onBoardNameKeyDown}
-                        />
-                    }
-                </div>
-                <div className="btn-group">
-                    <div className="avatar-btn-group">
-                        {/* TODO: Render avatars based on board data */}
-                        <button className="dynamic-btn icon-btn avatar-btn" title="Oxana Shvartsman (oxanashvartsman)" >
-                            <img src={osAvatarImg} alt="Oxana Shvartsman" width={16} height={16} />
+        <>
+            <section className="board-details full">
+                <header className="board-details-header">
+                    <div>
+                        {/* TODO: implement reusable component for editable field */}
+                        {!isEditing &&
+                            <h1
+                                className="board-title"
+                                onClick={() => setIsEditing(true)}
+                                title="Edit board name"
+                            >
+                                {boardName}
+                            </h1>
+                        }
+                        {isEditing &&
+                            <input
+                                ref={inputRef}
+                                className="board-title"
+                                type="text"
+                                value={boardName}
+                                onChange={handleInput}
+                                onBlur={handleInputBlur}
+                                onKeyDown={onBoardNameKeyDown}
+                            />
+                        }
+                    </div>
+                    <div className="btn-group">
+                        <div className="avatar-btn-group">
+                            {/* TODO: Render avatars based on board data */}
+                            <button className="dynamic-btn icon-btn avatar-btn" title="Oxana Shvartsman (oxanashvartsman)" >
+                                <img src={osAvatarImg} alt="Oxana Shvartsman" width={16} height={16} />
+                            </button>
+                            <button className="dynamic-btn icon-btn avatar-btn" title="Anna Coss (annacoss)" >
+                                <img src={acAvatarImg} alt="Anna Coss" />
+                            </button>
+                        </div>
+                        <button className="dynamic-btn icon-btn action-dynamic-btn">
+                            <FilterIcon width={16} height={16} fill="currentColor" />
                         </button>
-                        <button className="dynamic-btn icon-btn avatar-btn" title="Anna Coss (annacoss" >
-                            <img src={acAvatarImg} alt="Anna Coss" />
+                        <button
+                            style={starBtnStyle}
+                            className="dynamic-btn icon-btn action-dynamic-btn"
+                            onClick={setStarred}
+                        >
+                            {board?.isStarred
+                                ? <StarSolidIcon width={16} height={16} fill="currentColor" />
+                                : <StarIcon width={16} height={16} fill="currentColor" />}
+                        </button>
+                        <button className="btn-highlighted">
+                            <UserPlusIcon width={16} height={16} fill="currentColor" />
+                            <span>Share</span>
+                        </button>
+                        <button
+                            className="dynamic-btn icon-btn action-dynamic-btn"
+                            onClick={(event) => {
+                                handlePopoverOpen(event, PICKER_MAP.BOARD)
+                            }}
+                        >
+                            <MoreIcon width={16} height={16} fill="currentColor" />
                         </button>
                     </div>
-                    <button className="dynamic-btn icon-btn action-dynamic-btn">
-                        <FilterIcon width={16} height={16} fill="currentColor" />
-                    </button>
-                    <button className="dynamic-btn icon-btn action-dynamic-btn">
-                        <StarIcon width={16} height={16} fill="currentColor" />
-                    </button>
-                    <button className="btn-highlighted">
-                        <UserPlusIcon width={16} height={16} fill="currentColor" />
-                        <span>Share</span>
-                    </button>
-                    <button className="dynamic-btn icon-btn action-dynamic-btn">
-                        <MoreIcon width={16} height={16} fill="currentColor" />
-                    </button>
-                </div>
-            </header>
+                </header>
 
-            {board &&
-                <DndContext
-                    sensors={sensors}
-                    collisionDetection={closestCenter}
-                    onDragStart={onDragStart}
-                    onDragCancel={onDragCancel}
-                    onDragOver={onDragOver}
-                    onDragEnd={onDragEnd}
-                >
-                    <SortableContext
-                        items={groupsOrder.map(g => g._id)}
-                        strategy={horizontalListSortingStrategy}
+                {board &&
+                    <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCenter}
+                        onDragStart={onDragStart}
+                        onDragCancel={onDragCancel}
+                        onDragOver={onDragOver}
+                        onDragEnd={onDragEnd}
                     >
-                        <GroupList
-                            groups={groupsOrder}
-                            tasks={tasksOrder}
-                            actions={actions}
-                            onAddGroup={onAddGroup}
-                            onRemoveGroup={onRemoveGroup}
-                            onUpdateGroup={onUpdateGroup}
-                        />
-                    </SortableContext>
-
-                    <DragOverlay>
-                        {activeId ? (
-                            <DragOverlayWrapper
-                                activeId={activeId}
-                                board={{ ...board, groups: groupsOrder, tasks: tasksOrder }}
+                        <SortableContext
+                            items={groupsOrder.map(g => g._id)}
+                            strategy={horizontalListSortingStrategy}
+                        >
+                            <GroupList
+                                groups={groupsOrder}
+                                tasks={tasksOrder}
+                                actions={actions}
+                                onAddGroup={onAddGroup}
+                                onRemoveGroup={onRemoveGroup}
+                                onUpdateGroup={onUpdateGroup}
                             />
-                        ) : null}
-                    </DragOverlay>
-                </DndContext>
-            }
-            <Outlet />
-        </section>
+                        </SortableContext>
+
+                        <DragOverlay>
+                            {activeId ? (
+                                <DragOverlayWrapper
+                                    activeId={activeId}
+                                    board={{ ...board, groups: groupsOrder, tasks: tasksOrder }}
+                                />
+                            ) : null}
+                        </DragOverlay>
+                    </DndContext>
+                }
+                <Outlet />
+            </section>
+            {picker && (
+                <DynamicPicker
+                    picker={picker}
+                    open={openPopover}
+                    anchorEl={anchorEl}
+                    onClose={handlePopoverClose}
+                    setStarred={setStarred}
+                    isStarred={board?.isStarred}
+                />
+            )}
+        </>
     )
 }

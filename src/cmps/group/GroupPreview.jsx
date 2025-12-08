@@ -37,7 +37,7 @@ export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemov
     const handlePopoverOpen = (event, pickerType) => {
         setAnchorEl(event.currentTarget)
         setPicker(pickerType)
-    };
+    }
 
     const handlePopoverClose = () => {
         setAnchorEl(null)
