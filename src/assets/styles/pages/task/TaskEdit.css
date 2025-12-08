@@ -55,6 +55,15 @@
             flex: 0 0 auto;
             gap: 0.5rem;
         }
+
+        & .task-header-btn {
+            border-radius: 50%;
+            background-color: #fff;
+
+            &:hover {
+                background-color: #F0F1F2;
+            }
+        }
     }
 
     & .content-wrapper {

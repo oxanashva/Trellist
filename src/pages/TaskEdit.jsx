@@ -274,7 +274,7 @@ export function TaskEdit() {
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
 
-    const headerStyle = task?.cover.coverColor ? { backgroundColor: coverColorsMap[task?.cover.coverColor], minHeight: '116px', height: '116px', maxHeight: '160px' } : {}
+    const headerStyle = task?.cover?.coverColor ? { backgroundColor: coverColorsMap[task?.cover?.coverColor], minHeight: '116px', height: '116px', maxHeight: '160px' } : {}
 
     return (
         <dialog ref={elDialog} className="task-edit">
@@ -282,18 +282,18 @@ export function TaskEdit() {
                 <span className="group-name">{group?.name}</span>
                 <div className="task-header-actions">
                     <button
-                        className="icon-btn dynamic-btn"
+                        className="icon-btn dynamic-btn task-header-btn"
                         onClick={(event) => {
                             handlePopoverOpen(event, PICKER_MAP.COVER)
                         }}
                     >
                         <ImageIcon width={16} height={16} fill="currentColor" />
                     </button>
-                    <button className="icon-btn dynamic-btn">
+                    <button className="icon-btn dynamic-btn task-header-btn">
                         <MoreIcon width={16} height={16} fill="currentColor" />
                     </button>
-                    <Link to={`/board/${board?._id}`} className="icon-btn dynamic-btn link-btn">
-                        <CloseIcon width={24} height={24} fill="currentColor" />
+                    <Link to={`/board/${board?._id}`} className="icon-btn dynamic-btn link-btn task-header-btn">
+                        <CloseIcon width={20} height={20} fill="currentColor" />
                     </Link>
                 </div>
             </header>

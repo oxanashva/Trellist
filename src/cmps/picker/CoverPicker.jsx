@@ -2,7 +2,7 @@ import { useState } from "react";
 import { coverColorsMap } from "../../services/util.service";
 
 export function CoverPicker({ task, onUpdateTask }) {
-    const [selectedColorKey, setSelectedColorKey] = useState(task.cover.coverColor || Object.keys(coverColorsMap)[0])
+    const [selectedColorKey, setSelectedColorKey] = useState(task?.cover?.coverColor || Object.keys(coverColorsMap)[0])
 
     function onSaveCover(colorKey) {
         setSelectedColorKey(colorKey)
