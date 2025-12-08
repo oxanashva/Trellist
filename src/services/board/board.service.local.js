@@ -102,8 +102,13 @@ async function addTask(boardId, task) {
     return task
 }
 
-async function updateTask(boardId, updatedTask) {
+async function updateTask(boardId, task, fieldsToUpdate) {
     const board = await getById(boardId)
+
+    const updatedTask = {
+        ...task,
+        ...fieldsToUpdate
+    }
 
     board.tasks = board.tasks.map(t =>
         t._id === updatedTask._id ? updatedTask : t

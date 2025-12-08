@@ -155,9 +155,9 @@ export async function addTask(boardId, task) {
     }
 }
 
-export async function updateTask(boardId, task) {
+export async function updateTask(boardId, task, fieldsToUpdate) {
     try {
-        const savedTask = await boardService.updateTask(boardId, task)
+        const savedTask = await boardService.updateTask(boardId, task, fieldsToUpdate)
         store.dispatch(getCmdUpdateTask(savedTask))
         return savedTask
     } catch (err) {

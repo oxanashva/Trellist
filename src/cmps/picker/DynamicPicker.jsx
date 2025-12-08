@@ -3,6 +3,7 @@ import Popover from '@mui/material/Popover'
 import { DatePicker } from "../picker/DatePicker"
 import { LabelPicker } from "../picker/LabelPicker"
 import { ActionPicker } from '../picker/ActionPicker'
+import { CoverPicker } from './CoverPicker'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
 export function DynamicPicker({ task, picker, anchorEl, open, onClose, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
@@ -44,6 +45,12 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setIsAddi
                     boardId={boardId}
                     groupId={groupId}
                     onRemoveGroup={onRemoveGroup}
+                    onClose={onClose}
+                />
+            case 'CoverPicker':
+                return <CoverPicker
+                    task={task}
+                    onUpdateTask={onUpdateTask}
                     onClose={onClose}
                 />
             default:

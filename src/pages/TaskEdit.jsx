@@ -8,7 +8,7 @@ dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
 import { addAction, removeAction, updateAction, updateTask, addLabel, updateLabel, removeLabel } from "../store/actions/board.actions"
-import { formatDate, getHexColor, makeId } from "../services/util.service"
+import { coverColorsMap, formatDate, getLabelColor, makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
@@ -102,7 +102,15 @@ export function TaskEdit() {
         //         selectedMemberIds: task?.memberIds || [],
         //         members: board?.members
         //     }
-        // }
+        // },
+        COVER: {
+            type: "CoverPicker",
+            info: {
+                label: "Cover:",
+                propName: "cover",
+                selectedCover: task?.cover
+            }
+        }
     }
 
     useEffect(() => {
@@ -127,13 +135,8 @@ export function TaskEdit() {
     }
 
     async function onUpdateTask(boardId, fieldsToUpdate) {
-        const updatedTask = {
-            ...task,
-            ...fieldsToUpdate
-        }
-
         try {
-            await updateTask(boardId, updatedTask)
+            await updateTask(boardId, task, fieldsToUpdate)
             showSuccessMsg('Task updated')
         } catch (err) {
             showErrorMsg('Cannot update task')
@@ -271,19 +274,44 @@ export function TaskEdit() {
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
 
+    const headerStyle = task?.cover?.coverColor
+        ? {
+            backgroundColor: coverColorsMap[task?.cover?.coverColor],
+            minHeight: '116px',
+            height: '116px',
+            maxHeight: '160px'
+        }
+
+        : task?.idAttachmentCover
+            ? {
+                backgroundImage: `url(${task?.cover?.url})`, backgroundColor: task?.cover?.edgeColor,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                minHeight: '116px',
+                height: '116px',
+                maxHeight: '160px'
+            }
+            : {}
+
     return (
         <dialog ref={elDialog} className="task-edit">
-            <header className="task-edit-header">
+            <header style={headerStyle} className="task-edit-header">
                 <span className="group-name">{group?.name}</span>
                 <div className="task-header-actions">
-                    <button className="icon-btn dynamic-btn">
+                    <button
+                        className="icon-btn dynamic-btn task-header-btn"
+                        onClick={(event) => {
+                            handlePopoverOpen(event, PICKER_MAP.COVER)
+                        }}
+                    >
                         <ImageIcon width={16} height={16} fill="currentColor" />
                     </button>
-                    <button className="icon-btn dynamic-btn">
+                    <button className="icon-btn dynamic-btn task-header-btn">
                         <MoreIcon width={16} height={16} fill="currentColor" />
                     </button>
-                    <Link to={`/board/${board?._id}`} className="icon-btn dynamic-btn link-btn">
-                        <CloseIcon width={24} height={24} fill="currentColor" />
+                    <Link to={`/board/${board?._id}`} className="icon-btn dynamic-btn link-btn task-header-btn">
+                        <CloseIcon width={20} height={20} fill="currentColor" />
                     </Link>
                 </div>
             </header>
@@ -402,7 +430,7 @@ export function TaskEdit() {
                                             return (
                                                 <button
                                                     key={labelId}
-                                                    style={{ backgroundColor: getHexColor(label?.color) }}
+                                                    style={{ backgroundColor: getLabelColor(label?.color) }}
                                                     onClick={(event) => {
                                                         handlePopoverOpen(event, PICKER_MAP.LABEL, labelId)
                                                     }}

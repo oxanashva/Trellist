@@ -57,7 +57,9 @@ export const board = {
             "data": {
                 "idTask": "68e8092c100aad2a6c23f9d5",
                 "text": "**\\@Developers** - We are now enforcing the \"Mobile First\" approach for **all** new CSS cards. Before requesting review, please ensure the mobile styles are complete and verified. Added a new step to the 'Code Review' checklist.",
-                "textData": { "emoji": {} },
+                "textData": {
+                    "emoji": {}
+                },
                 "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
@@ -69,15 +71,26 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "list": {
+                    "_id": "68e8092c100aad2a6c23f95e",
+                    "name": "In Progress"
+                }
             },
             "appCreator": null,
             "type": "commentTask",
             "date": "2025-10-09T20:21:49.478Z",
             "limits": {
                 "reactions": {
-                    "perAction": { "status": "ok", "disableAt": 900, "warnAt": 720 },
-                    "uniquePerAction": { "status": "ok", "disableAt": 17, "warnAt": 14 }
+                    "perAction": {
+                        "status": "ok",
+                        "disableAt": 900,
+                        "warnAt": 720
+                    },
+                    "uniquePerAction": {
+                        "status": "ok",
+                        "disableAt": 17,
+                        "warnAt": 14
+                    }
                 }
             },
             "memberCreator": {
@@ -104,7 +117,9 @@ export const board = {
             "data": {
                 "idTask": "68e8092c100aad2a6c23f9d5",
                 "text": "**\\@UX Team** - Just a reminder that all CSS updates for the main application (as per the v2.0 design spec) are now scheduled for the next sprint. Please ensure all design files are finalized by EOD Friday.",
-                "textData": { "emoji": {} },
+                "textData": {
+                    "emoji": {}
+                },
                 "task": {
                     "_id": "68e8092c100aad2a6c23f9d5",
                     "name": "(21) Update CSS",
@@ -116,15 +131,26 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "list": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "list": {
+                    "_id": "68e8092c100aad2a6c23f95e",
+                    "name": "In Progress"
+                }
             },
             "appCreator": null,
             "type": "commentTask",
             "date": "2025-10-09T20:21:36.782Z",
             "limits": {
                 "reactions": {
-                    "perAction": { "status": "ok", "disableAt": 900, "warnAt": 720 },
-                    "uniquePerAction": { "status": "ok", "disableAt": 17, "warnAt": 14 }
+                    "perAction": {
+                        "status": "ok",
+                        "disableAt": 900,
+                        "warnAt": 720
+                    },
+                    "uniquePerAction": {
+                        "status": "ok",
+                        "disableAt": 17,
+                        "warnAt": 14
+                    }
                 }
             },
             "memberCreator": {
@@ -149,7 +175,9 @@ export const board = {
             "_id": "68e81f51b188aaff25f9b936",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "dueComplete": false },
+                "old": {
+                    "dueComplete": false
+                },
                 "task": {
                     "dueComplete": true,
                     "dateCompleted": "2025-10-09T20:47:13.200Z",
@@ -223,7 +251,10 @@ export const board = {
                     "idShort": 5,
                     "shortLink": "7VhJQXjc"
                 },
-                "checklist": { "_id": "68e8092c100aad2a6c23f9df", "name": "Checkgroup" },
+                "checklist": {
+                    "_id": "68e8092c100aad2a6c23f9df",
+                    "name": "Checkgroup"
+                },
                 "checkItem": {
                     "_id": "68e8092d100aad2a6c23fdaa",
                     "name": "Determine appropriate naming scheme (Due 8/9)",
@@ -263,7 +294,9 @@ export const board = {
                     "_id": "68e8103bce79f96b0b97fd53",
                     "name": "Mobile QA: Check responsiveness and layout on small screens.",
                     "state": "complete",
-                    "textData": { "emoji": {} }
+                    "textData": {
+                        "emoji": {}
+                    }
                 }
             },
             "type": "updateCheckItemStateOnTask",
@@ -299,7 +332,9 @@ export const board = {
                     "_id": "68e8102f8c7b4cb5d2bcc73f",
                     "name": "Desktop QA: Verify look and feel on Chrome, Firefox, and Safari.",
                     "state": "complete",
-                    "textData": { "emoji": {} }
+                    "textData": {
+                        "emoji": {}
+                    }
                 }
             },
             "type": "updateCheckItemStateOnTask",
@@ -335,7 +370,9 @@ export const board = {
                     "_id": "68e81024ce03ffabcd6a9765",
                     "name": "Styles Implemented: Write and save new CSS code.",
                     "state": "complete",
-                    "textData": { "emoji": {} }
+                    "textData": {
+                        "emoji": {}
+                    }
                 }
             },
             "type": "updateCheckItemStateOnTask",
@@ -371,7 +408,9 @@ export const board = {
                     "_id": "68e8101614afd694b9136ace",
                     "name": "Branch Created: Pull and create a new feature branch (e.g., git checkout -b css-update-123).",
                     "state": "complete",
-                    "textData": { "emoji": {} }
+                    "textData": {
+                        "emoji": {}
+                    }
                 }
             },
             "type": "updateCheckItemStateOnTask",
@@ -407,7 +446,9 @@ export const board = {
                     "_id": "68e81009bbf4b6d153bee7ce",
                     "name": "Scope Defined: Identify specific elements/sections to be styled.",
                     "state": "complete",
-                    "textData": { "emoji": {} }
+                    "textData": {
+                        "emoji": {}
+                    }
                 }
             },
             "type": "updateCheckItemStateOnTask",
@@ -424,7 +465,9 @@ export const board = {
             "_id": "68e81def478e3e9a9da9f141",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "due": "2025-10-22T06:00:00.000Z" },
+                "old": {
+                    "due": "2025-10-22T06:00:00.000Z"
+                },
                 "task": {
                     "due": null,
                     "_id": "68e8092c100aad2a6c23f9c3",
@@ -456,7 +499,9 @@ export const board = {
             "_id": "68e81def478e3e9a9da9f0dd",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "start": null },
+                "old": {
+                    "start": null
+                },
                 "task": {
                     "start": "2025-10-06T05:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9c3",
@@ -488,7 +533,9 @@ export const board = {
             "_id": "68e81dd7fb5e4c7e0ef0d27e",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "due": null },
+                "old": {
+                    "due": null
+                },
                 "task": {
                     "due": "2025-10-22T06:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9c3",
@@ -520,7 +567,9 @@ export const board = {
             "_id": "68e81dd7fb5e4c7e0ef0d263",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "dueReminder": null },
+                "old": {
+                    "dueReminder": null
+                },
                 "task": {
                     "dueReminder": -1,
                     "_id": "68e8092c100aad2a6c23f9c3",
@@ -552,7 +601,9 @@ export const board = {
             "_id": "68e81daf38ffe04461de3bc9",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "due": null },
+                "old": {
+                    "due": null
+                },
                 "task": {
                     "due": "2025-10-22T06:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d5",
@@ -565,7 +616,10 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": {
+                    "_id": "68e8092c100aad2a6c23f95e",
+                    "name": "In Progress"
+                }
             },
             "type": "updateTask",
             "date": "2025-10-09T20:40:15.295Z",
@@ -581,7 +635,9 @@ export const board = {
             "_id": "68e81d7c4a989f569fde06f0",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "start": "2025-10-11T05:00:00.000Z" },
+                "old": {
+                    "start": "2025-10-11T05:00:00.000Z"
+                },
                 "task": {
                     "start": "2025-10-06T05:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d5",
@@ -594,7 +650,10 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": {
+                    "_id": "68e8092c100aad2a6c23f95e",
+                    "name": "In Progress"
+                }
             },
             "type": "updateTask",
             "date": "2025-10-09T20:39:24.699Z",
@@ -610,7 +669,9 @@ export const board = {
             "_id": "68e81d6e0e158cfe0ec692ce",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "dueReminder": null },
+                "old": {
+                    "dueReminder": null
+                },
                 "task": {
                     "dueReminder": -1,
                     "_id": "68e8092c100aad2a6c23f9d5",
@@ -623,7 +684,10 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": {
+                    "_id": "68e8092c100aad2a6c23f95e",
+                    "name": "In Progress"
+                }
             },
             "type": "updateTask",
             "date": "2025-10-09T20:39:10.317Z",
@@ -639,7 +703,9 @@ export const board = {
             "_id": "68e81d6e0e158cfe0ec692af",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "start": null },
+                "old": {
+                    "start": null
+                },
                 "task": {
                     "start": "2025-10-11T05:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d5",
@@ -652,7 +718,10 @@ export const board = {
                     "name": "Trellist Agile Sprint Board",
                     "shortLink": "VJFx5D4Z"
                 },
-                "group": { "_id": "68e8092c100aad2a6c23f95e", "name": "In Progress" }
+                "group": {
+                    "_id": "68e8092c100aad2a6c23f95e",
+                    "name": "In Progress"
+                }
             },
             "type": "updateTask",
             "date": "2025-10-09T20:39:10.273Z",
@@ -668,7 +737,9 @@ export const board = {
             "_id": "68e81cef72d008c9bac85008",
             "idMemberCreator": "5eafad22c718790469a3db7a",
             "data": {
-                "old": { "due": "2025-10-11T06:00:00.000Z" },
+                "old": {
+                    "due": "2025-10-11T06:00:00.000Z"
+                },
                 "task": {
                     "due": "2025-10-10T06:00:00.000Z",
                     "_id": "68e8092c100aad2a6c23f9d9",
@@ -726,7 +797,7 @@ export const board = {
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
-            "idAttachmentCover": null,
+            "idAttachmentCover": "hVRlWC",
             "labels": [
                 {
                     "_id": "68e8092c100aad2a6c23fa34",
@@ -783,88 +854,9 @@ export const board = {
             "start": null,
             "url": "https://trello.com/c/7z0gKw0n/18-product-owner-brian",
             "cover": {
-                "idAttachment": null,
-                "color": null,
-                "idUploadedBackground": "68e81369ef494010dd052a07",
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e81369ef494010dd052a08",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x100/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 760,
-                        "height": 100,
-                        "width": 100
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a09",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/192x192/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 1898,
-                        "height": 192,
-                        "width": 192
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0a",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x480/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 7702,
-                        "height": 480,
-                        "width": 480
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0b",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x960/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 21292,
-                        "height": 960,
-                        "width": 960
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0c",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x1024/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 23834,
-                        "height": 1024,
-                        "width": 1024
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0d",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1280/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 31892,
-                        "height": 1280,
-                        "width": 1280
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0f",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1600x1600/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 46958,
-                        "height": 1600,
-                        "width": 1600
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a0e",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1920/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 55754,
-                        "height": 1920,
-                        "width": 1920
-                    },
-                    {
-                        "_id": "68e81369ef494010dd052a10",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x2048/e33ee15b69942a88dc2a3a10541be22a/photo-1709651669999-57741c9bf085.webp",
-                        "bytes": 61054,
-                        "height": 2048,
-                        "width": 2048
-                    }
-                ],
-                "edgeColor": "#e4e4e4",
-                "sharedSourceUrl": "https://images.unsplash.com/photo-1709651669999-57741c9bf085?ixid=M3w3MDY2fDB8MXxzZWFyY2h8MTN8fGJyYWlufGVufDF8fHx8MTc1OTk2Nzk4NXww&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-                "idPlugin": null
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765219243/aercq9pxdzic5wmzoeem.jpg",
+                "edgeColor": "#d4d7dc",
+                "idAttachment": "hVRlWC"
             },
             "isTemplate": false,
             "attachments": [
@@ -882,6 +874,16 @@ export const board = {
                     "url": "https://docs.google.com/document/d/1YHyrhm329Hfgox9CIfwQrq8qW5iXxPepytVbiKGAwjY/edit?usp=drivesdk",
                     "pos": 140737488355328,
                     "fileName": "edit"
+                },
+                {
+                    "_id": "hVRlWC",
+                    "date": 1765219245212,
+                    "edgeColor": "#d4d7dc",
+                    "idMember": "",
+                    "isUpload": true,
+                    "mimeType": "image/jpg",
+                    "name": "brain.jpg",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765219243/aercq9pxdzic5wmzoeem.jpg"
                 }
             ],
             "customFieldItems": []
@@ -913,7 +915,9 @@ export const board = {
             "idGroup": "68e8092c100aad2a6c23f95c",
             "idMemberCreator": null,
             "idMembers": [],
-            "idMembersVoted": ["5eafad22c718790469a3db7a"],
+            "idMembersVoted": [
+                "5eafad22c718790469a3db7a"
+            ],
             "idAttachmentCover": null,
             "labels": [],
             "name": "(3) Pre-load task attachments",
@@ -927,10 +931,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -1008,10 +1009,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [],
@@ -1068,10 +1066,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "light",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [],
@@ -1118,10 +1113,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -1170,7 +1162,9 @@ export const board = {
             "idGroup": "68e8092c100aad2a6c23f95d",
             "idMemberCreator": null,
             "idMembers": [],
-            "idMembersVoted": ["5eafad22c718790469a3db7a"],
+            "idMembersVoted": [
+                "5eafad22c718790469a3db7a"
+            ],
             "idAttachmentCover": null,
             "labels": [
                 {
@@ -1194,10 +1188,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -1249,7 +1240,12 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
+                "attachmentsByType": {
+                    "trello": {
+                        "board": 0,
+                        "task": 0
+                    }
+                },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -1288,13 +1284,25 @@ export const board = {
             "labels": [],
             "limits": {
                 "attachments": {
-                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 1000,
+                        "warnAt": 800
+                    }
                 },
                 "checklists": {
-                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 500,
+                        "warnAt": 400
+                    }
                 },
                 "stickers": {
-                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 70,
+                        "warnAt": 56
+                    }
                 }
             },
             "locationName": null,
@@ -1319,10 +1327,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "taskRole": null,
@@ -1407,6 +1412,28 @@ export const board = {
         },
         {
             "_id": "68e8092c100aad2a6c23f9bb",
+            "attachments": [
+                {
+                    "_id": "xxw2Fd",
+                    "date": 1765196832771,
+                    "edgeColor": "#FFFFFF",
+                    "idMember": "",
+                    "isUpload": true,
+                    "mimeType": "image/png",
+                    "name": "npm.png",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png"
+                },
+                {
+                    "_id": "6Mu56V",
+                    "date": 1765212090730,
+                    "edgeColor": "#4d863b",
+                    "idMember": "",
+                    "isUpload": true,
+                    "mimeType": "image/webp",
+                    "name": "bug.webp",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765212088/amcmf5kpmdwi7mifiva9.webp"
+                }
+            ],
             "address": null,
             "badges": {
                 "attachments": 4,
@@ -1420,7 +1447,12 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
+                "attachmentsByType": {
+                    "trello": {
+                        "board": 0,
+                        "task": 0
+                    }
+                },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -1431,6 +1463,11 @@ export const board = {
             "checkItemStates": [],
             "closed": false,
             "coordinates": null,
+            "cover": {
+                "idAttachment": "xxw2Fd",
+                "edgeColor": "#FFFFFF",
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png"
+            },
             "creationMethod": null,
             "creationMethodError": null,
             "creationMethodLoadingStartedAt": null,
@@ -1446,16 +1483,18 @@ export const board = {
             "email": "oxanashvartzm+2ua0td8mhjcc2ght7cq+35bg6e8ssmg3nnpoce3+05ygnop52i@boards.trello.com",
             "externalSource": null,
             "faviconUrl": null,
+            "idAttachmentCover": "xxw2Fd",
             "idBoard": "68e8092c100aad2a6c23f961",
             "idCheckgroups": [],
-            "idLabels": ["68e8092c100aad2a6c23fa32"],
+            "idLabels": [
+                "68e8092c100aad2a6c23fa32"
+            ],
             "idGroup": "68e8092c100aad2a6c23f95d",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
             "idOrganization": "68e807eaaf07e785344018be",
             "idShort": 2,
-            "idAttachmentCover": "68e81194dd267fc1d2426ac0",
             "labels": [
                 {
                     "_id": "68e8092c100aad2a6c23fa32",
@@ -1469,13 +1508,25 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 1000,
+                        "warnAt": 800
+                    }
                 },
                 "checklists": {
-                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 500,
+                        "warnAt": 400
+                    }
                 },
                 "stickers": {
-                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 70,
+                        "warnAt": 56
+                    }
                 }
             },
             "locationName": null,
@@ -1494,151 +1545,13 @@ export const board = {
             "staticMapUrl": null,
             "start": null,
             "subscribed": false,
-            "url": "https://trello.com/c/NwYnk1M5/2-1-add-post-message-io",
+            "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765189979/npm_yubhab.png",
             "urlSource": null,
             "urlSourceText": null,
-            "cover": {
-                "idAttachment": "68e81194dd267fc1d2426ac0",
-                "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e81194dd267fc1d2426ac5",
-                        "scaled": false,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
-                        "bytes": 498,
-                        "height": 50,
-                        "width": 70
-                    },
-                    {
-                        "_id": "68e81194dd267fc1d2426ac7",
-                        "scaled": true,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
-                        "bytes": 808,
-                        "height": 84,
-                        "width": 150
-                    },
-                    {
-                        "_id": "68e81194dd267fc1d2426ac6",
-                        "scaled": false,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
-                        "bytes": 1278,
-                        "height": 150,
-                        "width": 250
-                    },
-                    {
-                        "_id": "68e81194dd267fc1d2426ac8",
-                        "scaled": true,
-                        "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
-                        "bytes": 1266,
-                        "height": 168,
-                        "width": 300
-                    }
-                ],
-                "edgeColor": "#fcfcfc",
-                "idPlugin": null
-            },
             "isTemplate": false,
             "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
-            "attachments": [
-                {
-                    "_id": "68e8092d100aad2a6c23fdb4",
-                    "bytes": null,
-                    "date": "2015-09-24T14:11:18.958Z",
-                    "edgeColor": null,
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": false,
-                    "mimeType": "",
-                    "name": "Add a complementary tools page",
-                    "previews": [],
-                    "url": "https://github.com/trellowebinars/react/commit/3c19f6253b3fc5ed1b363e73c3e7768039cd11dc",
-                    "pos": 16384,
-                    "fileName": "3c19f6253b3fc5ed1b363e73c3e7768039cd11dc"
-                },
-                {
-                    "_id": "68e8092d100aad2a6c23fdb6",
-                    "bytes": null,
-                    "date": "2015-09-24T15:26:28.943Z",
-                    "edgeColor": null,
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": false,
-                    "mimeType": "",
-                    "name": "Fix typo in latest round-up",
-                    "previews": [],
-                    "url": "https://github.com/trellowebinars/react/commit/ec58683389eb5da453ebc191f238798ed92d77bf",
-                    "pos": 32768,
-                    "fileName": "ec58683389eb5da453ebc191f238798ed92d77bf"
-                },
-                {
-                    "_id": "68e8092d100aad2a6c23fdb8",
-                    "bytes": null,
-                    "date": "2015-09-24T15:46:24.252Z",
-                    "edgeColor": null,
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": false,
-                    "mimeType": "",
-                    "name": "Merge pull request #4855 from iamchenxin/master",
-                    "previews": [],
-                    "url": "https://github.com/trellowebinars/react/commit/b8d29476899f9d4cf377b01395c637efd138c059",
-                    "pos": 49152,
-                    "fileName": "b8d29476899f9d4cf377b01395c637efd138c059"
-                },
-                {
-                    "_id": "68e81194dd267fc1d2426ac0",
-                    "bytes": 644,
-                    "date": "2025-10-09T19:48:36.129Z",
-                    "edgeColor": "#fcfcfc",
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": true,
-                    "mimeType": "image/png",
-                    "name": "npm.png",
-                    "previews": [
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac5",
-                            "scaled": false,
-                            "bytes": 498,
-                            "height": 50,
-                            "width": 70
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac6",
-                            "scaled": false,
-                            "bytes": 1278,
-                            "height": 150,
-                            "width": 250
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac7",
-                            "scaled": true,
-                            "bytes": 808,
-                            "height": 84,
-                            "width": 150
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac8",
-                            "scaled": true,
-                            "bytes": 1266,
-                            "height": 168,
-                            "width": 300
-                        }
-                    ],
-                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/download/npm.png",
-                    "pos": 65536,
-                    "fileName": "npm.png"
-                }
-            ],
             "pluginData": [],
             "customFieldItems": []
         },
@@ -1657,7 +1570,12 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
+                "attachmentsByType": {
+                    "trello": {
+                        "board": 0,
+                        "task": 0
+                    }
+                },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -1685,10 +1603,14 @@ export const board = {
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
             "idCheckgroups": [],
-            "idLabels": ["68e8092c100aad2a6c23fa3a"],
+            "idLabels": [
+                "68e8092c100aad2a6c23fa3a"
+            ],
             "idGroup": "68e8092c100aad2a6c23f95e",
             "idMemberCreator": null,
-            "idMembers": ["5eafad22c718790469a3db7a"],
+            "idMembers": [
+                "5eafad22c718790469a3db7a"
+            ],
             "idMembersVoted": [],
             "idOrganization": "68e807eaaf07e785344018be",
             "idShort": 1,
@@ -1706,13 +1628,25 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 1000,
+                        "warnAt": 800
+                    }
                 },
                 "checklists": {
-                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 500,
+                        "warnAt": 400
+                    }
                 },
                 "stickers": {
-                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 70,
+                        "warnAt": 56
+                    }
                 }
             },
             "locationName": null,
@@ -1737,10 +1671,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "taskRole": null,
@@ -1765,7 +1696,12 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": "2025-10-06T05:00:00.000Z",
-                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
+                "attachmentsByType": {
+                    "trello": {
+                        "board": 0,
+                        "task": 0
+                    }
+                },
                 "externalSource": null,
                 "location": false,
                 "votes": 1,
@@ -1774,11 +1710,26 @@ export const board = {
                 "subscribed": true
             },
             "checkItemStates": [
-                { "idCheckItem": "68e81009bbf4b6d153bee7ce", "state": "complete" },
-                { "idCheckItem": "68e8101614afd694b9136ace", "state": "complete" },
-                { "idCheckItem": "68e81024ce03ffabcd6a9765", "state": "complete" },
-                { "idCheckItem": "68e8102f8c7b4cb5d2bcc73f", "state": "complete" },
-                { "idCheckItem": "68e8103bce79f96b0b97fd53", "state": "complete" }
+                {
+                    "idCheckItem": "68e81009bbf4b6d153bee7ce",
+                    "state": "complete"
+                },
+                {
+                    "idCheckItem": "68e8101614afd694b9136ace",
+                    "state": "complete"
+                },
+                {
+                    "idCheckItem": "68e81024ce03ffabcd6a9765",
+                    "state": "complete"
+                },
+                {
+                    "idCheckItem": "68e8102f8c7b4cb5d2bcc73f",
+                    "state": "complete"
+                },
+                {
+                    "idCheckItem": "68e8103bce79f96b0b97fd53",
+                    "state": "complete"
+                }
             ],
             "closed": false,
             "coordinates": null,
@@ -1798,15 +1749,24 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idCheckgroups": ["68e80ffb448b9afa0ee45d62"],
-            "idLabels": ["68e8092c100aad2a6c23fa38"],
+            "idCheckgroups": [
+                "68e80ffb448b9afa0ee45d62"
+            ],
+            "idLabels": [
+                "68e8092c100aad2a6c23fa38"
+            ],
             "idGroup": "68e8092c100aad2a6c23f95e",
             "idMemberCreator": null,
-            "idMembers": ["5eafad22c718790469a3db7a", "68e809da40f4d09300719d2d"],
-            "idMembersVoted": ["5eafad22c718790469a3db7a"],
+            "idMembers": [
+                "5eafad22c718790469a3db7a",
+                "68e809da40f4d09300719d2d"
+            ],
+            "idMembersVoted": [
+                "5eafad22c718790469a3db7a"
+            ],
             "idOrganization": "68e807eaaf07e785344018be",
             "idShort": 15,
-            "idAttachmentCover": null,
+            "idAttachmentCover": "qDYCU9",
             "labels": [
                 {
                     "_id": "68e8092c100aad2a6c23fa38",
@@ -1820,13 +1780,25 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 1000,
+                        "warnAt": 800
+                    }
                 },
                 "checklists": {
-                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 500,
+                        "warnAt": 400
+                    }
                 },
                 "stickers": {
-                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 70,
+                        "warnAt": 56
+                    }
                 }
             },
             "locationName": null,
@@ -1849,96 +1821,9 @@ export const board = {
             "urlSource": null,
             "urlSourceText": null,
             "cover": {
-                "idAttachment": null,
-                "color": null,
-                "idUploadedBackground": "68e810fbd714de961b1310b9",
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e810fbd714de961b1310ba",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 1570,
-                        "height": 93,
-                        "width": 140
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bb",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 3860,
-                        "height": 171,
-                        "width": 256
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bc",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 8400,
-                        "height": 320,
-                        "width": 480
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bd",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 32244,
-                        "height": 640,
-                        "width": 960
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310be",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x682/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 36392,
-                        "height": 682,
-                        "width": 1024
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c0",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x853/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 54336,
-                        "height": 853,
-                        "width": 1280
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c1",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 104790,
-                        "height": 1280,
-                        "width": 1920
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310bf",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1365/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 117218,
-                        "height": 1365,
-                        "width": 2048
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c2",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2401x1600/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 152238,
-                        "height": 1600,
-                        "width": 2401
-                    },
-                    {
-                        "_id": "68e810fbd714de961b1310c3",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1706/ffed5ec4e3d585327306e316c0b0aeb0/photo-1523437113738-bbd3cc89fb19.webp",
-                        "bytes": 164850,
-                        "height": 1706,
-                        "width": 2560
-                    }
-                ],
-                "edgeColor": "#161b1b",
-                "sharedSourceUrl": "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?ixid=M3w3MDY2fDB8MXxzZWFyY2h8MXx8Y3NzfGVufDF8fHx8MTc1OTkzOTM0NXww&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-                "idPlugin": null
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765219365/lo6svl2txcgyjj5vzpen.jpg",
+                "edgeColor": "#231517",
+                "idAttachment": "qDYCU9"
             },
             "isTemplate": false,
             "taskRole": null,
@@ -2064,6 +1949,16 @@ export const board = {
                     "url": "https://github.com/trellowebinars/react/commit/de0f651d151278c04f1dad4f6d2472172a147d98",
                     "pos": 131072,
                     "fileName": "de0f651d151278c04f1dad4f6d2472172a147d98"
+                },
+                {
+                    "_id": "qDYCU9",
+                    "date": 1765219367287,
+                    "edgeColor": "#231517",
+                    "idMember": "",
+                    "isUpload": true,
+                    "mimeType": "image/jpg",
+                    "name": "code.jpg",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765219365/lo6svl2txcgyjj5vzpen.jpg"
                 }
             ],
             "pluginData": [],
@@ -2084,7 +1979,12 @@ export const board = {
                 "dueComplete": false,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
+                "attachmentsByType": {
+                    "trello": {
+                        "board": 0,
+                        "task": 0
+                    }
+                },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -2115,7 +2015,9 @@ export const board = {
             "idLabels": [],
             "idGroup": "68e8092c100aad2a6c23f95e",
             "idMemberCreator": null,
-            "idMembers": ["68e809da40f4d09300719d2d"],
+            "idMembers": [
+                "68e809da40f4d09300719d2d"
+            ],
             "idMembersVoted": [],
             "idOrganization": "68e807eaaf07e785344018be",
             "idShort": 11,
@@ -2123,13 +2025,25 @@ export const board = {
             "labels": [],
             "limits": {
                 "attachments": {
-                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 1000,
+                        "warnAt": 800
+                    }
                 },
                 "checklists": {
-                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 500,
+                        "warnAt": 400
+                    }
                 },
                 "stickers": {
-                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 70,
+                        "warnAt": 56
+                    }
                 }
             },
             "locationName": null,
@@ -2154,10 +2068,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "taskRole": null,
@@ -2198,7 +2109,12 @@ export const board = {
                 "dueComplete": true,
                 "lastUpdatedByAi": false,
                 "start": null,
-                "attachmentsByType": { "trello": { "board": 0, "task": 0 } },
+                "attachmentsByType": {
+                    "trello": {
+                        "board": 0,
+                        "task": 0
+                    }
+                },
                 "externalSource": null,
                 "location": false,
                 "votes": 0,
@@ -2207,9 +2123,18 @@ export const board = {
                 "subscribed": false
             },
             "checkItemStates": [
-                { "idCheckItem": "68e8092d100aad2a6c23fda9", "state": "complete" },
-                { "idCheckItem": "68e8092d100aad2a6c23fdaa", "state": "complete" },
-                { "idCheckItem": "68e8092d100aad2a6c23fdab", "state": "complete" }
+                {
+                    "idCheckItem": "68e8092d100aad2a6c23fda9",
+                    "state": "complete"
+                },
+                {
+                    "idCheckItem": "68e8092d100aad2a6c23fdaa",
+                    "state": "complete"
+                },
+                {
+                    "idCheckItem": "68e8092d100aad2a6c23fdab",
+                    "state": "complete"
+                }
             ],
             "closed": false,
             "coordinates": null,
@@ -2229,15 +2154,19 @@ export const board = {
             "externalSource": null,
             "faviconUrl": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idCheckgroups": ["68e8092c100aad2a6c23f9df"],
-            "idLabels": ["68e8092c100aad2a6c23fa36"],
+            "idCheckgroups": [
+                "68e8092c100aad2a6c23f9df"
+            ],
+            "idLabels": [
+                "68e8092c100aad2a6c23fa36"
+            ],
             "idGroup": "68e8092c100aad2a6c23f95f",
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
             "idOrganization": "68e807eaaf07e785344018be",
             "idShort": 5,
-            "idAttachmentCover": null,
+            "idAttachmentCover": "7KOCcz",
             "labels": [
                 {
                     "_id": "68e8092c100aad2a6c23fa36",
@@ -2251,13 +2180,25 @@ export const board = {
             ],
             "limits": {
                 "attachments": {
-                    "perTask": { "status": "ok", "disableAt": 1000, "warnAt": 800 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 1000,
+                        "warnAt": 800
+                    }
                 },
                 "checklists": {
-                    "perTask": { "status": "ok", "disableAt": 500, "warnAt": 400 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 500,
+                        "warnAt": 400
+                    }
                 },
                 "stickers": {
-                    "perTask": { "status": "ok", "disableAt": 70, "warnAt": 56 }
+                    "perTask": {
+                        "status": "ok",
+                        "disableAt": 70,
+                        "warnAt": 56
+                    }
                 }
             },
             "locationName": null,
@@ -2280,96 +2221,9 @@ export const board = {
             "urlSource": null,
             "urlSourceText": null,
             "cover": {
-                "idAttachment": null,
-                "color": null,
-                "idUploadedBackground": "68e8124f36120b14a0a15bde",
-                "size": "normal",
-                "brightness": "dark",
-                "scaled": [
-                    {
-                        "_id": "68e8124f36120b14a0a15bdf",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 2016,
-                        "height": 93,
-                        "width": 140
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be0",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 4218,
-                        "height": 171,
-                        "width": 256
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be1",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 9660,
-                        "height": 320,
-                        "width": 480
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be2",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 24122,
-                        "height": 640,
-                        "width": 960
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be3",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x683/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 26358,
-                        "height": 683,
-                        "width": 1024
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be5",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x854/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 36228,
-                        "height": 854,
-                        "width": 1280
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be6",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 64244,
-                        "height": 1280,
-                        "width": 1920
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be4",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1366/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 70712,
-                        "height": 1366,
-                        "width": 2048
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be7",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 89092,
-                        "height": 1600,
-                        "width": 2400
-                    },
-                    {
-                        "_id": "68e8124f36120b14a0a15be8",
-                        "scaled": true,
-                        "url": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1707/4630d6f1a28fe1a31b1c66741fb4a6e1/photo-1629798696162-fb698df8048e.webp",
-                        "bytes": 99926,
-                        "height": 1707,
-                        "width": 2560
-                    }
-                ],
-                "edgeColor": "#5b9d32",
-                "sharedSourceUrl": "https://images.unsplash.com/photo-1629798696162-fb698df8048e?ixid=M3w3MDY2fDB8MXxzZWFyY2h8NTZ8fGJ1Z3xlbnwxfHx8fDE3NjAwMzk0ODZ8MA&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-                "idPlugin": null
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222458/kuioh8yskl9lqyc7grzf.webp",
+                "edgeColor": "#4d863b",
+                "idAttachment": "7KOCcz"
             },
             "isTemplate": false,
             "taskRole": null,
@@ -2663,60 +2517,24 @@ export const board = {
                     "fileName": "business-class"
                 },
                 {
-                    "_id": "68e81204b36e3cd4b10c1ed8",
-                    "bytes": 18514,
-                    "date": "2025-10-09T19:50:28.498Z",
-                    "edgeColor": "#fcfcfc",
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
+                    "_id": "uMJR4f",
+                    "date": 1765222435950,
+                    "edgeColor": "#a9a399",
+                    "idMember": "",
+                    "isUpload": true,
+                    "mimeType": "image/jpg",
+                    "name": "sprint-review.jpg",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222435/fpxpgw2dvmozfmkehw7i.jpg"
+                },
+                {
+                    "_id": "7KOCcz",
+                    "date": 1765222459559,
+                    "edgeColor": "#4d863b",
+                    "idMember": "",
                     "isUpload": true,
                     "mimeType": "image/webp",
                     "name": "bug.webp",
-                    "previews": [
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1edd/download/bug.webp",
-                            "_id": "68e81205b36e3cd4b10c1edd",
-                            "scaled": false,
-                            "bytes": 776,
-                            "height": 50,
-                            "width": 70
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ede/download/bug.webp",
-                            "_id": "68e81205b36e3cd4b10c1ede",
-                            "scaled": false,
-                            "bytes": 2434,
-                            "height": 150,
-                            "width": 250
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1edf/download/bug.webp",
-                            "_id": "68e81205b36e3cd4b10c1edf",
-                            "scaled": true,
-                            "bytes": 2380,
-                            "height": 150,
-                            "width": 150
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ee0/download/bug.webp",
-                            "_id": "68e81205b36e3cd4b10c1ee0",
-                            "scaled": true,
-                            "bytes": 5070,
-                            "height": 300,
-                            "width": 300
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/previews/68e81205b36e3cd4b10c1ee1/download/bug.webp",
-                            "_id": "68e81205b36e3cd4b10c1ee1",
-                            "scaled": true,
-                            "bytes": 10326,
-                            "height": 600,
-                            "width": 600
-                        }
-                    ],
-                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9c1/attachments/68e81204b36e3cd4b10c1ed8/download/bug.webp",
-                    "pos": 114688,
-                    "fileName": "bug.webp"
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222458/kuioh8yskl9lqyc7grzf.webp"
                 }
             ],
             "pluginData": [],
@@ -2763,10 +2581,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -2967,10 +2782,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3092,7 +2904,6 @@ export const board = {
             "idMemberCreator": null,
             "idMembers": [],
             "idMembersVoted": [],
-            "idAttachmentCover": "68e8131e7e14b68c5bb40d0a",
             "labels": [],
             "name": "👍 Sprint Review 👎",
             "originalDesc": "",
@@ -3103,74 +2914,25 @@ export const board = {
             "start": null,
             "url": "https://trello.com/c/xVXUQDxX/17-%F0%9F%91%8D-sprint-review-%F0%9F%91%8E",
             "cover": {
-                "idAttachment": "68e8131e7e14b68c5bb40d0a",
-                "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "edgeColor": "#060505",
-                "idPlugin": null
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222908/slatnuc17ifxoxjigxon.jpg",
+                "edgeColor": "#a9a399",
+                "idAttachment": "QljSnV"
             },
             "isTemplate": false,
             "attachments": [
                 {
-                    "_id": "68e8131e7e14b68c5bb40d0a",
-                    "bytes": 9869,
-                    "date": "2025-10-09T19:55:10.000Z",
-                    "edgeColor": "#060505",
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
+                    "_id": "QljSnV",
+                    "date": 1765222909115,
+                    "edgeColor": "#a9a399",
+                    "idMember": "",
                     "isUpload": true,
-                    "mimeType": "image/jpeg",
-                    "name": "sprint-review.jpeg",
-                    "previews": [
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d0f/download/sprint-review.webp",
-                            "_id": "68e8131e7e14b68c5bb40d0f",
-                            "scaled": false,
-                            "bytes": 1138,
-                            "height": 50,
-                            "width": 70
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d10/download/sprint-review.webp",
-                            "_id": "68e8131e7e14b68c5bb40d10",
-                            "scaled": false,
-                            "bytes": 7336,
-                            "height": 150,
-                            "width": 250
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d11/download/sprint-review.webp",
-                            "_id": "68e8131e7e14b68c5bb40d11",
-                            "scaled": true,
-                            "bytes": 3402,
-                            "height": 78,
-                            "width": 150
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d12/download/sprint-review.webp",
-                            "_id": "68e8131e7e14b68c5bb40d12",
-                            "scaled": true,
-                            "bytes": 9970,
-                            "height": 156,
-                            "width": 300
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/previews/68e8131e7e14b68c5bb40d13/download/sprint-review.webp",
-                            "_id": "68e8131e7e14b68c5bb40d13",
-                            "scaled": true,
-                            "bytes": 11160,
-                            "height": 162,
-                            "width": 312
-                        }
-                    ],
-                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9d9/attachments/68e8131e7e14b68c5bb40d0a/download/sprint-review.jpeg",
-                    "pos": 140737488355328,
-                    "fileName": "sprint-review.jpeg"
+                    "mimeType": "image/jpg",
+                    "name": "sprint-review.jpg",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222908/slatnuc17ifxoxjigxon.jpg"
                 }
             ],
-            "customFieldItems": []
+            "customFieldItems": [],
+            "idAttachmentCover": "QljSnV"
         },
         {
             "_id": "68e8092c100aad2a6c23f9cb",
@@ -3195,7 +2957,9 @@ export const board = {
             "due": null,
             "dueReminder": null,
             "idBoard": "68e8092c100aad2a6c23f961",
-            "idCheckgroups": ["68e81ee97018a2bfa12f67a2"],
+            "idCheckgroups": [
+                "68e81ee97018a2bfa12f67a2"
+            ],
             "idGroup": "68e8092c100aad2a6c23f960",
             "idMemberCreator": null,
             "idMembers": [],
@@ -3213,10 +2977,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3324,10 +3085,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": "sky",
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "light",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3390,10 +3148,7 @@ export const board = {
             "cover": {
                 "idAttachment": null,
                 "color": null,
-                "idUploadedBackground": null,
-                "size": "normal",
-                "brightness": "dark",
-                "idPlugin": null
+                "idUploadedBackground": null
             },
             "isTemplate": false,
             "attachments": [
@@ -3537,7 +3292,9 @@ export const board = {
             "bio": "",
             "confirmed": true,
             "fullName": "Oxana Shvartzman",
-            "idPremOrgsAdmin": ["682b0f5d835b9303c68d1e2a"],
+            "idPremOrgsAdmin": [
+                "682b0f5d835b9303c68d1e2a"
+            ],
             "initials": "OS",
             "url": "https://trello.com/u/oxanashvartzman",
             "username": "oxanashvartzman",

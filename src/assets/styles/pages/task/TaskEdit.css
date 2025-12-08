@@ -33,11 +33,11 @@
         position: relative;
 
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         flex: 0 0;
         min-height: 56px;
-        padding-inline: 1.25rem 1rem;
+        padding: 1rem 1.25rem;
 
         border-bottom: 1px solid #0b120e24;
 
@@ -55,6 +55,15 @@
             flex: 0 0 auto;
             gap: 0.5rem;
         }
+
+        & .task-header-btn {
+            border-radius: 50%;
+            background-color: #fff;
+
+            &:hover {
+                background-color: #F0F1F2;
+            }
+        }
     }
 
     & .content-wrapper {
@@ -66,7 +75,6 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 0fr 1fr;
-            flex: 1 1 auto;
             width: 100%;
             overflow-y: auto;
         }
@@ -274,7 +282,7 @@
             overflow-y: auto;
             border-left: 1px solid #0b120e24;
             background-color: #f8f8f8;
-            padding: 1rem;
+            padding: 1rem 1.25rem;
 
             & .task-grid-container {
                 row-gap: 0;

@@ -1,9 +1,15 @@
 import { useState } from "react" // Removed useEffect as it's not needed for this logic
-import { labelsColorsMap, makeId } from "../../services/util.service"
+import { labelsColorsMap, defaultLabelsColorMap, makeId } from "../../services/util.service"
 import ShevronLeft from '../../assets/images/icons/shevron-left.svg?react'
 import PenIcon from "../../assets/images/icons/pen.svg?react"
 
 const allAvailableLabels = Object.keys(labelsColorsMap).map((colorKey, idx) => ({
+    _id: makeId(),
+    name: "",
+    color: colorKey,
+}))
+
+const defaultLabels = Object.keys(defaultLabelsColorMap).map((colorKey, idx) => ({
     _id: makeId(),
     name: "",
     color: colorKey,
@@ -18,7 +24,7 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
     const [selectedColorKey, setSelectedColorKey] = useState(null)
     const [labelToEdit, setLabelToEdit] = useState(null)
 
-    const currentPreviewColorKey = selectedColorKey || (labelToEdit && labelToEdit.color) || Object.keys(labelsColorsMap)[0]
+    const currentPreviewColorKey = selectedColorKey || (labelToEdit && labelToEdit.color) || (isCreating && Object.keys(labelsColorsMap)[0]) || (!hasLabels && Object.keys(defaultLabelsColorMap)[0])
 
     function handleLabelToggle(labelId) {
         const isCurrentlySelected = selectedLabels.includes(labelId)
@@ -144,8 +150,8 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
                 {/* Displaying all available labels if task has none */}
                 {!hasLabels && !isEditing && !isCreating &&
                     <div className="label-editor-content">
-                        {allAvailableLabels.map((label) => {
-                            const labelHexColor = labelsColorsMap[label.color]
+                        {defaultLabels.map((label) => {
+                            const labelHexColor = defaultLabelsColorMap[label.color]
                             const isLabelSelected = selectedLabels.includes(label._id)
 
                             return (
@@ -222,8 +228,8 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
                         onClick={() => {
                             setIsCreating(true)
                             setLabelName("")
-                            setSelectedColorKey(Object.keys(labelsColorsMap)[0]) // Default color
-                            setLabelToEdit({ _id: makeId(), name: "", color: Object.keys(labelsColorsMap)[0] })
+                            setSelectedColorKey(Object.keys(defaultLabelsColorMap)[0]) // Default color
+                            setLabelToEdit({ _id: makeId(), name: "", color: Object.keys(defaultLabelsColorMap)[0] })
                         }}
                     >
                         Create a new label

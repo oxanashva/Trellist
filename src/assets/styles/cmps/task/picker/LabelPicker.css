@@ -5,6 +5,26 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        padding-block-start: 0;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
     }
 
     & .previous-btn {
@@ -22,6 +42,24 @@
 
     & .label-editor-content {
         flex-grow: 1;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
     }
 
     & .label-box {
@@ -100,13 +138,14 @@
     }
 
     & .create-label-btn {
+        flex-shrink: 0;
         width: 100%;
         margin-block-start: 1rem;
     }
 
     & .label-preview-container {
         background-color: var(--background-neutral);
-        margin-inline: -1rem;
+        margin-inline: -0.75rem;
         padding: 2rem;
     }
 
