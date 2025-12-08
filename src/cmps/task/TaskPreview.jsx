@@ -103,12 +103,6 @@ export function TaskPreview({ id, task, taskActions, className }) {
                     navigate(`/board/${boardId}/task/${task._id}`)
                 }}
             >
-                {task.cover?.sharedSourceUrl &&
-                    <div className="cover-img" >
-                        <img src={task.cover.sharedSourceUrl} alt="card-image" />
-                    </div>
-                }
-
                 {task.cover?.idAttachment &&
                     <div className="cover-img" >
                         <img src={task.cover.url} alt="card-image" />

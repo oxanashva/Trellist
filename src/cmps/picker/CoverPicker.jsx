@@ -69,6 +69,7 @@ export function CoverPicker({ task, onUpdateTask }) {
             edgeColor,
             idMember: "",
             isUpload: true,
+            mimeType: `image/${format}`,
             name: `${fileName}.${format}`,
             url: imgUrl
         }
@@ -90,7 +91,7 @@ export function CoverPicker({ task, onUpdateTask }) {
         setSelectedColorKey(null)
     }
 
-    const coverAttachments = task?.attachments || []
+    const coverAttachments = task?.attachments.filter(attachment => attachment?.mimeType?.startsWith("image")) || []
 
     return (
         <section className="cover-picker">
