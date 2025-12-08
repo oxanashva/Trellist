@@ -3,21 +3,59 @@ import { coverColorsMap, makeId } from "../../services/util.service";
 import { ImgUploader } from "../ImgUploader";
 
 export function CoverPicker({ task, onUpdateTask }) {
-    const [selectedColorKey, setSelectedColorKey] = useState(task?.cover?.coverColor || Object.keys(coverColorsMap)[0])
-    const [selectedAttachment, setSelectedAttachment] = useState(task?.idAttachmentCover || null)
+    const [selectedColorKey, setSelectedColorKey] = useState(task?.cover?.coverColor || (!task?.idAttachmentCover && Object.keys(coverColorsMap)[0]))
+    const [selectedAttachmentId, setSelectedAttachmentId] = useState(task?.idAttachmentCover || null)
 
     function onSaveCover(colorKey) {
         setSelectedColorKey(colorKey)
-        onUpdateTask(task.idBoard, { cover: { coverColor: colorKey } })
+        setSelectedAttachmentId(null)
+
+        onUpdateTask(task.idBoard, {
+            cover: { coverColor: colorKey },
+            idAttachmentCover: null
+        })
     }
 
     function onRemoveCover() {
         setSelectedColorKey(null)
-        onUpdateTask(task.idBoard, { cover: null })
+        setSelectedAttachmentId(null)
+
+        onUpdateTask(task.idBoard, { cover: { coverColor: null }, idAttachmentCover: null })
+    }
+
+    function onSelectAttachment(attachmentId) {
+        let newAttachmentId
+
+        if (selectedAttachmentId === attachmentId) {
+            // Case 1: Deselect the currently selected attachment (unselect)
+            newAttachmentId = null
+        } else {
+            // Case 2: Select a new attachment
+            newAttachmentId = attachmentId
+        }
+
+        setSelectedAttachmentId(newAttachmentId)
+        setSelectedColorKey(null) // Deselect color if attachment is chosen/unchosen
+
+        const updatedTaskFields = {
+            idAttachmentCover: newAttachmentId,
+        }
+
+        onUpdateTask(task.idBoard, updatedTaskFields)
     }
 
     function handleImageUploaded(imgUrl, fileName, format) {
         const idAttachmentCover = makeId()
+
+        const newAttachment = {
+            _id: idAttachmentCover,
+            date: Date.now(),
+            edgeColor: "",
+            idMember: "",
+            isUpload: true,
+            name: `${fileName}.${format}`,
+            url: imgUrl
+        }
 
         const updatedTask = {
             ...task,
@@ -26,23 +64,16 @@ export function CoverPicker({ task, onUpdateTask }) {
                 imgUrl,
                 idAttachment: idAttachmentCover
             },
-            attachments: [...task.attachments, {
-                _id: idAttachmentCover,
-                date: Date.now(),
-                edgeColor: "",
-                idMember: "",
-                isUpload: true,
-                name: `${fileName}.${format}`,
-                url: imgUrl
-            }]
-        }
+            attachments: [...(task.attachments || []), newAttachment]
+        };
 
         onUpdateTask(task.idBoard, updatedTask)
 
-        setSelectedAttachment(idAttachmentCover)
+        setSelectedAttachmentId(idAttachmentCover)
+        setSelectedColorKey(null)
     }
 
-    const coverAttachments = task?.attachments?.filter(att => att._id === task?.cover?.idAttachment) || []
+    const coverAttachments = task?.attachments || []
 
     return (
         <section className="cover-picker">
@@ -50,6 +81,20 @@ export function CoverPicker({ task, onUpdateTask }) {
                 <h2 className="picker-title">Cover</h2>
             </header>
             <div className="cover-editor">
+                <div className="cover-preview">
+                    {selectedColorKey &&
+                        <div
+                            className="cover-color"
+                            style={{ backgroundColor: coverColorsMap[selectedColorKey] }}
+                        >
+                        </div>}
+
+                    {selectedAttachmentId &&
+                        <img
+                            src={coverAttachments.find(attachment => attachment._id === selectedAttachmentId).url}
+                            alt=""
+                        />}
+                </div>
                 <h3 className="picker-subtitle">Colors</h3>
                 <ul className="cover-colors-container">
                     {Object.keys(coverColorsMap).map((colorKey, idx) => (
@@ -77,8 +122,16 @@ export function CoverPicker({ task, onUpdateTask }) {
                 {coverAttachments.length > 0 && (
                     <div className="picker-attachments">
                         {coverAttachments.length > 0 && coverAttachments.map((attachment, idx) => {
-                            const attachmentCoverClassName = selectedAttachment === attachment._id ? 'attachment-preview selected' : 'attachment-preview'
-                            return <div key={idx} className={attachmentCoverClassName}>
+                            const attachmentCoverClassName =
+                                selectedAttachmentId === attachment._id ?
+                                    'attachment-preview selected' :
+                                    'attachment-preview'
+
+                            return <div
+                                key={attachment._id}
+                                className={attachmentCoverClassName}
+                                onClick={() => onSelectAttachment(attachment._id)}
+                            >
                                 <img src={attachment.url} alt={attachment.name} />
                             </div>
                         })}
