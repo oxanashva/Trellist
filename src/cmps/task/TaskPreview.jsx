@@ -109,6 +109,12 @@ export function TaskPreview({ id, task, taskActions, className }) {
                     </div>
                 }
 
+                {task.cover?.idAttachment &&
+                    <div className="cover-img" >
+                        <img src={task.cover.url} alt="card-image" />
+                    </div>
+                }
+
                 {task.cover?.coverColor && <div className="cover-color" style={{ backgroundColor: coverColorsMap[task.cover.coverColor] }}></div>}
 
                 <div className="task-header">
