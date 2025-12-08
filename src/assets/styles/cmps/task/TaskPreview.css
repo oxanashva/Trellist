@@ -80,10 +80,12 @@
 
         .task-badges {
             display: flex;
+            align-items: center;
             flex-wrap: wrap;
             column-gap: 0.25rem;
             max-width: 100%;
             padding-inline: 0.75rem;
+            margin-block-start: 0.25rem;
 
             & .badge {
                 position: relative;
