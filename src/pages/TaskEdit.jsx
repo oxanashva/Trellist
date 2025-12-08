@@ -274,7 +274,25 @@ export function TaskEdit() {
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
 
-    const headerStyle = task?.cover?.coverColor ? { backgroundColor: coverColorsMap[task?.cover?.coverColor], minHeight: '116px', height: '116px', maxHeight: '160px' } : {}
+    const headerStyle = task?.cover?.coverColor
+        ? {
+            backgroundColor: coverColorsMap[task?.cover?.coverColor],
+            minHeight: '116px',
+            height: '116px',
+            maxHeight: '160px'
+        }
+
+        : task?.idAttachmentCover
+            ? {
+                backgroundImage: `url(${task?.cover?.url})`, backgroundColor: task?.cover?.edgeColor,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                minHeight: '116px',
+                height: '116px',
+                maxHeight: '160px'
+            }
+            : {}
 
     return (
         <dialog ref={elDialog} className="task-edit">

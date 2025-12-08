@@ -1316,11 +1316,20 @@ export const board = {
                 {
                     "_id": "xxw2Fd",
                     "date": 1765196832771,
-                    "edgeColor": "",
+                    "edgeColor": "#FFFFFF",
                     "idMember": "",
                     "isUpload": true,
                     "name": "npm.png",
                     "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png"
+                },
+                {
+                    "_id": "6Mu56V",
+                    "date": 1765212090730,
+                    "edgeColor": "#4d863b",
+                    "idMember": "",
+                    "isUpload": true,
+                    "name": "bug.webp",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765212088/amcmf5kpmdwi7mifiva9.webp"
                 }
             ],
             "address": null,
@@ -1348,8 +1357,9 @@ export const board = {
             "closed": false,
             "coordinates": null,
             "cover": {
-                "imgUrl": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png",
-                "idAttachment": "xxw2Fd"
+                "idAttachment": "xxw2Fd",
+                "edgeColor": "#FFFFFF",
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png"
             },
             "creationMethod": null,
             "creationMethodError": null,

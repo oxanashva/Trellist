@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { coverColorsMap, makeId } from "../../services/util.service";
-import { ImgUploader } from "../ImgUploader";
+import { useState } from "react"
+import { coverColorsMap, makeId } from "../../services/util.service"
+import { ImgUploader } from "../ImgUploader"
+
+import { FastAverageColor } from "fast-average-color"
+const fac = new FastAverageColor();
 
 export function CoverPicker({ task, onUpdateTask }) {
-    const [selectedColorKey, setSelectedColorKey] = useState(task?.cover?.coverColor || (!task?.idAttachmentCover && Object.keys(coverColorsMap)[0]))
+    const [selectedColorKey, setSelectedColorKey] = useState(task?.cover?.coverColor || null)
     const [selectedAttachmentId, setSelectedAttachmentId] = useState(task?.idAttachmentCover || null)
 
     function onSaveCover(colorKey) {
@@ -25,13 +28,16 @@ export function CoverPicker({ task, onUpdateTask }) {
 
     function onSelectAttachment(attachmentId) {
         let newAttachmentId
+        let newCover
 
         if (selectedAttachmentId === attachmentId) {
             // Case 1: Deselect the currently selected attachment (unselect)
             newAttachmentId = null
+            newCover = null
         } else {
             // Case 2: Select a new attachment
             newAttachmentId = attachmentId
+            newCover = task.attachments.find(attachment => attachment._id === attachmentId)
         }
 
         setSelectedAttachmentId(newAttachmentId)
@@ -39,18 +45,28 @@ export function CoverPicker({ task, onUpdateTask }) {
 
         const updatedTaskFields = {
             idAttachmentCover: newAttachmentId,
+            cover: newCover
         }
 
         onUpdateTask(task.idBoard, updatedTaskFields)
     }
 
-    function handleImageUploaded(imgUrl, fileName, format) {
+    async function handleImageUploaded(imgUrl, fileName, format) {
         const idAttachmentCover = makeId()
+
+        let edgeColor = ""
+        try {
+            const color = await fac.getColorAsync(imgUrl)
+            edgeColor = color.hex
+        } catch (error) {
+            console.error("Could not calculate average color:", error)
+            edgeColor = "#ffffff"
+        }
 
         const newAttachment = {
             _id: idAttachmentCover,
             date: Date.now(),
-            edgeColor: "",
+            edgeColor,
             idMember: "",
             isUpload: true,
             name: `${fileName}.${format}`,
@@ -61,7 +77,8 @@ export function CoverPicker({ task, onUpdateTask }) {
             ...task,
             idAttachmentCover,
             cover: {
-                imgUrl,
+                url: imgUrl,
+                edgeColor,
                 idAttachment: idAttachmentCover
             },
             attachments: [...(task.attachments || []), newAttachment]
@@ -81,20 +98,22 @@ export function CoverPicker({ task, onUpdateTask }) {
                 <h2 className="picker-title">Cover</h2>
             </header>
             <div className="cover-editor">
-                <div className="cover-preview">
-                    {selectedColorKey &&
-                        <div
-                            className="cover-color"
-                            style={{ backgroundColor: coverColorsMap[selectedColorKey] }}
-                        >
-                        </div>}
+                {(selectedAttachmentId || selectedColorKey) && (
+                    <div className="cover-preview">
+                        {selectedColorKey &&
+                            <div
+                                className="cover-color"
+                                style={{ backgroundColor: coverColorsMap[selectedColorKey] }}
+                            >
+                            </div>}
 
-                    {selectedAttachmentId &&
-                        <img
-                            src={coverAttachments.find(attachment => attachment._id === selectedAttachmentId).url}
-                            alt=""
-                        />}
-                </div>
+                        {selectedAttachmentId &&
+                            <img
+                                src={coverAttachments.find(attachment => attachment._id === selectedAttachmentId)?.url}
+                                alt=""
+                            />}
+                    </div>
+                )}
                 <h3 className="picker-subtitle">Colors</h3>
                 <ul className="cover-colors-container">
                     {Object.keys(coverColorsMap).map((colorKey, idx) => (
