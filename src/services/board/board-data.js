@@ -1312,6 +1312,17 @@ export const board = {
         },
         {
             "_id": "68e8092c100aad2a6c23f9bb",
+            "attachments": [
+                {
+                    "_id": "xxw2Fd",
+                    "date": 1765196832771,
+                    "edgeColor": "",
+                    "idMember": "",
+                    "isUpload": true,
+                    "name": "npm.png",
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png"
+                }
+            ],
             "address": null,
             "badges": {
                 "attachments": 4,
@@ -1336,6 +1347,10 @@ export const board = {
             "checkItemStates": [],
             "closed": false,
             "coordinates": null,
+            "cover": {
+                "imgUrl": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png",
+                "idAttachment": "xxw2Fd"
+            },
             "creationMethod": null,
             "creationMethodError": null,
             "creationMethodLoadingStartedAt": null,
@@ -1351,6 +1366,7 @@ export const board = {
             "email": "oxanashvartzm+2ua0td8mhjcc2ght7cq+35bg6e8ssmg3nnpoce3+05ygnop52i@boards.trello.com",
             "externalSource": null,
             "faviconUrl": null,
+            "idAttachmentCover": "xxw2Fd",
             "idBoard": "68e8092c100aad2a6c23f961",
             "idCheckgroups": [],
             "idLabels": ["68e8092c100aad2a6c23fa32"],
@@ -1360,7 +1376,6 @@ export const board = {
             "idMembersVoted": [],
             "idOrganization": "68e807eaaf07e785344018be",
             "idShort": 2,
-            "idAttachmentCover": "68e81194dd267fc1d2426ac0",
             "labels": [
                 {
                     "_id": "68e8092c100aad2a6c23fa32",
@@ -1399,115 +1414,13 @@ export const board = {
             "staticMapUrl": null,
             "start": null,
             "subscribed": false,
-            "url": "https://trello.com/c/NwYnk1M5/2-1-add-post-message-io",
+            "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765189979/npm_yubhab.png",
             "urlSource": null,
             "urlSourceText": null,
-            "cover": {
-                "idAttachment": "68e81194dd267fc1d2426ac0",
-                "color": null,
-                "idUploadedBackground": null,
-                "edgeColor": "#fcfcfc",
-                "idPlugin": null
-            },
             "isTemplate": false,
             "taskRole": null,
             "mirrorSourceId": null,
             "mirrorSourceNodeId": null,
-            "attachments": [
-                {
-                    "_id": "68e8092d100aad2a6c23fdb4",
-                    "bytes": null,
-                    "date": "2015-09-24T14:11:18.958Z",
-                    "edgeColor": null,
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": false,
-                    "mimeType": "",
-                    "name": "Add a complementary tools page",
-                    "previews": [],
-                    "url": "https://github.com/trellowebinars/react/commit/3c19f6253b3fc5ed1b363e73c3e7768039cd11dc",
-                    "pos": 16384,
-                    "fileName": "3c19f6253b3fc5ed1b363e73c3e7768039cd11dc"
-                },
-                {
-                    "_id": "68e8092d100aad2a6c23fdb6",
-                    "bytes": null,
-                    "date": "2015-09-24T15:26:28.943Z",
-                    "edgeColor": null,
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": false,
-                    "mimeType": "",
-                    "name": "Fix typo in latest round-up",
-                    "previews": [],
-                    "url": "https://github.com/trellowebinars/react/commit/ec58683389eb5da453ebc191f238798ed92d77bf",
-                    "pos": 32768,
-                    "fileName": "ec58683389eb5da453ebc191f238798ed92d77bf"
-                },
-                {
-                    "_id": "68e8092d100aad2a6c23fdb8",
-                    "bytes": null,
-                    "date": "2015-09-24T15:46:24.252Z",
-                    "edgeColor": null,
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": false,
-                    "mimeType": "",
-                    "name": "Merge pull request #4855 from iamchenxin/master",
-                    "previews": [],
-                    "url": "https://github.com/trellowebinars/react/commit/b8d29476899f9d4cf377b01395c637efd138c059",
-                    "pos": 49152,
-                    "fileName": "b8d29476899f9d4cf377b01395c637efd138c059"
-                },
-                {
-                    "_id": "68e81194dd267fc1d2426ac0",
-                    "bytes": 644,
-                    "date": "2025-10-09T19:48:36.129Z",
-                    "edgeColor": "#fcfcfc",
-                    "idMember": "5eafad22c718790469a3db7a",
-                    "isMalicious": false,
-                    "isUpload": true,
-                    "mimeType": "image/png",
-                    "name": "npm.png",
-                    "previews": [
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac5/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac5",
-                            "scaled": false,
-                            "bytes": 498,
-                            "height": 50,
-                            "width": 70
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac6/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac6",
-                            "scaled": false,
-                            "bytes": 1278,
-                            "height": 150,
-                            "width": 250
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac7/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac7",
-                            "scaled": true,
-                            "bytes": 808,
-                            "height": 84,
-                            "width": 150
-                        },
-                        {
-                            "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/previews/68e81194dd267fc1d2426ac8/download/npm.webp",
-                            "_id": "68e81194dd267fc1d2426ac8",
-                            "scaled": true,
-                            "bytes": 1266,
-                            "height": 168,
-                            "width": 300
-                        }
-                    ],
-                    "url": "https://trello.com/1/tasks/68e8092c100aad2a6c23f9bb/attachments/68e81194dd267fc1d2426ac0/download/npm.png",
-                    "pos": 65536,
-                    "fileName": "npm.png"
-                }
-            ],
             "pluginData": [],
             "customFieldItems": []
         },

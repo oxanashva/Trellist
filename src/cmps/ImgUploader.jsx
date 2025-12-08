@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { uploadService } from '../services/upload.service'
 
-export function ImgUploader({ onUploaded = null }) {
+export function ImgUploader({ onUploaded = null, children }) {
 
     const [imgData, setImgData] = useState({ imgUrl: null })
     const [isUploading, setIsUploading] = useState(false)
@@ -10,34 +10,40 @@ export function ImgUploader({ onUploaded = null }) {
         ev.preventDefault()
         setIsUploading(true)
 
-        const { secure_url } = await uploadService.uploadImg(ev)
+        const { secure_url, original_filename, format } = await uploadService.uploadImg(ev)
 
-        setImgData({ imgUrl: secure_url, })
+        setImgData({
+            imgUrl: secure_url,
+            fileName: original_filename,
+            format
+        })
         setIsUploading(false)
-        onUploaded && onUploaded(secure_url)
+        onUploaded && onUploaded(secure_url, original_filename, format)
     }
 
-    function getUploadLabel() {
-        if (imgData.imgUrl) return 'Change picture?'
-        return isUploading ? <img src="https://media.tenor.com/axAeNjNIUBsAAAAC/spinner-loading.gif" /> : 'Upload Image'
+    const fileInputStyle = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        rigth: 0,
+        bottom: 0,
+        opacity: 0,
+        zIndex: 100
     }
 
     return (
-        <div >
-            <div >{getUploadLabel()}</div>
-
-
+        <div>
             <label
+                style={{ position: 'relative' }}
                 onDrop={uploadImg}
-                onDragOver={console.log}
-            // onDragOver={ev => ev.preventDefault()}
+                onDragOver={ev => ev.preventDefault()}
             >
-
-                <img src={imgData.imgUrl || 'https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png'} style={{ width: '200px', height: '200px' }} />
-
-                <input hidden
+                <input
                     type="file"
-                    onChange={uploadImg} accept="img/*" />
+                    style={fileInputStyle}
+                    onChange={uploadImg} accept="img/*"
+                />
+                {children && children(imgData, isUploading)}
             </label>
 
         </div>

@@ -55,5 +55,39 @@
             border-radius: 0.25rem;
             cursor: pointer;
         }
+
+        & .divider {
+            height: 1px;
+            background-color: #0B120E24;
+            margin-block: 1rem;
+        }
+
+        & .picker-attachments {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+            margin-block-end: 1rem;
+
+            & .attachment-preview {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 88px;
+                height: 48px;
+                border: 2px solid transparent;
+                border-radius: 0.25rem;
+                cursor: pointer;
+                margin: -0.125rem;
+                padding: calc(0.125rem + 2px);
+
+                &.selected {
+                    border: 2px var(--primary) solid;
+                }
+            }
+        }
+
+        & .upload-btn {
+            width: 100%;
+        }
     }
 }
