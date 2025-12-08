@@ -20,7 +20,7 @@ import CommentIcon from '../../assets/images/icons/comment.svg?react'
 import ThumbsUpIcon from '../../assets/images/icons/thumbs-up.svg?react'
 import ClockIcon from '../../assets/images/icons/clock.svg?react'
 
-import { labelsColorsMap } from '../../services/util.service'
+import { coverColorsMap, labelsColorsMap } from '../../services/util.service'
 
 
 export function TaskPreview({ id, task, taskActions, className }) {
@@ -96,11 +96,6 @@ export function TaskPreview({ id, task, taskActions, className }) {
             {...attributes}
             {...listeners}
         >
-            {task.cover?.sharedSourceUrl &&
-                <div className="cover-img" >
-                    <img src={task.cover.sharedSourceUrl} alt="card-image" />
-                </div>
-            }
             {/* Use div instead of Link so we resolve conflict with dnd-kit */}
             <div
                 className="task-wrapper"
@@ -108,6 +103,14 @@ export function TaskPreview({ id, task, taskActions, className }) {
                     navigate(`/board/${boardId}/task/${task._id}`)
                 }}
             >
+                {task.cover?.sharedSourceUrl &&
+                    <div className="cover-img" >
+                        <img src={task.cover.sharedSourceUrl} alt="card-image" />
+                    </div>
+                }
+
+                {task.cover?.coverColor && <div className="cover-color" style={{ backgroundColor: coverColorsMap[task.cover.coverColor] }}></div>}
+
                 <div className="task-header">
                     {task.idLabels?.length !== 0 &&
                         <div className="task-labels">

@@ -8,7 +8,7 @@ dayjs.extend(customParseFormat)
 import { getDueStatusBadge } from "../services/task/task.utils"
 
 import { addAction, removeAction, updateAction, updateTask, addLabel, updateLabel, removeLabel } from "../store/actions/board.actions"
-import { formatDate, getLabelColor, makeId } from "../services/util.service"
+import { coverColorsMap, formatDate, getLabelColor, makeId } from "../services/util.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { useTextareaAutofocusAndResize } from "../customHooks/useTextareaAutofocusAndResize"
@@ -274,9 +274,11 @@ export function TaskEdit() {
 
     const badgeInfo = getDueStatusBadge(task?.due, task?.dueTime, task?.closed)
 
+    const headerStyle = task?.cover.coverColor ? { backgroundColor: coverColorsMap[task?.cover.coverColor], minHeight: '116px', height: '116px', maxHeight: '160px' } : {}
+
     return (
         <dialog ref={elDialog} className="task-edit">
-            <header className="task-edit-header">
+            <header style={headerStyle} className="task-edit-header">
                 <span className="group-name">{group?.name}</span>
                 <div className="task-header-actions">
                     <button

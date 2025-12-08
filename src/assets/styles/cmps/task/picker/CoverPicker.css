@@ -1,0 +1,59 @@
+.cover-picker {
+
+    & .cover-editor {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 0.75rem;
+        padding-block-start: 0;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        & .cover-colors-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.25rem;
+            width: calc(304px - 1.5rem);
+        }
+
+        & .cover-colors-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid transparent;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            margin: -0.125rem;
+            padding: 0.125rem;
+
+            &.selected {
+                border: 2px var(--primary) solid;
+            }
+        }
+
+        & .cover-colors-btn {
+            height: 32px;
+            flex-grow: 1;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+    }
+}
