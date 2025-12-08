@@ -11,10 +11,29 @@ export const boardService = {
     getById,
     save,
     remove,
+    // Group CRUD
+    addGroup,
+    updateGroup,
+    removeGroup,
+    // Task CRUD
+    addTask,
+    updateTask,
+    removeTask,
+    // Action CRUD
+    addAction,
+    updateAction,
+    removeAction,
+    // Labels CRUD
+    addLabel,
+    updateLabel,
+    removeLabel,
+    // Board messages
     addBoardMsg,
     getEmptyBoard
 }
 window.bs = boardService
+
+// ------------------- Basic CRUD -------------------
 
 
 async function query() {
@@ -23,11 +42,6 @@ async function query() {
 
 function getById(carId) {
     return storageService.get(STORAGE_KEY, carId)
-}
-
-async function remove(carId) {
-    // throw new Error('Nope')
-    await storageService.remove(STORAGE_KEY, carId)
 }
 
 async function save(board) {
@@ -39,6 +53,145 @@ async function save(board) {
     }
     return savedBoard
 }
+
+async function remove(carId) {
+    await storageService.remove(STORAGE_KEY, carId)
+}
+
+// ------------------- Group CRUD -------------------
+
+async function addGroup(boardId, group) {
+    const board = await getById(boardId)
+
+    board.groups.push(group)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return group
+}
+
+async function updateGroup(boardId, updatedGroup) {
+    const board = await getById(boardId)
+
+    board.groups = board.groups.map(group =>
+        group._id === updatedGroup._id ? updatedGroup : group
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedGroup
+}
+
+async function removeGroup(boardId, groupId) {
+    const board = await getById(boardId)
+
+    board.groups = board.groups.filter(g => g._id !== groupId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+// ------------------- Task CRUD -------------------
+
+async function addTask(boardId, task) {
+    const board = await getById(boardId)
+
+    board.tasks.push(task)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return task
+}
+
+async function updateTask(boardId, task, fieldsToUpdate) {
+    const board = await getById(boardId)
+
+    const updatedTask = {
+        ...task,
+        ...fieldsToUpdate
+    }
+
+    board.tasks = board.tasks.map(t =>
+        t._id === updatedTask._id ? updatedTask : t
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedTask
+}
+
+async function removeTask(boardId, taskId) {
+    const board = await getById(boardId)
+
+    board.tasks = board.tasks.filter(t => t._id !== taskId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+// ------------------- Actions CRUD -------------------
+async function addAction(boardId, action) {
+    const board = await getById(boardId)
+
+    board.actions.push(action)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return action
+}
+
+async function updateAction(boardId, updatedAction) {
+    const board = await getById(boardId)
+
+    board.actions = board.actions.map(a =>
+        a._id === updatedAction._id ? updatedAction : a
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedAction
+}
+
+async function removeAction(boardId, actionId) {
+    const board = await getById(boardId)
+
+    board.actions = board.actions.filter(a => a._id !== actionId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+// ------------------- Labels CRUD -------------------
+
+async function addLabel(boardId, label) {
+    const board = await getById(boardId)
+
+    board.labels.push(label)
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return label
+}
+
+async function updateLabel(boardId, updatedLabel) {
+    const board = await getById(boardId)
+
+    board.labels = board.labels.map(l =>
+        l._id === updatedLabel._id ? updatedLabel : l
+    )
+
+    await storageService.put(STORAGE_KEY, board)
+
+    return updatedLabel
+}
+
+async function removeLabel(boardId, labelId) {
+    const board = await getById(boardId)
+
+    board.labels = board.labels.filter(l => l._id !== labelId)
+
+    await storageService.put(STORAGE_KEY, board)
+}
+
+
+// ------------------- Board Messages -------------------
 
 async function addBoardMsg(carId, txt) {
     // Later, this is all done by the backend
@@ -54,6 +207,9 @@ async function addBoardMsg(carId, txt) {
 
     return msg
 }
+
+// ------------------- Factory -------------------
+
 
 function getEmptyBoard() {
     const placeholderMember = {

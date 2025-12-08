@@ -1,0 +1,189 @@
+.label-picker {
+    height: 100%;
+
+    & .label-editor {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding-block-start: 0;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+
+    & .previous-btn {
+        position: absolute;
+        top: 0.5rem;
+        left: 0;
+    }
+
+    & .label-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-block-end: 0.25rem;
+    }
+
+    & .label-editor-content {
+        flex-grow: 1;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+
+    & .label-box {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        padding: 0 0.75rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+        line-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    & .label-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        &>input[type="checkbox"] {
+            opacity: 0;
+            position: absolute;
+            width: 0;
+            height: 0;
+
+            &:checked+span::before {
+                background-color: var(--primary);
+                border-color: var(--primary);
+            }
+
+            &:checked+span::after {
+                content: "";
+                position: absolute;
+                top: 45%;
+                left: 6px;
+                transform: translateY(-50%) rotate(45deg);
+                width: 3px;
+                height: 8px;
+                border: solid #fff;
+                border-width: 0 2px 2px 0;
+                transition: all 0.2s ease;
+            }
+        }
+
+        & .label-checkbox {
+            position: relative;
+            padding-inline-start: 2rem;
+            flex-grow: 1;
+        }
+
+        & .label-checkbox::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 1px solid #8C8F97;
+            border-radius: 2px;
+            background-color: #fff;
+            transition: all 0.2s ease;
+        }
+    }
+
+    & .icon-btn {
+        margin-inline-start: 0.5rem;
+    }
+
+    & .create-label-btn {
+        flex-shrink: 0;
+        width: 100%;
+        margin-block-start: 1rem;
+    }
+
+    & .label-preview-container {
+        background-color: var(--background-neutral);
+        margin-inline: -0.75rem;
+        padding: 2rem;
+    }
+
+    & .label-colors-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.25rem;
+        width: calc(304px - 1.5rem);
+    }
+
+    & .label-colors-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid transparent;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        margin: -0.125rem;
+        padding: 0.125rem;
+
+        &.selected {
+            border: 2px var(--primary) solid;
+        }
+    }
+
+    & .label-colors-btn {
+        height: 32px;
+        flex-grow: 1;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+
+    & .label-editor-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        justify-self: flex-end;
+        margin-block-start: 1rem;
+    }
+}

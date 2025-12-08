@@ -1,0 +1,15 @@
+.task-list {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin: 0 0.25rem;
+    /* 4px */
+    padding: 0.25rem;
+    /* 4px */
+    overflow-x: hidden;
+    overflow-y: auto;
+    list-style: none;
+    row-gap: 8px;
+    scrollbar-color: #0B120E24 #0515240F;
+    scrollbar-width: thin;
+}

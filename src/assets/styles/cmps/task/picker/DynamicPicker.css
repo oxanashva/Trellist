@@ -1,0 +1,57 @@
+.dynamic-picker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 304px;
+    height: 100%;
+
+    & .close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1;
+    }
+
+    &>* {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    & .picker-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem 0.75rem;
+
+        & .picker-title {
+            grid-column: 1 / span 3;
+            grid-row: 1;
+            height: 40px;
+            margin: 0;
+            padding: 0 32px;
+
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            color: var(--dynamic-text);
+        }
+    }
+
+    & .picker-container {
+        padding: 0.75rem;
+        flex-grow: 1;
+    }
+
+    & .picker-subtitle {
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 16px;
+        color: var(--text-subtle);
+        margin: 0.75rem 0 0.5rem 0;
+    }
+}

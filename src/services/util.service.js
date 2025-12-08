@@ -51,3 +51,92 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+/**
+ * Format a timestamp into "Mon D, YYYY, HH:MM AM/PM"
+ * Example: Oct 9, 2025, 11:21 PM
+ *
+ * @param {number|string|Date} input - Timestamp (ms), ISO string, or Date object
+ * @returns {string} Formatted date string
+ */
+
+export function formatDate(input) {
+    const date = new Date(input)
+
+    return date.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    })
+}
+
+export const labelsColorsMap = {
+    "subtle green": "#BAF3DB",
+    "subtle yellow": "#F5E989",
+    "subtle orange": "#FCE4A6",
+    "subtle red": "#FFD5D2",
+    "subtle purple": "#EED7FC",
+
+    "green": "#4BCE97",
+    "yellow": "#EED12B",
+    "orange": "#FCA700",
+    "red": "#F87168",
+    "purple": "#C97CF4",
+
+    "bold green": "#1F845A",
+    "bold yellow": "#946F00",
+    "bold orange": "#BD5B00",
+    "bold red": "#C9372C",
+    "bold purple": "#964AC0",
+
+    "subtle blue": "#C7E2F1",
+    "subtle sky": "#D1E9F9",
+    "subtle lime": "#C7E2F1",
+    "subtle pink": "#F1D1E9",
+    "subtle black": "#D1D1D1",
+
+    "sky": "#669DF1",
+    "blue": "#6CC3E0",
+    "lime": "#94C748",
+    "pink": "#E774BB",
+    "black": "#8C8F97",
+
+    "bold blue": "#1868DB",
+    "bold sky": "#227D9B",
+    "bold lime": "#5B7F24",
+    "bold pink": "#AE4787",
+    "bold black": "#6B6E76",
+}
+
+export const defaultLabelsColorMap = {
+    "green": "#4BCE97",
+    "yellow": "#EED12B",
+    "orange": "#FCA700",
+    "red": "#F87168",
+    "purple": "#C97CF4",
+    "sky": "#669DF1",
+    "blue": "#6CC3E0",
+    "lime": "#94C748",
+    "pink": "#E774BB",
+    "black": "#8C8F97",
+}
+
+export const coverColorsMap = {
+    "green": "#4BCE97",
+    "yellow": "#EED12B",
+    "orange": "#FCA700",
+    "red": "#F87168",
+    "purple": "#C97CF4",
+    "blue": "#669DF1",
+    "sky": "#6CC3E0",
+    "lime": "#94C748",
+    "pink": "#E774BB",
+    "black": "#8C8F97"
+}
+
+export const getLabelColor = (colorName) => {
+    return labelsColorsMap[colorName] || '#CCCCCC';
+}
