@@ -15,7 +15,7 @@ import { ImgUploader } from '../ImgUploader'
 import { FastAverageColor } from "fast-average-color"
 const fac = new FastAverageColor()
 
-export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, handleSmallPicker }) {
+export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRemoveBoard, handleSmallPicker }) {
     const [isEditingBoardBackground, setIsEditingBoardBackground] = useState(false)
     const [isEditingColors, setIsEditingColors] = useState(false)
 
@@ -88,7 +88,7 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, handl
                         <li>
                             <button
                                 className="action-btn"
-                                onClick={setStarred}
+                                onClick={onRemoveBoard}
                             >
                                 <span className="action-btn-icon">
                                     <MinusIcon width={16} height={16} />

@@ -7,7 +7,7 @@ import { ActionPicker } from '../picker/ActionPicker'
 import { CoverPicker } from './CoverPicker'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarred, isStarred, prefs, onUpdateBoard, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
+export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarred, isStarred, prefs, onUpdateBoard, onRemoveBoard, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
     const [isSmallPicker, setIsSmallPicker] = useState(false)
 
     useEffect(() => {
@@ -28,6 +28,7 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarre
                     isStarred={isStarred}
                     prefs={prefs}
                     onUpdateBoard={onUpdateBoard}
+                    onRemoveBoard={onRemoveBoard}
                     handleSmallPicker={handleSmallPicker}
                 />
             case 'LabelPicker':

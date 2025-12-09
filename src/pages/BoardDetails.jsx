@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Outlet, useParams } from 'react-router'
+import { Outlet, useNavigate, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 
 import { loadBoard, addBoard, updateBoard, removeBoard, addGroup, updateGroup, removeGroup, addBoardMsg } from '../store/actions/board.actions'
@@ -28,6 +28,7 @@ import { DynamicPicker } from '../cmps/picker/DynamicPicker'
 
 export function BoardDetails() {
     const { boardId } = useParams()
+    const navigate = useNavigate()
     const board = useSelector(storeState => storeState.boardModule.board)
     const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
 
@@ -135,9 +136,10 @@ export function BoardDetails() {
         }
     }
 
-    async function onRemoveBoard(boardId) {
+    async function onRemoveBoard() {
         try {
             await removeBoard(boardId)
+            navigate('/workspace')
             showSuccessMsg('Board removed')
         } catch (err) {
             showErrorMsg('Cannot remove board')
@@ -412,6 +414,7 @@ export function BoardDetails() {
                     isStarred={board?.isStarred}
                     prefs={board?.prefs}
                     onUpdateBoard={onUpdateBoard}
+                    onRemoveBoard={onRemoveBoard}
                 />
             )}
         </>
