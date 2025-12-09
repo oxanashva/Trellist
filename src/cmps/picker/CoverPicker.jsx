@@ -3,7 +3,7 @@ import { coverColorsMap, makeId } from "../../services/util.service"
 import { ImgUploader } from "../ImgUploader"
 
 import { FastAverageColor } from "fast-average-color"
-const fac = new FastAverageColor();
+const fac = new FastAverageColor()
 
 export function CoverPicker({ task, onUpdateTask }) {
     const [selectedColorKey, setSelectedColorKey] = useState(task?.cover?.coverColor || null)

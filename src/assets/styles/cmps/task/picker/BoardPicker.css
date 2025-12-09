@@ -1,4 +1,10 @@
 .board-picker {
+    & .previous-btn {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+    }
+
     &>ul {
         padding-inline: 0.75rem;
         padding-block-end: 0.75rem;
@@ -11,17 +17,40 @@
         font-size: 0.875rem;
         font-weight: 400;
 
-        &>span>svg {
+        & .action-btn-icon {
             display: flex;
             align-items: center;
+            margin-inline-end: 1rem;
         }
 
-        & .action-btn-text {
-            margin-inline-start: 1rem;
+        & .action-btn-img {
+            width: 20px;
+            height: 20px;
+            border-radius: 0.25rem;
+            margin-inline-end: 0.75rem;
+            object-fit: cover;
+            overflow: hidden;
         }
 
         &:hover {
             background-color: var(--background-neutral);
+        }
+    }
+
+    & .bg-color-selection {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        border-radius: 0.25rem;
+        overflow: hidden;
+
+        &>img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 }

@@ -105,6 +105,10 @@ export function BoardDetails() {
         updateBoard({ ...board, isStarred: !board.isStarred })
     }
 
+    function onChangeBackground(prefs) {
+        updateBoard({ ...board, prefs })
+    }
+
     async function onAddBoard(newBoard) {
         try {
             await addBoard(newBoard)
@@ -114,11 +118,17 @@ export function BoardDetails() {
         }
     }
 
-    async function onUpdateBoard(updatedBoard) {
+    async function onUpdateBoard(fieldsToUpdate) {
+        const updatedBoard = {
+            ...board,
+            ...fieldsToUpdate
+        }
+
         try {
             await updateBoard(updatedBoard)
             showSuccessMsg('Board updated')
         } catch (err) {
+            console.error('Failed to update board:', err)
             showErrorMsg('Cannot update board')
         }
     }
@@ -277,13 +287,15 @@ export function BoardDetails() {
     // Registers the custom delayed sensor for use in <DndContext>
     const sensors = useSensors(customMouseSensor)
 
+    const boardDetailsStyle = { backgroundColor: board?.prefs?.color }
+
     const starBtnStyle = board?.isStarred ? { color: '#FBC828' } : {}
 
     if (isLoading) return <Loader />
 
     return (
         <>
-            <section className="board-details full">
+            <section style={boardDetailsStyle} className="board-details full">
                 <header className="board-details-header">
                     <div>
                         {/* TODO: implement reusable component for editable field */}
@@ -388,6 +400,8 @@ export function BoardDetails() {
                     onClose={handlePopoverClose}
                     setStarred={setStarred}
                     isStarred={board?.isStarred}
+                    prefs={board?.prefs}
+                    onUpdateBoard={onUpdateBoard}
                 />
             )}
         </>

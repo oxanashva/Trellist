@@ -17,10 +17,10 @@ export function RootCmp() {
     if (pathname.includes('/workspace')) return 'workspace-container'
     if (pathname.includes('/home')) return 'home-container'
 
-    return '';
+    return ''
   }
 
-  const containerClasses = `main-container ${getSpecificContainerClass()}`;
+  const containerClasses = `main-container ${getSpecificContainerClass()}`
 
   return (
     <div className={containerClasses}>
