@@ -1,3 +1,14 @@
+import Bubble from "../assets/images/gradients/bubble.svg?react"
+import Snow from "../assets/images/gradients/snow.svg?react"
+import Ocean from "../assets/images/gradients/ocean.svg?react"
+import Crystal from "../assets/images/gradients/crystal.svg?react"
+import Rainbow from "../assets/images/gradients/rainbow.svg?react"
+import Peach from "../assets/images/gradients/peach.svg?react"
+import Flower from "../assets/images/gradients/flower.svg?react"
+import Earth from "../assets/images/gradients/earth.svg?react"
+import Alien from "../assets/images/gradients/alien.svg?react"
+import Volcano from "../assets/images/gradients/volcano.svg?react"
+
 export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -139,4 +150,30 @@ export const coverColorsMap = {
 
 export const getLabelColor = (colorName) => {
     return labelsColorsMap[colorName] || '#CCCCCC';
+}
+
+export const gradientColorsMap = {
+    Bubble,
+    Snow,
+    Ocean,
+    Crystal,
+    Rainbow,
+    Peach,
+    Flower,
+    Earth,
+    Alien,
+    Volcano
+}
+
+export const cloudinaryGradientColorsMap = {
+    Bubble: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289307/bubble_rh24m3.svg",
+    Snow: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/snow_tqqgom.svg",
+    Ocean: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289306/ocean_rkvgdo.svg",
+    Crystal: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289305/crystal_gpjjtx.svg",
+    Rainbow: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289306/rainbow_jqmmhp.svg",
+    Peach: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289308/peach_z8j9fh.svg",
+    Flower: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289305/flower_wdjcpk.svg",
+    Earth: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289307/earth_t322hu.svg",
+    Alien: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/alien_vws1af.svg",
+    Volcano: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/volcano_up6ako.svg"
 }

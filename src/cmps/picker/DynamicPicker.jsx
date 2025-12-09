@@ -16,6 +16,10 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarre
         }
     }, [picker.type])
 
+    function handleSmallPicker(isSmall) {
+        setIsSmallPicker(isSmall)
+    }
+
     const renderPickerContent = () => {
         switch (picker.type) {
             case 'BoardPicker':
@@ -24,6 +28,7 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarre
                     isStarred={isStarred}
                     prefs={prefs}
                     onUpdateBoard={onUpdateBoard}
+                    handleSmallPicker={handleSmallPicker}
                 />
             case 'LabelPicker':
                 return <LabelPicker

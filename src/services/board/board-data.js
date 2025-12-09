@@ -9,7 +9,7 @@ export const board = {
     "shortUrl": "https://trello.com/b/VJFx5D4Z",
     "prefs": {
         "background": "#98a07e",
-        "backgroundImage": "https://res.cloudinary.com/da9naclpy/image/upload/v1765238130/c8dkvwvehbgxo9ndfjmq.webp"
+        "backgroundImage": "https://res.cloudinary.com/da9naclpy/image/upload/v1765289171/gfuyec2wk0jfnivhahcs.webp"
     },
     "shortLink": "VJFx5D4Z",
     "labelNames": {
