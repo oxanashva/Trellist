@@ -8,11 +8,8 @@ export const board = {
     "url": "https://trello.com/b/VJFx5D4Z/trelgroup-agile-sprint-board",
     "shortUrl": "https://trello.com/b/VJFx5D4Z",
     "prefs": {
-        "background": "68e81a3510a4ca484820f7b1",
-        "backgroundImage": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/88980db5b01bd389afcf2ae13643113a/photo-1758471995298-b0525c50e97c",
-        "sharedSourceUrl": "https://images.unsplash.com/photo-1758471995298-b0525c50e97c?ixid=M3w3MDY2fDB8MXxzZWFyY2h8Njh8fFRyZWxsaXN8ZW58MXx8fHwxNzYwMDQxNTE1fDA&ixlib=rb-4.1.0&w=2560&h=2048&q=90",
-        "backgroundBottomColor": "#819e44",
-        "backgroundTopColor": "#abb09b"
+        "background": "#98a07e",
+        "backgroundImage": "https://res.cloudinary.com/da9naclpy/image/upload/v1765289171/gfuyec2wk0jfnivhahcs.webp"
     },
     "shortLink": "VJFx5D4Z",
     "labelNames": {

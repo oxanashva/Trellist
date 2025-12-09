@@ -3,14 +3,13 @@
         background-color: rgb(244, 245, 247);
         color: rgb(9, 30, 66);
     }
-    
+
     &.board-container {
-        background: url('../images/bg-img/bg-img-1.jpeg');
         background-size: cover;
         background-attachment: fixed;
     }
 }
 
-.main-container > main {
+.main-container>main {
     min-height: calc(100vh - 48px);
 }

@@ -27,6 +27,7 @@
 @import "cmps/task/TaskPreview";
 
 @import "cmps/task/picker/DynamicPicker";
+@import "cmps/task/picker/BoardPicker";
 @import "cmps/task/picker/DatePicker";
 @import "cmps/task/picker/LabelPicker";
 @import "cmps/task/picker/ActionPicker";
