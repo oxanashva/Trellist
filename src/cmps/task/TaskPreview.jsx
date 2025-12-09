@@ -143,12 +143,14 @@ export function TaskPreview({ id, task, taskActions, className }) {
 
                 {/* TODO: update task.badges on add comment/description or another action and use them to conditionally render */}
                 <div className="task-badges">
-                    {task.idMembersVoted?.length !== 0 &&
+                    {/* TODO: implement votes */}
+                    {/* {task.idMembersVoted?.length !== 0 &&
                         <span className="badge">
                             <ThumbsUpIcon width={16} height={16} fill="currentColor" />
                             <span>{task.idMembersVoted?.length}</span>
                         </span>
-                    }
+                    } */}
+
                     {(task?.start || task?.due) &&
 
                         <span className={`badge ${task.closed ? "badge-closed" : badgeInfo?.className}`}>
