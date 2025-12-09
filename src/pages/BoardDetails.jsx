@@ -287,7 +287,7 @@ export function BoardDetails() {
     // Registers the custom delayed sensor for use in <DndContext>
     const sensors = useSensors(customMouseSensor)
 
-    const boardDetailsStyle = { backgroundColor: board?.prefs?.color }
+    const boardDetailsStyle = { backgroundColor: board?.prefs?.background, backgroundImage: `url(${board?.prefs?.backgroundImage})` }
 
     const starBtnStyle = board?.isStarred ? { color: '#FBC828' } : {}
 
