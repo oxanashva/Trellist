@@ -1,4 +1,5 @@
 .cover-picker {
+    overflow-y: hidden;
 
     & .cover-editor {
         display: flex;

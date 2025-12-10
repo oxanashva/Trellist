@@ -1,7 +1,31 @@
 .action-picker {
-    &>ul {
+    overflow-y: hidden;
+
+    & .action-editor {
         padding-inline: 0.75rem;
         padding-block-end: 0.75rem;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #e6e6e6;
+            border-radius: 3px;
+            border: 1px solid transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+
+    &>ul {
         margin: 0;
     }
 

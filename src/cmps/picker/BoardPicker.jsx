@@ -60,43 +60,45 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
                         <h2 className="picker-title">Colors</h2>
                     </header>
 
-                    <ul>
-                        <li>
-                            <button
-                                className="action-btn"
-                                onClick={setStarred}
-                            >
-                                <span style={starBtnStyle} className="action-btn-icon">
-                                    {isStarred
-                                        ? <StarSolidIcon width={16} height={16} />
-                                        : <StarIcon width={16} height={16} />}
-                                </span>
-                                <span>Star</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className="action-btn"
-                                onClick={() => setIsEditingBoardBackground(true)}
-                            >
-                                <span className="action-btn-img">
-                                    <img src={boardImgUrl} alt="Board Image" />
-                                </span>
-                                <span>Change background</span>
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className="action-btn"
-                                onClick={onRemoveBoard}
-                            >
-                                <span className="action-btn-icon">
-                                    <MinusIcon width={16} height={16} />
-                                </span>
-                                <span>Remove board</span>
-                            </button>
-                        </li>
-                    </ul>
+                    <div className="board-editor">
+                        <ul>
+                            <li>
+                                <button
+                                    className="action-btn"
+                                    onClick={setStarred}
+                                >
+                                    <span style={starBtnStyle} className="action-btn-icon">
+                                        {isStarred
+                                            ? <StarSolidIcon width={16} height={16} />
+                                            : <StarIcon width={16} height={16} />}
+                                    </span>
+                                    <span>Star</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="action-btn"
+                                    onClick={() => setIsEditingBoardBackground(true)}
+                                >
+                                    <span className="action-btn-img">
+                                        <img src={boardImgUrl} alt="Board Image" />
+                                    </span>
+                                    <span>Change background</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="action-btn"
+                                    onClick={onRemoveBoard}
+                                >
+                                    <span className="action-btn-icon">
+                                        <MinusIcon width={16} height={16} />
+                                    </span>
+                                    <span>Remove board</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </>
             }
 

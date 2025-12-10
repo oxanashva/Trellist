@@ -1,6 +1,7 @@
 .date-picker {
+    overflow-y: hidden;
 
-    & .date-range {
+    & .date-editor {
         overflow-y: auto;
 
         &::-webkit-scrollbar-track {

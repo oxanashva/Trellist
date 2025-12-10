@@ -107,7 +107,7 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
             </header>
 
 
-            <div className="date-range">
+            <div className="date-editor">
                 <form onSubmit={onSubmit}>
                     <div className="calendar-container">
                         <div className="date-field-container">

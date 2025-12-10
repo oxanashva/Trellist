@@ -1,5 +1,6 @@
 .label-picker {
     height: 100%;
+    overflow-y: hidden;
 
     & .label-editor {
         display: flex;
