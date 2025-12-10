@@ -1419,16 +1419,6 @@ export const board = {
                     "mimeType": "image/png",
                     "name": "npm.png",
                     "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765196831/gxe6lrpd3ryspopgap8x.png"
-                },
-                {
-                    "_id": "6Mu56V",
-                    "date": 1765212090730,
-                    "edgeColor": "#4d863b",
-                    "idMember": "",
-                    "isUpload": true,
-                    "mimeType": "image/webp",
-                    "name": "bug.webp",
-                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765212088/amcmf5kpmdwi7mifiva9.webp"
                 }
             ],
             "address": null,
@@ -2911,7 +2901,7 @@ export const board = {
             "start": null,
             "url": "https://trello.com/c/xVXUQDxX/17-%F0%9F%91%8D-sprint-review-%F0%9F%91%8E",
             "cover": {
-                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222908/slatnuc17ifxoxjigxon.jpg",
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222435/fpxpgw2dvmozfmkehw7i.jpg",
                 "edgeColor": "#a9a399",
                 "idAttachment": "QljSnV"
             },
@@ -2925,7 +2915,7 @@ export const board = {
                     "isUpload": true,
                     "mimeType": "image/jpg",
                     "name": "sprint-review.jpg",
-                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222908/slatnuc17ifxoxjigxon.jpg"
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222435/fpxpgw2dvmozfmkehw7i.jpg"
                 }
             ],
             "customFieldItems": [],
