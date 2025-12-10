@@ -26,7 +26,7 @@ export function GroupPreview({ id, group, tasks, actions, onUpdateGroup, onRemov
 
     const PICKER_MAP = {
         ACTION: {
-            type: "ActionPicker",
+            type: "GroupPicker",
             info: {
                 label: "Actions: ",
                 propName: "actions",

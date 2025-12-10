@@ -1,11 +1,11 @@
 .label-picker {
-    height: 100%;
     overflow-y: hidden;
 
     & .label-editor {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        flex: 1 1 auto;
+        min-height: 50vh;
         padding-block-start: 0;
         overflow-y: auto;
 
@@ -42,25 +42,7 @@
     }
 
     & .label-editor-content {
-        flex-grow: 1;
-
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        &::-webkit-scrollbar {
-            width: 0.5rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #e6e6e6;
-            border-radius: 3px;
-            border: 1px solid transparent;
-        }
-
-        &::-webkit-scrollbar-button {
-            display: none;
-        }
+        flex: 1 1 auto;
     }
 
     & .label-box {
@@ -139,7 +121,7 @@
     }
 
     & .create-label-btn {
-        flex-shrink: 0;
+        flex: 0 0 auto;
         width: 100%;
         margin-block-start: 1rem;
     }

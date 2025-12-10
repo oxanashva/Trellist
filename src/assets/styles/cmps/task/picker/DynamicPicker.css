@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     min-width: 304px;
-    height: 100%;
+    max-height: inherit;
 
     & .close-btn {
         position: absolute;
@@ -22,6 +22,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex: 0 0 auto;
         padding: 0.25rem 0.75rem;
 
         & .picker-title {

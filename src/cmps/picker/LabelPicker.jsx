@@ -3,12 +3,6 @@ import { labelsColorsMap, defaultLabelsColorMap, makeId } from "../../services/u
 import ShevronLeft from '../../assets/images/icons/shevron-left.svg?react'
 import PenIcon from "../../assets/images/icons/pen.svg?react"
 
-const allAvailableLabels = Object.keys(labelsColorsMap).map((colorKey, idx) => ({
-    _id: makeId(),
-    name: "",
-    color: colorKey,
-}))
-
 const defaultLabels = Object.keys(defaultLabelsColorMap).map((colorKey, idx) => ({
     _id: makeId(),
     name: "",

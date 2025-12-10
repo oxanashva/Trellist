@@ -1,4 +1,4 @@
-export function ActionPicker({ setIsAddingTask, boardId, groupId, onRemoveGroup, onClose }) {
+export function GroupPicker({ setIsAddingTask, boardId, groupId, onRemoveGroup, onClose }) {
 
     return (
         <section className="action-picker">

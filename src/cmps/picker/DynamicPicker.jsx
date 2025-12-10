@@ -1,23 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Popover from '@mui/material/Popover'
 import { BoardPicker } from './BoardPicker'
-import { DatePicker } from "../picker/DatePicker"
-import { LabelPicker } from "../picker/LabelPicker"
-import { ActionPicker } from '../picker/ActionPicker'
+import { DatePicker } from "./DatePicker"
+import { LabelPicker } from "./LabelPicker"
+import { GroupPicker } from './GroupPicker'
 import { CoverPicker } from './CoverPicker'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
 export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarred, isStarred, prefs, onUpdateBoard, onRemoveBoard, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
-    const [isSmallPicker, setIsSmallPicker] = useState(false)
+    const popoverActions = useRef(null)
+    const [isEditTaskPicker, setIsEditTaskPicker] = useState(false)
+
 
     useEffect(() => {
-        if (picker.type === 'ActionPicker' || picker.type === 'BoardPicker') {
-            setIsSmallPicker(true)
+        if (picker.type === 'GroupPicker' || picker.type === 'BoardPicker') {
+            setIsEditTaskPicker(true)
         }
     }, [picker.type])
 
     function handleSmallPicker(isSmall) {
-        setIsSmallPicker(isSmall)
+        setIsEditTaskPicker(isSmall)
+    }
+
+    function updatePopoverHeight() {
+        popoverActions.current?.updatePosition()
     }
 
     const renderPickerContent = () => {
@@ -30,6 +36,16 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarre
                     onUpdateBoard={onUpdateBoard}
                     onRemoveBoard={onRemoveBoard}
                     handleSmallPicker={handleSmallPicker}
+                    updatePopoverHeight={updatePopoverHeight}
+                />
+            case 'GroupPicker':
+                return <GroupPicker
+                    setIsAddingTask={setIsAddingTask}
+                    boardId={boardId}
+                    groupId={groupId}
+                    onRemoveGroup={onRemoveGroup}
+                    onClose={onClose}
+                    updatePopoverHeight={updatePopoverHeight}
                 />
             case 'LabelPicker':
                 return <LabelPicker
@@ -38,30 +54,28 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarre
                     onAddLabel={onAddLabel}
                     onUpdateLabel={onUpdateLabel}
                     onRemoveLabel={onRemoveLabel}
+                    updatePopoverHeight={updatePopoverHeight}
                 />
             case 'DatePicker':
                 return <DatePicker
                     task={task}
                     onUpdateTask={onUpdateTask}
                     onClose={onClose}
+                    updatePopoverHeight={updatePopoverHeight}
                 />
-            // case 'MemberPicker':
-            //     return <MemberPicker info={picker.info} onUpdate={(data) => {
-            //         updateCmpInfo(picker, 'selectedMemberIds', data, `Changed members`)
-            //     }} />
-            case 'ActionPicker':
-                return <ActionPicker
-                    setIsAddingTask={setIsAddingTask}
-                    boardId={boardId}
-                    groupId={groupId}
-                    onRemoveGroup={onRemoveGroup}
+            case 'MemberPicker':
+                return <MemberPicker
+                    task={task}
+                    onUpdateTask={onUpdateTask}
                     onClose={onClose}
+                    updatePopoverHeight={updatePopoverHeight}
                 />
             case 'CoverPicker':
                 return <CoverPicker
                     task={task}
                     onUpdateTask={onUpdateTask}
                     onClose={onClose}
+                    updatePopoverHeight={updatePopoverHeight}
                 />
             default:
                 return <p>UNKNOWN {picker.type}</p>
@@ -73,24 +87,25 @@ export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarre
             open={open}
             anchorEl={anchorEl}
             onClose={() => onClose(false)}
+            actions={popoverActions}
             anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left",
+                horizontal: isEditTaskPicker ? "right" : "left",
             }}
             transformOrigin={{
                 vertical: "top",
-                horizontal: "left",
+                horizontal: isEditTaskPicker ? "right" : "left",
             }}
             disablePortal
             slotProps={{
                 paper: {
                     sx: {
-                        top: isSmallPicker ? '50%' : '68px !important',
-                        bottom: isSmallPicker ? 'unset' : '10px !important',
-                        maxHeight: 'calc(100vh - 68px - 10px) !important',
+                        top: isEditTaskPicker ? 'unset' : '68px !important',
+                        maxHeight: '80vh',
+                        minHeight: isEditTaskPicker ? 'unset' : '50vh',
                         borderRadius: '0.5rem',
                         boxShadow: '0px 2px 6px #1E1F2126, 0px 0px 1px #1E1F214F',
-                    },
+                    }
                 },
             }}
         >

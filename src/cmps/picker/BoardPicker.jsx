@@ -15,7 +15,7 @@ import { ImgUploader } from '../ImgUploader'
 import { FastAverageColor } from "fast-average-color"
 const fac = new FastAverageColor()
 
-export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRemoveBoard, handleSmallPicker }) {
+export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRemoveBoard }) {
     const [isEditingBoardBackground, setIsEditingBoardBackground] = useState(false)
     const [isEditingColors, setIsEditingColors] = useState(false)
 
@@ -43,7 +43,6 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
     function handleBackgroundChanged(bgName) {
         onUpdateBoard({ prefs: { background: bgName } })
         setIsEditingColors(false)
-        handleSmallPicker(true)
     }
 
     const boardImgUrl = prefs?.backgroundImage
@@ -145,7 +144,6 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
                                 onClick={() => {
                                     setIsEditingColors(true)
                                     setIsEditingBoardBackground(false)
-                                    handleSmallPicker(false)
                                 }}
                             >
                                 <img src={ColorsImg} alt="Colors" />
@@ -164,7 +162,6 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
                             className="icon-btn dynamic-btn previous-btn"
                             onClick={() => {
                                 setIsEditingColors(false)
-                                handleSmallPicker(true)
                             }}>
                             <ShevronLeft width={16} height={16} fill="currentColor" />
                         </button>
