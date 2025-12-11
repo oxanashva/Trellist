@@ -58,29 +58,37 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
         })
     }
 
-    function editLabel() {
+    async function editLabel() {
         const updatedLabel = {
             ...labelToEdit,
             name: labelName,
             color: selectedColorKey,
         }
-        onUpdateLabel(updatedLabel)
         setIsEditing(false)
         setLabelName("")
         setLabelToEdit(null)
         setSelectedColorKey(null)
-        onUpdateTask(task.idBoard, { ...task, labels: task.labels.map(l => l._id === updatedLabel._id ? updatedLabel : l) })
+        await onUpdateLabel(updatedLabel)
+        await onUpdateTask(task.idBoard, {
+            ...task,
+            labels: task.labels.map(l => l._id === updatedLabel._id ? updatedLabel : l),
+            idLabels: task.idLabels.filter(l => l !== updatedLabel._id)
+        })
     }
 
-    function removeLabel(labelId) {
+    async function removeLabel(labelId) {
         const newLabels = task.labels.filter(l => l._id !== labelId)
-        onRemoveLabel(labelId)
         setIsEditing(false)
         setLabelName("")
         setLabelToEdit(null)
         setSelectedColorKey(null)
-        onUpdateTask(task.idBoard, { ...task, labels: task.labels.filter(l => l._id !== labelId) })
         setHasLabels(newLabels.length > 0)
+        await onUpdateTask(task.idBoard, {
+            ...task,
+            labels: task.labels.filter(l => l._id !== labelId),
+            idLabels: task.idLabels.filter(l => l !== labelId)
+        })
+        await onRemoveLabel(labelId)
     }
 
     return (
