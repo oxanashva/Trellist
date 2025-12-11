@@ -5,12 +5,14 @@ export const useTextareaAutofocusAndResize = (value, isEditing) => {
 
     useEffect(() => {
         if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto'
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`
         }
     }, [value, isEditing])
 
     useEffect(() => {
         if (isEditing && textareaRef.current) {
+            textareaRef.current.select()
             textareaRef.current.focus()
         }
     }, [isEditing])

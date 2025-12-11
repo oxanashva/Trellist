@@ -40,7 +40,7 @@ export function TaskEdit() {
     const task = board?.tasks.find(task => task?._id === taskId)
     const group = board?.groups.find(group => group?._id === task?.idGroup)
     const actions = board?.actions
-        .filter(action => action.data.idTask === task._id)
+        .filter(action => action.data.idTask === task?._id)
         .sort((a, b) => {
             // Convert the date strings to numerical timestamps (milliseconds)
             const dateA = new Date(a.date).getTime()
@@ -318,29 +318,34 @@ export function TaskEdit() {
             <div className="content-wrapper">
                 <main>
                     <section className="task-title task-grid-container">
-                        <div className="task-icon" onClick={completeTask}>
+                        <div className="task-icon-check" onClick={completeTask}>
                             {isChecked
                                 ? <span style={{ color: "#6A9A23" }} title="Mark incomplete"><CircleCheckIcon width={16} height={16} fill="currentColor" /></span>
                                 : <span title="Mark complete"><CircleIcon width={16} height={16} fill="currentColor" /></span>}
                         </div>
                         {/* TODO: implement reusable component for editable field */}
-                        {!isNameEditing &&
+                        <div className="editable-title-container">
                             <h2
+                                style={{ visibility: isNameEditing ? 'hidden' : 'visible' }}
+                                className="editable-title title-display"
                                 onClick={() => setIsNameEditing(true)}
                             >
                                 {taskName}
-                            </h2>}
-                        {isNameEditing &&
-                            <textarea
-                                ref={nameInputRef}
-                                className="edit-name-textarea"
-                                type="text"
-                                name="name"
-                                value={taskName}
-                                onChange={handleChange}
-                                onBlur={onNameBlur}
-                                onKeyDown={onNameKeyDown}
-                            />}
+                            </h2>
+
+                            {isNameEditing && (
+                                <textarea
+                                    ref={nameInputRef}
+                                    className="editable-title title-edit"
+                                    type="text"
+                                    name="name"
+                                    value={taskName}
+                                    onChange={handleChange}
+                                    onBlur={onNameBlur}
+                                    onKeyDown={onNameKeyDown}
+                                />
+                            )}
+                        </div>
                     </section>
                     <div className="task-content">
                         {picker && (
@@ -412,95 +417,92 @@ export function TaskEdit() {
                                 </button> */}
                             </div>
                         </section>
-                        <div className="task-params">
-                            {/* TODO: implement displaying members */}
-                            {/* <section className="task-flex-container">
+
+                        {(task?.labels?.length > 0 || task?.due || task?.start) &&
+                            <div className="task-params">
+                                {/* TODO: implement displaying members */}
+                                {/* <section className="task-flex-container">
                                 <h3 className="params-heading">Members</h3>
                                 <button className="btn-neutral">
                                     Member
                                 </button>
                             </section> */}
 
-                            {task?.idLabels?.length > 0 &&
-                                <section className="task-flex-container">
-                                    <h3 className="params-heading">Labels</h3>
-                                    <div className="labels-container">
-                                        {task?.idLabels?.map((labelId) => {
-                                            const label = labels.find((l) => l._id === labelId)
-                                            return (
-                                                <button
-                                                    key={labelId}
-                                                    style={{ backgroundColor: getLabelColor(label?.color) }}
-                                                    onClick={(event) => {
-                                                        handlePopoverOpen(event, PICKER_MAP.LABEL, labelId)
-                                                    }}
-                                                    className="btn-neutral"
-                                                >
-                                                    {labels.find((label) => label._id === labelId)?.name}
-                                                </button>
-                                            )
-                                        })}
+                                {task?.idLabels?.length > 0 &&
+                                    <section className="task-flex-container">
+                                        <h3 className="params-heading">Labels</h3>
+                                        <div className="labels-container">
+                                            {task?.idLabels?.map((labelId) => {
+                                                const label = labels.find((l) => l._id === labelId)
+                                                return (
+                                                    <button
+                                                        key={labelId}
+                                                        style={{ backgroundColor: getLabelColor(label?.color) }}
+                                                        onClick={(event) => {
+                                                            handlePopoverOpen(event, PICKER_MAP.LABEL, labelId)
+                                                        }}
+                                                        className="btn-neutral"
+                                                    >
+                                                        {labels.find((label) => label._id === labelId)?.name}
+                                                    </button>
+                                                )
+                                            })}
+                                            <button
+                                                className="btn-neutral label-add-btn"
+                                                onClick={(event) => {
+                                                    handlePopoverOpen(event, PICKER_MAP.LABEL)
+                                                }}>
+                                                <PlusIcon width={16} height={16} fill="currentColor" />
+                                            </button>
+                                        </div>
+                                    </section>
+                                }
+
+                                {(task?.due || task?.start) &&
+                                    <section className="task-flex-container">
+                                        <h3 className="params-heading">
+                                            {(task?.start && task?.due)
+                                                ? "Dates"
+                                                : task?.due
+                                                    ? "Due date"
+                                                    : "Start date"
+                                            }
+                                        </h3>
                                         <button
-                                            className="btn-neutral label-add-btn"
+                                            className="btn-neutral"
                                             onClick={(event) => {
-                                                handlePopoverOpen(event, PICKER_MAP.LABEL)
-                                            }}>
-                                            <PlusIcon width={16} height={16} fill="currentColor" />
+                                                handlePopoverOpen(event, PICKER_MAP.DATE)
+                                            }}
+                                        >
+                                            {task.start ? dayjs(task.start).format("MMM DD") : ""}
+                                            {task.start && task.due && " - "}
+                                            {task.due ? dayjs(task.due).format("MMM DD") : ""} {task.dueTime ? `, ${task.dueTime}` : ""}
+                                            {badgeInfo && (
+                                                <span className={`due-badge ${badgeInfo.className}`}>
+                                                    {badgeInfo.text}
+                                                </span>
+                                            )}
+                                            <ShevronDown width={16} height={16} fill="currentColor" />
                                         </button>
-                                    </div>
-                                </section>
-                            }
+                                    </section>
+                                }
 
-                            {(task?.due || task?.start) &&
-                                <section className="task-flex-container">
-                                    <h3 className="params-heading">
-                                        {(task?.start && task?.due)
-                                            ? "Dates"
-                                            : task?.due
-                                                ? "Due date"
-                                                : "Start date"
-                                        }
-                                    </h3>
-                                    <button
-                                        className="btn-neutral"
-                                        onClick={(event) => {
-                                            handlePopoverOpen(event, PICKER_MAP.DATE)
-                                        }}
-                                    >
-                                        {task.start ? dayjs(task.start).format("MMM DD") : ""}
-                                        {task.start && task.due && " - "}
-                                        {task.due ? dayjs(task.due).format("MMM DD") : ""} {task.dueTime ? `, ${task.dueTime}` : ""}
-                                        {badgeInfo && (
-                                            <span className={`due-badge ${badgeInfo.className}`}>
-                                                {badgeInfo.text}
-                                            </span>
-                                        )}
-                                        <ShevronDown width={16} height={16} fill="currentColor" />
-                                    </button>
-                                </section>
-                            }
-
-                            {/* TODO: implement adding votes */}
-                            {/* <section className="task-flex-container">
+                                {/* TODO: implement adding votes */}
+                                {/* <section className="task-flex-container">
                                 <h3 className="params-heading">Votes</h3>
                                 <button className="btn-neutral">
                                     <ThumbsUpIcon width={16} height={16} fill="currentColor" />
                                     <span>Vote</span>
                                 </button>
                             </section> */}
-                        </div>
+                            </div>}
+
                         <section className="task-actions task-grid-container">
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>
                             <div className="flex align-center justify-between">
                                 <h3 className="heading">Description</h3>
-                                <button
-                                    className="btn-neutral"
-                                    onClick={() => setIsDescEditing(true)}
-                                >
-                                    Edit
-                                </button>
                             </div>
                             <div></div>
 
