@@ -126,7 +126,7 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
                                             type="checkbox"
                                             name="label"
                                             checked={isLabelSelected}
-                                            onClick={() => handleLabelToggle(label._id)}
+                                            onChange={() => handleLabelToggle(label._id)}
                                         />
                                         <span className="label-checkbox">
                                             <span style={{ backgroundColor: labelHexColor }} className="label-box">{label.name}</span>
@@ -164,7 +164,7 @@ export function LabelPicker({ task, onUpdateTask, onAddLabel, onUpdateLabel, onR
                                             name="label"
                                             id={label._id}
                                             checked={isLabelSelected}
-                                            onClick={() => handleLabelToggle(label._id)}
+                                            onChange={() => handleLabelToggle(label._id)}
                                         />
                                         <span className="label-checkbox">
                                             <span style={{ backgroundColor: labelHexColor }} className="label-box">{label.name}</span>
