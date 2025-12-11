@@ -59,8 +59,16 @@
 
         & .actions {
             display: flex;
+            justify-content: center;
             gap: 0.5rem;
-            min-width: 800px;
+            flex-grow: 1;
+
+            /* TODO: implement search input for small screens */
+            &>input {
+                @media (max-width: 1023px) {
+                    display: none;
+                }
+            }
         }
 
         & .btn-group {
