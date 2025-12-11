@@ -501,9 +501,7 @@ export function TaskEdit() {
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>
-                            <div className="flex align-center justify-between">
-                                <h3 className="heading">Description</h3>
-                            </div>
+                            <h3 className="heading">Description</h3>
                             <div></div>
 
                             {(task?.desc && !isDescEditing) &&
