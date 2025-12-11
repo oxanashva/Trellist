@@ -2208,7 +2208,7 @@ export const board = {
             "urlSource": null,
             "urlSourceText": null,
             "cover": {
-                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222458/kuioh8yskl9lqyc7grzf.webp",
+                "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765213770/dmhm530s5tpxvxc1tyqq.webp",
                 "edgeColor": "#4d863b",
                 "idAttachment": "7KOCcz"
             },
@@ -2521,7 +2521,7 @@ export const board = {
                     "isUpload": true,
                     "mimeType": "image/webp",
                     "name": "bug.webp",
-                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765222458/kuioh8yskl9lqyc7grzf.webp"
+                    "url": "https://res.cloudinary.com/da9naclpy/image/upload/v1765213770/dmhm530s5tpxvxc1tyqq.webp"
                 }
             ],
             "pluginData": [],
