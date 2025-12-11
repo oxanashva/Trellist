@@ -342,9 +342,12 @@ export function BoardDetails() {
                                 <img src={acAvatarImg} alt="Anna Coss" />
                             </button>
                         </div>
-                        <button className="dynamic-btn icon-btn action-dynamic-btn">
+
+                        {/* TODO: implement filter */}
+                        {/* <button className="dynamic-btn icon-btn action-dynamic-btn">
                             <FilterIcon width={16} height={16} fill="currentColor" />
-                        </button>
+                        </button> */}
+
                         <button
                             style={starBtnStyle}
                             className="dynamic-btn icon-btn action-dynamic-btn"
@@ -354,10 +357,13 @@ export function BoardDetails() {
                                 ? <StarSolidIcon width={16} height={16} fill="currentColor" />
                                 : <StarIcon width={16} height={16} fill="currentColor" />}
                         </button>
-                        <button className="btn-highlighted">
+
+                        {/* TODO: implement share */}
+                        {/* <button className="btn-highlighted">
                             <UserPlusIcon width={16} height={16} fill="currentColor" />
                             <span>Share</span>
-                        </button>
+                        </button> */}
+
                         <button
                             className="dynamic-btn icon-btn action-dynamic-btn"
                             onClick={(event) => {
