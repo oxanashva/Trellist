@@ -1,11 +1,7 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useNavigate, useLocation } from 'react-router'
-import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
-import MegaphoneIcon from '../assets/images/icons/megaphone.svg?react'
-import BellIcon from '../assets/images/icons/bell.svg?react'
-import HelpIcon from '../assets/images/icons/help.svg?react'
 import TrelloIcon from '../assets/images/icons/trello.svg?react'
 import osAvatarImg from '../assets/images/avatars/OS-avatar.png'
 
@@ -56,15 +52,6 @@ export function AppHeader() {
 						</div>
 
 						<div className="btn-group">
-							<button className="dynamic-btn icon-btn" title="Share your thoughts on Trellist">
-								<MegaphoneIcon width={16} height={16} fill="currentColor" />
-							</button>
-							<button className="dynamic-btn icon-btn" title="Notifications">
-								<BellIcon width={16} height={16} fill="currentColor" />
-							</button>
-							<button className="dynamic-btn icon-btn" title="Information">
-								<HelpIcon width={16} height={16} fill="currentColor" />
-							</button>
 							<button className="dynamic-btn icon-btn" title="Oxana Shvartsman (oxanashvartsman)" >
 								<img src={osAvatarImg} alt="Oxana Shvartsman" width={16} height={16} />
 							</button>
