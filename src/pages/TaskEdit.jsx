@@ -361,7 +361,7 @@ export function TaskEdit() {
                                 onRemoveLabel={onRemoveLabel}
                             />
                         )}
-                        <section className="task-actions task-grid-container">
+                        <section className="task-grid-container">
                             <div></div>
                             <div className="task-actions-btns">
                                 {/* TODO: implement adding new action */}
@@ -497,7 +497,7 @@ export function TaskEdit() {
                             </section> */}
                             </div>}
 
-                        <section className="task-actions task-grid-container">
+                        <section className="task-grid-container">
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>

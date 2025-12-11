@@ -1,5 +1,7 @@
 .task-edit {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 1080px;
     height: 100vh;
     max-height: calc(100vh - 128px);
@@ -67,7 +69,7 @@
     }
 
     & .content-wrapper {
-        height: calc(100% - 56px);
+        /* height: calc(100% - 56px); */
         display: flex;
         overflow-y: hidden;
 
@@ -139,10 +141,6 @@
             width: 100%;
             min-width: 460px;
             padding: 0 2.5rem 1rem 1.25rem;
-
-            & .task-actions {
-                /* margin-block-end: 2rem; */
-            }
 
             & .task-actions-btns {
                 height: 2rem;
