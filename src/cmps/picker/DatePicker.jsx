@@ -89,6 +89,9 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
                             },
                             "& .MuiSvgIcon-root": {
                                 height: "1.125rem",
+                            },
+                            "& .MuiPickersArrowSwitcher-button": {
+                                paddingInline: "5px",
                             }
                         }}
                     />
@@ -151,6 +154,10 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
                                 {renderCalendar("dueDate")}
                             </fieldset>
                         </div>
+
+                        {/* TODO: add start date support or implement range calendar */}
+                        {/* <div className="divider"></div>
+
                         <div className="date-field-container">
                             <fieldset>
                                 <legend className="picker-subtitle">Start Date</legend>
@@ -181,7 +188,7 @@ export function DatePicker({ task, onClose, onUpdateTask }) {
                                 </div>
                                 {renderCalendar("startDate")}
                             </fieldset>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="action-btns">
                         <button

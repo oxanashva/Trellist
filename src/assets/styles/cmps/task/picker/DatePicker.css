@@ -23,9 +23,9 @@
         }
     }
 
-    & .calendar-container {
+    /* & .calendar-container {
         display: flex;
-    }
+    } */
 
     & .date-field-container,
     .action-btns {
@@ -74,8 +74,6 @@
 
     .calendar {
         margin-block-start: 1rem;
-        border: 1px solid #080F214A;
-        border-radius: 0.25rem;
     }
 
     & .divider {
