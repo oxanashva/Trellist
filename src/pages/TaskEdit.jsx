@@ -418,7 +418,7 @@ export function TaskEdit() {
                             </div>
                         </section>
 
-                        {(task?.labels?.length > 0 || task?.due || task?.start) &&
+                        {(task?.idLabels?.length > 0 || task?.due || task?.start) &&
                             <div className="task-params">
                                 {/* TODO: implement displaying members */}
                                 {/* <section className="task-flex-container">
@@ -496,7 +496,7 @@ export function TaskEdit() {
                             </section> */}
                             </div>}
 
-                        <section className="task-grid-container">
+                        <section className="task-grid-container task-description-container">
                             <div className="task-icon">
                                 <DescriptionIcon width={16} height={16} fill="currentColor" />
                             </div>
