@@ -7,10 +7,28 @@ import { GroupPicker } from './GroupPicker'
 import { CoverPicker } from './CoverPicker'
 import CloseIcon from '../../assets/images/icons/close.svg?react'
 
-export function DynamicPicker({ task, picker, anchorEl, open, onClose, setStarred, isStarred, prefs, onUpdateBoard, onRemoveBoard, setIsAddingTask, boardId, groupId, onRemoveGroup, onUpdateTask, onAddLabel, onUpdateLabel, onRemoveLabel }) {
+export function DynamicPicker({
+    task,
+    picker,
+    anchorEl,
+    open,
+    onClose,
+    setStarred,
+    isStarred,
+    prefs,
+    onUpdateBoard,
+    onRemoveBoard,
+    setIsAddingTask,
+    boardId,
+    groupId,
+    onRemoveGroup,
+    onUpdateTask,
+    onAddLabel,
+    onUpdateLabel,
+    onRemoveLabel
+}) {
     const popoverActions = useRef(null)
     const [isEditTaskPicker, setIsEditTaskPicker] = useState(false)
-
 
     useEffect(() => {
         if (picker.type === 'GroupPicker' || picker.type === 'BoardPicker') {
