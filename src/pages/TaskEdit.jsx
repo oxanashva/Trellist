@@ -427,7 +427,6 @@ export function TaskEdit() {
                                     Member
                                 </button>
                             </section> */}
-
                                 {task?.idLabels?.length > 0 &&
                                     <section className="task-flex-container">
                                         <h3 className="params-heading">Labels</h3>
