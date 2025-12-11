@@ -307,9 +307,12 @@ export function TaskEdit() {
                     >
                         <ImageIcon width={16} height={16} fill="currentColor" />
                     </button>
-                    <button className="icon-btn dynamic-btn task-header-btn">
+
+                    {/* TODO: implement more options */}
+                    {/* <button className="icon-btn dynamic-btn task-header-btn">
                         <MoreIcon width={16} height={16} fill="currentColor" />
-                    </button>
+                    </button> */}
+
                     <Link to={`/board/${board?._id}`} className="icon-btn dynamic-btn link-btn task-header-btn">
                         <CloseIcon width={20} height={20} fill="currentColor" />
                     </Link>
