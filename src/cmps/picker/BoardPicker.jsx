@@ -40,10 +40,41 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
         setIsEditingBoardBackground(false)
     }
 
-    function handleBackgroundChanged(bgName) {
-        onUpdateBoard({ prefs: { background: bgName } })
+    function darkenHex(hex, factor = 0.8) {
+        // hex → #RRGGBB
+        let r = parseInt(hex.substr(1, 2), 16);
+        let g = parseInt(hex.substr(3, 2), 16);
+        let b = parseInt(hex.substr(5, 2), 16);
+
+        r = Math.floor(r * factor);
+        g = Math.floor(g * factor);
+        b = Math.floor(b * factor);
+
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    async function handleBackgroundChanged(bgName) {
+        const imgUrl = cloudinaryGradientColorsMap[bgName]
+
+        let background = ""
+        try {
+            const color = await fac.getColorAsync(imgUrl)
+            background = darkenHex(color.hex, 0.7)
+        } catch (err) {
+            console.error("Could not calculate average color:", err)
+            background = "#ffffff"
+        }
+
+        onUpdateBoard({
+            prefs: {
+                background,
+                backgroundImage: imgUrl
+            }
+        })
+
         setIsEditingColors(false)
     }
+
 
     const boardImgUrl = prefs?.backgroundImage
         ? prefs?.backgroundImage

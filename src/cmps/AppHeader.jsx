@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useNavigate, useLocation } from 'react-router'
+import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import TrelloIcon from '../assets/images/icons/trello.svg?react'
@@ -9,6 +10,8 @@ export function AppHeader() {
 	// const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
+
+	const boardBackground = useSelector(storeState => storeState.boardModule.boardBackground)
 
 	async function onLogout() {
 		try {
@@ -23,10 +26,15 @@ export function AppHeader() {
 	const isHomePage = pathname.includes('/home')
 	const isWorkspacePage = pathname.includes('/workspace')
 	const isBoardPage = pathname.includes('/board')
-	const headerStyle = `app-header full ${isBoardPage ? 'board-header' : isHomePage ? 'home-header' : ''}`
+	const headerClassName = `app-header full ${isHomePage ? 'home-header' : ''}`
+	const headerStyle = isBoardPage
+		? {
+			backgroundColor: boardBackground.background,
+		}
+		: {}
 
 	return (
-		<header className={headerStyle}>
+		<header style={headerStyle} className={headerClassName}>
 			<nav>
 				<NavLink to="/" className="logo">
 					<TrelloIcon width={24} height={24} fill="currentColor" />

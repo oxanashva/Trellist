@@ -31,6 +31,7 @@ export function BoardDetails() {
     const navigate = useNavigate()
     const board = useSelector(storeState => storeState.boardModule.board)
     const isLoading = useSelector(storeState => storeState.boardModule.isLoading)
+    const boardBackground = useSelector(storeState => storeState.boardModule.boardBackground)
 
     const [boardName, setBoardName] = useState('')
     const [isEditing, setIsEditing] = useState(false)
@@ -301,6 +302,16 @@ export function BoardDetails() {
         backgroundRepeat: 'no-repeat'
     }
 
+    function addOpacity(rgbString, alpha) {
+        // Extract numbers from "rgb(34,140,212)"
+        const values = rgbString.match(/\d+/g);
+        return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${alpha})`;
+    }
+
+    const boardDetailsHeaderStyle = {
+        backgroundColor: board?.prefs?.background && addOpacity(board?.prefs?.background, 0.8),
+    }
+
     const starBtnStyle = board?.isStarred ? { color: '#FBC828' } : {}
 
     if (isLoading) return <Loader />
@@ -308,7 +319,7 @@ export function BoardDetails() {
     return (
         <>
             <section style={boardDetailsStyle} className="board-details full">
-                <header className="board-details-header">
+                <header style={boardDetailsHeaderStyle} className="board-details-header">
                     <div>
                         {/* TODO: implement reusable component for editable field */}
                         {!isEditing &&

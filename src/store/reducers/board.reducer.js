@@ -23,10 +23,12 @@ export const REMOVE_LABEL = 'REMOVE_LABEL'
 export const ADD_BOARD_MSG = 'ADD_BOARD_MSG'
 
 export const SET_IS_LOADING = 'SET_IS_LOADING'
+export const SET_BOARD_BACKGROUND = 'SET_BOARD_BACKGROUND'
 
 const initialState = {
     boards: [],
     board: null,
+    boardBackground: {},
     isLoading: false
 }
 
@@ -233,6 +235,15 @@ export function boardReducer(state = initialState, action) {
                 ...state,
                 isLoading: action.isLoading
             }
+
+        // ------------------- Board backgeound state -------------------
+
+        case SET_BOARD_BACKGROUND:
+            return {
+                ...state,
+                boardBackground: action.boardBackground
+            }
+
 
         // ------------------- Default -------------------
 

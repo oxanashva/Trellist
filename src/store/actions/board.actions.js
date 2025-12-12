@@ -20,6 +20,7 @@ import {
     REMOVE_LABEL,
     ADD_BOARD_MSG,
     SET_IS_LOADING,
+    SET_BOARD_BACKGROUND
 } from '../reducers/board.reducer'
 
 // ------------------- Helpers -------------------
@@ -27,6 +28,10 @@ import {
 
 function setIsLoading(isLoading) {
     store.dispatch({ type: SET_IS_LOADING, isLoading })
+}
+
+function setBoardBackground(boardBackground) {
+    store.dispatch({ type: SET_BOARD_BACKGROUND, boardBackground })
 }
 
 // ------------------- Boards/Board -------------------
@@ -49,6 +54,7 @@ export async function loadBoard(boardId) {
     try {
         setIsLoading(true)
         const board = await boardService.getById(boardId)
+        setBoardBackground(board.prefs)
         store.dispatch(getCmdSetBoard(board))
     } catch (err) {
         console.log('Cannot load board', err)
