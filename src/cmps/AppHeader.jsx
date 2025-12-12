@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useNavigate, useLocation } from 'react-router'
 import { useSelector } from 'react-redux'
+import { getContrastingTextColor } from '../services/util.service'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import TrelloIcon from '../assets/images/icons/trello.svg?react'
@@ -11,7 +12,9 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
-	const boardBackground = useSelector(storeState => storeState.boardModule.boardBackground)
+	const board = useSelector(storeState => storeState.boardModule.board)
+	const boardBgColor = board?.prefs?.background
+	const fontColor = boardBgColor ? getContrastingTextColor(boardBgColor) : 'black'
 
 	async function onLogout() {
 		try {
@@ -29,9 +32,14 @@ export function AppHeader() {
 	const headerClassName = `app-header full ${isHomePage ? 'home-header' : ''}`
 	const headerStyle = isBoardPage
 		? {
-			backgroundColor: boardBackground.background,
+			backgroundColor: boardBgColor,
+			color: fontColor
 		}
 		: {}
+
+	const darckModeBtnStyle = {
+		color: fontColor
+	}
 
 	return (
 		<header style={headerStyle} className={headerClassName}>
@@ -55,8 +63,13 @@ export function AppHeader() {
 				{(isWorkspacePage || isBoardPage) &&
 					<>
 						<div className="actions">
-							<input type="text" placeholder="Search" />
-							<button className="btn-secondary">Create</button>
+							<input className="search-input" type="text" placeholder="Search" />
+							<button
+								style={darckModeBtnStyle}
+								className="btn-secondary create-btn"
+							>
+								Create
+							</button>
 						</div>
 
 						<div className="btn-group">

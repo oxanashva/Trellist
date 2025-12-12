@@ -8,7 +8,7 @@ export const board = {
     "url": "https://trello.com/b/VJFx5D4Z/trelgroup-agile-sprint-board",
     "shortUrl": "https://trello.com/b/VJFx5D4Z",
     "prefs": {
-        "background": "#98a07e",
+        "background": "rgb(152, 160, 126)",
         "backgroundImage": "https://res.cloudinary.com/da9naclpy/image/upload/v1765289171/gfuyec2wk0jfnivhahcs.webp"
     },
     "shortLink": "VJFx5D4Z",

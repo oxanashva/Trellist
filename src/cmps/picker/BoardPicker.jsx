@@ -7,8 +7,7 @@ import MinusIcon from '../../assets/images/icons/minus.svg?react'
 import PlusIcon from '../../assets/images/icons/plus.svg?react'
 import ColorsImg from '../../assets/images/colors.png'
 
-import { gradientColorsMap } from '../../services/util.service'
-import { cloudinaryGradientColorsMap } from '../../services/util.service'
+import { cloudinaryGradientColorsMap, darkenHex, gradientColorsMap } from '../../services/util.service'
 
 import { ImgUploader } from '../ImgUploader'
 
@@ -23,7 +22,7 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
         let background = ""
         try {
             const color = await fac.getColorAsync(imgUrl)
-            background = color.hex
+            background = color.rgb
         } catch (error) {
             console.error("Could not calculate average color:", error)
             background = "#ffffff"
@@ -38,19 +37,6 @@ export function BoardPicker({ setStarred, isStarred, prefs, onUpdateBoard, onRem
 
         onUpdateBoard(newPrefs)
         setIsEditingBoardBackground(false)
-    }
-
-    function darkenHex(hex, factor = 0.8) {
-        // hex → #RRGGBB
-        let r = parseInt(hex.substr(1, 2), 16);
-        let g = parseInt(hex.substr(3, 2), 16);
-        let b = parseInt(hex.substr(5, 2), 16);
-
-        r = Math.floor(r * factor);
-        g = Math.floor(g * factor);
-        b = Math.floor(b * factor);
-
-        return `rgb(${r}, ${g}, ${b})`;
     }
 
     async function handleBackgroundChanged(bgName) {

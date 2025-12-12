@@ -84,6 +84,7 @@ export function formatDate(input) {
     })
 }
 
+// Color utils
 export const labelsColorsMap = {
     "subtle green": "#BAF3DB",
     "subtle yellow": "#F5E989",
@@ -176,4 +177,86 @@ export const cloudinaryGradientColorsMap = {
     Earth: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289307/earth_t322hu.svg",
     Alien: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/alien_vws1af.svg",
     Volcano: "https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/volcano_up6ako.svg"
+}
+
+export function addOpacity(rgbString, alpha = 0.8) {
+    // Extract numbers from "rgb(34,140,212)"
+    const values = rgbString.match(/\d+/g)
+    return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${alpha})`
+}
+
+export function darkenHex(hex, factor = 0.8) {
+    // hex → #RRGGBB
+    let r = parseInt(hex.substr(1, 2), 16)
+    let g = parseInt(hex.substr(3, 2), 16)
+    let b = parseInt(hex.substr(5, 2), 16)
+
+    r = Math.floor(r * factor)
+    g = Math.floor(g * factor)
+    b = Math.floor(b * factor)
+
+    return `rgb(${r}, ${g}, ${b})`
+}
+
+
+/**
+ * Parses an rgb() or rgba() string and returns the [R, G, B] components (0-255).
+ * It ignores the alpha component if present.
+ * @param {string} color The rgb() or rgba() color string.
+ * @returns {number[]} Array of [R, G, B] values.
+ */
+function _getRgbComponents(color) {
+    const match = color?.match(/(\d+),\s*(\d+),\s*(\d+)/)
+
+    if (match) {
+        // match[1] is R, match[2] is G, match[3] is B
+        return [
+            parseInt(match[1]),
+            parseInt(match[2]),
+            parseInt(match[3]),
+        ]
+    }
+
+    // Fallback to black for safety
+    return [0, 0, 0];
+}
+
+/**
+ * Calculates the relative luminance of an RGB color based on sRGB standard.
+ * @param {number[]} rgbComponents [R, G, B] array (0-255).
+ * @returns {number} The luminance value (0-1).
+ */
+function _getLuminance(rgbComponents) {
+    const [r, g, b] = rgbComponents.map(c => c / 255) // Normalize to 0-1
+
+    // Standard sRGB coefficients for perceived brightness
+    const R_L = 0.2126
+    const G_L = 0.7152
+    const B_L = 0.0722
+
+    return (R_L * r) + (G_L * g) + (B_L * b)
+}
+
+/**
+ * Determines the best contrasting text color (white or a specific dark color) 
+ * for a given background color based on its luminance.
+ * * It uses an adjusted luminance threshold (0.40) to ensure that visually 
+ * medium-dark colors (like deep blues and teals) are assigned white text, 
+ * improving readability in the UI.
+ *
+ * @param {string} backgroundColor The background color string in rgb() or rgba() format. 
+ * (e.g., 'rgb(44, 114, 105)' or 'rgba(255, 100, 50, 0.8)').
+ * @returns {string} The chosen contrasting text color: 'white' (for dark backgrounds) 
+ * or 'rgb(23, 43, 77)' (for light backgrounds).
+ */
+export const getContrastingTextColor = (backgroundColor) => {
+    const rgb = _getRgbComponents(backgroundColor)
+    const luminance = _getLuminance(rgb)
+
+    const LUMINANCE_THRESHOLD = 0.40
+
+    const DARK_TEXT_COLOR = 'rgb(23, 43, 77)'
+    const LIGHT_TEXT_COLOR = 'white'
+
+    return luminance < LUMINANCE_THRESHOLD ? LIGHT_TEXT_COLOR : DARK_TEXT_COLOR
 }

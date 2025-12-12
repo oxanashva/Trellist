@@ -20,7 +20,7 @@ import StarSolidIcon from '../assets/images/icons/star-solid.svg?react'
 import UserPlusIcon from '../assets/images/icons/user-plus.svg?react'
 import MoreIcon from '../assets/images/icons/more.svg?react'
 
-import { cloudinaryGradientColorsMap } from '../services/util.service'
+import { addOpacity, cloudinaryGradientColorsMap, getContrastingTextColor } from '../services/util.service'
 
 import { GroupList } from '../cmps/group/GroupList'
 import { Loader } from '../cmps/Loader'
@@ -302,14 +302,12 @@ export function BoardDetails() {
         backgroundRepeat: 'no-repeat'
     }
 
-    function addOpacity(rgbString, alpha) {
-        // Extract numbers from "rgb(34,140,212)"
-        const values = rgbString.match(/\d+/g);
-        return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${alpha})`;
-    }
+    const boardBgColor = board?.prefs?.background
+    const fontColor = getContrastingTextColor(boardBgColor)
 
     const boardDetailsHeaderStyle = {
-        backgroundColor: board?.prefs?.background && addOpacity(board?.prefs?.background, 0.8),
+        color: fontColor,
+        backgroundColor: boardBgColor && addOpacity(boardBgColor),
     }
 
     const starBtnStyle = board?.isStarred ? { color: '#FBC828' } : {}
