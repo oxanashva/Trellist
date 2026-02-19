@@ -8,7 +8,7 @@ export const board = {
     "isStarred": false,
     "prefs": {
         "background": "rgb(152,160,126)",
-        "backgroundImage": "https://res.cloudinary.com/da9naclpy/image/upload/v1765735195/e4a2w4i2yfvs5unrjetq.webp"
+        "backgroundImage": "https://res.cloudinary.com/da9naclpy/image/upload/v1766337287/u8exyutohadffr5ox2vn.webp",
     },
     "labelNames": {
         "green": "Meta",

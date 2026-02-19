@@ -1,16 +1,5 @@
 import Axios from 'axios'
 
-//  // For Local
-// const BASE_URL = import.meta.env.DEV
-//     ? '/api/'
-//     : '//localhost:3030/api/'
-
-// // For Render
-// const BASE_URL = import.meta.env.DEV
-//     ? '/api/'
-//     : 'https://trellis-1a1g.onrender.com/api/'
-
-// // For Docker
 const BASE_URL = import.meta.env.VITE_API_URL || '/api/';
 
 const axios = Axios.create({ withCredentials: true })
