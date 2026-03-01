@@ -1,4 +1,4 @@
-const BASE_URL = (import.meta.env.VITE_API_URL || '') + '/api/log'
+const BASE_URL = import.meta.env.VITE_API_URL + 'log' || '/api/log'
 const remoteEnabled =
     import.meta.env.MODE === 'production' ||
     import.meta.env.VITE_ENABLE_REMOTE_LOGGING === 'true'
@@ -32,12 +32,12 @@ function doLog(level, ...args) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ level, message, timestamp: Date.now(), url: location.pathname }),
-    }).catch(() => {}) // fail silently to avoid infinite error loops
+    }).catch(() => { }) // fail silently to avoid infinite error loops
 }
 
 export const logger = {
     debug: (...args) => doLog('debug', ...args),
-    info:  (...args) => doLog('info',  ...args),
-    warn:  (...args) => doLog('warn',  ...args),
+    info: (...args) => doLog('info', ...args),
+    warn: (...args) => doLog('warn', ...args),
     error: (...args) => doLog('error', ...args),
 }
