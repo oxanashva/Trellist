@@ -9,7 +9,7 @@ export default defineConfig({
     svgr(),
   ],
   build: {
-    outDir: "../trellis-backend/public",
+    outDir: "build",
     emptyOutDir: true
   }
 })
