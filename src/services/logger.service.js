@@ -1,24 +1,44 @@
-const BASE_URL = import.meta.env.VITE_API_URL + 'log' || '/api/log'
+const BASE_URL = (import.meta.env.VITE_API_URL ?? '/api/') + 'log'
 const remoteEnabled =
     import.meta.env.MODE === 'production' ||
     import.meta.env.VITE_ENABLE_REMOTE_LOGGING === 'true'
 
-const SENSITIVE_KEYS = new Set([
-    'password', 'newPassword', 'confirmPassword', 'token', 'secret',
-])
+const SENSITIVE_PATTERNS = [
+    /password/i,
+    /token/i,
+    /secret/i,
+    /apikey/i,
+    /sessionId/i,
+    /ssn/i,
+    /cardnumber/i,
+    /creditcard/i,
+    /cvv/i,
+    /pin/i,
+    /phone/i,
+    /email/i,
+    // add more
+]
 
-function sanitize(args) {
-    return args.map(a => {
-        if (!a || typeof a !== 'object') return a
-        const copy = { ...a }
-        SENSITIVE_KEYS.forEach(k => { if (k in copy) copy[k] = '[REDACTED]' })
-        return copy
-    })
+function isSensitiveKey(key) {
+    return SENSITIVE_PATTERNS.some(pattern => pattern.test(key))
+}
+
+function sanitize(value) {
+    if (!value || typeof value !== 'object') return value
+
+    if (Array.isArray(value)) return value.map(sanitize)
+
+    return Object.fromEntries(
+        Object.entries(value).map(([k, v]) => [
+            k,
+            isSensitiveKey(k) ? '[REDACTED]' : sanitize(v)
+        ])
+    )
 }
 
 function doLog(level, ...args) {
     // Always log to browser console for local debugging
-    const safe = sanitize(args)
+    const safe = args.map(sanitize)
     console[level](...safe)
 
     if (!remoteEnabled) return
@@ -31,7 +51,7 @@ function doLog(level, ...args) {
     fetch(BASE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ level, message, timestamp: Date.now(), url: location.pathname }),
+        body: JSON.stringify({ level, message, timestamp: new Date().toISOString(), url: location.pathname }),
     }).catch(() => { }) // fail silently to avoid infinite error loops
 }
 
