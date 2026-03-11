@@ -1,58 +1,82 @@
-const BASE_URL = (import.meta.env.VITE_API_URL ?? '/api/') + 'log'
+const _apiBase = import.meta.env.VITE_API_URL ?? '/api/'
+const BASE_URL = `${_apiBase.endsWith('/') ? _apiBase : `${_apiBase}/`}log`
 const remoteEnabled =
     import.meta.env.MODE === 'production' ||
     import.meta.env.VITE_ENABLE_REMOTE_LOGGING === 'true'
 
+// Keys whose values must never appear in logs
 const SENSITIVE_PATTERNS = [
-    /password/i,
-    /token/i,
-    /secret/i,
-    /apikey/i,
-    /sessionId/i,
+    /password/i, /secret/i, /token/i,
+    /apikey/i, /api_key/i,
+    /cardnumber/i, /creditcard/i, /cvv/i, /pin/i,
     /ssn/i,
-    /cardnumber/i,
-    /creditcard/i,
-    /cvv/i,
-    /pin/i,
-    /phone/i,
-    /email/i,
-    // add more
 ]
 
 function isSensitiveKey(key) {
-    return SENSITIVE_PATTERNS.some(pattern => pattern.test(key))
+    return SENSITIVE_PATTERNS.some(p => p.test(key))
 }
 
-function sanitize(value) {
-    if (!value || typeof value !== 'object') return value
+function serializeError(err) {
+    return {
+        name: err.name,
+        message: err.message,
+        stack: import.meta.env.MODE !== 'production' ? err.stack : undefined,
+        // Preserve Axios-specific fields if present
+        status: err.response?.status,
+        endpoint: err.config ? `${err.config.method?.toUpperCase()} ${err.config.url}` : undefined,
+        code: err.code,
+    }
+}
 
+export function sanitize(value) {
+    if (value instanceof Error) return serializeError(value) // must come before object check
+    if (!value || typeof value !== 'object') return value
     if (Array.isArray(value)) return value.map(sanitize)
 
     return Object.fromEntries(
         Object.entries(value).map(([k, v]) => [
             k,
-            isSensitiveKey(k) ? '[REDACTED]' : sanitize(v)
+            isSensitiveKey(k) ? '[REDACTED]' : sanitize(v),
         ])
     )
 }
 
+// Structured Loki-compatible payload
+function buildLokiPayload(level, safe) {
+    // Separate the string message from metadata objects
+    const messageParts = []
+    const meta = {}
+
+    for (const arg of safe) {
+        if (typeof arg === 'string') {
+            messageParts.push(arg)
+        } else if (arg && typeof arg === 'object') {
+            Object.assign(meta, arg)
+        }
+    }
+
+    return {
+        ...meta, // Loki structured fields — queryable via {service="frontend", level="error"}
+        level,
+        message: messageParts.join(' '), // clean string — good for Loki line
+        timestamp: new Date().toISOString(),
+        url: location.pathname,
+    }
+}
+
 function doLog(level, ...args) {
-    // Always log to browser console for local debugging
     const safe = args.map(sanitize)
-    console[level](...safe)
+    console[level === 'debug' ? 'log' : level](...safe)
 
     if (!remoteEnabled) return
 
-    const message = safe
-        .map(a => (typeof a === 'string' ? a : JSON.stringify(a)))
-        .join(' | ')
+    const payload = buildLokiPayload(level, safe)
 
-    // Fire-and-forget: do not await, do not let logging slow down the UI
     fetch(BASE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ level, message, timestamp: new Date().toISOString(), url: location.pathname }),
-    }).catch(() => { }) // fail silently to avoid infinite error loops
+        body: JSON.stringify(payload),
+    }).catch(() => { })
 }
 
 export const logger = {

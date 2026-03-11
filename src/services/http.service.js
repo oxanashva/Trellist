@@ -11,15 +11,19 @@ axios.interceptors.response.use(
         const { response, config } = err
         const status = response?.status
         const serverMsg = response?.data?.error
+        const requestId = response?.data?.requestId
 
-        logger.error(`HTTP ${config.method.toUpperCase()} ${config.url} failed`, { status })
+        const method = config?.method?.toUpperCase() ?? 'UNKNOWN'
+        const url = config?.url ?? 'UNKNOWN'
+
+        logger.error(`HTTP ${method} ${url} failed`, { status, requestId })
 
         if (status === 401) {
             sessionStorage.clear();
             window.location.assign('/')
         }
 
-        throw new Error(serverMsg || `Request failed: ${config.method.toUpperCase()} ${config.url}`)
+        throw new Error(serverMsg || `Request failed: ${method} ${url}`)
     }
 )
 
