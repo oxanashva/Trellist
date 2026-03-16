@@ -120,6 +120,7 @@ export function GroupPreview({ id, group, tasks, actions, members, onUpdateGroup
                 />
             )}
             <li
+                data-testid="group-preview"
                 ref={setNodeRef}
                 style={style}
                 className={groupPreviewClass}

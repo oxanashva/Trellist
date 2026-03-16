@@ -97,6 +97,7 @@ export function TaskPreview({ id, task, taskActions, members, className }) {
 
     return (
         <li
+            data-testid="task-preview"
             ref={setNodeRef}
             style={style}
             className={taskPreviewClass}
