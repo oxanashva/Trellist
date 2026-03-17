@@ -1,14 +1,14 @@
 ---
 name: write-tests
-description:
+description: >
   Expert TDD testing strategy for MERN stack frontend apps using React, plain Redux
   (no Thunks, no Redux Toolkit), Vite, React Testing Library, MSW, and Playwright.
   Use this skill whenever the user asks to write tests, implement a feature with TDD,
   set up testing infrastructure, decide what kind of test to write (unit vs integration
-  vs e2e), or asks about testing strategy for their React/Redux frontend. Trigger even
-  for vague requests like "add tests for this component", "how should I test this slice",
-  "write a test for my form", or "set up MSW for my API calls". Covers the full Red-Green-Refactor
+  vs e2e), or asks about testing strategy for their React/Redux frontend. Covers the full Red-Green-Refactor
   cycle and enforces CI/CD-safe, non-flaky test patterns.
+argument-hint: <feature-name>
+disable-model-invocation: true
 ---
 
 # Claude Code Skill: MERN Frontend TDD Testing Strategy
@@ -37,6 +37,8 @@ Always follow this cycle for every feature:
 
 Use this matrix to decide what kind of test to write. Prefer the **lowest-cost** test that gives
 sufficient confidence. Avoid over-testing with e2e when a unit test suffices.
+
+**Remember:** When in doubt, write the simplest test that gives you confidence. Prefer integration tests over unit tests, and E2E only for critical journeys.
 
 | Scenario                                           | Test Type   | Tool                      | Repository          |
 | -------------------------------------------------- | ----------- | ------------------------- | ------------------- |
@@ -153,10 +155,6 @@ const todoListItem = page
 ## Notes for Infrastructure Team
 
 [Any special setup, environment variables, or dependencies needed]
-
-```
-
-```
 ````
 
 ### 3.3 Example Developer Notification
@@ -211,7 +209,7 @@ Skip E2E plans for:
 
 ### 4.2 Redux (plain, no RTK, no Thunks)
 
-- Import `createStore`, `combineReducers` from `redux'
+- Import `createStore`, `combineReducers` from `redux`
 - Create a fresh store in each test via a `makeStore()` helper
 - Dispatch actions directly; assert on `store.getState()`
 - For async side effects: test the component behaviour, not the async mechanism
@@ -242,35 +240,33 @@ Skip E2E plans for:
 
 ---
 
-## 6. Example: TodoList Feature (Component-Type Structure)
-
-### 6.1 Folder Structure
+## 5. Example: TodoList Feature (Folder Structure)
 
 ```
 
 src/
 ├── cmps/   # Components organized by type
-│ └── todo/
-│ ├── TodoList.jsx
-│ ├── TodoList.test.jsx    #Integration: component + store + MSW
-│ ├── TodoPreview.jsx
-│ └── TodoPreview.test.jsx   # Unit test
+│   └── todo/
+│   ├── TodoList.jsx
+│   ├── TodoList.test.jsx    #Integration: component + store + MSW
+│   ├── TodoPreview.jsx
+│   └── TodoPreview.test.jsx   # Unit test
 ├── pages/   # Page-level components
-│ ├── TodoDetails.jsx
-│ └── TodoDetails.test.jsx   # Integration test: page + routing + store
+│   ├── TodoDetails.jsx
+│   └── TodoDetails.test.jsx   # Integration test: page + routing + store
 ├── services/   # API service layer
-│ ├── todo.service.js
-│ └── todo.service.test.js # Unit test: API call logic (with MSW)
+│   ├── todo.service.js
+│   └── todo.service.test.js # Unit test: API call logic (with MSW)
 ├── store/   # Redux store structure
-│ ├── actions/
-│ │ ├── todo.actions.js
-│ │ └── todo.actions.test.js   # Unit: action creators
-│ └── reducers/
-│ ├── todo.reducer.js
-│ └── todo.reducer.test.js   # Unit test: reducer pure logic
+│   ├── actions/
+│   │   ├── todo.actions.js
+│   │   └── todo.actions.test.js   # Unit: action creators
+│   └── reducers/
+│       ├── todo.reducer.js
+│       └── todo.reducer.test.js   # Unit test: reducer pure logic
 ├── mocks/ # MSW setup
-│ ├── handlers.js # MSW route handlers
-│ └── server.js   # MSW server config
+│   ├── handlers.js # MSW route handlers
+│   └── server.js   # MSW server config
 ├── test-utils/   # Test helpers
 │   ├── renderWithStore.jsx   # RTL + Redux wrapper
 │   ├── makeStore.js   # Fresh store factory
@@ -279,248 +275,23 @@ src/
 │   ├── todo-crud.md   # Plan for infra repo
 │   └── README.md   # Explains the handoff process
 └── scripts/
-└── validate.sh   # Run all frontend tests
+    └── validate.sh   # Run all frontend tests
+
 
 [app-name]-infra/   # Separate repository
 └── e2e/   # End-to-end tests
-├── tests/
-│ ├── todo/
-│ └── todo-crud.spec.ts   # Implemented from e2e-plans/todo-crud.md
-├── fixtures/
-│ └── todos.json
-└── playwright.config.ts
+    ├── tests/
+    │   ├── todo/
+    │   └── todo-crud.spec.ts   # Implemented from e2e-plans/todo-crud.md
+    ├── fixtures/
+    │   └── todos.json
+    └── playwright.config.ts
 
 ```
-
-### 6.2 Unit Test: Reducer
-
-```typescript
-// src/store/reducers/todo.reducer.test.js
-import { describe, test, expect } from "vitest";
-import { todoReducer } from "./todo.reducer";
-import { ADD_TODO, REMOVE_TODO } from "../actions/todo.actions";
-
-describe("todoReducer", () => {
-  test("adds a todo to empty state", () => {
-    // Arrange
-    const initialState = { todos: [] };
-    const action = { type: ADD_TODO, payload: { id: "1", text: "Buy milk" } };
-
-    // Act
-    const newState = todoReducer(initialState, action);
-
-    // Assert
-    expect(newState.todos).toHaveLength(1);
-    expect(newState.todos[0]).toEqual({ id: "1", text: "Buy milk" });
-  });
-
-  test("removes a todo by id", () => {
-    // Arrange
-    const initialState = {
-      todos: [
-        { id: "1", text: "Buy milk" },
-        { id: "2", text: "Walk dog" },
-      ],
-    };
-    const action = { type: REMOVE_TODO, payload: "1" };
-
-    // Act
-    const newState = todoReducer(initialState, action);
-
-    // Assert
-    expect(newState.todos).toHaveLength(1);
-    expect(newState.todos[0].id).toBe("2");
-  });
-});
-```
-
-### 6.3 Integration Test: Component + Store + MSW
-
-```typescript
-// src/cmps/todo/TodoList.test.jsx
-import { describe, test, expect, beforeAll, afterEach, afterAll } from 'vitest'
-import { screen, waitFor } from '@testing-library/react'
-import { userEvent } from '@testing-library/user-event'
-import { http, HttpResponse } from 'msw'
-import { server } from '../../mocks/server'
-import { renderWithStore } from '../../test-utils/renderWithStore'
-import { TodoList } from './TodoList'
-
-describe('TodoList Integration', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
-  afterAll(() => server.close())
-
-  test('loads and displays todos from API', async () => {
-    // Arrange
-    server.use(
-      http.get('/api/todos', () => {
-        return HttpResponse.json([
-          { id: '1', text: 'Buy milk', completed: false },
-          { id: '2', text: 'Walk dog', completed: true }
-        ])
-      })
-    )
-
-    // Act
-    renderWithStore(<TodoList />)
-
-    // Assert
-    expect(await screen.findByText('Buy milk')).toBeInTheDocument()
-    expect(screen.getByText('Walk dog')).toBeInTheDocument()
-  })
-
-  test('adds a new todo via form submission', async () => {
-    // Arrange
-    const user = userEvent.setup()
-    server.use(
-      http.get('/api/todos', () => HttpResponse.json([])),
-      http.post('/api/todos', async ({ request }) => {
-        const body = await request.json()
-        return HttpResponse.json({ id: '3', ...body })
-      })
-    )
-
-    renderWithStore(<TodoList />)
-
-    // Act
-    const input = screen.getByRole('textbox', { name: /new todo/i })
-    await user.type(input, 'New task')
-    await user.click(screen.getByRole('button', { name: /add/i }))
-
-    // Assert
-    await waitFor(() => {
-      expect(screen.getByText('New task')).toBeInTheDocument()
-    })
-  })
-
-  test('shows error message when API fails', async () => {
-    // Arrange
-    server.use(
-      http.get('/api/todos', () => {
-        return HttpResponse.json({ message: 'Server error' }, { status: 500 })
-      })
-    )
-
-    // Act
-    renderWithStore(<TodoList />)
-
-    // Assert
-    expect(await screen.findByRole('alert')).toHaveTextContent(/failed to load/i)
-  })
-})
-```
-
-### 6.4 E2E Plan File (for infra repo)
-
-````markdown
-<!-- e2e-plans/todo-crud.md -->
-
-# E2E Test Plan: Todo CRUD Operations
-
-**Status:** ⏳ Pending implementation in [app-name]-infra  
-**Created:** 2025-01-16  
-**Frontend PR:** #123
-
-## User Journey to Test
-
-1. User logs in to the application
-2. Navigates to /todos page
-3. Sees existing todos loaded from backend
-4. Clicks "Add Todo" button
-5. Fills in todo text: "Buy groceries"
-6. Clicks "Save"
-7. Sees new todo appear in the list
-8. Clicks on the todo to view details page (/todos/:id)
-9. Clicks "Edit" button
-10. Changes text to "Buy groceries and cook dinner"
-11. Clicks "Save"
-12. Navigates back to /todos
-13. Sees updated todo in the list
-14. Clicks "Delete" on the todo
-15. Confirms deletion in modal
-16. Todo disappears from list
-
-## Critical Assertions
-
-- [ ] Todo list loads from API on page mount
-- [ ] New todo appears in list immediately after creation
-- [ ] Todo details page shows correct data
-- [ ] Edits persist when navigating back to list
-- [ ] Deleted todos are removed from list
-- [ ] API calls are made with correct payloads
-- [ ] UI shows loading states during API calls
-- [ ] Error states are handled gracefully
-
-## Test Data Requirements
-
-```json
-{
-  "user": {
-    "email": "test@example.com",
-    "password": "Test123!"
-  },
-  "initialTodos": [
-    { "id": "1", "text": "Existing task 1", "completed": false },
-    { "id": "2", "text": "Existing task 2", "completed": true }
-  ]
-}
-```
-
-## API Endpoints Involved
-
-- GET /api/todos (list)
-- POST /api/todos (create)
-- GET /api/todos/:id (read)
-- PUT /api/todos/:id (update)
-- DELETE /api/todos/:id (delete)
-
-## Suggested Playwright Selectors
-
-```javascript
-// Navigation
-const todosLink = page.getByRole("link", { name: /todos/i });
-
-// List page
-const todoListItems = page.getByRole("listitem");
-const addTodoBtn = page.getByRole("button", { name: /add todo/i });
-const todoInput = page.getByRole("textbox", { name: /todo text/i });
-const saveBtn = page.getByRole("button", { name: /save/i });
-
-// Details page
-const editBtn = page.getByRole("button", { name: /edit/i });
-const deleteBtn = page.getByRole("button", { name: /delete/i });
-const confirmDeleteBtn = page.getByRole("button", { name: /confirm/i });
-
-// Finding specific todo
-const todoItem = page
-  .getByRole("listitem")
-  .filter({ hasText: "Buy groceries" });
-```
-
-## Edge Cases to Cover
-
-1. Network error during creation (show error, retry)
-2. Network error during deletion (show error, don't remove from list)
-3. Validation errors (empty todo text)
-4. Concurrent edits (if real-time updates implemented)
-5. Browser refresh on details page (loads data from API)
-
-## Implementation Location
-
-`[app-name]-infra/e2e/tests/todos/todo-crud.spec.ts`
-
-## Notes for Infrastructure Team
-
-- Requires database seeding with initial todos before test
-- Use `beforeEach` to reset database state
-- Mock authentication or use test user credentials
-- Run against localhost:5173 (frontend) + localhost:3030 (backend)
-````
 
 ---
 
-## 7. Arrange-Act-Assert (AAA) Pattern
+## 6. Arrange-Act-Assert (AAA) Pattern
 
 Every `test()` block must have visible AAA separation — either as comments or natural whitespace:
 
@@ -540,7 +311,7 @@ test('shows error message when API returns 500', async () => {
 
 ---
 
-## 8. CI/CD Readiness Rules
+## 7. CI/CD Readiness Rules
 
 - **Isolation:** Each test creates its own store instance. Never share store across tests.
 - **No global DOM pollution:** Always call `cleanup()` (RTL does this automatically via Vitest config).
@@ -552,11 +323,11 @@ test('shows error message when API returns 500', async () => {
 
 ---
 
-## 9. TDD Step-by-Step Checklist
+## 8. TDD Step-by-Step Checklist
 
 When asked to implement a feature with TDD, follow these steps:
 
-### 9.1 For Frontend-Only Tests (Unit/Integration)
+### 8.1 For Frontend-Only Tests (Unit/Integration)
 
 1. ✅ Determine test types needed using the decision matrix
 2. ✅ Write **type definitions** first (interfaces, action types)
@@ -566,8 +337,11 @@ When asked to implement a feature with TDD, follow these steps:
 6. ✅ GREEN: Implement the component — run test → should pass
 7. ✅ REFACTOR: Clean up code and tests
 8. ✅ Run `npm run test` to confirm full suite passes
+9. ⏸️ **Ask user:** "Would you like me to run the full validation script?"
+   - If yes: `bash ${CLAUDE_SKILL_DIR}/scripts/validate.sh`
+   - If no: Skip validation
 
-### 9.2 When E2E Tests Are Needed
+### 8.2 When E2E Tests Are Needed
 
 1. ✅ Complete steps 1-8 above (all frontend tests)
 2. ✅ Create E2E plan file in `e2e-plans/[feature-name].md`
@@ -576,7 +350,7 @@ When asked to implement a feature with TDD, follow these steps:
 5. ✅ Add link to E2E plan in feature PR description
 6. 📋 Update E2E plan status to ✅ when implemented in infra repo
 
-### 9.3 Decision Flow: Does This Feature Need E2E?
+### 8.3 Decision Flow: Does This Feature Need E2E?
 
 ```
 Is it a multi-page user journey? → YES → Create E2E plan
@@ -588,7 +362,7 @@ Is it a simple component? → NO → Skip E2E
 
 ---
 
-## 10. Anti-Patterns to Avoid
+## 9. Anti-Patterns to Avoid
 
 | Anti-pattern                                          | What to do instead                                         |
 | ----------------------------------------------------- | ---------------------------------------------------------- |
@@ -604,7 +378,7 @@ Is it a simple component? → NO → Skip E2E
 
 ---
 
-## 11. Test Coverage Targets
+## 10. Test Coverage Targets
 
 - **Unit tests:** 80%+ coverage for reducers, actions, selectors, utils
 - **Integration tests:** 70%+ coverage for components and pages
@@ -614,66 +388,7 @@ Is it a simple component? → NO → Skip E2E
 
 ---
 
-## 12. Common Test Patterns
-
-### 12.1 Testing Async Actions (with MSW)
-
-```typescript
-test("dispatches SET_TODOS action after successful API call", async () => {
-  // Arrange
-  const mockTodos = [{ id: "1", text: "Test" }];
-  server.use(http.get("/api/todos", () => HttpResponse.json(mockTodos)));
-  const store = makeStore();
-
-  // Act
-  await store.dispatch(loadTodos());
-
-  // Assert
-  const state = store.getState();
-  expect(state.todos).toEqual(mockTodos);
-});
-```
-
-### 12.2 Testing Form Submissions
-
-```typescript
-test('submits form with user input', async () => {
-  // Arrange
-  const user = userEvent.setup()
-  const handleSubmit = vi.fn()
-  render(<TodoForm onSubmit={handleSubmit} />)
-
-  // Act
-  await user.type(screen.getByLabelText(/todo/i), 'New task')
-  await user.click(screen.getByRole('button', { name: /submit/i }))
-
-  // Assert
-  expect(handleSubmit).toHaveBeenCalledWith({ text: 'New task' })
-})
-```
-
-### 12.3 Testing Error States
-
-```typescript
-test('displays error when API call fails', async () => {
-  // Arrange
-  server.use(
-    http.get('/api/todos', () => {
-      return HttpResponse.json({ error: 'Failed' }, { status: 500 })
-    })
-  )
-
-  // Act
-  renderWithStore(<TodoList />)
-
-  // Assert
-  expect(await screen.findByRole('alert')).toHaveTextContent(/failed/i)
-})
-```
-
----
-
-## 13. Quick Reference Commands
+## 11. Quick Reference Commands
 
 ```bash
 # Run all tests
@@ -693,40 +408,44 @@ npm run test -- todo
 
 # Update snapshots
 npm run test -- -u
+
+# Run full validation suite
+bash ${CLAUDE_SKILL_DIR}/scripts/validate.sh
+
+# Run validation with e2e tests
+bash ${CLAUDE_SKILL_DIR}/scripts/validate.sh --e2e
 ```
 
 ---
 
-## 14. Summary
+## 12. Reference Documents
 
-This skill ensures:
+When implementing tests or a new feature with TDD, load these files as needed:
 
-- ✅ Proper test type selection (unit vs integration vs e2e)
-- ✅ TDD workflow adherence (Red-Green-Refactor)
-- ✅ MSW for realistic API mocking
-- ✅ Real Redux store in integration tests
-- ✅ E2E tests properly delegated to infra repo
-- ✅ Clear handoff process via E2E plan files
-- ✅ CI/CD-safe, non-flaky tests
-- ✅ No loss of context when E2E implementation happens later
+### Examples
 
-**Remember:** When in doubt, write the simplest test that gives you confidence. Prefer integration tests over unit tests, and E2E only for critical journeys.
+- For reducer unit test patterns, see [examples/reducer-unit.md](examples/reducer-unit.md)
+- For integration test patterns (component + store + MSW), see [examples/integration-test.md](examples/integration-test.md)
+- For E2E plan file format, see [examples/e2e-plan-example.md](examples/e2e-plan-example.md)
 
----
+### Common Patterns
 
-## 15. Reference Documents
+- For async action testing, see [patterns/async-actions.md](patterns/async-actions.md)
+- For form submission testing, see [patterns/form-submissions.md](patterns/form-submissions.md)
+- For error state testing, see [patterns/error-states.md](patterns/error-states.md)
 
-When implementing a new feature with TDD, use these companion documents:
+### Scaffolding
 
-- **`template.md`** — Copy-paste scaffolding with placeholders for implementing any new feature. Provides empty structure to fill in.
-- **`sample.md`** — Complete working example showing Todos feature with all test types (34 tests total). Shows concrete patterns and best practices.
+- For empty templates to fill in, see [template.md](template.md)
+- For complete working examples, see [sample.md](sample.md)
 
 **Workflow:**
 
 1. Read `template.md` to understand **what** to write (structure, sections, AAA pattern)
 2. Read `sample.md` to see **how** to write it (real code, selectors, assertions)
-3. Copy relevant sections from template
-4. Adapt patterns from sample to your feature
-5. Follow TDD cycle: Red → Green → Refactor
+3. Load relevant `examples/` files for specific test type patterns
+4. Load relevant `patterns/` files for common scenarios (async, forms, errors)
+5. Copy and adapt to your feature
+6. Follow TDD cycle: Red → Green → Refactor
 
-Both documents are co-located with this SKILL.md file.
+All documents are co-located in the `.claude/skills/write-tests/` directory.
