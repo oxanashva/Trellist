@@ -101,17 +101,19 @@ async function addTask(boardId, task) {
     return task
 }
 
-async function updateTask(boardId, task, fieldsToUpdate) {
+async function updateTask(boardId, taskId, fieldsToUpdate) {
     const board = await getById(boardId)
 
-    const updatedTask = {
-        ...task,
-        ...fieldsToUpdate
-    }
+    let updatedTask = null
 
-    board.tasks = board.tasks.map(t =>
-        t._id === updatedTask._id ? updatedTask : t
-    )
+    board.tasks = board.tasks.map(task => {
+        if (task._id !== taskId) return task
+
+        updatedTask = { ...task, ...fieldsToUpdate }
+        return updatedTask
+    })
+
+    if (!updatedTask) throw new Error('Task not found')
 
     await storageService.put(STORAGE_KEY, board)
 
@@ -210,14 +212,13 @@ async function addBoardMsg(boardId, txt) {
 // ------------------- Factory -------------------
 
 function _createBoard() {
-    let boards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+    let boardData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
 
-    if (!boards || !boards.length) {
-        boards = [board]
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(boards))
+    if (!boardData || !boardData.length) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(board))
     }
 
-    return boards
+    return boardData
 }
 
 _createBoard()
