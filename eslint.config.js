@@ -31,7 +31,7 @@ export default defineConfig([
   },
   // Config for TS and TS test files
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,tsx}'],
     plugins: { vitest },
     languageOptions: {
       parser: tsParser,
