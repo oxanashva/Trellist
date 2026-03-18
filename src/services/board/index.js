@@ -22,17 +22,17 @@ function getEmptyBoard() {
         members: [
             {
                 "_id": "68e809da40f4d09300719d2d",
-                "avatarUrl": "https://res.cloudinary.com/da9naclpy/image/upload/v1765662608/AC-avatar_rymgnn.png",
+                "avatarUrl": "https://res.cloudinary.com/da9naclpy/image/upload/v1773855391/AC_lkfc1u.jpg",
                 "fullName": "Anna Coss",
                 "initials": "AC",
                 "username": "annacoss"
             },
             {
                 "_id": "5eafad22c718790469a3db7a",
-                "avatarUrl": "https://res.cloudinary.com/da9naclpy/image/upload/v1765662607/OS-avatar_nr1jfr.png",
-                "fullName": "Oxana Shvartzman",
-                "initials": "OS",
-                "username": "oxanashvartzman"
+                "avatarUrl": "https://res.cloudinary.com/da9naclpy/image/upload/v1773855391/OR_jotrqa.jpg",
+                "fullName": "Otto Ross",
+                "initials": "OR",
+                "username": "ottoross"
             }
         ],
         uploadedImages: []
