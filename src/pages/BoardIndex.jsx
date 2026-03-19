@@ -33,7 +33,15 @@ export function BoardIndex() {
     }
 
     useEffect(() => {
-        loadBoards()
+        const fetchData = async () => {
+            try {
+                await loadBoards()
+            } catch (err) {
+                showErrorMsg('Cannot load boards')
+            }
+        }
+
+        fetchData()
     }, [])
 
     const handlePopoverOpen = (event, pickerType) => {

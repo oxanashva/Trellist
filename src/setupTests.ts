@@ -11,6 +11,6 @@ expect.extend(matchers);
 beforeAll(() => server.listen());
 afterEach(() => {
   cleanup();
-  server.resetHandlers(); // Reset handlers so tests don't leak into each other
+  server.resetHandlers();
 });
 afterAll(() => server.close());
