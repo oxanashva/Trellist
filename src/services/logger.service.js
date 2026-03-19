@@ -66,7 +66,10 @@ function buildLokiPayload(level, safe) {
 
 function doLog(level, ...args) {
     const safe = args.map(sanitize)
-    console[level === 'debug' ? 'log' : level](...safe)
+
+    if (import.meta.env.MODE === 'development') {
+        console[level](...safe)
+    }
 
     if (!remoteEnabled) return
 
