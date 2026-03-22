@@ -71,7 +71,15 @@ export function BoardDetails() {
     }, [board])
 
     useEffect(() => {
-        loadBoard(boardId)
+        function fetchData() {
+            try {
+                loadBoard(boardId)
+            } catch (err) {
+                showErrorMsg('Cannot load board')
+            }
+        }
+
+        fetchData()
     }, [boardId])
 
     function handleInputBlur() {

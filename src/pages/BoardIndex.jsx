@@ -33,9 +33,9 @@ export function BoardIndex() {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
+        function fetchData() {
             try {
-                await loadBoards()
+                loadBoards()
             } catch (err) {
                 showErrorMsg('Cannot load boards')
             }
