@@ -27,3 +27,8 @@ build
 
 json
 board-data
+
+e2e-plans
+plan
+prompt
+session

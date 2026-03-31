@@ -8,6 +8,8 @@ import './assets/styles/main.css'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup'
 import { TaskEdit } from './pages/TaskEdit'
 import { Icon } from './pages/Icon'
+import { NotFound } from './pages/NotFound'
+import { ErrorPage } from './pages/ErrorPage'
 
 export function RootCmp() {
   const { pathname } = useLocation()
@@ -39,9 +41,12 @@ export function RootCmp() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/error" element={<ErrorPage />} />
+          <Route path="*" element={<NotFound />} />
 
           {/* Icon Preview - For Testing */}
-          <Route path="icon" element={<Icon />} />
+          {/* <Route path="icon" element={<Icon />} /> */}
         </Routes>
       </main>
     </div>
