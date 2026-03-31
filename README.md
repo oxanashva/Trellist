@@ -1,16 +1,24 @@
-# React + Vite
+# Trellis
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend of a full-stack Trello-like project management app built with the MERN stack.
 
-Currently, two official plugins are available:
+- Backend: https://github.com/oxanashva/trellis-backend
+- CI/CD & E2E tests: https://github.com/oxanashva/trellis-infra
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Stack:** React · Redux · Axios · Node.js · Express · MongoDB · Grafana/Loki · GitHub Actions · Render
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+### Error Handling
+Centralised HTTP error handling via an Axios response interceptor and React Error Boundary.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Trigger | Behaviour |
+|---------|-----------|
+| 401 Unauthorized | Clears session storage, localStorage, and Redux user state, then redirects to `/auth/login` |
+| 403 Forbidden | Shows an error toast; user stays on the current page |
+| 404 — board not found | Clears Redux board state, shows toast, redirects to `/workspace` |
+| 404 — other resource | Redirects to `/404` (Not Found page) |
+| 500 Server Error | Redirects to `/error` (Error page) |
+| React runtime error | Caught by `ErrorBoundary`; shows fallback UI with a "Try again" reset button |
