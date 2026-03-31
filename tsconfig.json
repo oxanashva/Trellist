@@ -4,13 +4,14 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["vitest/globals"], 
     "skipLibCheck": true,
     "noEmit": true, 
     "allowJs": true, 
-    "isolatedModules": true
+    "isolatedModules": true,
+    "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.test.ts"]
+  "include": ["src", "vite-env.d.ts"]
 }
