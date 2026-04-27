@@ -1,35 +1,26 @@
-import dayjs from "dayjs"
-import customParseFormat from "dayjs/plugin/customParseFormat"
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 dayjs.extend(customParseFormat)
 
-const DATE_FORMAT = "MM/DD/YYYY"
-const TIME_FORMAT = "h:mm A"
+const DATE_FORMAT = 'MM/DD/YYYY'
+const TIME_FORMAT = 'h:mm A'
 
 const DATE_PARSE_FORMATS = [
-    "M/D/YYYY",
-    "MM/D/YYYY",
-    "M/DD/YYYY",
-    "MM/DD/YYYY",
-    "M/D/YY",
-    "MM/D/YY",
-    "M/DD/YY",
-    "MM/DD/YY",
-    "MM/DD",
-    "M/D",
-    "MM/D",
-    "M/DD",
+  'M/D/YYYY',
+  'MM/D/YYYY',
+  'M/DD/YYYY',
+  'MM/DD/YYYY',
+  'M/D/YY',
+  'MM/D/YY',
+  'M/DD/YY',
+  'MM/DD/YY',
+  'MM/DD',
+  'M/D',
+  'MM/D',
+  'M/DD',
 ]
 
-const TIME_PARSE_FORMATS = [
-    "H:m",
-    "H:mm",
-    "h:m a",
-    "h:mm a",
-    "h:ma",
-    "h:mma",
-    "h:m A",
-    "h:mm A",
-]
+const TIME_PARSE_FORMATS = ['H:m', 'H:mm', 'h:m a', 'h:mm a', 'h:ma', 'h:mma', 'h:m A', 'h:mm A']
 
 /**
  * Parses a date value from an input string or formats an existing date object.
@@ -37,8 +28,8 @@ const TIME_PARSE_FORMATS = [
  * @returns {string} The date formatted as "MM/DD/YYYY".
  */
 export function formatDate(dateValue) {
-    if (!dateValue) return dayjs().format(DATE_FORMAT)
-    return dayjs(dateValue).format(DATE_FORMAT)
+  if (!dateValue) return dayjs().format(DATE_FORMAT)
+  return dayjs(dateValue).format(DATE_FORMAT)
 }
 
 /**
@@ -47,13 +38,13 @@ export function formatDate(dateValue) {
  * @returns {string} The time formatted as "h:mm A".
  */
 export function formatTime(timeValue) {
-    if (!timeValue) {
-        return dayjs().format(TIME_FORMAT)
-    }
+  if (!timeValue) {
+    return dayjs().format(TIME_FORMAT)
+  }
 
-    const parsedTime = dayjs(timeValue, TIME_FORMAT)
+  const parsedTime = dayjs(timeValue, TIME_FORMAT)
 
-    return parsedTime.isValid() ? parsedTime.format(TIME_FORMAT) : dayjs().format(TIME_FORMAT)
+  return parsedTime.isValid() ? parsedTime.format(TIME_FORMAT) : dayjs().format(TIME_FORMAT)
 }
 
 /**
@@ -63,8 +54,8 @@ export function formatTime(timeValue) {
  * @returns {dayjs.Dayjs} A dayjs object.
  */
 export function createDate(dateString, daysToAdd = 0) {
-    let date = dateString ? dayjs(dateString) : dayjs().add(daysToAdd, "day")
-    return date
+  let date = dateString ? dayjs(dateString) : dayjs().add(daysToAdd, 'day')
+  return date
 }
 
 /**
@@ -73,9 +64,9 @@ export function createDate(dateString, daysToAdd = 0) {
  * @returns {dayjs.Dayjs | null} A valid dayjs object, or null if parsing fails.
  */
 export function parseDateInput(dateInput) {
-    return dayjs(dateInput, DATE_PARSE_FORMATS, true)
-    // const parsed = dayjs(dateInput, DATE_PARSE_FORMATS, true)
-    // return parsed.isValid() ? parsed : null
+  return dayjs(dateInput, DATE_PARSE_FORMATS, true)
+  // const parsed = dayjs(dateInput, DATE_PARSE_FORMATS, true)
+  // return parsed.isValid() ? parsed : null
 }
 
 /**
@@ -86,15 +77,11 @@ export function parseDateInput(dateInput) {
  * @returns {dayjs.Dayjs | null} The combined dayjs object or null if dateObj is null.
  */
 export function combineDateAndTime(dateObj, timeString) {
-    if (!dateObj) return null
-    if (!timeString) return dateObj.hour(0).minute(0).second(0).millisecond(0)
+  if (!dateObj) return null
+  if (!timeString) return dateObj.hour(0).minute(0).second(0).millisecond(0)
 
-    const time = dayjs(timeString, TIME_FORMAT)
-    return dateObj
-        .hour(time.hour())
-        .minute(time.minute())
-        .second(0)
-        .millisecond(0)
+  const time = dayjs(timeString, TIME_FORMAT)
+  return dateObj.hour(time.hour()).minute(time.minute()).second(0).millisecond(0)
 }
 
 /**
@@ -107,19 +94,19 @@ export function combineDateAndTime(dateObj, timeString) {
  * @returns {string} The normalized date string, or the original dateInput if invalid.
  */
 export function normalizeDateInput(dateInput) {
-    if (!dateInput) {
-        return dayjs().format(DATE_FORMAT)
-    }
-
-    const trimmedDate = dateInput.trim()
-
-    let parsed = dayjs(trimmedDate, DATE_PARSE_FORMATS, true)
-
-    if (parsed.isValid()) {
-        return parsed.format(DATE_FORMAT)
-    }
-
+  if (!dateInput) {
     return dayjs().format(DATE_FORMAT)
+  }
+
+  const trimmedDate = dateInput.trim()
+
+  let parsed = dayjs(trimmedDate, DATE_PARSE_FORMATS, true)
+
+  if (parsed.isValid()) {
+    return parsed.format(DATE_FORMAT)
+  }
+
+  return dayjs().format(DATE_FORMAT)
 }
 
 /**
@@ -132,17 +119,17 @@ export function normalizeDateInput(dateInput) {
  * @returns {string} The normalized time string, or the original timeString if invalid.
  */
 export function normalizeTimeInput(timeString) {
-    if (!timeString) return dayjs().format(TIME_FORMAT)
+  if (!timeString) return dayjs().format(TIME_FORMAT)
 
-    const trimmedTime = timeString.trim().toLowerCase()
+  const trimmedTime = timeString.trim().toLowerCase()
 
-    let parsed
+  let parsed
 
-    parsed = dayjs(trimmedTime, TIME_PARSE_FORMATS, true)
+  parsed = dayjs(trimmedTime, TIME_PARSE_FORMATS, true)
 
-    if (parsed.isValid()) {
-        return parsed.format("h:mm A")
-    }
+  if (parsed.isValid()) {
+    return parsed.format('h:mm A')
+  }
 
-    return dayjs().format(TIME_FORMAT)
+  return dayjs().format(TIME_FORMAT)
 }

@@ -1,244 +1,247 @@
 .task-preview {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  background-color: #fff;
+  box-shadow:
+    0px 1px 1px #1e1f2140,
+    0px 0px 1px #1e1f214f;
+  border-radius: 0.5rem;
+
+  &.task-preview-ghost > * {
+    visibility: visible;
+  }
+
+  &.task-preview-placeholder > * {
+    visibility: hidden;
+  }
+
+  & .task-name {
     display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-    background-color: #fff;
-    box-shadow: 0px 1px 1px #1E1F2140, 0px 0px 1px #1E1F214F;
-    border-radius: 0.5rem;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
 
-    &.task-preview-ghost>* {
-        visibility: visible;
+  & .task-state {
+    display: flex;
+    height: 20px;
+    transition: opacity 0.3s ease-in;
+    opacity: 0;
+
+    & > span {
+      display: flex;
+      align-items: center;
     }
+  }
 
-    &.task-preview-placeholder>* {
-        visibility: hidden;
-    }
+  & .task-name-text {
+    width: 100%;
+    transform: translateX(-20px);
+    transition: all 0.3s ease-in;
+  }
 
-    & .task-name {
-        display: flex;
-        flex-flow: row;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 0.5rem;
-    }
+  .task-state,
+  .task-name-text {
+    transition:
+      opacity 0.3s ease-in,
+      transform 0.3s ease-in;
+  }
 
-    & .task-state {
-        display: flex;
-        height: 20px;
-        transition: opacity 0.3s ease-in;
-        opacity: 0;
-
-        &>span {
-            display: flex;
-            align-items: center;
-        }
-    }
-
-    & .task-name-text {
-        width: 100%;
-        transform: translateX(-20px);
-        transition: all 0.3s ease-in;
-    }
-
-    .task-state,
+  &:hover,
+  &.task-preview-closed {
     .task-name-text {
-        transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+      width: calc(100% - 20px);
+      transform: translateX(0px);
     }
 
-    &:hover,
-    &.task-preview-closed {
-        .task-name-text {
-            width: calc(100% - 20px);
-            transform: translateX(0px);
-        }
+    .task-state {
+      opacity: 1;
+    }
+  }
 
-        .task-state {
-            opacity: 1;
-        }
+  @media (hover: none) {
+    .task-name-text {
+      width: calc(100% - 20px);
+      transform: translateX(0px);
     }
 
-    @media (hover: none) {
-        .task-name-text {
-            width: calc(100% - 20px);
-            transform: translateX(0px);
+    .task-state {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      outline: #4688ec auto 2px;
+      outline-offset: 2px;
+    }
+  }
+
+  &.task-preview-closed {
+    .task-name-text {
+      opacity: 0.5;
+    }
+  }
+
+  & .cover-img {
+    width: 100%;
+    background-color: #e4e4e4;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    object-fit: cover;
+    overflow: hidden;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  & .cover-color {
+    width: 100%;
+    height: 36px;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  & .task-wrapper {
+    position: relative;
+    min-height: 36px;
+    border-color: #ffffff;
+    padding-block-end: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    scroll-margin: 0.5rem;
+
+    & .task-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 0.75rem 0.75rem 0;
+    }
+
+    & .task-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+
+      & .task-label {
+        width: 40px;
+        height: 8px;
+        margin-block-end: 0.5rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+      }
+    }
+
+    .task-badges {
+      display: flex;
+      flex-direction: column;
+      max-width: 100%;
+      padding-inline: 0.75rem;
+      margin-block-start: 0.25rem;
+
+      & .badges-wrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 0.25rem;
+      }
+
+      & .badge {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        width: fit-content;
+        max-width: 100%;
+        height: 24px;
+        margin-block-end: 0.25rem;
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        color: var(--text-subtle);
+        font-size: 12px;
+        cursor: pointer;
+
+        &.badge-due-soon {
+          background-color: var(--background-warning-bold);
         }
 
-        .task-state {
-            opacity: 1;
+        &.badge-overdue {
+          background-color: var(--background-accent-red);
+          color: var(--text-accent-red);
         }
+
+        &.badge-closed {
+          background-color: var(--background-success-bold);
+          color: #ffffff;
+        }
+      }
+
+      & .members-badges-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: right;
+        margin-inline-end: -4px;
+        float: right;
+        gap: 0.25rem;
+
+        & .member-preview {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+
+          &:hover {
+            background-color: #dddee1;
+            background-blend-mode: multiply;
+          }
+        }
+      }
+    }
+
+    & .task-btn {
+      @media (hover: hover) {
+        display: none;
+
+        &:hover {
+          background-color: #f0f1f2;
+        }
+      }
+
+      position: absolute;
+      height: 26px;
+      margin: 0 0.125px;
+      /* 2px */
+      padding: 0.25rem 0.375rem;
+      /* 6px */
+      border-radius: 50%;
+      background-color: #fff;
+      cursor: pointer;
     }
 
     @media (hover: hover) {
-        &:hover {
-            outline: #4688EC auto 2px;
-            outline-offset: 2px;
-        }
-    }
-
-    &.task-preview-closed {
-
-        .task-name-text {
-            opacity: 0.5;
-        }
-    }
-
-    & .cover-img {
-        width: 100%;
-        background-color: #e4e4e4;
-        border-top-left-radius: 0.5rem;
-        border-top-right-radius: 0.5rem;
-        object-fit: cover;
-        overflow: hidden;
-
-        &>img {
-            width: 100%;
-        }
-    }
-
-    & .cover-color {
-        width: 100%;
-        height: 36px;
-        border-top-left-radius: 0.5rem;
-        border-top-right-radius: 0.5rem;
-    }
-
-    & .task-wrapper {
-        position: relative;
-        min-height: 36px;
-        border-color: #ffffff;
-        padding-block-end: 0.5rem;
-        font-size: 0.875rem;
-        cursor: pointer;
-        scroll-margin: 0.5rem;
-
-        & .task-header {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            padding: 0.75rem 0.75rem 0;
-        }
-
-        & .task-labels {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.25rem;
-
-            & .task-label {
-                width: 40px;
-                height: 8px;
-                margin-block-end: 0.5rem;
-                border-radius: 0.25rem;
-                cursor: pointer;
-            }
-        }
-
-        .task-badges {
-            display: flex;
-            flex-direction: column;
-            max-width: 100%;
-            padding-inline: 0.75rem;
-            margin-block-start: 0.25rem;
-
-            & .badges-wrapper {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                column-gap: 0.25rem;
-            }
-
-            & .badge {
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.25rem;
-                width: fit-content;
-                max-width: 100%;
-                height: 24px;
-                margin-block-end: 0.25rem;
-                padding: 0.125rem 0.25rem;
-                border-radius: 0.25rem;
-                color: var(--text-subtle);
-                font-size: 12px;
-                cursor: pointer;
-
-                &.badge-due-soon {
-                    background-color: var(--background-warning-bold);
-                }
-
-                &.badge-overdue {
-                    background-color: var(--background-accent-red);
-                    color: var(--text-accent-red);
-                }
-
-                &.badge-closed {
-                    background-color: var(--background-success-bold);
-                    color: #ffffff;
-                }
-            }
-
-            & .members-badges-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: right;
-                margin-inline-end: -4px;
-                float: right;
-                gap: 0.25rem;
-
-                & .member-preview {
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 50%;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    background-position: center;
-
-                    &:hover {
-                        background-color: #DDDEE1;
-                        background-blend-mode: multiply;
-                    }
-                }
-            }
-        }
-
+      &:hover {
         & .task-btn {
-            @media(hover: hover) {
-                display: none;
-
-                &:hover {
-                    background-color: #F0F1F2;
-                }
-            }
-
-            position: absolute;
-            height: 26px;
-            margin: 0 0.125px;
-            /* 2px */
-            padding: 0.25rem 0.375rem;
-            /* 6px */
-            border-radius: 50%;
-            background-color: #fff;
-            cursor: pointer;
+          display: flex;
+          align-items: center;
         }
-
-        @media(hover: hover) {
-            &:hover {
-                & .task-btn {
-                    display: flex;
-                    align-items: center;
-                }
-            }
-        }
-
-        & .edit-btn {
-            top: 0.25rem;
-            right: 0.25rem;
-        }
-
-        & .archive-btn {
-            top: 0.25rem;
-            right: 2.2rem;
-        }
+      }
     }
+
+    & .edit-btn {
+      top: 0.25rem;
+      right: 0.25rem;
+    }
+
+    & .archive-btn {
+      top: 0.25rem;
+      right: 2.2rem;
+    }
+  }
 }

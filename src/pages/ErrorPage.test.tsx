@@ -13,7 +13,7 @@ describe('ErrorPage', () => {
 
   test('renders "forbidden" message for type=forbidden', () => {
     // Arrange + Act
-    render(<ErrorPage type='forbidden' />)
+    render(<ErrorPage type="forbidden" />)
 
     // Assert
     expect(screen.getByRole('heading', { name: /access denied/i })).toBeInTheDocument()
@@ -22,7 +22,7 @@ describe('ErrorPage', () => {
 
   test('renders "server error" message for type=server-error', () => {
     // Arrange + Act
-    render(<ErrorPage type='server-error' />)
+    render(<ErrorPage type="server-error" />)
 
     // Assert
     expect(screen.getByRole('heading', { name: /server error/i })).toBeInTheDocument()

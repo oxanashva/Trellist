@@ -24,10 +24,13 @@ function ApiTrigger({ endpoint }: { endpoint: string }) {
   const [status, setStatus] = useState<'idle' | 'ok' | 'error'>('idle')
 
   useEffect(() => {
-    httpService.get(endpoint).then(() => setStatus('ok')).catch(() => setStatus('error'))
+    httpService
+      .get(endpoint)
+      .then(() => setStatus('ok'))
+      .catch(() => setStatus('error'))
   }, [endpoint])
 
-  return <span data-testid='api-status'>{status}</span>
+  return <span data-testid="api-status">{status}</span>
 }
 
 function TestApp({ endpoint }: { endpoint: string }) {
@@ -55,7 +58,7 @@ describe('AxiosInterceptor', () => {
     test('navigates to /auth/login', async () => {
       server.use(http.get('/api/board', () => new HttpResponse(null, { status: 401 })))
 
-      render(<TestApp endpoint='board' />)
+      render(<TestApp endpoint="board" />)
 
       await waitFor(() => {
         expect(mockNavigate).toHaveBeenCalledWith('/auth/login')
@@ -66,7 +69,7 @@ describe('AxiosInterceptor', () => {
       sessionStorage.setItem('loggedinUser', JSON.stringify({ _id: 'u1' }))
       server.use(http.get('/api/board', () => new HttpResponse(null, { status: 401 })))
 
-      render(<TestApp endpoint='board' />)
+      render(<TestApp endpoint="board" />)
       await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/auth/login'))
 
       expect(sessionStorage.getItem('loggedinUser')).toBeNull()
@@ -76,7 +79,7 @@ describe('AxiosInterceptor', () => {
       localStorage.setItem('cachedData', 'some-value')
       server.use(http.get('/api/board', () => new HttpResponse(null, { status: 401 })))
 
-      render(<TestApp endpoint='board' />)
+      render(<TestApp endpoint="board" />)
       await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/auth/login'))
 
       expect(localStorage.getItem('cachedData')).toBeNull()
@@ -84,8 +87,10 @@ describe('AxiosInterceptor', () => {
 
     test('resets user in Redux store', async () => {
       server.use(http.get('/api/board', () => new HttpResponse(null, { status: 401 })))
-      const { store } = render(<TestApp endpoint='board' />, {
-        preloadedState: { userModule: { user: { _id: 'u1', fullname: 'Test User' }, users: [], watchedUser: null } }
+      const { store } = render(<TestApp endpoint="board" />, {
+        preloadedState: {
+          userModule: { user: { _id: 'u1', fullname: 'Test User' }, users: [], watchedUser: null },
+        },
       })
 
       await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/auth/login'))
@@ -100,7 +105,7 @@ describe('AxiosInterceptor', () => {
     test('does NOT navigate away', async () => {
       server.use(http.get('/api/board', () => new HttpResponse(null, { status: 403 })))
 
-      render(<TestApp endpoint='board' />)
+      render(<TestApp endpoint="board" />)
 
       await waitFor(() => {
         expect(screen.getByTestId('api-status')).toHaveTextContent('error')
@@ -116,7 +121,7 @@ describe('AxiosInterceptor', () => {
     test('navigates to /workspace when a board endpoint returns 404', async () => {
       server.use(http.get('/api/board/b123', () => new HttpResponse(null, { status: 404 })))
 
-      render(<TestApp endpoint='board/b123' />)
+      render(<TestApp endpoint="board/b123" />)
 
       await waitFor(() => {
         expect(mockNavigate).toHaveBeenCalledWith('/workspace')
@@ -125,15 +130,15 @@ describe('AxiosInterceptor', () => {
 
     test('clears board from Redux store when board 404 occurs', async () => {
       server.use(http.get('/api/board/b123', () => new HttpResponse(null, { status: 404 })))
-      const { store } = render(<TestApp endpoint='board/b123' />, {
+      const { store } = render(<TestApp endpoint="board/b123" />, {
         preloadedState: {
           boardModule: {
             board: { _id: 'b123', name: 'Old Board' },
             boards: [],
             boardBackground: {},
-            isLoading: false
-          }
-        }
+            isLoading: false,
+          },
+        },
       })
 
       await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/workspace'))
@@ -144,7 +149,7 @@ describe('AxiosInterceptor', () => {
     test('navigates to /404 when a non-board endpoint returns 404', async () => {
       server.use(http.get('/api/user/u999', () => new HttpResponse(null, { status: 404 })))
 
-      render(<TestApp endpoint='user/u999' />)
+      render(<TestApp endpoint="user/u999" />)
 
       await waitFor(() => {
         expect(mockNavigate).toHaveBeenCalledWith('/404')
@@ -158,7 +163,7 @@ describe('AxiosInterceptor', () => {
     test('navigates to /error', async () => {
       server.use(http.get('/api/board', () => new HttpResponse(null, { status: 500 })))
 
-      render(<TestApp endpoint='board' />)
+      render(<TestApp endpoint="board" />)
 
       await waitFor(() => {
         expect(mockNavigate).toHaveBeenCalledWith('/error')

@@ -1,15 +1,14 @@
-import { useEffect, useRef } from 'react';
-
+import { useEffect, useRef } from 'react'
 
 export const useFocusOnStateChange = (shouldFocus) => {
-    const elementRef = useRef(null)
+  const elementRef = useRef(null)
 
-    useEffect(() => {
-        if (shouldFocus && elementRef.current) {
-            elementRef.current.select()
-            elementRef.current.focus()
-        }
-    }, [shouldFocus])
+  useEffect(() => {
+    if (shouldFocus && elementRef.current) {
+      elementRef.current.select()
+      elementRef.current.focus()
+    }
+  }, [shouldFocus])
 
-    return elementRef;
+  return elementRef
 }

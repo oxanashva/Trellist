@@ -4,12 +4,13 @@ import { boardReducer } from './reducers/board.reducer'
 import { userReducer } from './reducers/user.reducer'
 
 export const rootReducer = combineReducers({
-    boardModule: boardReducer,
-    userModule: userReducer,
+  boardModule: boardReducer,
+  userModule: userReducer,
 })
 
-
-const middleware = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : undefined
+const middleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+  : undefined
 export const store = createStore(rootReducer, middleware)
 
 // For debug:

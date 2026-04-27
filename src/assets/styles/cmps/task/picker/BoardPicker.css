@@ -1,191 +1,191 @@
 .board-picker {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden;
+
+  & .previous-btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  & .board-editor {
+    padding-inline: 0.75rem;
+    padding-block-end: 0.75rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #e6e6e6;
+      border-radius: 3px;
+      border: 1px solid transparent;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    & > ul {
+      margin: 0;
+    }
+  }
+
+  & .change-bg-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    height: 100%;
+    padding-inline: 0.75rem;
+    padding-block-end: 0.75rem;
+    margin: 0;
+  }
+
+  & .change-bg-btn {
+    width: 100%;
+    height: 90px;
+    padding: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  & .change-bg-loader {
+    display: grid;
+    place-items: center;
+    height: 90px;
+  }
+
+  & .colors-btn {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  & .change-bg-btn-name {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 20px;
+    margin-block-start: 0.5rem;
+  }
+
+  & .preview-uploaded-imgs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    padding-inline: 0.75rem;
+    padding-block-end: 0.75rem;
+  }
+
+  & .uploaded-img-wrapper {
+    height: 90px;
+    padding-inline: 0.25rem;
+    margin-inline: -0.25rem;
+    border-radius: 0.25rem;
+  }
+
+  & .preview-uploaded-img {
+    height: 90px;
+    border-radius: 0.25rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+
+    &.selected {
+      border: 2px solid var(--primary);
+    }
+  }
+
+  & .action-btn {
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 0.875rem;
+    font-weight: 400;
+
+    & .action-btn-icon {
+      display: flex;
+      align-items: center;
+      margin-inline-end: 1rem;
+    }
+
+    & .action-btn-img {
+      width: 20px;
+      height: 20px;
+      border-radius: 0.25rem;
+      margin-inline-end: 0.75rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      overflow: hidden;
+    }
+
+    &:hover {
+      background-color: var(--background-neutral);
+    }
+  }
+
+  & .bg-color-selection {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+
+    & > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  & .gradients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  & .change-color-btn {
+    margin-block-end: 0;
+
+    & > svg {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  & .confirm-content {
     display: flex;
     flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+    gap: 0.5rem;
     height: 100%;
-    overflow-y: hidden;
+  }
 
-    & .previous-btn {
-        position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
+  & .confirm-text {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-block: 1rem;
+
+    & > span {
+      display: block;
     }
-
-    & .board-editor {
-        padding-inline: 0.75rem;
-        padding-block-end: 0.75rem;
-        overflow-y: auto;
-
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        &::-webkit-scrollbar {
-            width: 0.5rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #e6e6e6;
-            border-radius: 3px;
-            border: 1px solid transparent;
-        }
-
-        &::-webkit-scrollbar-button {
-            display: none;
-        }
-
-        &>ul {
-            margin: 0;
-        }
-    }
-
-    & .change-bg-actions {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        height: 100%;
-        padding-inline: 0.75rem;
-        padding-block-end: 0.75rem;
-        margin: 0;
-    }
-
-    & .change-bg-btn {
-        width: 100%;
-        height: 90px;
-        padding: 0;
-        border-radius: 0.5rem;
-        overflow: hidden;
-
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-
-    & .change-bg-loader {
-        display: grid;
-        place-items: center;
-        height: 90px;
-    }
-
-    & .colors-btn {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    & .change-bg-btn-name {
-        display: block;
-        text-align: center;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 20px;
-        margin-block-start: 0.5rem;
-    }
-
-    & .preview-uploaded-imgs {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-        padding-inline: 0.75rem;
-        padding-block-end: 0.75rem;
-    }
-
-    & .uploaded-img-wrapper {
-        height: 90px;
-        padding-inline: 0.25rem;
-        margin-inline: -0.25rem;
-        border-radius: 0.25rem;
-    }
-
-    & .preview-uploaded-img {
-        height: 90px;
-        border-radius: 0.25rem;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        overflow: hidden;
-
-        &.selected {
-            border: 2px solid var(--primary);
-        }
-    }
-
-    & .action-btn {
-        width: 100%;
-        justify-content: flex-start;
-        font-size: 0.875rem;
-        font-weight: 400;
-
-        & .action-btn-icon {
-            display: flex;
-            align-items: center;
-            margin-inline-end: 1rem;
-        }
-
-        & .action-btn-img {
-            width: 20px;
-            height: 20px;
-            border-radius: 0.25rem;
-            margin-inline-end: 0.75rem;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center center;
-            overflow: hidden;
-        }
-
-        &:hover {
-            background-color: var(--background-neutral);
-        }
-    }
-
-    & .bg-color-selection {
-        position: relative;
-        width: 100%;
-        height: 20px;
-        border-radius: 0.25rem;
-        overflow: hidden;
-
-        &>img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
-    & .gradients-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        margin: 0;
-    }
-
-    & .change-color-btn {
-        margin-block-end: 0;
-
-        &>svg {
-            width: 100%;
-            object-fit: cover;
-        }
-    }
-
-    & .confirm-content {
-        display: flex;
-        flex-direction: column;
-        align-items: space-between;
-        justify-content: space-between;
-        gap: 0.5rem;
-        height: 100%;
-    }
-
-    & .confirm-text {
-        font-size: 0.875rem;
-        font-weight: 400;
-        margin-block: 1rem;
-
-        &>span {
-            display: block;
-        }
-    }
+  }
 }

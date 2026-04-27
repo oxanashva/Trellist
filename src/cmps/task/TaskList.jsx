@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 
@@ -9,79 +8,85 @@ import { useFocusOnStateChange } from '../../customHooks/useFocusOnStateChange'
 import { TaskPreview } from './TaskPreview'
 import { ItemCreator } from '../ItemCreator'
 
-export function TaskList({ group, tasks, actions, members, onAddTask, isAddingTask, setIsAddingTask }) {
-    const { boardId } = useParams()
-    const [taskName, setTaskName] = useState('')
-    const textareaRef = useFocusOnStateChange(isAddingTask)
-    const scrollRef = useRef(null)
+export function TaskList({
+  group,
+  tasks,
+  actions,
+  members,
+  onAddTask,
+  isAddingTask,
+  setIsAddingTask,
+}) {
+  const { boardId } = useParams()
+  const [taskName, setTaskName] = useState('')
+  const textareaRef = useFocusOnStateChange(isAddingTask)
+  const scrollRef = useRef(null)
 
-    useEffect(() => {
-        if (isAddingTask) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight
-        }
-    }, [isAddingTask])
-
-    function handleInput({ target }) {
-        const { name, value } = target
-
-        if (name === 'taskName') {
-            setTaskName(value)
-        }
+  useEffect(() => {
+    if (isAddingTask) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
+  }, [isAddingTask])
 
-    function addTask(e) {
-        e.preventDefault()
-        if (!taskName) return
+  function handleInput({ target }) {
+    const { name, value } = target
 
-        const newTask = {
-            _id: makeId(),
-            idBoard: boardId,
-            idGroup: group._id,
-            name: taskName
-        }
-        onAddTask(boardId, newTask)
-        setTaskName('')
+    if (name === 'taskName') {
+      setTaskName(value)
     }
+  }
 
-    const taskIds = tasks?.map(task => task._id) || []
+  function addTask(e) {
+    e.preventDefault()
+    if (!taskName) return
 
-    return (
-        <SortableContext
-            items={taskIds}
-            strategy={verticalListSortingStrategy}
-            id={group._id} // Assign the Group ID as the container ID for correct task placement
-        >
-            <ol ref={scrollRef} className='task-list'>
-                {tasks?.map(task => {
-                    const taskActions = actions?.filter(action => {
-                        return action.data.idTask === task._id
-                    })
+    const newTask = {
+      _id: makeId(),
+      idBoard: boardId,
+      idGroup: group._id,
+      name: taskName,
+    }
+    onAddTask(boardId, newTask)
+    setTaskName('')
+  }
 
-                    return (
-                        <TaskPreview
-                            key={task._id}
-                            id={task._id}
-                            task={task}
-                            members={members}
-                            taskActions={taskActions}
-                        />
-                    )
-                }
+  const taskIds = tasks?.map((task) => task._id) || []
 
-                )}
-                {isAddingTask &&
-                    <ItemCreator
-                        mode="task"
-                        onSubmit={addTask}
-                        textareaRef={textareaRef}
-                        value={taskName}
-                        onChange={handleInput}
-                        placeholder="Enter a title or paste a link"
-                        buttonText="Add task"
-                        onCancel={() => setIsAddingTask(false)}
-                    />
-                }
-            </ol>
-        </SortableContext>
-    )
+  return (
+    <SortableContext
+      items={taskIds}
+      strategy={verticalListSortingStrategy}
+      id={group._id} // Assign the Group ID as the container ID for correct task placement
+    >
+      <ol ref={scrollRef} className="task-list">
+        {tasks?.map((task) => {
+          const taskActions = actions?.filter((action) => {
+            return action.data.idTask === task._id
+          })
+
+          return (
+            <TaskPreview
+              key={task._id}
+              id={task._id}
+              task={task}
+              members={members}
+              taskActions={taskActions}
+            />
+          )
+        })}
+        {isAddingTask && (
+          <ItemCreator
+            mode="task"
+            onSubmit={addTask}
+            textareaRef={textareaRef}
+            value={taskName}
+            onChange={handleInput}
+            placeholder="Enter a title or paste a link"
+            buttonText="Add task"
+            onCancel={() => setIsAddingTask(false)}
+          />
+        )}
+      </ol>
+    </SortableContext>
+  )
 }

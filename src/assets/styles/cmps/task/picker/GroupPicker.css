@@ -1,42 +1,42 @@
 .action-picker {
-    overflow-y: hidden;
+  overflow-y: hidden;
 
-    & .action-editor {
-        padding-inline: 0.75rem;
-        padding-block-end: 0.75rem;
-        overflow-y: auto;
+  & .action-editor {
+    padding-inline: 0.75rem;
+    padding-block-end: 0.75rem;
+    overflow-y: auto;
 
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        &::-webkit-scrollbar {
-            width: 0.5rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #e6e6e6;
-            border-radius: 3px;
-            border: 1px solid transparent;
-        }
-
-        &::-webkit-scrollbar-button {
-            display: none;
-        }
+    &::-webkit-scrollbar-track {
+      background: transparent;
     }
 
-    &>ul {
-        margin: 0;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
     }
 
-    & .action-btn {
-        width: 100%;
-        justify-content: flex-start;
-        font-size: 0.875rem;
-        font-weight: 400;
-
-        &:hover {
-            background-color: var(--background-neutral);
-        }
+    &::-webkit-scrollbar-thumb {
+      background-color: #e6e6e6;
+      border-radius: 3px;
+      border: 1px solid transparent;
     }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+  }
+
+  & > ul {
+    margin: 0;
+  }
+
+  & .action-btn {
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 0.875rem;
+    font-weight: 400;
+
+    &:hover {
+      background-color: var(--background-neutral);
+    }
+  }
 }
