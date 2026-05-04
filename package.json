@@ -1,59 +1,59 @@
 {
-    "name": "trellis-frontend",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "dev:local": "vite --mode devlocal",
-        "build": "vite build",
-        "lint": "eslint .",
-        "preview": "vite preview",
-        "test": "vitest",
-        "format": "prettier --write src/"
+  "name": "trellis-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "vite --mode devlocal",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.4",
+    "@mui/x-date-pickers": "^8.14.1",
+    "axios": "^1.15.2",
+    "dayjs": "^1.11.18",
+    "fast-average-color": "^9.5.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-error-boundary": "^6.1.1",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.9.4",
+    "react-router-dom": "^7.9.4",
+    "redux": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react-swc": "^4.3.0",
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^16.4.0",
+    "jsdom": "^29.1.0",
+    "prettier": "^3.8.3",
+    "vite": "^8.0.10",
+    "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^4.1.5"
+  },
+  "overrides": {
+    "flatted": "^3.4.2",
+    "follow-redirects": "^1.16.0",
+    "cosmiconfig": {
+      "yaml": "^1.10.3"
     },
-    "dependencies": {
-        "@dnd-kit/core": "^6.3.1",
-        "@dnd-kit/sortable": "^10.0.0",
-        "@emotion/react": "^11.14.0",
-        "@emotion/styled": "^11.14.1",
-        "@mui/material": "^7.3.4",
-        "@mui/x-date-pickers": "^8.14.1",
-        "axios": "^1.15.2",
-        "dayjs": "^1.11.18",
-        "fast-average-color": "^9.5.0",
-        "react": "^19.1.1",
-        "react-dom": "^19.1.1",
-        "react-error-boundary": "^6.1.1",
-        "react-redux": "^9.2.0",
-        "react-router": "^7.9.4",
-        "react-router-dom": "^7.9.4",
-        "redux": "^5.0.1"
-    },
-    "devDependencies": {
-        "@eslint/js": "^10.0.1",
-        "@types/react": "^19.1.16",
-        "@types/react-dom": "^19.1.9",
-        "@vitejs/plugin-react-swc": "^4.3.0",
-        "eslint": "^10.2.1",
-        "eslint-config-prettier": "^10.1.8",
-        "eslint-plugin-react-hooks": "^7.1.1",
-        "eslint-plugin-react-refresh": "^0.5.2",
-        "globals": "^16.4.0",
-        "jsdom": "^29.1.0",
-        "prettier": "^3.8.3",
-        "vite": "^8.0.10",
-        "vite-plugin-svgr": "^5.2.0",
-        "vitest": "^4.1.5"
-    },
-    "overrides": {
-        "flatted": "^3.4.2",
-        "follow-redirects": "^1.16.0",
-        "cosmiconfig": {
-            "yaml": "^1.10.3"
-        },
-        "vite": {
-            "yaml": "^2.8.3"
-        }
+    "vite": {
+      "yaml": "^2.8.3"
     }
+  }
 }
