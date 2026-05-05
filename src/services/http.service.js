@@ -1,47 +1,65 @@
 import Axios from 'axios'
+import { showErrorMsg } from './event-bus.service'
 
-// const BASE_URL = import.meta.env.DEV
-//     ? '/api/'
-//     : '//localhost:3030/api/'
+const BASE_URL = import.meta.env.VITE_API_URL || '/api/'
 
-const BASE_URL = import.meta.env.DEV
-    ? '/api/'
-    : 'https://trellis-1a1g.onrender.com/api/'
+export const axiosInstance = Axios.create({ baseURL: BASE_URL, withCredentials: true })
 
+// ---------------------------------------------------------------------------
+// Module-level refs updated by AxiosInterceptor synchronously on every render.
+// Registering the interceptor here (not inside a useEffect) guarantees it is
+// in place before any child component fires an API call.
+// ---------------------------------------------------------------------------
+let _navigate = null
+let _dispatch = null
 
-const axios = Axios.create({ withCredentials: true })
+export function registerInterceptorCallbacks(navigate, dispatch) {
+    _navigate = navigate
+    _dispatch = dispatch
+}
+
+axiosInstance.interceptors.response.use(
+    (res) => res.data,
+    (err) => {
+        const status = err.response?.status
+        const url = err.config?.url ?? ''
+
+        if (status === 401) {
+            sessionStorage.clear()
+            localStorage.clear()
+            _dispatch?.({ type: 'SET_USER', user: null })
+            _dispatch?.({ type: 'SET_BOARD', board: null })
+            _navigate?.('/auth/login')
+        } else if (status === 403) {
+            showErrorMsg("You don't have permission to do that")
+        } else if (status === 404) {
+            if (url.includes('board/')) {
+                _dispatch?.({ type: 'SET_BOARD', board: null })
+                showErrorMsg('Board not found')
+                _navigate?.('/workspace')
+            } else {
+                _navigate?.('/404')
+            }
+        } else if (status === 500) {
+            showErrorMsg('Server error, please try again')
+            _navigate?.('/error')
+        }
+
+        return Promise.reject(err)
+    }
+)
 
 export const httpService = {
     get(endpoint, data) {
-        return ajax(endpoint, 'GET', data)
+        return axiosInstance.get(endpoint, { params: data })
     },
     post(endpoint, data) {
-        return ajax(endpoint, 'POST', data)
+        return axiosInstance.post(endpoint, data)
     },
     put(endpoint, data) {
-        return ajax(endpoint, 'PUT', data)
+        return axiosInstance.put(endpoint, data)
     },
     delete(endpoint, data) {
-        return ajax(endpoint, 'DELETE', data)
-    }
-}
-
-async function ajax(endpoint, method = 'GET', data = null) {
-    const url = `${BASE_URL}${endpoint}`
-    const params = (method === 'GET') ? data : null
-
-    const options = { url, method, data, params }
-
-    try {
-        const res = await axios(options)
-        return res.data
-    } catch (err) {
-        console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: `, data)
-        console.dir(err)
-        if (err.response && err.response.status === 401) {
-            sessionStorage.clear()
-            window.location.assign('/')
-        }
-        throw err
-    }
+        return axiosInstance.delete(endpoint, { data })
+    },
 }

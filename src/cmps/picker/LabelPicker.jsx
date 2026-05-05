@@ -1,4 +1,4 @@
-import { useState } from "react" // Removed useEffect as it's not needed for this logic
+import { useState } from "react"
 import { labelsColorsMap, makeId } from "../../services/util.service"
 import ShevronLeft from '../../assets/images/icons/shevron-left.svg?react'
 import PenIcon from "../../assets/images/icons/pen.svg?react"

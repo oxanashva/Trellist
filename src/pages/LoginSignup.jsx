@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { userService } from '../services/user'
 import { login, signup } from '../store/actions/user.actions'
 import { ImgUploader } from '../cmps/ImgUploader'
+import { showErrorMsg } from '../services/event-bus.service'
 
 export function LoginSignup() {
     return (
@@ -14,7 +15,7 @@ export function LoginSignup() {
                 <NavLink to="login">Login</NavLink>
                 <NavLink to="signup">Signup</NavLink>
             </nav>
-            <Outlet/>
+            <Outlet />
         </div>
     )
 }
@@ -26,7 +27,11 @@ export function Login() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        loadUsers()
+        try {
+            loadUsers()
+        } catch (err) {
+            showErrorMsg('Cannot load users')
+        }
     }, [])
 
     async function loadUsers() {
@@ -47,15 +52,15 @@ export function Login() {
         const value = ev.target.value
         setCredentials({ ...credentials, [field]: value })
     }
-    
+
     return (
         <form className="login-form" onSubmit={onLogin}>
             <select
                 name="username"
                 value={credentials.username}
                 onChange={handleChange}>
-                    <option value="">Select User</option>
-                    {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
+                <option value="">Select User</option>
+                {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
             </select>
             <button>Login</button>
         </form>
@@ -77,7 +82,7 @@ export function Signup() {
         const value = ev.target.value
         setCredentials({ ...credentials, [field]: value })
     }
-    
+
     async function onSignup(ev = null) {
         if (ev) ev.preventDefault()
 

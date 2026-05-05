@@ -22,6 +22,7 @@ import {
     SET_IS_LOADING,
     SET_BOARD_BACKGROUND
 } from '../reducers/board.reducer'
+import { logger } from '../../services/logger.service'
 
 // ------------------- Helpers -------------------
 
@@ -43,7 +44,7 @@ export async function loadBoards() {
         const boards = await boardService.query()
         store.dispatch(getCmdSetBoards(boards))
     } catch (err) {
-        console.log('Cannot load boards', err)
+        logger.error('Cannot load boards', err)
         throw err
     } finally {
         setIsLoading(false)
@@ -57,7 +58,7 @@ export async function loadBoard(boardId) {
         setBoardBackground(board.prefs)
         store.dispatch(getCmdSetBoard(board))
     } catch (err) {
-        console.log('Cannot load board', err)
+        logger.error('Cannot load board', err)
         throw err
     } finally {
         setIsLoading(false)
@@ -70,7 +71,7 @@ export async function addBoard(board) {
         store.dispatch(getCmdAddBoard(savedBoard))
         return savedBoard
     } catch (err) {
-        console.log('Cannot add board', err)
+        logger.error('Cannot add board', err)
         throw err
     }
 }
@@ -83,7 +84,7 @@ export async function updateBoard(board) {
         const savedBoard = await boardService.save(board)
         return savedBoard
     } catch (err) {
-        console.log('Cannot save board', err)
+        logger.error('Cannot save board', err)
         store.dispatch(getCmdUpdateBoard(prevBoard)) // revert
         throw err
     }
@@ -94,7 +95,7 @@ export async function removeBoard(boardId) {
         await boardService.remove(boardId)
         store.dispatch(getCmdRemoveBoard(boardId))
     } catch (err) {
-        console.log('Cannot remove board', err)
+        logger.error('Cannot remove board', err)
         throw err
     }
 }
@@ -108,7 +109,7 @@ export async function addBoardMsg(boardId, txt) {
         store.dispatch(getCmdAddBoardMsg(msg))
         return msg
     } catch (err) {
-        console.log('Cannot add board msg', err)
+        logger.error('Cannot add board msg', err)
         throw err
     }
 }
@@ -122,7 +123,7 @@ export async function addGroup(boardId, group) {
         store.dispatch(getCmdAddGroup(savedGroup))
         return savedGroup
     } catch (err) {
-        console.log('Cannot add group', err)
+        logger.error('Cannot add group', err)
         throw err
     }
 }
@@ -133,7 +134,7 @@ export async function updateGroup(boardId, group) {
         store.dispatch(getCmdUpdateGroup(savedGroup))
         return savedGroup
     } catch (err) {
-        console.log('Cannot update group', err)
+        logger.error('Cannot update group', err)
         throw err
     }
 }
@@ -143,7 +144,7 @@ export async function removeGroup(boardId, groupId) {
         await boardService.removeGroup(boardId, groupId)
         store.dispatch(getCmdRemoveGroup(groupId))
     } catch (err) {
-        console.log('Cannot remove group', err)
+        logger.error('Cannot remove group', err)
         throw err
     }
 }
@@ -156,7 +157,7 @@ export async function addTask(boardId, task) {
         store.dispatch(getCmdAddTask(savedTask))
         return savedTask
     } catch (err) {
-        console.log('Cannot add task', err)
+        logger.error('Cannot add task', err)
         throw err
     }
 }
@@ -167,7 +168,7 @@ export async function updateTask(boardId, taskId, fieldsToUpdate) {
         store.dispatch(getCmdUpdateTask(taskId, savedFields))
         return savedFields
     } catch (err) {
-        console.log('Cannot update task', err)
+        logger.error('Cannot update task', err)
         throw err
     }
 }
@@ -177,7 +178,7 @@ export async function removeTask(boardId, taskId) {
         await boardService.removeTask(boardId, taskId)
         store.dispatch(getCmdRemoveTask(taskId))
     } catch (err) {
-        console.log('Cannot remove task', err)
+        logger.error('Cannot remove task', err)
         throw err
     }
 }
@@ -190,7 +191,7 @@ export async function addAction(boardId, action) {
         store.dispatch(getCmdAddAction(savedAction))
         return savedAction
     } catch (err) {
-        console.log('Cannot add action', err)
+        logger.error('Cannot add action', err)
         throw err
     }
 }
@@ -201,7 +202,7 @@ export async function updateAction(boardId, action) {
         store.dispatch(getCmdUpdateAction(savedAction))
         return savedAction
     } catch (err) {
-        console.log('Cannot update action', err)
+        logger.error('Cannot update action', err)
         throw err
     }
 }
@@ -211,7 +212,7 @@ export async function removeAction(boardId, actionId) {
         await boardService.removeAction(boardId, actionId)
         store.dispatch(getCmdRemoveAction(actionId))
     } catch (err) {
-        console.log('Cannot remove action', err)
+        logger.error('Cannot remove action', err)
         throw err
     }
 }
@@ -224,7 +225,7 @@ export async function addLabel(boardId, label) {
         store.dispatch(getCmdAddLabel(savedLabel))
         return savedLabel
     } catch (err) {
-        console.log('Cannot add label', err)
+        logger.error('Cannot add label', err)
         throw err
     }
 }
@@ -235,7 +236,7 @@ export async function updateLabel(boardId, label) {
         store.dispatch(getCmdUpdateLabel(savedLabel))
         return savedLabel
     } catch (err) {
-        console.log('Cannot update label', err)
+        logger.error('Cannot update label', err)
         throw err
     }
 }
@@ -245,7 +246,7 @@ export async function removeLabel(boardId, labelId) {
         await boardService.removeLabel(boardId, labelId)
         store.dispatch(getCmdRemoveLabel(labelId))
     } catch (err) {
-        console.log('Cannot remove label', err)
+        logger.error('Cannot remove label', err)
         throw err
     }
 }

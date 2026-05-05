@@ -10,9 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+build
 *.local
-.env.development
-.env.production
+.env*
 
 # Editor directories and files
 .vscode/*
@@ -27,3 +27,9 @@ dist-ssr
 
 json
 board-data
+
+e2e-plans
+plan
+prompt
+session
+refactor

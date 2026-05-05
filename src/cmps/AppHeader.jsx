@@ -114,7 +114,7 @@ export function AppHeader() {
 							Log in
 						</NavLink>
 						<NavLink to="/auth/signup" className="signup-link">
-							Get Trellist for free
+							Get Trellis for free
 						</NavLink>
 					</div>
 				}
