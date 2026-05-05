@@ -1,18 +1,20 @@
-import Bubble from '../assets/images/gradients/bubble.svg?react'
-import Snow from '../assets/images/gradients/snow.svg?react'
-import Ocean from '../assets/images/gradients/ocean.svg?react'
-import Crystal from '../assets/images/gradients/crystal.svg?react'
-import Rainbow from '../assets/images/gradients/rainbow.svg?react'
-import Peach from '../assets/images/gradients/peach.svg?react'
-import Flower from '../assets/images/gradients/flower.svg?react'
-import Earth from '../assets/images/gradients/earth.svg?react'
-import Alien from '../assets/images/gradients/alien.svg?react'
-import Volcano from '../assets/images/gradients/volcano.svg?react'
+import Bubble from '@/assets/images/gradients/bubble.svg?react'
+import Snow from '@/assets/images/gradients/snow.svg?react'
+import Ocean from '@/assets/images/gradients/ocean.svg?react'
+import Crystal from '@/assets/images/gradients/crystal.svg?react'
+import Rainbow from '@/assets/images/gradients/rainbow.svg?react'
+import Peach from '@/assets/images/gradients/peach.svg?react'
+import Flower from '@/assets/images/gradients/flower.svg?react'
+import Earth from '@/assets/images/gradients/earth.svg?react'
+import Alien from '@/assets/images/gradients/alien.svg?react'
+import Volcano from '@/assets/images/gradients/volcano.svg?react'
 
 import { FastAverageColor } from 'fast-average-color'
+import type { Label } from '@/types/models'
+
 const fac = new FastAverageColor()
 
-export function makeId(length = 6) {
+export function makeId(length = 6): string {
   var txt = ''
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -23,7 +25,7 @@ export function makeId(length = 6) {
   return txt
 }
 
-export function makeLorem(size = 100) {
+export function makeLorem(size = 100): string {
   var words = [
     'The sky',
     'above',
@@ -66,49 +68,43 @@ export function makeLorem(size = 100) {
   return txt
 }
 
-export function getRandomIntInclusive(min, max) {
+export function getRandomIntInclusive(min: number, max: number): number {
   min = Math.ceil(min)
   max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export function randomPastTime() {
+export function randomPastTime(): number {
   const HOUR = 1000 * 60 * 60
-  const DAY = 1000 * 60 * 60 * 24
   const WEEK = 1000 * 60 * 60 * 24 * 7
 
   const pastTime = getRandomIntInclusive(HOUR, WEEK)
   return Date.now() - pastTime
 }
 
-export function debounce(func, timeout = 300) {
-  let timer
-  return (...args) => {
+export function debounce<T extends (...args: unknown[]) => void>(
+  func: T,
+  timeout = 300
+): (...args: Parameters<T>) => void {
+  let timer: ReturnType<typeof setTimeout>
+  return (...args: Parameters<T>) => {
     clearTimeout(timer)
     timer = setTimeout(() => {
-      func.apply(this, args)
+      func(...args)
     }, timeout)
   }
 }
 
-export function saveToStorage(key, value) {
+export function saveToStorage<T>(key: string, value: T): void {
   localStorage.setItem(key, JSON.stringify(value))
 }
 
-export function loadFromStorage(key) {
+export function loadFromStorage<T>(key: string): T | undefined {
   const data = localStorage.getItem(key)
-  return data ? JSON.parse(data) : undefined
+  return data ? (JSON.parse(data) as T) : undefined
 }
 
-/**
- * Format a timestamp into "Mon D, YYYY, HH:MM AM/PM"
- * Example: Oct 9, 2025, 11:21 PM
- *
- * @param {number|string|Date} input - Timestamp (ms), ISO string, or Date object
- * @returns {string} Formatted date string
- */
-
-export function formatDate(input) {
+export function formatDate(input: number | string | Date): string {
   const date = new Date(input)
 
   return date.toLocaleString('en-US', {
@@ -122,7 +118,7 @@ export function formatDate(input) {
 }
 
 // Color utils
-export const labelsColorsMap = {
+export const labelsColorsMap: Record<string, string> = {
   'subtle green': '#BAF3DB',
   'subtle yellow': '#F5E989',
   'subtle orange': '#FCE4A6',
@@ -160,7 +156,7 @@ export const labelsColorsMap = {
   'bold black': '#6B6E76',
 }
 
-export const defaultLabelsColorMap = {
+export const defaultLabelsColorMap: Record<string, string> = {
   green: '#4BCE97',
   yellow: '#EED12B',
   orange: '#FCA700',
@@ -173,7 +169,7 @@ export const defaultLabelsColorMap = {
   black: '#8C8F97',
 }
 
-export const coverColorsMap = {
+export const coverColorsMap: Record<string, string> = {
   green: '#4BCE97',
   yellow: '#EED12B',
   orange: '#FCA700',
@@ -186,11 +182,11 @@ export const coverColorsMap = {
   black: '#8C8F97',
 }
 
-export const getLabelColor = (colorName) => {
+export const getLabelColor = (colorName: string): string => {
   return labelsColorsMap[colorName] || '#CCCCCC'
 }
 
-export function getDefaultLabels() {
+export function getDefaultLabels(): Label[] {
   return Object.keys(defaultLabelsColorMap).map((color) => ({
     _id: makeId(),
     name: '',
@@ -198,7 +194,7 @@ export function getDefaultLabels() {
   }))
 }
 
-export const gradientColorsMap = {
+export const gradientColorsMap: Record<string, React.ComponentType> = {
   Bubble,
   Snow,
   Ocean,
@@ -211,7 +207,7 @@ export const gradientColorsMap = {
   Volcano,
 }
 
-export const cloudinaryGradientColorsMap = {
+export const cloudinaryGradientColorsMap: Record<string, string> = {
   Bubble: 'https://res.cloudinary.com/da9naclpy/image/upload/v1765289307/bubble_rh24m3.svg',
   Snow: 'https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/snow_tqqgom.svg',
   Ocean: 'https://res.cloudinary.com/da9naclpy/image/upload/v1765289306/ocean_rkvgdo.svg',
@@ -224,19 +220,13 @@ export const cloudinaryGradientColorsMap = {
   Volcano: 'https://res.cloudinary.com/da9naclpy/image/upload/v1765289304/volcano_up6ako.svg',
 }
 
-export function addOpacity(rgbString, alpha = 0.8) {
-  // Extract numbers from "rgb(34,140,212)"
+export function addOpacity(rgbString: string, alpha = 0.8): string {
   const values = rgbString.match(/\d+/g)
+  if (!values) return rgbString
   return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${alpha})`
 }
 
-/**
- * Darkens an rgb() color string by multiplying each channel by the factor.
- * @param {string} rgbColor The rgb() string, e.g. 'rgb(200, 150, 100)'.
- * @param {number} factor Multiplication factor (0–1). Default = 0.8.
- * @returns {string} Darkened rgb() string.
- */
-export function darkenRgb(rgbColor, factor = 0.8) {
+export function darkenRgb(rgbColor: string, factor = 0.8): string {
   const [r, g, b] = _getRgbComponents(rgbColor)
 
   const newR = Math.floor(r * factor)
@@ -246,53 +236,25 @@ export function darkenRgb(rgbColor, factor = 0.8) {
   return `rgb(${newR}, ${newG}, ${newB})`
 }
 
-/**
- * Parses an rgb() or rgba() string and returns the [R, G, B] components (0-255).
- * It ignores the alpha component if present.
- * @param {string} color The rgb() or rgba() color string.
- * @returns {number[]} Array of [R, G, B] values.
- */
-function _getRgbComponents(color) {
+function _getRgbComponents(color: string): [number, number, number] {
   const match = color?.match(/(\d+),\s*(\d+),\s*(\d+)/)
 
   if (match) {
-    // match[1] is R, match[2] is G, match[3] is B
     return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])]
   }
 
-  // Fallback to black for safety
   return [0, 0, 0]
 }
 
-/**
- * Calculates the relative luminance of an RGB color based on sRGB standard.
- * @param {number[]} rgbComponents [R, G, B] array (0-255).
- * @returns {number} The luminance value (0-1).
- */
-function _getLuminance(rgbComponents) {
-  const [r, g, b] = rgbComponents.map((c) => c / 255) // Normalize to 0-1
-
-  // Standard sRGB coefficients for perceived brightness
+function _getLuminance([r, g, b]: [number, number, number]): number {
   const R_L = 0.2126
   const G_L = 0.7152
   const B_L = 0.0722
 
-  return R_L * r + G_L * g + B_L * b
+  return R_L * (r / 255) + G_L * (g / 255) + B_L * (b / 255)
 }
 
-/**
- * Determines the best contrasting text color (white or a specific dark color)
- * for a given background color based on its luminance.
- * * It uses an adjusted luminance threshold (0.40) to ensure that visually
- * medium-dark colors (like deep blues and teals) are assigned white text,
- * improving readability in the UI.
- *
- * @param {string} backgroundColor The background color string in rgb() or rgba() format.
- * (e.g., 'rgb(44, 114, 105)' or 'rgba(255, 100, 50, 0.8)').
- * @returns {string} The chosen contrasting text color: 'white' (for dark backgrounds)
- * or 'rgb(23, 43, 77)' (for light backgrounds).
- */
-export const getContrastingTextColor = (backgroundColor) => {
+export const getContrastingTextColor = (backgroundColor: string): string => {
   const rgb = _getRgbComponents(backgroundColor)
   const luminance = _getLuminance(rgb)
 
@@ -304,7 +266,7 @@ export const getContrastingTextColor = (backgroundColor) => {
   return luminance < LUMINANCE_THRESHOLD ? LIGHT_TEXT_COLOR : DARK_TEXT_COLOR
 }
 
-export async function getAverageColor(imgUrl) {
+export async function getAverageColor(imgUrl: string): Promise<string> {
   try {
     const color = await fac.getColorAsync(imgUrl)
     return color.rgb

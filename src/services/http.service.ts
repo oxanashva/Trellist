@@ -1,4 +1,6 @@
 import Axios from 'axios'
+import type { NavigateFunction } from 'react-router-dom'
+import type { Dispatch } from 'redux'
 import { showErrorMsg } from './event-bus.service'
 
 const BASE_URL = import.meta.env.VITE_API_URL || '/api/'
@@ -10,10 +12,13 @@ export const axiosInstance = Axios.create({ baseURL: BASE_URL, withCredentials: 
 // Registering the interceptor here (not inside a useEffect) guarantees it is
 // in place before any child component fires an API call.
 // ---------------------------------------------------------------------------
-let _navigate = null
-let _dispatch = null
+let _navigate: NavigateFunction | null = null
+let _dispatch: Dispatch<{ type: string; [key: string]: unknown }> | null = null
 
-export function registerInterceptorCallbacks(navigate, dispatch) {
+export function registerInterceptorCallbacks(
+  navigate: NavigateFunction,
+  dispatch: Dispatch<{ type: string; [key: string]: unknown }>
+): void {
   _navigate = navigate
   _dispatch = dispatch
 }
@@ -50,16 +55,16 @@ axiosInstance.interceptors.response.use(
 )
 
 export const httpService = {
-  get(endpoint, data) {
+  get<T = unknown>(endpoint: string, data?: Record<string, unknown>): Promise<T> {
     return axiosInstance.get(endpoint, { params: data })
   },
-  post(endpoint, data) {
+  post<T = unknown>(endpoint: string, data?: unknown): Promise<T> {
     return axiosInstance.post(endpoint, data)
   },
-  put(endpoint, data) {
+  put<T = unknown>(endpoint: string, data?: unknown): Promise<T> {
     return axiosInstance.put(endpoint, data)
   },
-  delete(endpoint, data) {
+  delete<T = unknown>(endpoint: string, data?: unknown): Promise<T> {
     return axiosInstance.delete(endpoint, { data })
   },
 }
