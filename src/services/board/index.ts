@@ -1,20 +1,27 @@
-const { DEV, VITE_LOCAL } = import.meta.env
-
+import type { Board } from '@/types/models'
 import { getDefaultLabels } from '../util.service'
 import { boardService as local } from './board.service.local'
 import { boardService as remote } from './board.service.remote'
 
-function getEmptyBoard() {
+const { DEV, VITE_LOCAL } = import.meta.env
+
+interface BoardFilter {
+  txt: string
+  sortField: string
+  sortDir: string
+}
+
+type NewBoard = Omit<Board, '_id'>
+
+function getEmptyBoard(): NewBoard {
   return {
     name: '',
     desc: '',
     closed: false,
-    dateClosed: null,
     isStarred: false,
     prefs: {
       background: '#1868DB',
     },
-    idMemberCreator: '5eafad22c718790469a3db7a',
     actions: [],
     groups: [],
     tasks: [],
@@ -35,11 +42,10 @@ function getEmptyBoard() {
         username: 'ottoross',
       },
     ],
-    uploadedImages: [],
   }
 }
 
-function getDefaultFilter() {
+function getDefaultFilter(): BoardFilter {
   return {
     txt: '',
     sortField: '',
@@ -51,7 +57,10 @@ const service = VITE_LOCAL === 'true' ? local : remote
 
 export const boardService = { getEmptyBoard, getDefaultFilter, ...service }
 
-// Easy access to this service from the dev tools console
-// when using script - dev / dev:local
+declare global {
+  interface Window {
+    boardService: typeof boardService
+  }
+}
 
 if (DEV) window.boardService = boardService
