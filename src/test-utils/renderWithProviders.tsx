@@ -23,9 +23,7 @@ function renderWithProviders(
   function Wrapper({ children }: { children: React.ReactNode }) {
     return (
       <Provider store={store}>
-        <MemoryRouter initialEntries={[route]}>
-          {children}
-        </MemoryRouter>
+        <MemoryRouter initialEntries={[route]}>{children}</MemoryRouter>
       </Provider>
     )
   }

@@ -9,121 +9,122 @@ import { ImgUploader } from '../cmps/ImgUploader'
 import { showErrorMsg } from '../services/event-bus.service'
 
 export function LoginSignup() {
-    return (
-        <div className="login-page">
-            <nav>
-                <NavLink to="login">Login</NavLink>
-                <NavLink to="signup">Signup</NavLink>
-            </nav>
-            <Outlet />
-        </div>
-    )
+  return (
+    <div className="login-page">
+      <nav>
+        <NavLink to="login">Login</NavLink>
+        <NavLink to="signup">Signup</NavLink>
+      </nav>
+      <Outlet />
+    </div>
+  )
 }
 
 export function Login() {
-    const [users, setUsers] = useState([])
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+  const [users, setUsers] = useState([])
+  const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    useEffect(() => {
-        try {
-            loadUsers()
-        } catch (err) {
-            showErrorMsg('Cannot load users')
-        }
-    }, [])
-
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        setUsers(users)
+  useEffect(() => {
+    try {
+      loadUsers()
+    } catch (err) {
+      showErrorMsg('Cannot load users')
     }
+  }, [])
 
-    async function onLogin(ev = null) {
-        if (ev) ev.preventDefault()
+  async function loadUsers() {
+    const users = await userService.getUsers()
+    setUsers(users)
+  }
 
-        if (!credentials.username) return
-        await login(credentials)
-        navigate('/')
-    }
+  async function onLogin(ev = null) {
+    if (ev) ev.preventDefault()
 
-    function handleChange(ev) {
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials({ ...credentials, [field]: value })
-    }
+    if (!credentials.username) return
+    await login(credentials)
+    navigate('/')
+  }
 
-    return (
-        <form className="login-form" onSubmit={onLogin}>
-            <select
-                name="username"
-                value={credentials.username}
-                onChange={handleChange}>
-                <option value="">Select User</option>
-                {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-            </select>
-            <button>Login</button>
-        </form>
-    )
+  function handleChange(ev) {
+    const field = ev.target.name
+    const value = ev.target.value
+    setCredentials({ ...credentials, [field]: value })
+  }
+
+  return (
+    <form className="login-form" onSubmit={onLogin}>
+      <select name="username" value={credentials.username} onChange={handleChange}>
+        <option value="">Select User</option>
+        {users.map((user) => (
+          <option key={user._id} value={user.username}>
+            {user.fullname}
+          </option>
+        ))}
+      </select>
+      <button>Login</button>
+    </form>
+  )
 }
 
 export function Signup() {
-    const [credentials, setCredentials] = useState(userService.getEmptyUser())
-    const navigate = useNavigate()
+  const [credentials, setCredentials] = useState(userService.getEmptyUser())
+  const navigate = useNavigate()
 
-    function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
-    }
+  function clearState() {
+    setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
+  }
 
-    function handleChange(ev) {
-        const type = ev.target.type
+  function handleChange(ev) {
+    const type = ev.target.type
 
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials({ ...credentials, [field]: value })
-    }
+    const field = ev.target.name
+    const value = ev.target.value
+    setCredentials({ ...credentials, [field]: value })
+  }
 
-    async function onSignup(ev = null) {
-        if (ev) ev.preventDefault()
+  async function onSignup(ev = null) {
+    if (ev) ev.preventDefault()
 
-        if (!credentials.username || !credentials.password || !credentials.fullname) return
-        await signup(credentials)
-        clearState()
-        navigate('/')
-    }
+    if (!credentials.username || !credentials.password || !credentials.fullname) return
+    await signup(credentials)
+    clearState()
+    navigate('/')
+  }
 
-    function onUploaded(imgUrl) {
-        setCredentials({ ...credentials, imgUrl })
-    }
+  function onUploaded(imgUrl) {
+    setCredentials({ ...credentials, imgUrl })
+  }
 
-    return (
-        <form className="signup-form" onSubmit={onSignup}>
-            <input
-                type="text"
-                name="fullname"
-                value={credentials.fullname}
-                placeholder="Fullname"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="text"
-                name="username"
-                value={credentials.username}
-                placeholder="Username"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="password"
-                name="password"
-                value={credentials.password}
-                placeholder="Password"
-                onChange={handleChange}
-                required
-            />
-            <ImgUploader onUploaded={onUploaded} />
-            <button>Signup</button>
-        </form>
-    )
+  return (
+    <form className="signup-form" onSubmit={onSignup}>
+      <input
+        type="text"
+        name="fullname"
+        value={credentials.fullname}
+        placeholder="Fullname"
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="text"
+        name="username"
+        value={credentials.username}
+        placeholder="Username"
+        onChange={handleChange}
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        value={credentials.password}
+        placeholder="Password"
+        onChange={handleChange}
+        required
+      />
+      <ImgUploader onUploaded={onUploaded} />
+      <button>Signup</button>
+    </form>
+  )
 }

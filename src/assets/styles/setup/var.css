@@ -1,10 +1,10 @@
 :root {
-  --primary: #1868DB;
-  --secondary: #172B4D;
+  --primary: #1868db;
+  --secondary: #172b4d;
 
   /* 'Create' button in Workspace */
   --button-primary: var(--primary);
-  --button-primary-text: #FFFFFF;
+  --button-primary-text: #ffffff;
   --button-primary-hovered: #1558bc;
   --button-primary-pressed: #123263;
 
@@ -24,42 +24,42 @@
   --dynamic-button-highlighted: rgba(0, 0, 0, 0.5);
   --dynamic-button-highlighted-hovered: rgba(0, 0, 0, 0.6);
   --dynamic-button-highlighted-pressed: rgba(0, 0, 0, 0.6);
-  --dynamic-button-highlighted-text: #FFFFFF;
+  --dynamic-button-highlighted-text: #ffffff;
 
   --text: #292a2e;
   --text-subtle: #505258;
   --dynamic-text: var(--secondary);
   --text-selected: #0c66e4;
   --link: var(--primary);
-  --link-visited: #803FA5;
-  --background-selected: #E9F2FE;
-  --background-neutral: #0515240F;
-  --background-neutral-hovered: #0B120E24;
+  --link-visited: #803fa5;
+  --background-selected: #e9f2fe;
+  --background-neutral: #0515240f;
+  --background-neutral-hovered: #0b120e24;
   --dynamic-background: #b7bba9;
 
   /* 'Vote' */
-  --text-accent-blue: #1558BC;
-  --background-accent-blue: #CFE1FD;
+  --text-accent-blue: #1558bc;
+  --background-accent-blue: #cfe1fd;
 
   /* Icons in Tasks */
   --text-subtle: #505258;
 
   /* badge-completed */
-  --background-success-bold: #5B7F24;
+  --background-success-bold: #5b7f24;
 
   /* badge-due-soon */
-  --background-warning-bold: #FBC828;
+  --background-warning-bold: #fbc828;
 
   /* badge-overdue */
-  --background-accent-red: #FFD5D2;
-  --text-accent-red: #AE2E24;
+  --background-accent-red: #ffd5d2;
+  --text-accent-red: #ae2e24;
 
   /* task-done */
-  --icon-success: #6A9A23;
+  --icon-success: #6a9a23;
 
   /* 'Delete comment' */
-  --background-danger-bold: #C9372C;
-  --background-danger-bold-hovered: #AE2E24;
+  --background-danger-bold: #c9372c;
+  --background-danger-bold-hovered: #ae2e24;
 
   /* Box shadow */
   --shadow-overlay: 0 8px 12px #1e1f2126, 0 0 1px #1e1f214f;

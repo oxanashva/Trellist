@@ -1,20 +1,20 @@
 .user-msg {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 
-    &>svg.success {
-        color: var(--icon-success);
-    }
+  & > svg.success {
+    color: var(--icon-success);
+  }
 
-    &>svg.error {
-        color: var(--text-accent-red);
-    }
+  & > svg.error {
+    color: var(--text-accent-red);
+  }
 }
 
 .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

@@ -1,114 +1,114 @@
 .create-board-picker {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: hidden;
+
+  & .create-board-editor {
+    max-width: 312px;
+    overflow-y: auto;
+    padding-inline: 0.5rem;
+    padding-block-end: 0.5rem;
+    font-size: 0.875rem;
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #e6e6e6;
+      border-radius: 3px;
+      border: 1px solid transparent;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    & > ul {
+      margin: 0;
+    }
+  }
+
+  & .board-img-container {
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-y: hidden;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: 200px;
+    height: 120px;
+    border-radius: 0.25rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
 
-    & .create-board-editor {
-        max-width: 312px;
-        overflow-y: auto;
-        padding-inline: 0.5rem;
-        padding-block-end: 0.5rem;
-        font-size: 0.875rem;
+  & .gradients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
 
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
+    & .gradient {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      padding: 0;
+      border-radius: 0.5rem;
+      overflow: hidden;
 
-        &::-webkit-scrollbar {
-            width: 0.5rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #e6e6e6;
-            border-radius: 3px;
-            border: 1px solid transparent;
-        }
-
-        &::-webkit-scrollbar-button {
-            display: none;
-        }
-
-        &>ul {
-            margin: 0;
-        }
-    }
-
-    & .board-img-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        justify-self: center;
-        width: 200px;
-        height: 120px;
-        border-radius: 0.25rem;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-    }
-
-    & .gradients-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.5rem;
-
-        & .gradient {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            padding: 0;
-            border-radius: 0.5rem;
-            overflow: hidden;
-
-            &>svg {
-                width: 100%;
-                height: 100%;
-            }
-
-            &>button {
-                width: 100%;
-                height: 100%;
-            }
-
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-
-        & .check-icon-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-        }
-    }
-
-    & .create-board-title {
-        position: relative;
-    }
-
-    & .create-board-title:after {
-        content: '*';
-        position: absolute;
-        top: -3px;
-        left: 60px;
-        color: var(--text-accent-red);
-    }
-
-    & .create-btn {
+      & > svg {
         width: 100%;
-        margin-block-start: 1rem;
+        height: 100%;
+      }
 
-        &:disabled {
-            color: var(--text-subtle);
-            background-color: var(--background-neutral);
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
+      & > button {
+        width: 100%;
+        height: 100%;
+      }
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
+
+    & .check-icon-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+  }
+
+  & .create-board-title {
+    position: relative;
+  }
+
+  & .create-board-title:after {
+    content: '*';
+    position: absolute;
+    top: -3px;
+    left: 60px;
+    color: var(--text-accent-red);
+  }
+
+  & .create-btn {
+    width: 100%;
+    margin-block-start: 1rem;
+
+    &:disabled {
+      color: var(--text-subtle);
+      background-color: var(--background-neutral);
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
 }

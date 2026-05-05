@@ -1,73 +1,73 @@
 .home {
-    place-self: center;
-    /* Mobile */
+  place-self: center;
+  /* Mobile */
+  width: 100%;
+
+  /* Tablet */
+  @media (min-width: 768px) {
+    width: 85%;
+  }
+
+  /* Desktop */
+  @media (min-width: 1201px) {
+    max-width: 1140px;
     width: 100%;
+  }
 
-    /* Tablet */
-    @media (min-width: 768px) {
-        width: 85%;
+  & .hero-content {
+    display: flex;
+    gap: 2rem;
+    margin-block: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
     }
 
-    /* Desktop */
-    @media (min-width: 1201px) {
-        max-width: 1140px;
+    & .hero-text,
+    .hero-image {
+      width: 50%;
+
+      @media (max-width: 768px) {
         width: 100%;
+      }
     }
 
-    & .hero-content {
-        display: flex;
-        gap: 2rem;
-        margin-block: 2rem;
+    & .hero-image {
+      align-self: center;
 
-        @media (max-width: 768px) {
-            flex-direction: column;
-        }
-
-        & .hero-text,
-        .hero-image {
-            width: 50%;
-
-            @media (max-width: 768px) {
-                width: 100%;
-            }
-        }
-
-        & .hero-image {
-            align-self: center;
-
-            @media (max-width: 768px) {
-                order: -1;
-                margin-block-end: 1.5rem;
-            }
-        }
-
-        & .hero-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        & h1 {
-            font-size: 3rem;
-        }
-
-        & p {
-            font-size: 1.25rem;
-        }
-
-        & a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 46px;
-            border-radius: 5px;
-            font-size: 1rem;
-            margin: 1.375em 0;
-
-            &:hover {
-                text-decoration: none;
-            }
-        }
+      @media (max-width: 768px) {
+        order: -1;
+        margin-block-end: 1.5rem;
+      }
     }
+
+    & .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    & h1 {
+      font-size: 3rem;
+    }
+
+    & p {
+      font-size: 1.25rem;
+    }
+
+    & a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 46px;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin: 1.375em 0;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }

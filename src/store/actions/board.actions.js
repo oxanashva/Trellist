@@ -1,381 +1,377 @@
 import { boardService } from '../../services/board'
 import { store } from '../store'
 import {
-    SET_BOARDS,
-    SET_BOARD,
-    ADD_BOARD,
-    UPDATE_BOARD,
-    REMOVE_BOARD,
-    ADD_GROUP,
-    UPDATE_GROUP,
-    REMOVE_GROUP,
-    ADD_TASK,
-    UPDATE_TASK,
-    REMOVE_TASK,
-    ADD_ACTION,
-    UPDATE_ACTION,
-    REMOVE_ACTION,
-    ADD_LABEL,
-    UPDATE_LABEL,
-    REMOVE_LABEL,
-    ADD_BOARD_MSG,
-    SET_IS_LOADING,
-    SET_BOARD_BACKGROUND
+  SET_BOARDS,
+  SET_BOARD,
+  ADD_BOARD,
+  UPDATE_BOARD,
+  REMOVE_BOARD,
+  ADD_GROUP,
+  UPDATE_GROUP,
+  REMOVE_GROUP,
+  ADD_TASK,
+  UPDATE_TASK,
+  REMOVE_TASK,
+  ADD_ACTION,
+  UPDATE_ACTION,
+  REMOVE_ACTION,
+  ADD_LABEL,
+  UPDATE_LABEL,
+  REMOVE_LABEL,
+  ADD_BOARD_MSG,
+  SET_IS_LOADING,
+  SET_BOARD_BACKGROUND,
 } from '../reducers/board.reducer'
 import { logger } from '../../services/logger.service'
 
 // ------------------- Helpers -------------------
 
-
 function setIsLoading(isLoading) {
-    store.dispatch({ type: SET_IS_LOADING, isLoading })
+  store.dispatch({ type: SET_IS_LOADING, isLoading })
 }
 
 function setBoardBackground(boardBackground) {
-    store.dispatch({ type: SET_BOARD_BACKGROUND, boardBackground })
+  store.dispatch({ type: SET_BOARD_BACKGROUND, boardBackground })
 }
 
 // ------------------- Boards/Board -------------------
 
-
 export async function loadBoards() {
-    try {
-        setIsLoading(true)
-        const boards = await boardService.query()
-        store.dispatch(getCmdSetBoards(boards))
-    } catch (err) {
-        logger.error('Cannot load boards', err)
-        throw err
-    } finally {
-        setIsLoading(false)
-    }
+  try {
+    setIsLoading(true)
+    const boards = await boardService.query()
+    store.dispatch(getCmdSetBoards(boards))
+  } catch (err) {
+    logger.error('Cannot load boards', err)
+    throw err
+  } finally {
+    setIsLoading(false)
+  }
 }
 
 export async function loadBoard(boardId) {
-    try {
-        setIsLoading(true)
-        const board = await boardService.getById(boardId)
-        setBoardBackground(board.prefs)
-        store.dispatch(getCmdSetBoard(board))
-    } catch (err) {
-        logger.error('Cannot load board', err)
-        throw err
-    } finally {
-        setIsLoading(false)
-    }
+  try {
+    setIsLoading(true)
+    const board = await boardService.getById(boardId)
+    setBoardBackground(board.prefs)
+    store.dispatch(getCmdSetBoard(board))
+  } catch (err) {
+    logger.error('Cannot load board', err)
+    throw err
+  } finally {
+    setIsLoading(false)
+  }
 }
 
 export async function addBoard(board) {
-    try {
-        const savedBoard = await boardService.save(board)
-        store.dispatch(getCmdAddBoard(savedBoard))
-        return savedBoard
-    } catch (err) {
-        logger.error('Cannot add board', err)
-        throw err
-    }
+  try {
+    const savedBoard = await boardService.save(board)
+    store.dispatch(getCmdAddBoard(savedBoard))
+    return savedBoard
+  } catch (err) {
+    logger.error('Cannot add board', err)
+    throw err
+  }
 }
 
 export async function updateBoard(board) {
-    const prevBoard = store.getState().boardModule.board
+  const prevBoard = store.getState().boardModule.board
 
-    try {
-        store.dispatch(getCmdUpdateBoard(board)) // optimistic
-        const savedBoard = await boardService.save(board)
-        return savedBoard
-    } catch (err) {
-        logger.error('Cannot save board', err)
-        store.dispatch(getCmdUpdateBoard(prevBoard)) // revert
-        throw err
-    }
+  try {
+    store.dispatch(getCmdUpdateBoard(board)) // optimistic
+    const savedBoard = await boardService.save(board)
+    return savedBoard
+  } catch (err) {
+    logger.error('Cannot save board', err)
+    store.dispatch(getCmdUpdateBoard(prevBoard)) // revert
+    throw err
+  }
 }
 
 export async function removeBoard(boardId) {
-    try {
-        await boardService.remove(boardId)
-        store.dispatch(getCmdRemoveBoard(boardId))
-    } catch (err) {
-        logger.error('Cannot remove board', err)
-        throw err
-    }
+  try {
+    await boardService.remove(boardId)
+    store.dispatch(getCmdRemoveBoard(boardId))
+  } catch (err) {
+    logger.error('Cannot remove board', err)
+    throw err
+  }
 }
 
 // ------------------- Messages -------------------
 
-
 export async function addBoardMsg(boardId, txt) {
-    try {
-        const msg = await boardService.addBoardMsg(boardId, txt)
-        store.dispatch(getCmdAddBoardMsg(msg))
-        return msg
-    } catch (err) {
-        logger.error('Cannot add board msg', err)
-        throw err
-    }
+  try {
+    const msg = await boardService.addBoardMsg(boardId, txt)
+    store.dispatch(getCmdAddBoardMsg(msg))
+    return msg
+  } catch (err) {
+    logger.error('Cannot add board msg', err)
+    throw err
+  }
 }
 
 // ------------------- Groups -------------------
 
-
 export async function addGroup(boardId, group) {
-    try {
-        const savedGroup = await boardService.addGroup(boardId, group)
-        store.dispatch(getCmdAddGroup(savedGroup))
-        return savedGroup
-    } catch (err) {
-        logger.error('Cannot add group', err)
-        throw err
-    }
+  try {
+    const savedGroup = await boardService.addGroup(boardId, group)
+    store.dispatch(getCmdAddGroup(savedGroup))
+    return savedGroup
+  } catch (err) {
+    logger.error('Cannot add group', err)
+    throw err
+  }
 }
 
 export async function updateGroup(boardId, group) {
-    try {
-        const savedGroup = await boardService.updateGroup(boardId, group)
-        store.dispatch(getCmdUpdateGroup(savedGroup))
-        return savedGroup
-    } catch (err) {
-        logger.error('Cannot update group', err)
-        throw err
-    }
+  try {
+    const savedGroup = await boardService.updateGroup(boardId, group)
+    store.dispatch(getCmdUpdateGroup(savedGroup))
+    return savedGroup
+  } catch (err) {
+    logger.error('Cannot update group', err)
+    throw err
+  }
 }
 
 export async function removeGroup(boardId, groupId) {
-    try {
-        await boardService.removeGroup(boardId, groupId)
-        store.dispatch(getCmdRemoveGroup(groupId))
-    } catch (err) {
-        logger.error('Cannot remove group', err)
-        throw err
-    }
+  try {
+    await boardService.removeGroup(boardId, groupId)
+    store.dispatch(getCmdRemoveGroup(groupId))
+  } catch (err) {
+    logger.error('Cannot remove group', err)
+    throw err
+  }
 }
 
 // ------------------- Tasks -------------------
 
 export async function addTask(boardId, task) {
-    try {
-        const savedTask = await boardService.addTask(boardId, task)
-        store.dispatch(getCmdAddTask(savedTask))
-        return savedTask
-    } catch (err) {
-        logger.error('Cannot add task', err)
-        throw err
-    }
+  try {
+    const savedTask = await boardService.addTask(boardId, task)
+    store.dispatch(getCmdAddTask(savedTask))
+    return savedTask
+  } catch (err) {
+    logger.error('Cannot add task', err)
+    throw err
+  }
 }
 
 export async function updateTask(boardId, taskId, fieldsToUpdate) {
-    try {
-        const savedFields = await boardService.updateTask(boardId, taskId, fieldsToUpdate)
-        store.dispatch(getCmdUpdateTask(taskId, savedFields))
-        return savedFields
-    } catch (err) {
-        logger.error('Cannot update task', err)
-        throw err
-    }
+  try {
+    const savedFields = await boardService.updateTask(boardId, taskId, fieldsToUpdate)
+    store.dispatch(getCmdUpdateTask(taskId, savedFields))
+    return savedFields
+  } catch (err) {
+    logger.error('Cannot update task', err)
+    throw err
+  }
 }
 
 export async function removeTask(boardId, taskId) {
-    try {
-        await boardService.removeTask(boardId, taskId)
-        store.dispatch(getCmdRemoveTask(taskId))
-    } catch (err) {
-        logger.error('Cannot remove task', err)
-        throw err
-    }
+  try {
+    await boardService.removeTask(boardId, taskId)
+    store.dispatch(getCmdRemoveTask(taskId))
+  } catch (err) {
+    logger.error('Cannot remove task', err)
+    throw err
+  }
 }
 
 // ------------------- Actions -------------------
 
 export async function addAction(boardId, action) {
-    try {
-        const savedAction = await boardService.addAction(boardId, action)
-        store.dispatch(getCmdAddAction(savedAction))
-        return savedAction
-    } catch (err) {
-        logger.error('Cannot add action', err)
-        throw err
-    }
+  try {
+    const savedAction = await boardService.addAction(boardId, action)
+    store.dispatch(getCmdAddAction(savedAction))
+    return savedAction
+  } catch (err) {
+    logger.error('Cannot add action', err)
+    throw err
+  }
 }
 
 export async function updateAction(boardId, action) {
-    try {
-        const savedAction = await boardService.updateAction(boardId, action)
-        store.dispatch(getCmdUpdateAction(savedAction))
-        return savedAction
-    } catch (err) {
-        logger.error('Cannot update action', err)
-        throw err
-    }
+  try {
+    const savedAction = await boardService.updateAction(boardId, action)
+    store.dispatch(getCmdUpdateAction(savedAction))
+    return savedAction
+  } catch (err) {
+    logger.error('Cannot update action', err)
+    throw err
+  }
 }
 
 export async function removeAction(boardId, actionId) {
-    try {
-        await boardService.removeAction(boardId, actionId)
-        store.dispatch(getCmdRemoveAction(actionId))
-    } catch (err) {
-        logger.error('Cannot remove action', err)
-        throw err
-    }
+  try {
+    await boardService.removeAction(boardId, actionId)
+    store.dispatch(getCmdRemoveAction(actionId))
+  } catch (err) {
+    logger.error('Cannot remove action', err)
+    throw err
+  }
 }
 
 // ------------------- Labels CRUD -------------------
 
 export async function addLabel(boardId, label) {
-    try {
-        const savedLabel = await boardService.addLabel(boardId, label)
-        store.dispatch(getCmdAddLabel(savedLabel))
-        return savedLabel
-    } catch (err) {
-        logger.error('Cannot add label', err)
-        throw err
-    }
+  try {
+    const savedLabel = await boardService.addLabel(boardId, label)
+    store.dispatch(getCmdAddLabel(savedLabel))
+    return savedLabel
+  } catch (err) {
+    logger.error('Cannot add label', err)
+    throw err
+  }
 }
 
 export async function updateLabel(boardId, label) {
-    try {
-        const savedLabel = await boardService.updateLabel(boardId, label)
-        store.dispatch(getCmdUpdateLabel(savedLabel))
-        return savedLabel
-    } catch (err) {
-        logger.error('Cannot update label', err)
-        throw err
-    }
+  try {
+    const savedLabel = await boardService.updateLabel(boardId, label)
+    store.dispatch(getCmdUpdateLabel(savedLabel))
+    return savedLabel
+  } catch (err) {
+    logger.error('Cannot update label', err)
+    throw err
+  }
 }
 
 export async function removeLabel(boardId, labelId) {
-    try {
-        await boardService.removeLabel(boardId, labelId)
-        store.dispatch(getCmdRemoveLabel(labelId))
-    } catch (err) {
-        logger.error('Cannot remove label', err)
-        throw err
-    }
+  try {
+    await boardService.removeLabel(boardId, labelId)
+    store.dispatch(getCmdRemoveLabel(labelId))
+  } catch (err) {
+    logger.error('Cannot remove label', err)
+    throw err
+  }
 }
 
 // ------------------- Command Creators -------------------
 
 function getCmdSetBoards(boards) {
-    return {
-        type: SET_BOARDS,
-        boards
-    }
+  return {
+    type: SET_BOARDS,
+    boards,
+  }
 }
 
 function getCmdSetBoard(board) {
-    return {
-        type: SET_BOARD,
-        board
-    }
+  return {
+    type: SET_BOARD,
+    board,
+  }
 }
 
 function getCmdAddBoard(board) {
-    return {
-        type: ADD_BOARD,
-        board
-    }
+  return {
+    type: ADD_BOARD,
+    board,
+  }
 }
 function getCmdUpdateBoard(board) {
-    return {
-        type: UPDATE_BOARD,
-        board
-    }
+  return {
+    type: UPDATE_BOARD,
+    board,
+  }
 }
 
 function getCmdRemoveBoard(boardId) {
-    return {
-        type: REMOVE_BOARD,
-        boardId
-    }
+  return {
+    type: REMOVE_BOARD,
+    boardId,
+  }
 }
 
 function getCmdAddBoardMsg(msg) {
-    return {
-        type: ADD_BOARD_MSG,
-        msg
-    }
+  return {
+    type: ADD_BOARD_MSG,
+    msg,
+  }
 }
 
 function getCmdAddGroup(group) {
-    return {
-        type: ADD_GROUP,
-        group
-    }
+  return {
+    type: ADD_GROUP,
+    group,
+  }
 }
 
 function getCmdUpdateGroup(group) {
-    return {
-        type: UPDATE_GROUP,
-        group
-    }
+  return {
+    type: UPDATE_GROUP,
+    group,
+  }
 }
 
 function getCmdRemoveGroup(groupId) {
-    return {
-        type: REMOVE_GROUP,
-        groupId
-    }
+  return {
+    type: REMOVE_GROUP,
+    groupId,
+  }
 }
 
 function getCmdAddTask(task) {
-    return {
-        type: ADD_TASK,
-        task
-    }
+  return {
+    type: ADD_TASK,
+    task,
+  }
 }
 
 function getCmdUpdateTask(taskId, savedFields) {
-    return {
-        type: UPDATE_TASK,
-        task: { _id: taskId, ...savedFields }
-    }
+  return {
+    type: UPDATE_TASK,
+    task: { _id: taskId, ...savedFields },
+  }
 }
 
 function getCmdRemoveTask(taskId) {
-    return {
-        type: REMOVE_TASK,
-        taskId
-    }
+  return {
+    type: REMOVE_TASK,
+    taskId,
+  }
 }
 
 function getCmdAddAction(action) {
-    return {
-        type: ADD_ACTION,
-        action
-    }
+  return {
+    type: ADD_ACTION,
+    action,
+  }
 }
 
 function getCmdUpdateAction(action) {
-    return {
-        type: UPDATE_ACTION,
-        action
-    }
+  return {
+    type: UPDATE_ACTION,
+    action,
+  }
 }
 
 function getCmdRemoveAction(actionId) {
-    return {
-        type: REMOVE_ACTION,
-        actionId
-    }
+  return {
+    type: REMOVE_ACTION,
+    actionId,
+  }
 }
 
 function getCmdAddLabel(label) {
-    return {
-        type: ADD_LABEL,
-        label
-    }
+  return {
+    type: ADD_LABEL,
+    label,
+  }
 }
 
 function getCmdUpdateLabel(label) {
-    return {
-        type: UPDATE_LABEL,
-        label
-    }
+  return {
+    type: UPDATE_LABEL,
+    label,
+  }
 }
 
 function getCmdRemoveLabel(labelId) {
-    return {
-        type: REMOVE_LABEL,
-        labelId
-    }
+  return {
+    type: REMOVE_LABEL,
+    labelId,
+  }
 }
 
 // unitTestActions()

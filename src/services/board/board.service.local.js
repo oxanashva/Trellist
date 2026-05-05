@@ -1,4 +1,3 @@
-
 import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
@@ -7,218 +6,212 @@ import { board } from './board-data'
 const STORAGE_KEY = 'board'
 
 export const boardService = {
-    query,
-    getById,
-    save,
-    remove,
-    // Group CRUD
-    addGroup,
-    updateGroup,
-    removeGroup,
-    // Task CRUD
-    addTask,
-    updateTask,
-    removeTask,
-    // Action CRUD
-    addAction,
-    updateAction,
-    removeAction,
-    // Labels CRUD
-    addLabel,
-    updateLabel,
-    removeLabel,
-    // Board messages
-    addBoardMsg
+  query,
+  getById,
+  save,
+  remove,
+  // Group CRUD
+  addGroup,
+  updateGroup,
+  removeGroup,
+  // Task CRUD
+  addTask,
+  updateTask,
+  removeTask,
+  // Action CRUD
+  addAction,
+  updateAction,
+  removeAction,
+  // Labels CRUD
+  addLabel,
+  updateLabel,
+  removeLabel,
+  // Board messages
+  addBoardMsg,
 }
 window.bs = boardService
 
 // ------------------- Basic CRUD -------------------
 
-
 async function query() {
-    return await storageService.query(STORAGE_KEY)
+  return await storageService.query(STORAGE_KEY)
 }
 
 function getById(boardId) {
-    return storageService.get(STORAGE_KEY, boardId)
+  return storageService.get(STORAGE_KEY, boardId)
 }
 
 async function save(board) {
-    let savedBoard
-    if (board._id) {
-        savedBoard = await storageService.put(STORAGE_KEY, board)
-    } else {
-        savedBoard = await storageService.post(STORAGE_KEY, board)
-    }
-    return savedBoard
+  let savedBoard
+  if (board._id) {
+    savedBoard = await storageService.put(STORAGE_KEY, board)
+  } else {
+    savedBoard = await storageService.post(STORAGE_KEY, board)
+  }
+  return savedBoard
 }
 
 async function remove(boardId) {
-    await storageService.remove(STORAGE_KEY, boardId)
+  await storageService.remove(STORAGE_KEY, boardId)
 }
 
 // ------------------- Group CRUD -------------------
 
 async function addGroup(boardId, group) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.groups.push(group)
+  board.groups.push(group)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return group
+  return group
 }
 
 async function updateGroup(boardId, updatedGroup) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.groups = board.groups.map(group =>
-        group._id === updatedGroup._id ? updatedGroup : group
-    )
+  board.groups = board.groups.map((group) =>
+    group._id === updatedGroup._id ? updatedGroup : group
+  )
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return updatedGroup
+  return updatedGroup
 }
 
 async function removeGroup(boardId, groupId) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.groups = board.groups.filter(g => g._id !== groupId)
+  board.groups = board.groups.filter((g) => g._id !== groupId)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 }
 
 // ------------------- Task CRUD -------------------
 
 async function addTask(boardId, task) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.tasks.push(task)
+  board.tasks.push(task)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return task
+  return task
 }
 
 async function updateTask(boardId, taskId, fieldsToUpdate) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    let updatedTask = null
+  let updatedTask = null
 
-    board.tasks = board.tasks.map(task => {
-        if (task._id !== taskId) return task
+  board.tasks = board.tasks.map((task) => {
+    if (task._id !== taskId) return task
 
-        updatedTask = { ...task, ...fieldsToUpdate }
-        return updatedTask
-    })
-
-    if (!updatedTask) throw new Error('Task not found')
-
-    await storageService.put(STORAGE_KEY, board)
-
+    updatedTask = { ...task, ...fieldsToUpdate }
     return updatedTask
+  })
+
+  if (!updatedTask) throw new Error('Task not found')
+
+  await storageService.put(STORAGE_KEY, board)
+
+  return updatedTask
 }
 
 async function removeTask(boardId, taskId) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.tasks = board.tasks.filter(t => t._id !== taskId)
+  board.tasks = board.tasks.filter((t) => t._id !== taskId)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 }
 
 // ------------------- Actions CRUD -------------------
 async function addAction(boardId, action) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.actions.push(action)
+  board.actions.push(action)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return action
+  return action
 }
 
 async function updateAction(boardId, updatedAction) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.actions = board.actions.map(a =>
-        a._id === updatedAction._id ? updatedAction : a
-    )
+  board.actions = board.actions.map((a) => (a._id === updatedAction._id ? updatedAction : a))
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return updatedAction
+  return updatedAction
 }
 
 async function removeAction(boardId, actionId) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.actions = board.actions.filter(a => a._id !== actionId)
+  board.actions = board.actions.filter((a) => a._id !== actionId)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 }
 
 // ------------------- Labels CRUD -------------------
 
 async function addLabel(boardId, label) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.labels.push(label)
+  board.labels.push(label)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return label
+  return label
 }
 
 async function updateLabel(boardId, updatedLabel) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.labels = board.labels.map(l =>
-        l._id === updatedLabel._id ? updatedLabel : l
-    )
+  board.labels = board.labels.map((l) => (l._id === updatedLabel._id ? updatedLabel : l))
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 
-    return updatedLabel
+  return updatedLabel
 }
 
 async function removeLabel(boardId, labelId) {
-    const board = await getById(boardId)
+  const board = await getById(boardId)
 
-    board.labels = board.labels.filter(l => l._id !== labelId)
+  board.labels = board.labels.filter((l) => l._id !== labelId)
 
-    await storageService.put(STORAGE_KEY, board)
+  await storageService.put(STORAGE_KEY, board)
 }
-
 
 // ------------------- Board Messages -------------------
 
 async function addBoardMsg(boardId, txt) {
-    // Later, this is all done by the backend
-    const board = await getById(boardId)
+  // Later, this is all done by the backend
+  const board = await getById(boardId)
 
-    const msg = {
-        id: makeId(),
-        by: userService.getLoggedinUser(),
-        txt
-    }
-    board.msgs.push(msg)
-    await storageService.put(STORAGE_KEY, board)
+  const msg = {
+    id: makeId(),
+    by: userService.getLoggedinUser(),
+    txt,
+  }
+  board.msgs.push(msg)
+  await storageService.put(STORAGE_KEY, board)
 
-    return msg
+  return msg
 }
 
 // ------------------- Factory -------------------
 
 function _createBoard() {
-    let boardData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+  let boardData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
 
-    if (!boardData || !boardData.length) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(board))
-    }
+  if (!boardData || !boardData.length) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(board))
+  }
 
-    return boardData
+  return boardData
 }
 
 _createBoard()

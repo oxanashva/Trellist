@@ -1,29 +1,29 @@
 /* Flex helpers */
 .flex {
-    display: flex;
+  display: flex;
 
-    >.full {
-        flex: 1;
-    }
+  > .full {
+    flex: 1;
+  }
 
-    &.column {
-        flex-direction: column;
-    }
+  &.column {
+    flex-direction: column;
+  }
 
-    &.justify-center {
-        justify-content: center;
-    }
+  &.justify-center {
+    justify-content: center;
+  }
 
-    &.justify-between {
-        justify-content: space-between;
-    }
+  &.justify-between {
+    justify-content: space-between;
+  }
 
-    &.align-center {
-        align-items: center;
-    }
+  &.align-center {
+    align-items: center;
+  }
 }
 
 /* Simple and useful CSS Debugging Technique */
 .debug * {
-    outline: 1px solid gold
+  outline: 1px solid gold;
 }

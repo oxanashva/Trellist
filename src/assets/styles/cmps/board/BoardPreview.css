@@ -1,22 +1,22 @@
 .board-preview {
-    & a {
-        &:hover {
-            text-decoration: none;
-        }
+  & a {
+    &:hover {
+      text-decoration: none;
     }
+  }
 
-    & .board-background {
-        width: 100%;
-        height: 72px;
-        background-position: center center;
-        background-size: cover;
-        overflow: hidden;
-    }
+  & .board-background {
+    width: 100%;
+    height: 72px;
+    background-position: center center;
+    background-size: cover;
+    overflow: hidden;
+  }
 
-    & .board-name {
-        margin: 0.5rem;
-        font-size: 0.875rem;
-        font-weight: 400;
-        color: var(--text-subtle);
-    }
+  & .board-name {
+    margin: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-subtle);
+  }
 }
